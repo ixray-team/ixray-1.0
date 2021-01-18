@@ -26,9 +26,9 @@
     <RESDEPEN value="$(RESFILES) ItemList.dfm PropertiesList.dfm NumericVector.dfm 
       ShaderFunction.dfm TextForm.dfm ChoseForm.dfm ItemDialog.dfm"/>
     <LIBFILES value=""/>
-    <LIBRARIES value="editor.lib elpackB6.lib"/>
+    <LIBRARIES value="elpackB6.lib"/>
     <SPARELIBS value="rtl.lib vcl.lib elpackB6.lib editor.lib bcbsmp.lib vclx.lib"/>
-    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi elpproB6.bpi editor.bpi"/>
     <PATHCPP value=".;"/>
     <PATHPAS value=".;"/>
     <PATHRC value=".;"/>
@@ -114,10 +114,6 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
-
-[Excluded Packages]
-X:\sdk\components\AlexMX\editor.bpl=editor
-X:\sdk\components\ElPack\Code\dcelppB6.bpl=EldoS Professional Components (Design-time)
 
 [HistoryLists\hlIncludePath]
 Count=11
