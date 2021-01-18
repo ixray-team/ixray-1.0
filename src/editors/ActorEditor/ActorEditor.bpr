@@ -112,10 +112,6 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 
-[Excluded Packages]
-X:\sdk\components\AlexMX\editor.bpl=editor
-X:\sdk\components\ElPack\Code\dcelppB6.bpl=EldoS Professional Components (Design-time)
-
 [HistoryLists\hlIncludePath]
 Count=30
 Item0=X:\sdk\dxsdk_mar2009\Include;X:\sdk\components\alexmx;$(BCB)\include;$(BCB)\include\vcl;X:\sdk\components\ElPack\Code;X:\sdk\components\ElPack\Code\Source;X:\src\xrCore;..\..\xr_3da;..\..\xr_3da\xrCPU_Pipe;..\..\xr_3da\xrRender
