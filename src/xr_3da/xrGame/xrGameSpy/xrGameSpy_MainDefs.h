@@ -11,13 +11,13 @@
 	#define	GAMESPY_GAMENAME				"stalkerscd"
 	#define GAMESPY_GAMEID					1576
 	#define GAMESPY_PRODUCTID				10954
-	#define GAME_VERSION					"1.0007(rc1)"
+	#define GAME_VERSION					"1.0007"
 	#define REGISTRY_PATH					"Software\\GSC Game World\\STALKER-SoC\\"
 #else
 	#define	GAMESPY_GAMENAME				"stalkersc"
 	#define GAMESPY_GAMEID					1067
 	#define GAMESPY_PRODUCTID				10953
-	#define GAME_VERSION					"1.0007(rc1)"
+	#define GAME_VERSION					"1.0007"
 	#define REGISTRY_PATH					"Software\\GSC Game World\\STALKER-SHOC\\"
 #endif
 
