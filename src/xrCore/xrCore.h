@@ -2,7 +2,7 @@
 #define xrCoreH
 #pragma once
 
-#pragma warning(disable:4996)
+//#pragma warning(disable:4996)
 
 #if (defined(_DEBUG) || defined(MIXED) || defined(DEBUG)) && !defined(FORCE_NO_EXCEPTIONS)
 	// "debug" or "mixed"

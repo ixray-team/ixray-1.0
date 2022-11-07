@@ -196,7 +196,7 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #  endif
 #  ifdef WIN32
 #  if _MSC_VER < 1500
-        /* In Win32, vsnprintf is available as the "non-ANSI" _vsnprintf. */
+/* In Win32, vsnprintf is available as the "non-ANSI" _vsnprintf. */
 #    if !defined(vsnprintf) && !defined(NO_vsnprintf)
 #      define vsnprintf _vsnprintf
 #    endif
