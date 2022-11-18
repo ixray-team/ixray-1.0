@@ -44,10 +44,7 @@ void CIKLimbsController::Create( CGameObject* O )
 	O->add_visual_callback(IKVisualCallback);
 }
 
-struct envc :
-private boost::noncopyable,
-public SEnumVerticesCallback
-{
+struct envc : public SEnumVerticesCallback {
 	Fvector &pos;
 	Fvector start_pos;
 	const Fmatrix &i_bind_transform;
@@ -62,6 +59,10 @@ public SEnumVerticesCallback
 		if( Fvector().sub(lpos,start_pos).dotproduct( ax ) > Fvector().sub(pos,start_pos).dotproduct( ax ) )
 						pos.set( lpos );
 	}
+
+public:
+	envc(const envc& other) = delete;
+	envc& operator =(const envc& other) = delete;
 };
 
 void get_toe(CKinematics *skeleton, Fvector & toe, const u16 bones[4])

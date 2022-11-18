@@ -92,9 +92,9 @@ private:
 #endif
 };
 
-#include <boost/noncopyable.hpp>
+
 class	ik_anim_state;
-struct SCalculateData : private boost::noncopyable {
+struct SCalculateData {
 
 	float	const		*m_angles			;
 	CKinematicsAnimated	*m_K				;
@@ -114,4 +114,8 @@ struct SCalculateData : private boost::noncopyable {
 	SCalculateData(CIKLimb& l,CKinematicsAnimated	*K,const Fmatrix &o):
 	m_limb(l), m_obj(o), m_K(K), m_angles(0), apply(false), 
 	do_collide(false), foot_step(false) {}
+
+public:
+	SCalculateData(const SCalculateData& other) = delete;
+	SCalculateData& operator =(const SCalculateData& other) = delete;
 };

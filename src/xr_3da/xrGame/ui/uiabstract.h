@@ -4,7 +4,6 @@
 #pragma warning (disable : 4512 )
 
 #include "../ui_base.h"
-#include <boost/noncopyable.hpp>
 
 typedef CGameFont::EAligment ETextAlignment;
 
@@ -90,7 +89,7 @@ enum EWindowAlignment{
 	waCenter	=16
 };
 
-class IUISimpleWindow :public boost::noncopyable{
+class IUISimpleWindow {
 public:
 						IUISimpleWindow						()			{};		
 	virtual				~IUISimpleWindow					()			{};
@@ -105,11 +104,10 @@ public:
 	virtual void		SetWndRect(const Frect& rect)					= 0;
 	virtual void		SetHeight(float height)							= 0;
 	virtual void		SetWidth(float width)							= 0;
-/*
-private:
-						IUISimpleWindow									(const IUISimpleWindow& other);
-	IUISimpleWindow&	operator =										( const IUISimpleWindow& other );
-*/
+
+public:
+	IUISimpleWindow(const IUISimpleWindow& other) = delete;
+	IUISimpleWindow& operator =(const IUISimpleWindow& other) = delete;
 };
 
 class CUISimpleWindow : public IUISimpleWindow {
