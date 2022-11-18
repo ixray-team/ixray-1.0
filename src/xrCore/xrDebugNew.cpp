@@ -31,8 +31,6 @@ extern bool shared_str_initialized;
 #include <signal.h>							// for signals
 
 #ifndef DEBUG
-#	define USE_OWN_ERROR_MESSAGE_WINDOW
-#else // DEBUG
 #	define USE_OWN_MINI_DUMP
 #endif // DEBUG
 
@@ -516,9 +514,9 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 	if (shared_str_initialized)
 		FlushLog			();
 
-#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+#ifdef USE_OWN_MINI_DUMP
 		save_mini_dump		(pExceptionInfo);
-#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+#endif // USE_OWN_MINI_DUMP
 	if (!error_after_dialog) {
 		if (Debug.get_on_dialog())
 			Debug.get_on_dialog()	(true);
