@@ -33,7 +33,7 @@ struct CType {
 		typedef a type;
 	};
 
-	typedef typename CInternalType<object_type_traits::is_base_and_derived<c,a>::value>::type type;
+	typedef typename CInternalType<std::is_base_of<c,a>::value>::type type;
 };
 /**/
 
@@ -41,21 +41,21 @@ template <typename _client_type, typename _server_type>
 IC	void CObjectFactory::add	(const CLASS_ID &clsid, LPCSTR script_clsid)
 {
 //	{
-//		typedef object_type_traits::is_base_and_derived<CLIENT_BASE_CLASS,CType<_client_type,_server_type,CLIENT_BASE_CLASS>::type> a;
+//		typedef std::is_base_of<CLIENT_BASE_CLASS,CType<_client_type,_server_type,CLIENT_BASE_CLASS>::type> a;
 //		STATIC_CHECK	(a::value,Client_class_must_be_derived_from_the_CLIENT_BASE_CLASS);
 //	}
 //	{
-//		typedef object_type_traits::is_base_and_derived<SERVER_BASE_CLASS,CType<_client_type,_server_type,SERVER_BASE_CLASS>::type> a;
+//		typedef std::is_base_of<SERVER_BASE_CLASS,CType<_client_type,_server_type,SERVER_BASE_CLASS>::type> a;
 //		STATIC_CHECK	(a::value,Server_class_must_be_derived_from_the_SERVER_BASE_CLASS);
 //	}
 //	add					(xr_new<CObjectItemCS<CType<_client_type,_server_type,CLIENT_BASE_CLASS>::type,CType<_client_type,_server_type,SERVER_BASE_CLASS>::type> >(clsid,script_clsid));
 
 	{
-		typedef object_type_traits::is_base_and_derived<CLIENT_BASE_CLASS,_client_type> a;
+		typedef std::is_base_of<CLIENT_BASE_CLASS,_client_type> a;
 		STATIC_CHECK	(a::value,Client_class_must_be_derived_from_the_CLIENT_BASE_CLASS);
 	}
 	{
-		typedef object_type_traits::is_base_and_derived<SERVER_BASE_CLASS,_server_type> a;
+		typedef std::is_base_of<SERVER_BASE_CLASS,_server_type> a;
 		STATIC_CHECK	(a::value,Server_class_must_be_derived_from_the_SERVER_BASE_CLASS);
 	}
 	add					(xr_new<CObjectItemClientServer<_client_type,_server_type> >(clsid,script_clsid));
@@ -65,15 +65,15 @@ template <typename _unknown_type>
 IC	void CObjectFactory::add	(const CLASS_ID &clsid, LPCSTR script_clsid)
 {
 	{
-		typedef object_type_traits::is_base_and_derived<CLIENT_BASE_CLASS,_unknown_type> a;
-		typedef object_type_traits::is_base_and_derived<SERVER_BASE_CLASS,_unknown_type> b;
+		typedef std::is_base_of<CLIENT_BASE_CLASS,_unknown_type> a;
+		typedef std::is_base_of<SERVER_BASE_CLASS,_unknown_type> b;
 		STATIC_CHECK	(a::value || b::value,Class_must_be_derived_from_the_CLIENT_BASE_CLASS_or_SERVER_BASE_CLASS);
 	}
 	add					(
 		xr_new<
 			CObjectItemSingle<
 				_unknown_type,
-				object_type_traits::is_base_and_derived<CLIENT_BASE_CLASS,_unknown_type>::value
+				std::is_base_of<CLIENT_BASE_CLASS,_unknown_type>::value
 			>
 		>
 		(clsid,script_clsid)

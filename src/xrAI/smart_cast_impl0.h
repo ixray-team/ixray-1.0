@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <_type_traits.h>
 #include "object_type_traits.h"
 
 namespace SmartDynamicCast {
@@ -43,7 +42,7 @@ namespace SmartDynamicCast {
 				typedef typename add<typename T1::Tail>::result result;
 			};
 
-			typedef typename selector<is_type<T,typename Head::Head>::value>::result result;
+			typedef typename selector<std::is_same<T,typename Head::Head>::value>::result result;
 		};
 
 		template <>
