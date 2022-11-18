@@ -34,21 +34,7 @@
 	}
 #endif
 
-LPCSTR script_section = "script";
-LPCSTR current_version = "current_server_entity_version";
-
-IC	u16	script_server_object_version	()
-{
-	static bool initialized		= false;
-	static u16  script_version	= 0;
-	if (!initialized) {
-		initialized				= true;
-		if (!pSettings->section_exist(script_section) || !pSettings->line_exist(script_section,current_version))
-			script_version		= 0;
-		script_version			= pSettings->r_u16(script_section,current_version);
-	}
-	return						(script_version);
-}
+extern IC u16	script_server_object_version();
 
 ////////////////////////////////////////////////////////////////////////////
 // CPureServerObject
