@@ -124,7 +124,6 @@ struct pred_stri	{
 };
 
 // STL extensions
-#define DEFINE_SET_PRED(T,N,I,P)	typedef xr_set< T, P > N;		typedef N::iterator I;
 #define DEFINE_STACK(T,N)			typedef xr_stack< T > N;
 
 #include "FixedVector.h"
