@@ -52,6 +52,8 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 		}
 		break;
 	case WM_CLOSE:
+		Engine.Event.Defer("KERNEL:disconnect");
+		Engine.Event.Defer("KERNEL:quit");
 		return 0;
 	case WM_KEYDOWN:
 		break;
