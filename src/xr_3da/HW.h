@@ -31,6 +31,11 @@ public:
 		pDevice		= NULL;
 		pBaseRT		= NULL;
 		pBaseZB		= NULL;
+
+		DEVMODE dmi;
+		EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dmi);
+		psCurrentVidMode[0] = dmi.dmPelsWidth;
+		psCurrentVidMode[1] = dmi.dmPelsHeight;
 	};
 
 	void					CreateD3D				();
