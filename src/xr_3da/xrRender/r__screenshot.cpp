@@ -34,6 +34,10 @@ void CRender::Screenshot		(IRender_interface::ScreenshotMode mode, LPCSTR name)
 {
 	if (!Device.b_is_Ready)			return;
 	if ((psDeviceFlags.test(rsFullscreen)) == 0) {
+		if (name && FS.exist(name)) {
+			FS.file_delete(0, name);
+		}
+
 		Log("~ Can't capture screen while in windowed mode...");
 		return;
 	}
