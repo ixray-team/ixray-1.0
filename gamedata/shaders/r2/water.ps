@@ -49,13 +49,18 @@ half4   main_ps_2_0  ( vf I )          : COLOR
         half3         Nw                     = mul                (half3x3(I.M1, I.M2, I.M3), Navg);
                         Nw                        = normalize        (Nw);
         half3         v2point           = normalize        (I.v2point);
-        half3        vreflect        	= reflect        (v2point, Nw)        ;
-                        vreflect.y      = vreflect.y*2-1;                                // fake remapping
+        half3 vreflect= reflect(v2point, Nw);
+	float fresnel = saturate (dot(vreflect,v2point));
+
+	//	true remapping. Slow.
+	float3 vreflectabs = abs(vreflect);
+	float vreflectmax = max( vreflectabs.x, max(vreflectabs.y, vreflectabs.z));
+	vreflect /= vreflectmax;
+	vreflect.y = vreflect.y*2-1;
+
         half3        env0               = texCUBE          (s_env0, vreflect);
         half3        env1               = texCUBE          (s_env1, vreflect);
         half3         env               = lerp                (env0,env1,L_ambient.w);
-
-        half          fresnel                = saturate        (dot(vreflect,v2point));
         half         amount             = 0.15h+0.25h*pow        (fresnel,9);                        // 1=full env, 0=no env
 
         half3        c_reflection       = env*amount        ;
