@@ -262,8 +262,13 @@ void CControlPathBuilder::make_inactual()
 	enable_movement(!enabled());
 }
 
+extern CActor* g_actor;
+
 bool CControlPathBuilder::can_use_distributed_compuations (u32 option) const
-{	
+{
+	if (!g_actor)
+		return	true;
+
 	if (Actor()->memory().visual().visible_right_now(inherited_com::m_object)) return false;
 	return inherited::can_use_distributed_compuations(option);
 }
