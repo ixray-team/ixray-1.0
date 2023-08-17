@@ -5529,7 +5529,6 @@
     </ClCompile>
     <ClCompile Include="ParticlesObject.cpp" />
     <ClCompile Include="Spectator.cpp" />
-    <ClCompile Include="r2_test_hw.cpp" />
     <ClCompile Include="xrGame.cpp" />
     <ClCompile Include="console_commands.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug_Priquel|Win32'">pch_script.h</PrecompiledHeaderFile>
