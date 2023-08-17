@@ -40,12 +40,22 @@ void	CResourceManager::reset_end				()
 
 	// remark geom's which point to dynamic VB/IB
 	{
-		for (u32 _it=0; _it<v_geoms.size(); _it++)
+		for (u32 _it = 0; _it < v_geoms.size(); _it++)
 		{
-			SGeometry*	_G = v_geoms[_it];
-			if			(_G->vb == RCache.Vertex.old_pVB)	_G->vb = RCache.Vertex.Buffer	();
-			if			(_G->ib == RCache.Index.old_pIB)	_G->ib = RCache.Index.Buffer	();
-			if			(_G->ib == RCache.old_QuadIB)		_G->ib = RCache.QuadIB;
+			SGeometry* _G = v_geoms[_it];
+			if (_G->vb == RCache.Vertex.old_pVB) {
+				_G->vb = RCache.Vertex.Buffer();
+			}
+
+			// Here we may recover the buffer using one of 
+			// RCache's index buffers.
+			// Do not remove else.
+			if (_G->ib == RCache.Index.old_pIB) {
+				_G->ib = RCache.Index.Buffer();
+			}
+			else if (_G->ib == RCache.old_QuadIB) {
+				_G->ib = RCache.QuadIB;
+			}
 		}
 	}
 
