@@ -121,10 +121,14 @@ void CRender::level_Unload()
 	pLastSector				= 0;
 	vLastCameraPos.set		(0,0,0);
 	// 2.
-	for (I=0; I<Sectors.size(); I++)
-		xr_delete(Sectors[I]);
+	for (size_t i = 0; i < Sectors.size(); i++) {
+		xr_delete(Sectors[i]);
+	}
 	Sectors.clear			();
 	// 3.
+	for (size_t i = 0; i < Portals.size(); i++) {
+		xr_delete(Portals[i]);
+	}
 	Portals.clear			();
 
 	//*** Lights
@@ -132,12 +136,18 @@ void CRender::level_Unload()
 	Lights.Unload			();
 
 	//*** Visuals
-	for (I=0; I<Visuals.size(); I++)
+	for (size_t i = 0; i < Visuals.size(); i++)
 	{
-		Visuals[I]->Release();
-		xr_delete(Visuals[I]);
+		Visuals[i]->Release();
+		xr_delete(Visuals[i]);
 	}
 	Visuals.clear			();
+
+	//*** SWI
+	for (size_t i = 0; i < SWIs.size(); i++) {
+		xr_free(SWIs[i].sw);
+	}
+	SWIs.clear();
 
 	//*** VB/IB
 	for (I=0; I<nVB.size(); I++)	_RELEASE(nVB[I]);
