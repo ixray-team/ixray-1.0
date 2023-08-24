@@ -54,6 +54,15 @@ static class cl_parallax		: public R_constant_setup		{	virtual void setup	(R_con
 	RCache.set_c	(C,h,-h/2.f,1.f/r_dtex_range,1.f/r_dtex_range);
 }}	binder_parallax;
 
+static class cl_water_intensity : public R_constant_setup
+{
+	virtual void setup(R_constant* C) {
+		CEnvDescriptor& E = g_pGamePersistent->Environment().CurrentEnv;
+		float fValue = E.m_fWaterIntensity;
+		RCache.set_c(C, fValue, fValue, fValue, 0);
+	}
+}	binder_water_intensity;
+
 extern ENGINE_API BOOL r2_sun_static;
 //////////////////////////////////////////////////////////////////////////
 // Just two static storage
@@ -205,6 +214,7 @@ void					CRender::create					()
 
 	// constants
 	::Device.Resources->RegisterConstantSetup	("parallax",	&binder_parallax);
+	::Device.Resources->RegisterConstantSetup("water_intensity", &binder_water_intensity);
 
 	c_lmaterial					= "L_material";
 	c_sbase						= "s_base";

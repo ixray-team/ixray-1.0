@@ -120,6 +120,7 @@ public:
 	Fvector4			hemi_color	;	// w = R2 correction
 	Fvector3			sun_color	;
 	Fvector3			sun_dir		;
+	float m_fWaterIntensity;
 
     int					lens_flare_id;
 	int					tb_id;
