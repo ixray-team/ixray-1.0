@@ -24,6 +24,27 @@ BIND_DECLARE(wv);
 BIND_DECLARE(vp);
 BIND_DECLARE(wvp);
 
+class cl_texgen : public R_constant_setup
+{
+	virtual void setup(R_constant* C) {
+		Fmatrix mTexgen{};
+		float _w = float(Device.dwWidth);
+		float _h = float(Device.dwHeight);
+		float o_w = (.5f / _w);
+		float o_h = (.5f / _h);
+		Fmatrix mTexelAdjust =
+		{
+			0.5f,				0.0f,				0.0f,			0.0f,
+			0.0f,				-0.5f,				0.0f,			0.0f,
+			0.0f,				0.0f,				1.0f,			0.0f,
+			0.5f + o_w,			0.5f + o_h,			0.0f,			1.0f
+		};
+		mTexgen.mul(mTexelAdjust, RCache.xforms.m_wvp);
+		RCache.set_c(C, mTexgen);
+	}
+};
+static cl_texgen binder_texgen;
+
 // fog
 class cl_fog_plane	: public R_constant_setup {
 	u32			marker;
@@ -218,6 +239,7 @@ void	CBlender_Compile::SetMapping	()
 //	r_Constant				("L_lmap_color",	&binder_lm_color);
 	r_Constant				("L_hemi_color",	&binder_hemi_color);
 	r_Constant				("L_ambient",		&binder_amb_color);
+	r_Constant("m_texgen", &binder_texgen);
 
 	// detail
 	if (bDetail	&& detail_scaler)
