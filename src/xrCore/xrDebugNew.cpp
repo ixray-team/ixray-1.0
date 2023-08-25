@@ -250,7 +250,6 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 			default : NODEFAULT;
 		}
 
-		DEBUG_INVOKE;
 #endif
 
 	if (get_on_dialog())
