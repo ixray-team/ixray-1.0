@@ -227,9 +227,15 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 #ifdef XRCORE_STATIC
 	MessageBox			(NULL,assertion_info,"X-Ray error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
 #else
-		int result = MessageBox(
-			nullptr, assertion_info, "Fatal Error",
-			MB_CANCELTRYCONTINUE | MB_ICONERROR | MB_SYSTEMMODAL);
+
+	HWND hWnd = GetActiveWindow();
+	if (hWnd == nullptr)
+		hWnd = GetForegroundWindow();
+	ShowWindow(hWnd, SW_MINIMIZE);
+
+	int result = MessageBox(
+		NULL, assertion_info, "Fatal Error",
+		MB_CANCELTRYCONTINUE | MB_ICONERROR | MB_DEFBUTTON3 | MB_SYSTEMMODAL | MB_DEFAULT_DESKTOP_ONLY);
 
 		switch (result) {
 			case IDCANCEL : {
@@ -245,9 +251,13 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 			case IDCONTINUE : {
 				error_after_dialog	= false;
 				ignore_always	= true;
+				ShowWindow(hWnd, SW_SHOWNORMAL);
 				break;
 			}
-			default : NODEFAULT;
+			default: {
+				Msg("! xrDebug::backend default reached");
+				break;
+			}
 		}
 
 #endif
