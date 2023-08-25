@@ -600,6 +600,11 @@ HRESULT	CRender::shader_compile			(
 		defines[def_it].Definition	=	"1";
 		def_it						++;
 	}
+	if (ps_r2_ls_flags.test(R2FLAG_SOFT_WATER)) {
+		defines[def_it].Name = "USE_SOFT_WATER";
+		defines[def_it].Definition = "1";
+		def_it++;
+	}
 
 	// finish
 	defines[def_it].Name			=	0;
