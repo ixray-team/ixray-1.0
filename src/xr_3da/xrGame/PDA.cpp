@@ -163,9 +163,12 @@ void CPda::ActivePDAContacts(xr_vector<CPda*>& res)
 
 	for(;it!=it_e;++it)
 	{
-		CPda* p = GetPdaFromOwner(*it);
-		if(p)
-			res.push_back(p);
+		if (*it)
+		{
+			CPda* p = GetPdaFromOwner(*it);
+			if (p)
+				res.push_back(p);
+		}
 	}
 }
 
