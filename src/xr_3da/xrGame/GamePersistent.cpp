@@ -416,6 +416,8 @@ void CGamePersistent::OnFrame	()
 
 #include "game_sv_single.h"
 #include "xrServer.h"
+#include "hudmanager.h"
+#include "UIGameCustom.h"
 
 void CGamePersistent::OnEvent(EVENT E, u64 P1, u64 P2)
 {
@@ -423,6 +425,9 @@ void CGamePersistent::OnEvent(EVENT E, u64 P1, u64 P2)
 	{
 		if (Device.Paused())
 			Device.Pause		(FALSE, TRUE, TRUE, "eQuickLoad");
+		
+		if(HUD().GetUI())
+			HUD().GetUI()->UIGame()->HideShownDialogs();
 		
 		LPSTR		saved_name	= (LPSTR)(P1);
 
