@@ -107,7 +107,6 @@ void CUIMMShniaga::Init(CUIXml& xml_doc, LPCSTR path)
 	m_wheel_size[0]		= m_anims[0]->GetWndSize();
 	
 	m_wheel_size[1].set(m_wheel_size[0]);
-	m_wheel_size[1].x	/= 1.33f;
 }
 
 void CUIMMShniaga::OnDeviceReset()
