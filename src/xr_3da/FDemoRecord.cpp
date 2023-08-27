@@ -235,42 +235,48 @@ BOOL CDemoRecord::Process(Fvector &P, Fvector &D, Fvector &N, float& fFov, float
 {
 	if (0==file)	return TRUE;
 
-	if (m_bMakeScreenshot){
+	if (m_bMakeScreenshot)
+	{
 		MakeScreenshotFace();
 		// update camera
 		N.set(m_Camera.j);
 		D.set(m_Camera.k);
 		P.set(m_Camera.c);
-	}else if (m_bMakeLevelMap){
-			MakeLevelMapProcess();
-	}else if (m_bMakeCubeMap){
+	}
+	else if (m_bMakeLevelMap)
+	{
+		MakeLevelMapProcess();
+	}
+	else if (m_bMakeCubeMap)
+	{
 		MakeCubeMapFace(D,N);
 		P.set(m_Camera.c);
 		fAspect = 1.f;
-	}else{
-		if (psHUD_Flags.test(HUD_DRAW)){
-			if ((Device.dwTimeGlobal/750)%3!=0) {
-//				pApp->pFontSystem->SetSizeI	(0.02f);
-				pApp->pFontSystem->SetColor	(color_rgba(255,0,0,255));
-				pApp->pFontSystem->SetAligment(CGameFont::alCenter);
-				pApp->pFontSystem->OutSetI	(0,-.05f);
-				pApp->pFontSystem->OutNext	("%s","RECORDING");
-				pApp->pFontSystem->OutNext	("Key frames count: %d",iCount);
-				pApp->pFontSystem->SetAligment(CGameFont::alLeft);
-				pApp->pFontSystem->OutSetI	(-0.2f,+.05f);
-				pApp->pFontSystem->OutNext	("SPACE");
-				pApp->pFontSystem->OutNext	("BACK");
-				pApp->pFontSystem->OutNext	("ESC");
-				pApp->pFontSystem->OutNext	("F11");
-				pApp->pFontSystem->OutNext	("F12");
-				pApp->pFontSystem->SetAligment(CGameFont::alLeft);
-				pApp->pFontSystem->OutSetI	(0,+.05f);
-				pApp->pFontSystem->OutNext	("= Append Key");
-				pApp->pFontSystem->OutNext	("= Cube Map");
-				pApp->pFontSystem->OutNext	("= Quit");
-				pApp->pFontSystem->OutNext	("= Level Map ScreenShot");
-				pApp->pFontSystem->OutNext	("= ScreenShot");
-			}
+	}
+	else
+	{
+		if (Console->IR_GetKeyState(DIK_F1))
+		{
+//			pApp->pFontSystem->SetSizeI	(0.02f);
+			pApp->pFontSystem->SetColor	(color_rgba(255,0,0,255));
+			pApp->pFontSystem->SetAligment(CGameFont::alCenter);
+			pApp->pFontSystem->OutSetI	(0,-.05f);
+			pApp->pFontSystem->OutNext	("%s","RECORDING");
+			pApp->pFontSystem->OutNext	("Key frames count: %d",iCount);
+			pApp->pFontSystem->SetAligment(CGameFont::alLeft);
+			pApp->pFontSystem->OutSetI	(-0.2f,+.05f);
+			pApp->pFontSystem->OutNext	("SPACE");
+			pApp->pFontSystem->OutNext	("BACK");
+			pApp->pFontSystem->OutNext	("ESC");
+			pApp->pFontSystem->OutNext	("F11");
+			pApp->pFontSystem->OutNext	("F12");
+			pApp->pFontSystem->SetAligment(CGameFont::alLeft);
+			pApp->pFontSystem->OutSetI	(0,+.05f);
+			pApp->pFontSystem->OutNext	("= Append Key");
+			pApp->pFontSystem->OutNext	("= Cube Map");
+			pApp->pFontSystem->OutNext	("= Quit");
+			pApp->pFontSystem->OutNext	("= Level Map ScreenShot");
+			pApp->pFontSystem->OutNext	("= ScreenShot");
 		}
 
 		m_vVelocity.lerp		(m_vVelocity,m_vT,0.3f);
