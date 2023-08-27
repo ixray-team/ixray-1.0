@@ -1109,7 +1109,7 @@ void CUIMainIngameWnd::UpdatePickUpItem	()
 
 	UIPickUpItemIcon.SetStretchTexture(true);
 
-	UIPickUpItemIcon.SetWidth(m_iGridWidth*INV_GRID_WIDTH*scale);
+	UIPickUpItemIcon.SetWidth(m_iGridWidth*INV_GRID_WIDTH*scale * UI()->get_current_kx());
 	UIPickUpItemIcon.SetHeight(m_iGridHeight*INV_GRID_HEIGHT*scale);
 
 	UIPickUpItemIcon.SetWndPos(m_iPickUpItemIconX + 
