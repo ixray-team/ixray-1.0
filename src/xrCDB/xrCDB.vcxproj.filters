@@ -7,6 +7,9 @@
     <Filter Include="Opcode">
       <UniqueIdentifier>{538f8b1f-fe33-4d2b-8f4b-bb4e9bbf2e6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Collision Core">
+      <UniqueIdentifier>{6cc577c9-2300-4f59-95a7-c442632e2e2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cl_raypick.cpp">
@@ -101,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Opcode.cpp">
       <Filter>Opcode</Filter>
+    </ClCompile>
+    <ClCompile Include="xrXRC.cpp">
+      <Filter>Collision Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Opcode.h">
       <Filter>Opcode</Filter>
+    </ClInclude>
+    <ClInclude Include="xrXRC.h">
+      <Filter>Collision Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -471,9 +471,6 @@
     <ClInclude Include="cl_intersect.h">
       <Filter>Engine\Collision Core</Filter>
     </ClInclude>
-    <ClInclude Include="xrXRC.h">
-      <Filter>Engine\Collision Core</Filter>
-    </ClInclude>
     <ClInclude Include="xr_ioc_cmd.h">
       <Filter>Engine\Console</Filter>
     </ClInclude>
@@ -844,9 +841,6 @@
     </ClCompile>
     <ClCompile Include="pure.cpp">
       <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="xrXRC.cpp">
-      <Filter>Engine\Collision Core</Filter>
     </ClCompile>
     <ClCompile Include="xr_ioc_cmd.cpp">
       <Filter>Engine\Console</Filter>

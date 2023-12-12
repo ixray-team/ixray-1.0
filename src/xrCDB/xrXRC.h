@@ -6,9 +6,15 @@
 #define AFX_XRXRC_H__9AA25268_621F_4FCA_BD75_AF2E9822B8E3__INCLUDED_
 #pragma once
 
-#include "../xrCDB/xrCDB.h"
+#include "xrCDB.h"
 
-class ENGINE_API xrXRC  
+#ifdef	DEBUG
+extern	XRCDB_API	CStatTimer	*cdb_clRAY;				// total: ray-testing
+extern	XRCDB_API	CStatTimer	*cdb_clBOX;				// total: box query
+extern	XRCDB_API	CStatTimer	*cdb_clFRUSTUM;			// total: frustum query
+#endif
+
+class XRCDB_API xrXRC
 {
 	CDB::COLLIDER	CL;
 public:
@@ -19,11 +25,11 @@ public:
 	IC void			ray_query		(const CDB::MODEL *m_def, const Fvector& r_start,  const Fvector& r_dir, float r_range = 10000.f)
 	{
 #ifdef DEBUG
-		Device.Statistic->clRAY.Begin();
+		//Device.Statistic->clRAY.Begin();
 #endif
 		CL.ray_query(m_def,r_start,r_dir,r_range);
 #ifdef DEBUG
-		Device.Statistic->clRAY.End	();
+		//Device.Statistic->clRAY.End	();
 #endif
 	}
 	
@@ -34,11 +40,11 @@ public:
 	IC void			box_query		(const CDB::MODEL *m_def, const Fvector& b_center, const Fvector& b_dim)
 	{
 #ifdef DEBUG
-		Device.Statistic->clBOX.Begin();
+		//Device.Statistic->clBOX.Begin();
 #endif
 		CL.box_query(m_def,b_center,b_dim);
 #ifdef DEBUG
-		Device.Statistic->clBOX.End	();
+		//Device.Statistic->clBOX.End	();
 #endif
 	}
 	
@@ -49,11 +55,11 @@ public:
 	IC void			frustum_query	(const CDB::MODEL *m_def, const CFrustum& F)
 	{
 #ifdef DEBUG
-		Device.Statistic->clFRUSTUM.Begin();
+		//Device.Statistic->clFRUSTUM.Begin();
 #endif
 		CL.frustum_query(m_def,F);
 #ifdef DEBUG
-		Device.Statistic->clFRUSTUM.End	();
+		//Device.Statistic->clFRUSTUM.End	();
 #endif
 	}
 	
@@ -67,6 +73,6 @@ public:
 	xrXRC();
 	~xrXRC();
 };
-ENGINE_API extern xrXRC XRC;
+XRCDB_API extern xrXRC XRC;
 
 #endif // !defined(AFX_XRXRC_H__9AA25268_621F_4FCA_BD75_AF2E9822B8E3__INCLUDED_)

@@ -347,6 +347,7 @@
     <ClCompile Include="Opcode.cpp">
       <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</MinimalRebuild>
     </ClCompile>
+    <ClCompile Include="xrXRC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Frustum.h" />
@@ -391,6 +392,7 @@
     <ClInclude Include="OPC_Types.h" />
     <ClInclude Include="OPC_VolumeCollider.h" />
     <ClInclude Include="Opcode.h" />
+    <ClInclude Include="xrXRC.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

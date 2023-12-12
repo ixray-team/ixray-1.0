@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "EngineAPI.h"
-#include "xrXRC.h"
+#include "../xrCDB/xrXRC.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
