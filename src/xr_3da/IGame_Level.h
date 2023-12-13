@@ -1,7 +1,6 @@
 #pragma once
 
 #include "iinputreceiver.h"
-//#include "CameraManager.h"
 #include "xr_object_list.h"
 #include "xr_area.h"
 
@@ -32,10 +31,9 @@ public:
 
 	IC SItem_ServerInfo&	operator[] ( u32 id ) { VERIFY( id < max_item ); return data[id]; }
 
-	//CServerInfo() {};
-	//~CServerInfo() {};
+	CServerInfo() {};
+	~CServerInfo() {};
 };
-
 
 //-----------------------------------------------------------------------------------------------------------
 class ENGINE_API	IGame_Level		: 
@@ -99,11 +97,12 @@ public:
 	// Main interface
 	CObject*					CurrentEntity			( void ) const							{ return pCurrentEntity;				}
 	CObject*					CurrentViewEntity		( void ) const							{ return pCurrentViewEntity;			}
-	void						SetEntity				( CObject* O  )							{ pCurrentEntity=pCurrentViewEntity=O;	}
-	void						SetViewEntity			( CObject* O  )							{ pCurrentViewEntity=O;					}
+	void						SetEntity				( CObject* O  );//							{ pCurrentEntity=pCurrentViewEntity=O;	}
+	void						SetViewEntity			( CObject* O  );//							{ pCurrentViewEntity=O;					}
 	
 	void						SoundEvent_Register		( ref_sound_data_ptr S, float range );
 	void						SoundEvent_Dispatch		( );
+	void                        SoundEvent_OnDestDestroy (Feel::Sound*);
 
 	// Loader interface
 	ref_shader					LL_CreateShader			(int S, int T, int M, int C);
