@@ -1,5 +1,4 @@
 #pragma once
-//#include "boost/shared_ptr.hpp"
 
 class CPhraseDialog;
 //typedef boost::shared_ptr<CPhraseDialog>	DIALOG_SHARED_PTR;
