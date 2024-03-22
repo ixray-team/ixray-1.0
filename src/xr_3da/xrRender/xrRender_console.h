@@ -46,8 +46,9 @@ extern ECORE_API int ps_r1_use_terrain_mask;
 
 enum
 {
-	R1FLAG_DLIGHTS				= (1<<0),
+	R1FLAG_DLIGHTS = (1 << 0),
 	R1FLAG_TERRAIN_MASK = (1 << 1),
+	R1FLAG_ACTOR_SHADOW = (1 << 2),
 };
 
 // R2

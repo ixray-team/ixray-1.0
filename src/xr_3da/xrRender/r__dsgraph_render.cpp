@@ -510,7 +510,7 @@ void	R_dsgraph_structure::r_dsgraph_render_subspace	(IRender_Sector* _sector, CF
 			(
 			lstRenderables,
 			ISpatial_DB::O_ORDERED,
-			STYPE_RENDERABLE,
+			STYPE_RENDERABLE + STYPE_RENDERABLESHADOW,
 			ViewBase
 			);
 

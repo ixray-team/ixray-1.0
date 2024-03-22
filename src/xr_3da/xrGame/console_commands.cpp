@@ -58,6 +58,8 @@ extern void show_smart_cast_stats		();
 extern void clear_smart_cast_stats		();
 extern void release_smart_cast_stats	();
 
+extern BOOL g_actor_shadow;
+
 extern	u64		g_qwStartGameTime;
 extern	u64		g_qwEStartGameTime;
 
@@ -1600,6 +1602,8 @@ void CCC_RegisterCommands()
 	CMD4(CCC_Integer,		"dbg_show_ani_info",	&g_ShowAnimationInfo,	0, 1)	;
 	CMD4(CCC_Integer,		"dbg_dump_physics_step", &g_bDebugDumpPhysicsStep, 0, 1);
 #endif
+	CMD4(CCC_Integer, "g_actor_shadow", &g_actor_shadow, 0, 1);
+
 	*g_last_saved_game	= 0;
 
 	register_mp_console_commands					();

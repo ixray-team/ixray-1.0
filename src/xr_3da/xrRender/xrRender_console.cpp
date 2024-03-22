@@ -297,6 +297,7 @@ void		xrRender_initconsole	()
 	// R1-specific
 	CMD4(CCC_Integer,	"r1_glows_per_frame",	&ps_r1_GlowsPerFrame,		2,		32		);
 	CMD3(CCC_Mask, "r1_use_terrain_mask", &ps_r1_flags, R1FLAG_TERRAIN_MASK);
+	CMD3(CCC_Mask, "r1_actor_shadow", &ps_r1_flags, R1FLAG_ACTOR_SHADOW);
 
 	// R2
 	CMD4(CCC_Float,		"r2_ssa_lod_a",			&ps_r2_ssaLOD_A,			16,		96		);
