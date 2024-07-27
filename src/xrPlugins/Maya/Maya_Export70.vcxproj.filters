@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{cfe80d4e-7f6c-467f-b46c-8eedca1850ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{2b3290b3-37d4-43a1-be94-dac1720ce8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Engine">
+      <UniqueIdentifier>{773fe00b-09ea-470f-9ef0-c039b17a9c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Editor">
+      <UniqueIdentifier>{7f047b5d-db4e-4e87-9f22-2581ba1a01a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export">
+      <UniqueIdentifier>{69ffc433-1615-4718-a656-3b9e3d5649c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export\Skin">
+      <UniqueIdentifier>{8dff28c0-186c-4d27-83e1-8b00fa575ded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export\Object">
+      <UniqueIdentifier>{5a89c5cc-fff4-4c71-ae3c-59a4f8898bde}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Export\stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\XRayExport.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\bone.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\Envelope.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\interp.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\motion.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditMesh.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditMeshIO.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditMeshModify.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditObject.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditObjectIO.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditObjectMotions.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\ELog.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\ExportDefines.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\SmdBone.cpp">
+      <Filter>Export\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\SmdMaya.cpp">
+      <Filter>Export\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\SmdTriangle.cpp">
+      <Filter>Export\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\maTranslator.cpp">
+      <Filter>Export\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\MayaExport.cpp">
+      <Filter>Export\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Export\Stdafx.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\bone.h">
+      <Filter>Shared Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\envelope.h">
+      <Filter>Shared Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\Fmesh.h">
+      <Filter>Shared Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\EditMesh.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\EditObject.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\ELog.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\motion.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\ExportDefines.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Export\xraySkinExportOptions.mel">
+      <Filter>Export\Skin</Filter>
+    </None>
+    <None Include="Export\xraySkinMotionExportOptions.mel">
+      <Filter>Export\Skin</Filter>
+    </None>
+    <None Include="Export\xrayObjectExportOptions.mel">
+      <Filter>Export\Object</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Export\SmdBone.h">
+      <Filter>Export\Skin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Export\SmdMaya.h">
+      <Filter>Export\Skin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Export\SmdTriangle.h">
+      <Filter>Export\Skin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Export\maTranslator.h">
+      <Filter>Export\Object</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

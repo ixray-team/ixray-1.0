@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{61649751-4add-403a-a524-25c8be6b8066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{d67cad65-e27a-4ab2-9a6f-06d8fc4edaa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Engine">
+      <UniqueIdentifier>{e910c8b4-084a-4fde-9515-7492aa1e69e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Editor">
+      <UniqueIdentifier>{160d60ef-3cf0-4ccc-aab1-66016fc7ab11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Plugins">
+      <UniqueIdentifier>{55b6ef84-93a0-451f-b952-a2f580b56a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{570ff31e-4fa0-4e46-8486-cf403b91b145}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Material\stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\GameMtlLib.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\ELog.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\BlenderListLoader.cpp">
+      <Filter>Shared Files\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\crc16.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\lambertShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Material\AElambertShaderTemplate.mel">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Material\AEXRayMtlTemplate.mel">
+      <Filter>Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Material\Stdafx.h">
+      <Filter>Kernel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Material\GameMtlLib.h">
+      <Filter>Shared Files\Engine</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Material\Shader_xrLC.h">
+      <Filter>Shared Files\Engine</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Material\ELog.h">
+      <Filter>Shared Files\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Material\BlenderListLoader.h">
+      <Filter>Shared Files\Plugins</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
