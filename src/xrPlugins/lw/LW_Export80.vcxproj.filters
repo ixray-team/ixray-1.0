@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{d5177184-ecc0-43dc-ab09-20428155aa18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{9eaaa30d-3fa3-46a4-8f2a-0c09c4e80a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Engine">
+      <UniqueIdentifier>{35c90a0a-32f2-47e0-8018-4a408956e95a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Editor">
+      <UniqueIdentifier>{5611564d-0f39-4c06-bb65-46f6d06852e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Server">
+      <UniqueIdentifier>{21d76585-e075-44bd-8b46-3de2d4226098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export">
+      <UniqueIdentifier>{40842a85-6ef6-4ca7-b674-6e738abb00f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export\SceneScan">
+      <UniqueIdentifier>{1d3229b7-4c60-4df7-923a-22c86a9fdff3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export\LWO">
+      <UniqueIdentifier>{9157936f-bf71-46d9-8981-b1a85254c06e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Export\stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\bone.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\Envelope.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\interp.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\motion.cpp">
+      <Filter>Shared Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EditMesh.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EditMeshIO.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EditMeshModify.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EditObject.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditObjectImport.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\EditObjectImportDB.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EditObjectIO.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EditObjectMotions.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\ELog.cpp">
+      <Filter>Shared Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\servmain.c">
+      <Filter>Shared Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\bone_lw.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\envtest.c">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LW_export_keys.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LW_export_motion.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LW_export_object.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\motion_lw.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\objectdb.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\ptsearch.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\surface.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\vecmat.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\vmap.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\clip.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\envelope.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\list.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\lwio.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\lwo2.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\lwob.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\pntspols.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\surface.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\vecmath.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LWO\vmap.c">
+      <Filter>Export\LWO</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Export\stdafx.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\bone.h">
+      <Filter>Shared Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\envelope.h">
+      <Filter>Shared Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\motion.h">
+      <Filter>Shared Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\EditMesh.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\EditObject.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\ELog.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\LW_ShaderDef.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\SceneObject.h">
+      <Filter>Shared Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\lwo2.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\resource.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\scenscan\objectdb.h">
+      <Filter>Export\SceneScan</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\scenscan\scenscan.h">
+      <Filter>Export\SceneScan</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\scenscan\vecmat.h">
+      <Filter>Export\SceneScan</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\LWO\envelope.h">
+      <Filter>Export\LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\LWO\lwo2.h">
+      <Filter>Export\LWO</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
