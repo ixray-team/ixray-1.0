@@ -170,7 +170,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -227,7 +227,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -286,7 +286,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -346,7 +346,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -403,7 +403,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -462,7 +462,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -6761,10 +6761,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\xrCore\xrCore.vcxproj">
       <Project>{a0f7d1fb-59a7-4717-a7e4-96f37e91998e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\xrLua\xrLua.vcxproj">
-      <Project>{9ace5473-6d68-4b96-ac42-b39eaba0fe1f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\xrNetServer\xrNetServer.vcxproj">
