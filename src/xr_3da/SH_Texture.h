@@ -2,7 +2,7 @@
 #define SH_TEXTURE_H
 #pragma once
 
-#include "xr_resource.h"
+#include "../xrCore/xr_resource.h"
 
 class ENGINE_API CAviPlayerCustom;
 class ENGINE_API CTheoraSurface;

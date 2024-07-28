@@ -5,6 +5,11 @@
 #include "..\igame_persistent.h"
 #include "..\environment.h"
 
+#include "..\fhierrarhyvisual.h"
+#include "..\SkeletonCustom.h"
+#include "..\fmesh.h"
+#include "flod.h"
+
 using namespace		R_dsgraph;
 
 extern float		r_ssaDISCARD;
@@ -510,12 +515,6 @@ void	R_dsgraph_structure::r_dsgraph_render_subspace	(IRender_Sector* _sector, CF
 	ViewBase						= ViewSave;
 	View							= 0;
 }
-
-#include "stdafx.h"
-#include "..\fhierrarhyvisual.h"
-#include "..\SkeletonCustom.h"
-#include "..\fmesh.h"
-#include "flod.h"
 
 void	R_dsgraph_structure::r_dsgraph_render_R1_box	(IRender_Sector* _S, Fbox& BB, int sh)
 {

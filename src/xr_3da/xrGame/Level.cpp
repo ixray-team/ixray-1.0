@@ -1,4 +1,8 @@
+#include "stdafx.h"
 #include "pch_script.h"
+
+#include <functional>
+
 #include "../fdemorecord.h"
 #include "../fdemoplay.h"
 #include "../environment.h"
@@ -557,7 +561,7 @@ void CLevel::OnFrame	()
 	m_ph_commander_scripts->update		();
 //	autosave_manager().update			();
 
-	//просчитать полет пуль
+	//РїСЂРѕСЃС‡РёС‚Р°С‚СЊ РїРѕР»РµС‚ РїСѓР»СЊ
 	Device.Statistic->TEST0.Begin		();
 	BulletManager().CommitRenderSet		();
 	Device.Statistic->TEST0.End			();
@@ -608,11 +612,11 @@ void CLevel::OnRender()
 	inherited::OnRender	();
 	
 	Game().OnRender();
-	//отрисовать трассы пуль
+	//РѕС‚СЂРёСЃРѕРІР°С‚СЊ С‚СЂР°СЃСЃС‹ РїСѓР»СЊ
 	//Device.Statistic->TEST1.Begin();
 	BulletManager().Render();
 	//Device.Statistic->TEST1.End();
-	//отрисовать интерфейc пользователя
+	//РѕС‚СЂРёСЃРѕРІР°С‚СЊ РёРЅС‚РµСЂС„РµР№c РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	HUD().RenderUI();
 
 	draw_wnds_rects();
@@ -1074,10 +1078,11 @@ struct objects_ptrs_equal : public std::binary_function<Feel::Touch::DenyTouch, 
 void GlobalFeelTouch::update()
 {
 	//we ignore P and R arguments, we need just delete evaled denied objects...
-	xr_vector<Feel::Touch::DenyTouch>::iterator new_end = 
-		std::remove_if(feel_touch_disable.begin(), feel_touch_disable.end(), 
-			std::bind2nd(delete_predicate_by_time(), Device.dwTimeGlobal));
-	feel_touch_disable.erase(new_end, feel_touch_disable.end());
+	feel_touch_disable.erase(std::remove_if(feel_touch_disable.begin(),
+		feel_touch_disable.end(),
+		[](const Feel::Touch::DenyTouch& touch) {
+			return delete_predicate_by_time()(touch, Device.dwTimeGlobal);
+		}), feel_touch_disable.end());
 }
 
 bool GlobalFeelTouch::is_object_denied(CObject const * O)
@@ -1085,7 +1090,9 @@ bool GlobalFeelTouch::is_object_denied(CObject const * O)
 	/*Fvector temp_vector;
 	feel_touch_update(temp_vector, 0.f);*/
 	if (std::find_if(feel_touch_disable.begin(), feel_touch_disable.end(),
-		std::bind2nd(objects_ptrs_equal(), O)) == feel_touch_disable.end())
+		[O](const Feel::Touch::DenyTouch& obj) {
+			return objects_ptrs_equal()(obj, O);
+		}) == feel_touch_disable.end())
 	{
 		return false;
 	}

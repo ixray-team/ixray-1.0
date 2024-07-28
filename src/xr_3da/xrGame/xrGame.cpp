@@ -15,15 +15,6 @@
 #pragma comment(lib,"ode.lib")
 #pragma comment(lib,"xr_3da.lib")
 
-#ifdef NDEBUG
-namespace std {
-	void terminate()
-	{
-		abort();
-	}
-}
-#endif // #ifdef NDEBUG
-
 extern "C" {
 	DLL_API DLL_Pure*	__cdecl xrFactory_Create		(CLASS_ID clsid)
 	{

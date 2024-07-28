@@ -6,7 +6,7 @@
 #define AFX_FRUSTUM_H__E66ED755_F741_49CF_8B2A_404CCF7067F2__INCLUDED_
 #pragma once
 
-#include "fixedvector.h"
+#include "../xrCore/fixedvector.h"
 
 #pragma pack(push,4)
 

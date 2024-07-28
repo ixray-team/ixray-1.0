@@ -19,10 +19,6 @@
 
 #include "clsid_game.h"
 
-#define BOOST_THROW_EXCEPTION_HPP_INCLUDED
-
-namespace boost {void throw_exception(const std::exception &A);};
-
 #include "smart_cast.h"
 
 #define READ_IF_EXISTS(ltx,method,section,name,default_value)\

@@ -11,7 +11,7 @@
 #include	"luabind/return_reference_to_policy.hpp"
 
 using namespace				luabind;
-
+#		define USE_DL_ALLOCATOR
 #ifdef	DEBUG
 #define MDB	Memory.dbg_check()
 #else

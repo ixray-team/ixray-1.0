@@ -7,7 +7,7 @@
 
 #include "ResourceManager.h"
 
-#include "xrPool.h"
+#include "../xrCore/xrPool.h"
 #include "r_constants.h"
 
 // pool

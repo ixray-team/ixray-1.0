@@ -6,8 +6,6 @@
 #include "xrThread.h"
 #include "xrSyncronize.h"
 
-using namespace			std;
-
 xr_vector<OGF_Base *>	g_tree;
 BOOL					b_R2		= FALSE;
 BOOL					b_noise		= FALSE;

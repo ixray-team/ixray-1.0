@@ -25,22 +25,15 @@
 
 #include <luabind/config.hpp>
 #include <luabind/class.hpp>
-#include <luabind/detail/get_signature.hpp>
 
 #include <cstring>
 //#include <iostream>
 
-void boost::throw_exception	( std::exception const & )
-{
-	abort();
+#ifndef DEBUG
+void boost::throw_exception(std::exception const&) {
+    abort();
 }
-
-#ifdef NDEBUG
-void std::terminate()
-{
-	abort();
-}
-#endif // #ifdef NDEBUG
+#endif // !DEBUG
 
 namespace luabind { namespace detail {
 

@@ -4,7 +4,7 @@
 #include "../xrLevel.h"
 #include "../x_ray.h"
 #include "../IGame_Persistent.h"
-#include "../xrCore/stream_reader.h"
+#include "../../xrCore/stream_reader.h"
 
 #pragma warning(push)
 #pragma warning(disable:4995)

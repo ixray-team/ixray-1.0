@@ -48,15 +48,6 @@ static int start_day	= 31;	// 31
 static int start_month	= 1;	// January
 static int start_year	= 1999;	// 1999
 
-#ifdef NDEBUG
-namespace std {
-	void terminate()
-	{
-		abort();
-	}
-}
-#endif // #ifdef NDEBUG
-
 void compute_build_id	()
 {
 	build_date			= __DATE__;
