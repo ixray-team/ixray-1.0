@@ -11,7 +11,7 @@
 #include "xr_input.h"
 #include "xr_ioc_cmd.h"
 #include "GameFont.h"
-#include "xr_trims.h"
+#include "../xrCore/xr_trims.h"
 #include "CustomHUD.h"
 #pragma warning(push)
 #pragma warning(disable:4995)

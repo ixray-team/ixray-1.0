@@ -28,7 +28,7 @@ function is called.  Output of timing test is saved to a local .txt file.
 #endif // _MSC_VER > 1000
 
 
-#include <d3d.h>
+#include <ddraw.h>
 
 
 

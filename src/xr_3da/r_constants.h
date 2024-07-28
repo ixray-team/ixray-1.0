@@ -2,7 +2,7 @@
 #define r_constantsH
 #pragma once
 
-#include "xr_resource.h"
+#include "../xrCore/xr_resource.h"
 
 class ENGINE_API	R_constant_setup;
 

@@ -16,6 +16,21 @@
 //-------------------------------------
 #include "GameSpyFuncs.h"
 
+const GUID CLSID_DP8SP_TCPIP =
+{ 0xebfe7ba0, 0x628d, 0x11d2, { 0xae, 0x0f, 0x00, 0x60, 0x97, 0xb0, 0x14, 0x11 } };
+
+const GUID CLSID_DirectPlay8Address =
+{ 0x934a9523, 0xa3ca, 0x4bc5, { 0xad, 0xa0, 0xd6, 0xd9, 0x5d, 0x97, 0x94, 0x21 } };
+
+const GUID CLSID_DirectPlay8Client =
+{ 0x743f1dc6, 0x5aba, 0x429f, { 0x8b, 0xdf, 0xc5, 0x4d, 0x03, 0x25, 0x3d, 0xc2 } };
+
+const GUID IID_IDirectPlay8Address =
+{ 0x83783300, 0x4063, 0x4c8a, { 0x9d, 0xb3, 0x82, 0x83, 0x0a, 0x7f, 0xeb, 0x31 } };
+
+const GUID IID_IDirectPlay8Client =
+{ 0x5102dacd, 0x241b, 0x11d3, { 0xae, 0xa7, 0x00, 0x60, 0x97, 0xb0, 0x14, 0x11 } };
+
 GAME_TYPE	GetGameType (char* GameType)
 {
 	if (!GameType) return GAME_UNKNOWN;
@@ -230,7 +245,7 @@ END_MESSAGE_MAP()
 // CClientDlg message handlers
 /////////////////////////////////////////////////////////
 #include <dplay8.h>
-#include <dxerr8.h>
+#include <dxerr.h>
 #include <vector>
 IDirectPlay8Client 		*g_pClient;
 IDirectPlay8Address		*g_pClientDeviceAddress	;
@@ -895,7 +910,7 @@ BOOL	CClientDlg::Client_EnumHosts()
 	};
 	if (hr != S_OK)
 	{
-		const char* text = DXGetErrorString8(hr);
+		const char* text = DXGetErrorString(hr);
 		int x=0;
 		x=x;
 	}

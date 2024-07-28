@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "Stalker_net.h"
 #include "SVWeatherOptions.h"
-#include "xrstring.h"
+#include "../../xrCore/xrstring.h"
 
 
 // SVWeatherOptions dialog

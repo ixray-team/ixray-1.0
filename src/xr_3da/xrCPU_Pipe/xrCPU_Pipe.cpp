@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "xrCPU_Pipe.h"
 #pragma hdrstop
 
 #pragma comment(lib,"xr_3DA")
