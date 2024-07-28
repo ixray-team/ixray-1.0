@@ -96,7 +96,7 @@
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\boost\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -150,7 +150,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\boost\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -197,7 +197,7 @@
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\boost\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)\src\xrLua\src\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
