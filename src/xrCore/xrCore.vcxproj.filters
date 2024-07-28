@@ -70,6 +70,9 @@
     <Filter Include="Compression\lzo">
       <UniqueIdentifier>{f4a35dc2-4a6c-45cf-a4c1-a0c91a1135f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ptmalloc3">
+      <UniqueIdentifier>{9b138eed-a86c-4b97-a0a5-19d0af0ab403}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -250,6 +253,13 @@
       <Filter>Compression\lzo</Filter>
     </ClCompile>
     <ClCompile Include="xrSyncronize.cpp" />
+    <ClCompile Include="doug_lea_allocator.cpp" />
+    <ClCompile Include="ptmalloc3\malloc.c">
+      <Filter>ptmalloc3</Filter>
+    </ClCompile>
+    <ClCompile Include="ptmalloc3\sysdeps\win32\win32.c">
+      <Filter>ptmalloc3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -520,6 +530,10 @@
       <Filter>Compression\lzo</Filter>
     </ClInclude>
     <ClInclude Include="xrSyncronize.h" />
+    <ClInclude Include="doug_lea_allocator.h" />
+    <ClInclude Include="ptmalloc3\malloc-2.8.3.h">
+      <Filter>ptmalloc3</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="xrCore.rc">
