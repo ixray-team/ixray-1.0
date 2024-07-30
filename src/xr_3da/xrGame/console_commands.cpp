@@ -120,7 +120,6 @@ CUIOptConCom g_OptConCom;
 #endif // PURE_ALLOC
 
 #ifdef SEVERAL_ALLOCATORS
-	ENGINE_API 	u32 engine_lua_memory_usage	();
 	extern		u32 game_lua_memory_usage	();
 #endif // SEVERAL_ALLOCATORS
 
@@ -134,7 +133,6 @@ public:
 		u32		_process_heap	= mem_usage_impl(GetProcessHeap(),0,0);
 #ifdef SEVERAL_ALLOCATORS
 		u32		_game_lua		= game_lua_memory_usage();
-		u32		_engine_lua		= engine_lua_memory_usage();
 		u32		_render			= ::Render->memory_usage();
 #endif // SEVERAL_ALLOCATORS
 		int		_eco_strings	= (int)g_pStringContainer->stat_economy			();
@@ -150,7 +148,7 @@ public:
 #ifndef SEVERAL_ALLOCATORS
 		Msg		("* [x-ray]: crt heap[%d K], process heap[%d K]",_crt_heap/1024,_process_heap/1024);
 #else // SEVERAL_ALLOCATORS
-		Msg		("* [x-ray]: crt heap[%d K], process heap[%d K], game lua[%d K], engine lua[%d K], render[%d K]",_crt_heap/1024,_process_heap/1024,_game_lua/1024,_engine_lua/1024,_render/1024);
+		Msg		("* [x-ray]: crt heap[%d K], process heap[%d K], game lua[%d K], render[%d K]",_crt_heap/1024,_process_heap/1024,_game_lua/1024,_render/1024);
 #endif // SEVERAL_ALLOCATORS
 
 		Msg		("* [x-ray]: economy: strings[%d K], smem[%d K]",_eco_strings/1024,_eco_smem);

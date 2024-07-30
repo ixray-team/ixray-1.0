@@ -8,7 +8,7 @@
 
 #include "stdafx.h"
 #include "xrMessages.h"
-#include "../../xrNetServer/net_utils.h"
+#include "../xrNetServer/net_utils.h"
 #include "clsid_game.h"
 #include "xrServer_Objects_ALife_Items.h"
 #include "clsid_game.h"
@@ -29,7 +29,7 @@
 ////////////////////////////////////////////////////////////////////////////
 CSE_ALifeInventoryItem::CSE_ALifeInventoryItem(LPCSTR caSection)
 {
-	//òåêóùåå ñîñòîÿíèå âåùè
+	//Ñ‚ÐµÐºÑƒÑ‰ÐµÐµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð²ÐµÑ‰Ð¸
 	m_fCondition				= 1.0f;
 
 	m_fMass						= pSettings->r_float(caSection, "inv_weight");
