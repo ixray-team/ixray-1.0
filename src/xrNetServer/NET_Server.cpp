@@ -126,7 +126,7 @@ void gen_auth_code()
 		test.push_back			(xr_string("xrcpu_pipe.dll"));
 		test.push_back			(xr_string("xrgame.dll"));
 		test.push_back			(xr_string("xrgamespy.dll"));
-		test.push_back			(xr_string("xrlua.dll"));
+		//test.push_back			(xr_string("xrlua.dll"));
 		test.push_back			(xr_string("xrnetserver.dll"));
 		test.push_back			(xr_string("xrparticles.dll"));
 		test.push_back			(xr_string("xrrender_r1.dll"));

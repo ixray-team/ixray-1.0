@@ -23,7 +23,7 @@ CScriptIniFile *get_game_ini()
 }
 #endif // XRGAME_EXPORTS
 
-bool r_line(CScriptIniFile *self, LPCSTR S, int L,	xr_string &N, xr_string &V)
+bool r_line(CScriptIniFile *self, LPCSTR S, int L,	luabind::internal_string &N, luabind::internal_string &V)
 {
 	THROW3			(self->section_exist(S),"Cannot find section",S);
 	THROW2			((int)self->line_count(S) > L,"Invalid line number");
