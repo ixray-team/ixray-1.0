@@ -170,7 +170,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -179,7 +179,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;ogg_static.lib;theora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmtd;libc;libcd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -190,7 +190,7 @@
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -227,7 +227,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -236,7 +236,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;ogg_static.lib;theora_static.lib;openAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -247,7 +247,7 @@
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -289,7 +289,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -298,7 +298,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;ogg_static.lib;theora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -312,7 +312,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -351,7 +351,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -360,7 +360,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;ogg_static.lib;theora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmtd;libc;libcd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -370,7 +370,7 @@
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -406,7 +406,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -415,7 +415,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;ogg_static.lib;theora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -425,7 +425,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <TargetMachine>MachineX86</TargetMachine>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -462,7 +462,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -471,7 +471,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;ogg_static.lib;theora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.JIT.1.1.4.lib;luabind.beta7-devel.rc4.lib;msacm32.lib;vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -482,7 +482,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -827,12 +827,26 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets')" />
+    <Import Project="..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets')" />
+    <Import Project="..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets')" />
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties DevPartner_IsInstrumented="1" />
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets'))" />
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets'))" />
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets'))" />
+  </Target>
 </Project>

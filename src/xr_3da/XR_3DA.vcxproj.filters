@@ -903,4 +903,7 @@
     <Text Include="features.txt" />
     <Text Include="TODO.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
