@@ -26,6 +26,7 @@
 #include "script_zone.h"
 #include "relation_registry.h"
 #include "danger_object.h"
+#include "game_object_space.h"
 
 using namespace luabind;
 
