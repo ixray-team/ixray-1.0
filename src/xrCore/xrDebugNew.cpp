@@ -3,8 +3,6 @@
 
 #include "xrdebug.h"
 
-#include "dxerr9.h"
-
 #pragma warning(push)
 #pragma warning(disable:4995)
 #include <malloc.h>
@@ -25,12 +23,6 @@ extern bool shared_str_initialized;
     #   define USE_BUG_TRAP
     #	define DEBUG_INVOKE	__asm int 3
         static BOOL			bException	= FALSE;
-#endif
-
-#ifndef _M_AMD64
-#	ifndef __BORLANDC__
-#		pragma comment(lib,"dxerr9.lib")
-#	endif
 #endif
 
 #include <dbghelp.h>						// MiniDump flags
@@ -285,21 +277,11 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 	CS.Leave			();
 }
 
-LPCSTR xrDebug::error2string	(long code)
+LPCSTR xrDebug::error2string(long code)
 {
-	LPCSTR				result	= 0;
-	static	string1024	desc_storage;
-
-#ifdef _M_AMD64
-#else
-	result				= DXGetErrorDescription9	(code);
-#endif
-	if (0==result) 
-	{
-		FormatMessage	(FORMAT_MESSAGE_FROM_SYSTEM,0,code,0,desc_storage,sizeof(desc_storage)-1,0);
-		result			= desc_storage;
-	}
-	return		result	;
+	static char desc_storage[1024] = {};
+	FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, nullptr, code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), desc_storage, 0, nullptr);
+	return desc_storage;
 }
 
 void xrDebug::error		(long hr, const char* expr, const char *file, int line, const char *function, bool &ignore_always)
