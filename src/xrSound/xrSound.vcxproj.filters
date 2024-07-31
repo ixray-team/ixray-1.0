@@ -10,9 +10,6 @@
     <Filter Include="Core\OpenAL">
       <UniqueIdentifier>{4b4f6d6c-c48c-4b2b-8618-878a75f6d762}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\DSound">
-      <UniqueIdentifier>{3c50f6e5-3886-46f2-ab09-9f303d815c36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Emitter">
       <UniqueIdentifier>{ea2e6b82-a1e9-49d2-bde3-a08a75ea4a2c}</UniqueIdentifier>
     </Filter>
@@ -54,9 +51,6 @@
     <ClInclude Include="SoundRender_CoreA.h">
       <Filter>Core\OpenAL</Filter>
     </ClInclude>
-    <ClInclude Include="SoundRender_CoreD.h">
-      <Filter>Core\DSound</Filter>
-    </ClInclude>
     <ClInclude Include="SoundRender_Emitter.h">
       <Filter>Emitter</Filter>
     </ClInclude>
@@ -67,9 +61,6 @@
       <Filter>Target</Filter>
     </ClInclude>
     <ClInclude Include="SoundRender_TargetA.h">
-      <Filter>Target</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundRender_TargetD.h">
       <Filter>Target</Filter>
     </ClInclude>
     <ClInclude Include="SoundRender_Environment.h">
@@ -116,9 +107,6 @@
     <ClCompile Include="SoundRender_CoreA.cpp">
       <Filter>Core\OpenAL</Filter>
     </ClCompile>
-    <ClCompile Include="SoundRender_CoreD.cpp">
-      <Filter>Core\DSound</Filter>
-    </ClCompile>
     <ClCompile Include="SoundRender_Emitter.cpp">
       <Filter>Emitter</Filter>
     </ClCompile>
@@ -141,9 +129,6 @@
       <Filter>Target</Filter>
     </ClCompile>
     <ClCompile Include="SoundRender_TargetA.cpp">
-      <Filter>Target</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundRender_TargetD.cpp">
       <Filter>Target</Filter>
     </ClCompile>
     <ClCompile Include="SoundRender_Environment.cpp">
