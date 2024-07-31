@@ -38,6 +38,18 @@
 
 #define LUABIND_DONT_COPY_STRINGS
 
+#ifndef LUA_DEBUG
+
+#	ifndef LUABIND_NO_ERROR_CHECKING
+#		define LUABIND_NO_ERROR_CHECKING
+#	endif // LUABIND_NO_ERROR_CHECKING
+
+#	pragma warning(disable: 4251 577 297)
+#   define LUABIND_DTOR_NOEXCEPT noexcept
+#else
+#   define LUABIND_DTOR_NOEXCEPT
+#endif // LUA_DEBUG
+
 #if defined (BOOST_MSVC) && (BOOST_MSVC <= 1200)
 
 #define for if (false) {} else for
