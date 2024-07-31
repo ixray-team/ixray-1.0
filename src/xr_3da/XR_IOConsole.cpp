@@ -138,7 +138,7 @@ void CConsole::OnRender	()
 	VERIFY	(HW.pDevice);
 
 	//*** Shadow
-	D3DRECT R = { 0,0,Device.dwWidth,Device.dwHeight};
+	D3DRECT R = { 0,0, (long)Device.dwWidth,(long)Device.dwHeight};
 	if		(bGame) R.y2 /= 2;
 
 	CHK_DX	(HW.pDevice->Clear(1,&R,D3DCLEAR_TARGET,D3DCOLOR_XRGB(32,32,32),1,0));
@@ -467,7 +467,7 @@ outloop:
 	if (I!=Commands.end()) {
 		IConsole_Command &C = *(I->second);
 		if (C.bEnabled) {
-			if (C.bLowerCaseArgs) strlwr(last_word);
+			if (C.bLowerCaseArgs) _strlwr(last_word);
 			if (last_word[0]==0) {
 				if (C.bEmptyArgsHandled) C.Execute(last_word);
 				else {

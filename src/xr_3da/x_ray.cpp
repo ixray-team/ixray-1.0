@@ -1081,7 +1081,7 @@ int CApplication::Level_ID(LPCSTR name)
 	strconcat	(sizeof(buffer),buffer,name,"\\");
 	for (u32 I=0; I<Levels.size(); I++)
 	{
-		if (0==stricmp(buffer,Levels[I].folder))	return int(I);
+		if (0==_stricmp(buffer,Levels[I].folder))	return int(I);
 	}
 	return -1;
 }

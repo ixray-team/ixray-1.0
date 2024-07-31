@@ -476,8 +476,8 @@ void format_message	(LPSTR buffer, const u32 &buffer_size)
 		NULL
 	);
 
-	sprintf		(buffer,"[error][%8d]    : %s",error_code,message);
-    LocalFree	(message);
+	sprintf_s(buffer, buffer_size, "[error][%8d]: %s", error_code, message);
+	LocalFree	(message);
 }
 
 LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)

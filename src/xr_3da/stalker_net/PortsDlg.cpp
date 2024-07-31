@@ -48,7 +48,8 @@ void	CPortsDlg::FillPortsList()
 
 	for (int i=START_PORT; i<= END_PORT; i++)
 	{
-		for (int p=0; p<m_iNumPorts; p++)
+		int p = 0;
+		for (; p<m_iNumPorts; p++)
 		{
 			if (m_pUsedPorts[p] == i) break;
 		}
