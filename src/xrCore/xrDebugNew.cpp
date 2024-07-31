@@ -18,28 +18,19 @@ extern bool shared_str_initialized;
     #	pragma comment(lib,"EToolsB.lib")
     #	define DEBUG_INVOKE	DebugBreak()
         static BOOL			bException	= TRUE;
-    #   define USE_BUG_TRAP
 #else
-    #   define USE_BUG_TRAP
     #	define DEBUG_INVOKE	__asm int 3
         static BOOL			bException	= FALSE;
+
+    #	define USE_OWN_ERROR_MESSAGE_WINDOW
 #endif
 
 #include <dbghelp.h>						// MiniDump flags
 
-#ifdef USE_BUG_TRAP
-#	include "../bugtrap/bugtrap.h"						// for BugTrap functionality
-    #ifndef __BORLANDC__
-        #	pragma comment(lib,"BugTrap.lib")		// Link to ANSI DLL
-    #else
-        #	pragma comment(lib,"BugTrapB.lib")		// Link to ANSI DLL
-    #endif
-#endif // USE_BUG_TRAP
-
 #include <new.h>							// for _set_new_mode
 #include <signal.h>							// for signals
 
-#if 0//def DEBUG
+#ifndef DEBUG
 #	define USE_OWN_ERROR_MESSAGE_WINDOW
 #else // DEBUG
 #	define USE_OWN_MINI_DUMP
@@ -238,18 +229,15 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 #ifdef XRCORE_STATIC
 	MessageBox			(NULL,assertion_info,"X-Ray error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
 #else
-#	ifdef USE_OWN_ERROR_MESSAGE_WINDOW
-		int					result = 
-			MessageBox(
-				GetTopWindow(NULL),
-				assertion_info,
-				"Fatal Error",
-				MB_CANCELTRYCONTINUE|MB_ICONERROR|MB_SYSTEMMODAL
-			);
+		int result = MessageBox(
+			nullptr, assertion_info, "Fatal Error",
+			MB_CANCELTRYCONTINUE | MB_ICONERROR | MB_SYSTEMMODAL);
 
 		switch (result) {
 			case IDCANCEL : {
 				DEBUG_INVOKE;
+				// TODO: Maybe not correct
+				exit(-1);
 				break;
 			}
 			case IDTRYAGAIN : {
@@ -263,12 +251,8 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 			}
 			default : NODEFAULT;
 		}
-#	else // USE_OWN_ERROR_MESSAGE_WINDOW
-#		ifdef USE_BUG_TRAP
-			BT_SetUserMessage	(assertion_info);
-#		endif // USE_BUG_TRAP
+
 		DEBUG_INVOKE;
-#	endif // USE_OWN_ERROR_MESSAGE_WINDOW
 #endif
 
 	if (get_on_dialog())
@@ -346,84 +330,6 @@ int out_of_memory_handler	(size_t size)
 }
 
 extern LPCSTR log_name();
-
-void CALLBACK PreErrorHandler	(INT_PTR)
-{
-#ifdef USE_BUG_TRAP
-	if (!xr_FS || !FS.m_Flags.test(CLocatorAPI::flReady))
-		return;
-
-	string_path				log_folder;
-
-	__try {
-		FS.update_path		(log_folder,"$logs$","");
-		if ((log_folder[0] != '\\') && (log_folder[1] != ':')) {
-			string256		current_folder;
-			_getcwd			(current_folder,sizeof(current_folder));
-			
-			string256		relative_path;
-			strcpy			(relative_path,log_folder);
-			strconcat		(sizeof(log_folder),log_folder,current_folder,"\\",relative_path);
-		}
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER) {
-		strcpy				(log_folder,"logs");
-	}
-
-	BT_AddLogFile			(log_name());
-#endif // USE_BUG_TRAP
-}
-
-#ifdef USE_BUG_TRAP
-void SetupExceptionHandler	(const bool &dedicated)
-{
-	BT_InstallSehFilter		();
-#ifndef USE_OWN_ERROR_MESSAGE_WINDOW
-	if (!dedicated && !strstr(GetCommandLine(),"-silent_error_mode"))
-		BT_SetActivityType	(BTA_SHOWUI);
-	else
-		BT_SetActivityType	(BTA_SAVEREPORT);
-#else // USE_OWN_ERROR_MESSAGE_WINDOW
-	BT_SetActivityType		(BTA_SAVEREPORT);
-#endif // USE_OWN_ERROR_MESSAGE_WINDOW
-
-	BT_SetDialogMessage				(
-		BTDM_INTRO2,
-		"\
-This is XRay Engine crash reporting client. \
-To help the development process, \
-please Submit Bug or save report and email it manually (button More...).\
-\r\nMany thanks in advance and sorry for the inconvenience."
-	);
-
-	BT_SetPreErrHandler		(PreErrorHandler,0);
-	BT_SetAppName			("XRay Engine");
-	BT_SetReportFormat		(BTRF_TEXT);
-	BT_SetFlags				(BTF_DETAILEDMODE | /**BTF_EDIETMAIL | /**/BTF_ATTACHREPORT /**| BTF_LISTPROCESSES /**| BTF_SHOWADVANCEDUI /**| BTF_SCREENCAPTURE/**/);
-	BT_SetDumpType			(
-		MiniDumpWithDataSegs |
-//		MiniDumpWithFullMemory |
-//		MiniDumpWithHandleData |
-//		MiniDumpFilterMemory |
-//		MiniDumpScanMemory |
-//		MiniDumpWithUnloadedModules |
-#ifndef _EDITOR
-		MiniDumpWithIndirectlyReferencedMemory |
-#endif // _EDITOR
-//		MiniDumpFilterModulePaths |
-//		MiniDumpWithProcessThreadData |
-//		MiniDumpWithPrivateReadWriteMemory |
-//		MiniDumpWithoutOptionalData |
-//		MiniDumpWithFullMemoryInfo |
-//		MiniDumpWithThreadInfo |
-//		MiniDumpWithCodeSegs |
-		0
-	);
-	BT_SetSupportEMail		("crash-report@stalker-game.com");
-//	BT_SetSupportServer		("localhost", 9999);
-//	BT_SetSupportURL		("www.gsc-game.com");
-}
-#endif // USE_BUG_TRAP
 
 #if 1
 extern void BuildStackTrace(struct _EXCEPTION_POINTERS *pExceptionInfo);
@@ -610,18 +516,15 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 	if (shared_str_initialized)
 		FlushLog			();
 
-#ifndef USE_OWN_ERROR_MESSAGE_WINDOW
-#	ifdef USE_OWN_MINI_DUMP
+#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
 		save_mini_dump		(pExceptionInfo);
-#	endif // USE_OWN_MINI_DUMP
-#else // USE_OWN_ERROR_MESSAGE_WINDOW
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
 	if (!error_after_dialog) {
 		if (Debug.get_on_dialog())
 			Debug.get_on_dialog()	(true);
 
 		MessageBox			(NULL,"Fatal error occured\n\nPress OK to abort program execution","Fatal error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
 	}
-#endif // USE_OWN_ERROR_MESSAGE_WINDOW
 
 	if (!previous_filter) {
 #ifdef USE_OWN_ERROR_MESSAGE_WINDOW
@@ -666,7 +569,6 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
     _CRTIMP int		__cdecl _set_new_mode( int );
 	_PNH __cdecl			_set_new_handler(_In_opt_ _PNH _NewHandler);
 
-#ifndef USE_BUG_TRAP
 	void _terminate		()
 	{
 		if (strstr(GetCommandLine(),"-silent_error_mode"))
@@ -696,10 +598,10 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 		
 		LPCSTR					endline = "\r\n";
 		LPSTR					buffer = assertion_info + xr_strlen(assertion_info);
-		buffer					+= sprintf(buffer,"Press OK to abort execution%s",endline);
+		buffer					+= sprintf(buffer, (const char*) strlen(assertion_info), "Press OK to abort execution%s", endline);
 
 		MessageBox				(
-			GetTopWindow(NULL),
+			/*GetTopWindow(NULL)*/ nullptr,
 			assertion_info,
 			"Fatal Error",
 			MB_OK|MB_ICONERROR|MB_SYSTEMMODAL
@@ -707,15 +609,10 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 		
 		exit					(-1);
 	}
-#endif // USE_BUG_TRAP
 
 	void debug_on_thread_spawn			()
 	{
-#ifdef USE_BUG_TRAP
-		BT_SetTerminate					();
-#else // USE_BUG_TRAP
 		std::set_terminate				(_terminate);
-#endif // USE_BUG_TRAP
 	}
 
 	static void handler_base				(LPCSTR reason_string)
@@ -860,9 +757,6 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 		std::set_unexpected				(_terminate);
 #endif
 
-#ifdef USE_BUG_TRAP
-		SetupExceptionHandler			(dedicated);
-#endif // USE_BUG_TRAP
 		previous_filter					= ::SetUnhandledExceptionFilter(UnhandledFilter);	// exception handler to all "unhandled" exceptions
 
 #if 0
