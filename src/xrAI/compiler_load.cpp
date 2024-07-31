@@ -122,7 +122,7 @@ void xrLoad(LPCSTR name, bool draft_mode)
 					// load thumbnail
 					LPSTR N			= BT.name;
 					if (strchr(N,'.')) *(strchr(N,'.')) = 0;
-					strlwr			(N);
+					_strlwr			(N);
 
 					if (0==xr_strcmp(N,"level_lods"))	{
 						// HACK for merged lod textures

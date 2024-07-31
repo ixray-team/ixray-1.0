@@ -57,7 +57,7 @@ void				WeaponUsageStatistic::Write_WeaponUsageFrequency	(FILE* pFile)
 	}
 	fprintf(pFile, "\n");
 	//-----------------------------------------------------
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		u32 NumBoughtTotal = 0;
@@ -97,7 +97,7 @@ void				WeaponUsageStatistic::Write_WeaponKills		(FILE* pFile)
 	}
 	fprintf(pFile, "\n");
 	//-----------------------------------------------------
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		if (!strstr(UN.Name, "wpn_")) continue;
@@ -138,7 +138,7 @@ void				WeaponUsageStatistic::Write_WeaponEfficiency		(FILE* pFile)
 	}
 	fprintf(pFile, "\n");
 	//-----------------------------------------------------
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		if (!strstr(UN.Name, "wpn_")) continue;
@@ -185,7 +185,7 @@ void				WeaponUsageStatistic::Write_WeaponAccuracy		(FILE* pFile)
 	}
 	fprintf(pFile, "\n");
 	//-----------------------------------------------------
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		if (!strstr(UN.Name, "wpn_")) continue;
@@ -243,7 +243,7 @@ void				WeaponUsageStatistic::Write_EffectiveRange		(FILE* pFile)
 
 	MaxRange =  ceil(MaxRange);
 
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		if (!strstr(UN.Name, "wpn_")) continue;
@@ -308,7 +308,7 @@ void				WeaponUsageStatistic::Write_BonesHits		(FILE* pFile)
 	if (aBones.empty()) return;
 
 	fprintf(pFile, "\tTotal");
-	for (i=0; i<aBones.size(); i++)
+	for (u32 i=0; i<aBones.size(); i++)
 	{
 		Used_Name& UB = aBones[i];
 		
@@ -322,7 +322,7 @@ void				WeaponUsageStatistic::Write_BonesHits		(FILE* pFile)
 	u32 HitsOnBone[1024];
 	ZeroMemory(HitsOnBone, sizeof(HitsOnBone));
 	u32 TotalHits = 0;
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		if (!strstr(UN.Name, "wpn_")) continue;
@@ -402,7 +402,7 @@ void				WeaponUsageStatistic::Write_BonesKills			(FILE* pFile)
 	if (aBones.empty()) return;
 
 	fprintf(pFile, "\tTotal");
-	for (i=0; i<aBones.size(); i++)
+	for (u32 i=0; i<aBones.size(); i++)
 	{
 		Used_Name& UB = aBones[i];
 		
@@ -416,7 +416,7 @@ void				WeaponUsageStatistic::Write_BonesKills			(FILE* pFile)
 	u32 HitsOnBone[1024];
 	ZeroMemory(HitsOnBone, sizeof(HitsOnBone));
 	u32 TotalHits = 0;
-	for (i=0; i<aWeapons.size(); i++)
+	for (u32 i=0; i<aWeapons.size(); i++)
 	{
 		Used_Name& UN = aWeapons[i];
 		if (!strstr(UN.Name, "wpn_")) continue;
@@ -535,7 +535,7 @@ void				WeaponUsageStatistic::Write_Basket		(FILE* pFile)
 		}
 		fprintf(pFile, "\n");
 
-		for (i=0; i<aWeapons.size(); i++)
+		for (u32 i=0; i<aWeapons.size(); i++)
 		{
 			Used_Name& UN = aWeapons[i];		
 

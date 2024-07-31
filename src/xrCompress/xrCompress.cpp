@@ -340,7 +340,7 @@ void	OpenPack			(LPCSTR tgt_folder, int num)
 #else
 	strconcat		(sizeof(fname),fname,tgt_folder,".pack_#",_itoa(num,s_num,10));
 #endif
-	unlink			(fname);
+	_unlink			(fname);
 	fs				= FS.w_open	(fname);
 	fs_desc.clear	();
 	aliases.clear	();
