@@ -65,6 +65,7 @@ int CScriptEngine::lua_panic			(CLuaVirtualMachine *L)
 void CScriptEngine::lua_error			(CLuaVirtualMachine *L)
 {
 	print_output			(L,"",LUA_ERRRUN);
+	ai().script_engine().on_error(L);
 
 #if !XRAY_EXCEPTIONS
 	Debug.fatal				(DEBUG_INFO,"LUA error: %s",lua_tostring(L,-1));
@@ -76,6 +77,8 @@ void CScriptEngine::lua_error			(CLuaVirtualMachine *L)
 int  CScriptEngine::lua_pcall_failed	(CLuaVirtualMachine *L)
 {
 	print_output			(L,"",LUA_ERRRUN);
+	ai().script_engine().on_error(L);
+
 #if !XRAY_EXCEPTIONS
 	Debug.fatal				(DEBUG_INFO,"LUA error: %s",lua_isstring(L,-1) ? lua_tostring(L,-1) : "");
 #endif
@@ -103,15 +106,18 @@ void CScriptEngine::setup_callbacks		()
 #endif
 	{
 #if !XRAY_EXCEPTIONS
-		luabind::set_error_callback		(CScriptEngine::lua_error);
+		luabind::set_error_callback(CScriptEngine::lua_error);
 #endif
-		luabind::set_pcall_callback		(CScriptEngine::lua_pcall_failed);
+
+#ifndef MASTER_GOLD
+		luabind::set_pcall_callback(CScriptEngine::lua_pcall_failed);
+#endif // MASTER_GOLD
 	}
 
 #if !XRAY_EXCEPTIONS
-	luabind::set_cast_failed_callback	(lua_cast_failed);
+	luabind::set_cast_failed_callback(lua_cast_failed);
 #endif
-	lua_atpanic							(lua(),CScriptEngine::lua_panic);
+	lua_atpanic(lua(), CScriptEngine::lua_panic);
 }
 
 #ifdef DEBUG
@@ -355,4 +361,13 @@ void CScriptEngine::collect_all_garbage	()
 {
 	lua_gc					(lua(),LUA_GCCOLLECT,0);
 	lua_gc					(lua(),LUA_GCCOLLECT,0);
+}
+
+void CScriptEngine::on_error(lua_State* state) {
+#if defined(USE_DEBUGGER) && defined(USE_LUA_STUDIO)
+	if (!debugger())
+		return;
+
+	debugger()->on_error(state);
+#endif // #if defined(USE_DEBUGGER) && defined(USE_LUA_STUDIO)
 }

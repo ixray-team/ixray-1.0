@@ -68,7 +68,7 @@ int CScriptEngine::lua_panic			(lua_State *L)
 void CScriptEngine::lua_error			(lua_State *L)
 {
 	print_output			(L,"",LUA_ERRRUN);
-
+	ai().script_engine().on_error(L);
 #if !XRAY_EXCEPTIONS
 	Debug.fatal				(DEBUG_INFO,"LUA error: %s",lua_tostring(L,-1));
 #else
@@ -79,6 +79,7 @@ void CScriptEngine::lua_error			(lua_State *L)
 int  CScriptEngine::lua_pcall_failed	(lua_State *L)
 {
 	print_output			(L,"",LUA_ERRRUN);
+	ai().script_engine().on_error(L);
 #if !XRAY_EXCEPTIONS
 	Debug.fatal				(DEBUG_INFO,"LUA error: %s",lua_isstring(L,-1) ? lua_tostring(L,-1) : "");
 #endif
@@ -358,6 +359,15 @@ void CScriptEngine::add_no_file		(LPCSTR file_name, u32 string_length)
 {
 	m_last_no_file_length	= string_length;
 	CopyMemory				(m_last_no_file,file_name,(string_length+1)*sizeof(char));
+}
+
+void CScriptEngine::on_error(lua_State* state) {
+#if defined(USE_DEBUGGER) && defined(USE_LUA_STUDIO)
+	if (!debugger())
+		return;
+
+	debugger()->on_error(state);
+#endif // #if defined(USE_DEBUGGER) && defined(USE_LUA_STUDIO)
 }
 
 void CScriptEngine::collect_all_garbage	()
