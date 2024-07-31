@@ -17,15 +17,6 @@
 #include "Stream.h"
 #include "StrStream.h"
 
-/// Lower value of Unicode high-surrogate character.
-#define HIGH_SURROGATE_START   0xD800
-/// Higher value of Unicode high-surrogate character.
-#define HIGH_SURROGATE_END     0xDBFF
-/// Lower value of Unicode low-surrogate character.
-#define LOW_SURROGATE_START    0xDC00
-/// Higher value of Unicode low-surrogate character.
-#define LOW_SURROGATE_END      0xDFFF
-
 /// Text encoding.
 enum TEXT_ENCODING
 {
