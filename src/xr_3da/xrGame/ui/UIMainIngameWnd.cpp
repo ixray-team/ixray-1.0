@@ -1165,7 +1165,6 @@ void CUIMainIngameWnd::reset_ui()
 /*
 #include "d3dx9core.h"
 #include "winuser.h"
-#pragma comment(lib,"d3dx9.lib")
 #pragma comment(lib,"d3d9.lib")
 ID3DXFont*     g_pTestFont = NULL;
 ID3DXSprite*        g_pTextSprite = NULL;   // Sprite for batching draw text calls
