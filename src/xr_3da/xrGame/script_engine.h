@@ -91,6 +91,7 @@ public:
 			void				restartDebugger				();
 			CScriptDebugger		*debugger					();
 #endif
+			virtual	void		on_error(lua_State* state);
 			void				collect_all_garbage			();
 
 	DECLARE_SCRIPT_REGISTER_FUNCTION
