@@ -75,16 +75,16 @@ BOOL	testSKIP		(LPCSTR path)
 	string256			p_ext;
 	_splitpath			(path, 0, 0, p_name, p_ext );
 
-	if (0==stricmp(p_ext,".swatch"))return TRUE;
-	if (0==stricmp(p_ext,".db"))	return TRUE;
+	if (0==_stricmp(p_ext,".swatch"))return TRUE;
+	if (0==_stricmp(p_ext,".db"))	return TRUE;
 	if (PatternMatch(p_ext,"*avi*"))return TRUE;
-	if (0==stricmp(p_ext,".key"))	return TRUE;
-	if (0==stricmp(p_ext,".tga"))	return TRUE;
-	if (0==stricmp(p_ext,".txt"))	return TRUE;
-	if (0==stricmp(p_ext,".smf"))	return TRUE;
-	if (0==stricmp(p_ext,".uvm"))	return TRUE;
-	if (0==stricmp(p_ext,".raw"))	return TRUE;
-	if (0==stricmp(p_name,"build"))	return TRUE;
+	if (0==_stricmp(p_ext,".key"))	return TRUE;
+	if (0==_stricmp(p_ext,".tga"))	return TRUE;
+	if (0==_stricmp(p_ext,".txt"))	return TRUE;
+	if (0==_stricmp(p_ext,".smf"))	return TRUE;
+	if (0==_stricmp(p_ext,".uvm"))	return TRUE;
+	if (0==_stricmp(p_ext,".raw"))	return TRUE;
+	if (0==_stricmp(p_name,"build"))	return TRUE;
 	if ('~'==p_ext[1])				return TRUE;
 	if ('_'==p_ext[1])				return TRUE;
 
@@ -102,24 +102,24 @@ BOOL	testVFS			(LPCSTR path)
 	string256			p_ext;
 	_splitpath			(path,0,0,0,p_ext);
 
-	if (!stricmp(p_ext,".xml"))
+	if (!_stricmp(p_ext,".xml"))
 		return			(FALSE);
 
-	if (!stricmp(p_ext,".ltx"))
+	if (!_stricmp(p_ext,".ltx"))
 		return			(FALSE);
 
-	if (!stricmp(p_ext,".script"))
+	if (!_stricmp(p_ext,".script"))
 		return			(FALSE);
 
 	return				(TRUE);
 	/**
-	// if (0==stricmp(p_name,"level") && (0==stricmp(p_ext,".") || 0==p_ext[0]) )	return TRUE;	// level.
-	if (0==stricmp(p_name,"level") && 0==stricmp(p_ext,".ai"))					return TRUE;
-	if (0==stricmp(p_name,"level") && 0==stricmp(p_ext,".gct"))					return TRUE;
-	if (0==stricmp(p_name,"level") && 0==stricmp(p_ext,".details"))				return TRUE;
-	if (0==stricmp(p_ext,".ogg"))												return TRUE;
-	if (0==stricmp(p_name,"game") && 0==stricmp(p_ext,".graph"))				return TRUE;
-	if (0==stricmp(p_name,"game") && 0==stricmp(p_ext,".graph"))				return TRUE;
+	// if (0==_stricmp(p_name,"level") && (0==_stricmp(p_ext,".") || 0==p_ext[0]) )	return TRUE;	// level.
+	if (0==_stricmp(p_name,"level") && 0==_stricmp(p_ext,".ai"))					return TRUE;
+	if (0==_stricmp(p_name,"level") && 0==_stricmp(p_ext,".gct"))					return TRUE;
+	if (0==_stricmp(p_name,"level") && 0==_stricmp(p_ext,".details"))				return TRUE;
+	if (0==_stricmp(p_ext,".ogg"))												return TRUE;
+	if (0==_stricmp(p_name,"game") && 0==_stricmp(p_ext,".graph"))				return TRUE;
+	if (0==_stricmp(p_name,"game") && 0==_stricmp(p_ext,".graph"))				return TRUE;
 	return				(FALSE);
 	/**/
 }
@@ -336,9 +336,9 @@ void	OpenPack			(LPCSTR tgt_folder, int num)
 	string_path		fname;
 	string128		s_num;
 #ifdef MOD_COMPRESS
-	strconcat		(sizeof(fname),fname,tgt_folder,".xdb",itoa(num,s_num,10));
+	strconcat		(sizeof(fname),fname,tgt_folder,".xdb",_itoa(num,s_num,10));
 #else
-	strconcat		(sizeof(fname),fname,tgt_folder,".pack_#",itoa(num,s_num,10));
+	strconcat		(sizeof(fname),fname,tgt_folder,".pack_#",_itoa(num,s_num,10));
 #endif
 	unlink			(fname);
 	fs				= FS.w_open	(fname);

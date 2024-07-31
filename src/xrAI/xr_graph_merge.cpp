@@ -223,7 +223,8 @@ public:
 			IReader									*F = FS.r_open(fName);
 			u32										id;
 			IReader									*O = F->open_chunk_iterator(id);
-			for (int i=0; O; O = F->open_chunk_iterator(id,O))	{
+			int i = 0;
+			for (; O; O = F->open_chunk_iterator(id,O))	{
 				NET_Packet							P;
 				P.B.count							= O->length();
 				O->r								(P.B.data,P.B.count);
@@ -429,7 +430,7 @@ void read_levels(CInifile *Ini, xr_set<CLevelInfo> &levels, bool rebuild_graph, 
 	string_path			caFileName, file_name;
 	for (u32 k = 0; Ini->r_line("levels",k,&_N,&V); k++) {
 		string256		N;
-		strlwr			(strcpy(N,_N));
+		_strlwr			(strcpy(N,_N));
 
 		if (!Ini->section_exist(N)) {
 			Msg			("! There is no section %s in the %s!",N,GAME_CONFIG);
@@ -454,7 +455,7 @@ void read_levels(CInifile *Ini, xr_set<CLevelInfo> &levels, bool rebuild_graph, 
 		u8				id = Ini->r_u8(N,"id");
 		LPCSTR			_S = Ini->r_string(N,"name");
 		string256		S;
-		strlwr			(strcpy(S,_S));
+		_strlwr			(strcpy(S,_S));
 
 		if (needed_levels) {
 			bool		found = false;
@@ -643,7 +644,7 @@ CGraphMerger::CGraphMerger(
 	xr_vector<LPCSTR>				needed_levels;
 	string4096						levels_string;
 	strcpy							(levels_string,name);
-	strlwr							(levels_string);
+	_strlwr							(levels_string);
 	fill_needed_levels				(levels_string,needed_levels);
 #endif // PRIQUEL
 
@@ -726,7 +727,7 @@ CGraphMerger::CGraphMerger(
 						R_ASSERT				(M != (*K).second->m_tVertexMap.end());
 					}
 
-//					if (!stricmp("l06_rostok",*(*I).second->m_tLevel.name())) {
+//					if (!_stricmp("l06_rostok",*(*I).second->m_tLevel.name())) {
 //						__asm int 3;
 //					}
 					Msg							("Level %s with id %d has VALID connection point %s,\nwhich references to graph point %s on the level %s with id %d\n",*(*I).second->m_tLevel.name(),(*I).second->m_tLevel.id(),(*i).first,tConnectionVertex.caConnectName,*(*K).second->m_tLevel.name(),(*K).second->m_tLevel.id());
