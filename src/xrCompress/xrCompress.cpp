@@ -323,7 +323,7 @@ void	Compress			(LPCSTR path, LPCSTR base, BOOL bFast)
 		R.c_ptr				= c_ptr;
 		R.c_size_real		= c_size_real;
 		R.c_size_compressed	= c_size_compressed;
-		aliases.insert		(mk_pair(R.c_size_real,R));
+		aliases.insert		(std::make_pair(R.c_size_real,R));
 	}
 
 	FS.r_close	(src);

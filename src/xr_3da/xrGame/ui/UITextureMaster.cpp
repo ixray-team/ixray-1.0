@@ -45,9 +45,9 @@ void CUITextureMaster::ParseShTexInfo(LPCSTR xml_file){
 			info.rect.y2 = xml.ReadAttribFlt("texture",i,"height") + info.rect.y1;
 			shared_str id = xml.ReadAttrib("texture",i,"id");
 
-			m_textures.insert(mk_pair(id,info));
+			m_textures.insert(std::make_pair(id,info));
 		}
-//		m_shTex.insert(mk_pair(texture, regs));
+//		m_shTex.insert(std::make_pair(texture, regs));
 //	}
 }
 
