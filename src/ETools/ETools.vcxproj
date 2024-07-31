@@ -88,7 +88,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../xrQslim/src/;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../xrQslim/src/;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)\src\xrCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ETOOLS_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -117,7 +117,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ogg_static.lib;vorbis_static.lib;vorbisenc_static.lib;vorbisfile_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>false</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>user32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -129,7 +129,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;$(SolutionDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -144,7 +144,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>../xrQslim/src/;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../xrQslim/src/;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)\src\xrCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;_USRDLL;ETOOLS_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -172,7 +172,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 /NODEFAULTLIB:LIBCMTD %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ogg_static.lib;vorbis_static.lib;vorbisenc_static.lib;vorbisfile_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>user32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -181,7 +181,7 @@
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;$(SolutionDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -199,7 +199,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>../xrQslim/src/;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\Xiph\Include\;$(SolutionDir)\src\xrCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../xrQslim/src/;$(SolutionDir)sdk\dxsdk_mar2009\Include\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)\src\xrCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;ETOOLS_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -226,7 +226,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 /NODEFAULTLIB:user32 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ogg_static.lib;vorbis_static.lib;vorbisenc_static.lib;vorbisfile_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>user32.dll;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -237,7 +237,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;$(SolutionDir)lib\;$(SolutionDir)sdk\Xiph\Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\dxsdk_mar2009\Lib\x86\;$(SolutionDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -325,7 +325,19 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets')" />
+    <Import Project="..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibOgg.1.3.5.5\build\native\ImeSense.Packages.LibOgg.targets'))" />
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets'))" />
+  </Target>
 </Project>
