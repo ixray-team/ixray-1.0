@@ -181,7 +181,7 @@ void CBuild::ImplicitLighting()
 			ImplicitDeflector	ImpD;
 			ImpD.texture		= T;
 			ImpD.faces.push_back(F);
-			calculator.insert	(mk_pair(Tid,ImpD));
+			calculator.insert	(std::make_pair(Tid,ImpD));
 		} else {
 			ImplicitDeflector&	ImpD = it->second;
 			ImpD.faces.push_back(F);

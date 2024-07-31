@@ -55,7 +55,7 @@ void CStepManager::reload(LPCSTR section)
 		MotionID motion_id = skeleton_animated->ID_Cycle_Safe(anim_name);
 		if (!motion_id) continue;
 		
-		m_steps_map.insert(mk_pair(motion_id, param));
+		m_steps_map.insert(std::make_pair(motion_id, param));
 	}
 	
 	// reload foot bones

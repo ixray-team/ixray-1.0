@@ -231,7 +231,7 @@ void __fastcall TfrmEditLibrary::OnItemFocused(TElTreeItem* item)
 
         if (cbPreview->Checked||m_Props->Visible){
 //.        	if (m_Props->IsModified()&&m_pEditObject->GetReference())
-//.            	modif_map.insert(mk_pair(m_pEditObject->GetRefName(),FS_QueryItem(0,0,0)));
+//.            	modif_map.insert(std::make_pair(m_pEditObject->GetRefName(),FS_QueryItem(0,0,0)));
             ChangeReference(nm.c_str());
 		    if (cbPreview->Checked) mt = true;
         }

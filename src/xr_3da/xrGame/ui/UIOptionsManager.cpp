@@ -25,7 +25,7 @@ void CUIOptionsManager::RegisterItem(CUIOptionsItem* item, const char* group){
 		items_list list;
 
 		list.push_back(item);
-		m_groups.insert(mk_pair(gr_name, list));
+		m_groups.insert(std::make_pair(gr_name, list));
 	}
 }
 

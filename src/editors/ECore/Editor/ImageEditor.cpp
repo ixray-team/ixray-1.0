@@ -458,7 +458,7 @@ void TfrmImageLib::OnFrame()
             AnsiString 	fname,src_name=ChangeFileExt((*it)->Key(),".tga");
             FS.update_path		(fname,_textures_,src_name.c_str());
             if (ImageLib.CheckCompliance(fname.c_str(),compl)){
-                compl_map.insert(mk_pair(src_name,FS_QueryItem(0,compl)));
+                compl_map.insert(std::make_pair(src_name,FS_QueryItem(0,compl)));
             }else{
                 ELog.DlgMsg(mtError,"Some error found in check.");
             }

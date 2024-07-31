@@ -296,7 +296,7 @@ BOOL CTextureDescrMngr::GetDetailTexture(const shared_str& tex_name, LPCSTR& res
 				D.T				= xr_strdup				(T);
 				D.cs			= xr_new<cl_dt_scaler>	(s);
 				LPSTR N			= xr_strdup				(*item.first);
-				m_td.insert		(mk_pair(N,D));
+				m_td.insert		(std::make_pair(N,D));
 			}
 		}
 	}
