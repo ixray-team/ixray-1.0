@@ -53,7 +53,7 @@ static const __int32 one        =       0x3F800000;
 static const __int32 half       =       0x3F000000;
 static const __int32 two        =       0x40000000;
 static const __int32 oob        =       0x00000000;
-static const __int32 nan        =       0x7fffffff;
+//static const __int32 nan        =       0x7fffffff;
 static const __int32 pnan       =       0x7fc00000;
 static const __int32 n0         =       0x40A008EF;
 static const __int32 n1         =       0x3DAA7B3D;
@@ -106,8 +106,8 @@ static const __int64 _msgn_		=	0x8000000080000000;
 //; Uses:     mm0-mm3
 //; Comment:
 //;   Compute acos(x) using MMX and 3DNow! instructions.Scalar version.
-//;   © by Oles™	©
-//;   © by ManOwaR™
+//;   Â© by Olesâ„¢	Â©
+//;   Â© by ManOwaRâ„¢
 //;******************************************************************************
 __declspec(naked)	void alt_acos(void)
 {	__asm {
