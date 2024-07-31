@@ -97,7 +97,7 @@ void CUISkinSelectorWnd::UpdateSkins(){
 
 		string16 buf;
 		if (m_firstSkin + i < 10)
-			m_pImage[i]->SetText(itoa((m_firstSkin + 1 + i)%10,buf,10));
+			m_pImage[i]->SetText(_itoa((m_firstSkin + 1 + i)%10,buf,10));
 		else
 			m_pImage[i]->SetText("");
 

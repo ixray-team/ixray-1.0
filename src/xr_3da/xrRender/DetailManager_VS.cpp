@@ -67,7 +67,7 @@ void CDetailManager::hw_Load	()
 	{
 		vertHW*			pV;
 		R_CHK			(hw_VB->Lock(0,0,(void**)&pV,0));
-		for (o=0; o<objects.size(); o++)
+		for (u32 o=0; o<objects.size(); o++)
 		{
 			CDetail& D		=	*objects[o];
 			for (u32 batch=0; batch<hw_BatchSize; batch++)
@@ -94,7 +94,7 @@ void CDetailManager::hw_Load	()
 	{
 		u16*			pI;
 		R_CHK			(hw_IB->Lock(0,0,(void**)(&pI),0));
-		for (o=0; o<objects.size(); o++)
+		for (u32 o=0; o<objects.size(); o++)
 		{
 			CDetail& D		=	*objects[o];
 			u16		offset	=	0;

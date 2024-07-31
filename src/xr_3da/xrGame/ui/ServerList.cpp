@@ -240,8 +240,8 @@ void CServerList::FillUpDetailedServerInfo()
 				pItemAdv->SetFont(m_list[LST_PLAYERS].GetFont());
 				pItemAdv->SetTextColor(m_list[LST_PLAYERS].GetTextColor());
 				pItemAdv->AddField(pf.Name, m_header2[1].GetWidth());
-				pItemAdv->AddField(itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
-				pItemAdv->AddField(itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
 				m_list[LST_PLAYERS].AddItem(pItemAdv);
 			}
 
@@ -272,8 +272,8 @@ void CServerList::FillUpDetailedServerInfo()
 				pItemAdv->SetFont(m_list[LST_PLAYERS].GetFont());
 				pItemAdv->SetTextColor(m_list[LST_PLAYERS].GetTextColor());
 				pItemAdv->AddField(pf.Name, m_header2[1].GetWidth());
-				pItemAdv->AddField(itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
-				pItemAdv->AddField(itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
 				m_list[LST_PLAYERS].AddItem(pItemAdv);
 			}
 
@@ -301,8 +301,8 @@ void CServerList::FillUpDetailedServerInfo()
 				pItemAdv->SetFont(m_list[LST_PLAYERS].GetFont());
 				pItemAdv->SetTextColor(m_list[LST_PLAYERS].GetTextColor());
 				pItemAdv->AddField(pf.Name, m_header2[1].GetWidth());
-				pItemAdv->AddField(itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
-				pItemAdv->AddField(itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
 				m_list[LST_PLAYERS].AddItem(pItemAdv);
 			}
 
@@ -320,8 +320,8 @@ void CServerList::FillUpDetailedServerInfo()
 				pItemAdv->SetFont(m_list[LST_PLAYERS].GetFont());
 				pItemAdv->SetTextColor(m_list[LST_PLAYERS].GetTextColor());
 				pItemAdv->AddField(pf.Name, m_header2[1].GetWidth());
-				pItemAdv->AddField(itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
-				pItemAdv->AddField(itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Frags, buf,10), m_header2[2].GetWidth());
+				pItemAdv->AddField(_itoa(pf.Deaths, buf,10), m_header2[3].GetWidth());
 				m_list[LST_PLAYERS].AddItem(pItemAdv);
 			}
 		}
@@ -682,7 +682,7 @@ void CServerList::SrvInfo2LstSrvInfo(const ServerInfo* pServerInfo)
 	xr_string address				= pServerInfo->m_HostName;
 	char							port[8];
 	address							+= "/port=";	
-	address							+= itoa(pServerInfo->m_Port, port, 10);
+	address							+= _itoa(pServerInfo->m_Port, port, 10);
 	m_itemInfo.info.address			= address.c_str();
 	m_itemInfo.info.map				= pServerInfo->m_SessionName;
 	m_itemInfo.info.game			= pServerInfo->m_ServerGameType;
