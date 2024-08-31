@@ -16,7 +16,12 @@ void CStringTable::Destroy	()
 {
 	xr_delete(pData);
 }
-
+void CStringTable::rescan()
+{
+	if(NULL != pData)	return;
+	Destroy				();
+	Init				();
+}
 
 void CStringTable::Init		()
 {
@@ -27,30 +32,37 @@ void CStringTable::Init		()
 	//имя языка, если не задано (NULL), то первый <text> в <string> в XML
 	pData->m_sLanguage	= pSettings->r_string("string_table", "language");
 
-	LPCSTR S			= pSettings->r_string("string_table", "files");
-	if (S && S[0]) 
+
+//---
+	FS_FileSet fset;
+	string_path			files_mask;
+	sprintf				(files_mask, "text\\%s\\*.xml",pData->m_sLanguage.c_str());
+	FS.file_list		(fset, "$game_config$", FS_ListFiles, files_mask);
+	FS_FileSetIt fit	= fset.begin();
+	FS_FileSetIt fit_e	= fset.end();
+
+	for( ;fit!=fit_e; ++fit)
 	{
-		string128	xml_file;
-		int			count = _GetItemCount	(S);
-		for (int it=0; it<count; ++it)	
-		{
-			_GetItem	(S,it, xml_file);
-			Load		(xml_file);
-		}
+    	string_path		fn, ext;
+        _splitpath		((*fit).name.c_str(), 0, 0, fn, ext);
+		strcat			(fn, ext);
+
+		Load			(fn);
 	}
+#ifdef DEBUG
+	Msg("StringTable: loaded %d files", fset.size());
+#endif // #ifdef DEBUG
+//---
+	ReparseKeyBindings();
 }
 
-void CStringTable::Load	(LPCSTR xml_file)
+void CStringTable::Load	(LPCSTR xml_file_full)
 {
 	CUIXml						uiXml;
-	string_path					xml_file_full;
-	strconcat					(sizeof(xml_file_full),xml_file_full, xml_file, ".xml");
 	string_path					_s;
-	strconcat					(sizeof(_s),_s, STRING_TABLE_PATH, "\\", *(pData->m_sLanguage) );
+	strconcat					(sizeof(_s),_s, "text\\", pData->m_sLanguage.c_str() );
 
-	bool xml_result				= uiXml.Init(CONFIG_PATH, _s, xml_file_full);
-	if(!xml_result)
-		Debug.fatal(DEBUG_INFO,"string table xml file not found %s, for language %s", xml_file_full, *(pData->m_sLanguage));
+	uiXml.Init					(CONFIG_PATH, _s, xml_file_full);
 
 	//общий список всех записей таблицы в файле
 	int string_num = uiXml.GetNodesNum		(uiXml.GetRoot(), "string");
@@ -59,12 +71,12 @@ void CStringTable::Load	(LPCSTR xml_file)
 	{
 		LPCSTR string_name = uiXml.ReadAttrib(uiXml.GetRoot(), "string", i, "id", NULL);
 
-		VERIFY3					(pData->m_StringTable.find(string_name) == pData->m_StringTable.end(), "duplicate string table id", string_name);
+		VERIFY3(pData->m_StringTable.find(string_name) == pData->m_StringTable.end(), "duplicate string table id", string_name);
 
 		LPCSTR string_text		= uiXml.Read(uiXml.GetRoot(), "string:text", i,  NULL);
 
 		if(m_bWriteErrorsToLog && string_text)
-			Msg("[string table] '%s' no translation in '%s'", string_name, *(pData->m_sLanguage));
+			Msg("[string table] '%s' no translation in '%s'", string_name, pData->m_sLanguage.c_str() );
 		
 		VERIFY3						(string_text, "string table entry does not has a text", string_name);
 		
@@ -73,6 +85,7 @@ void CStringTable::Load	(LPCSTR xml_file)
 		pData->m_StringTable[string_name] = str_val;
 	}
 }
+
 void CStringTable::ReparseKeyBindings()
 {
 	if(!pData)					return;
@@ -110,7 +123,7 @@ STRING_VALUE CStringTable::ParseLine(LPCSTR str, LPCSTR skey, bool bFirst)
 
 		int len				= (int)(e-b-LEN);
 
-		strncpy				(srcbuff,b+LEN, len);
+		strncpy_s				(srcbuff,b+LEN, len);
 		srcbuff[len]		= 0;
 		GetActionAllBinding	(srcbuff, buff, sizeof(buff) );
 		res.append			(buff, xr_strlen(buff) );
@@ -135,13 +148,8 @@ STRING_VALUE CStringTable::translate (const STRING_ID& str_id) const
 {
 	VERIFY					(pData);
 
-	STRING_VALUE res =  pData->m_StringTable[str_id];
-
-	if(!res)
-	{
-		if(m_bWriteErrorsToLog && *str_id != NULL && xr_strlen(*str_id)>0)
-			Msg("[string table] '%s' has no entry", *str_id);
+	if(pData->m_StringTable.find(str_id)!=pData->m_StringTable.end())
+		return  pData->m_StringTable[str_id];
+	else
 		return str_id;
-	}
-	return					pData->m_StringTable[str_id];
 }
