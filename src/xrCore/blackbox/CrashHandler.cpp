@@ -453,12 +453,12 @@ LPCTSTR __stdcall GetFaultReason ( EXCEPTION_POINTERS * pExPtrs )
         pSym->SizeOfStruct = sizeof ( IMAGEHLP_SYMBOL ) ;
         pSym->MaxNameLength = SYM_BUFF_SIZE - sizeof ( IMAGEHLP_SYMBOL);
 
-        DWORD dwDisp ;
+        DWORD_PTR dwDisp64 ;
         if ( TRUE ==
               SymGetSymFromAddr ( (HANDLE)GetCurrentProcessId ( )     ,
                                   (DWORD)pExPtrs->ExceptionRecord->
                                                      ExceptionAddress ,
-                                  &dwDisp                             ,
+                                  &dwDisp64                             ,
                                   pSym                                ))
         {
             iCurr += wsprintf ( g_szBuff + iCurr , _T ( ", " ) ) ;
@@ -480,12 +480,12 @@ LPCTSTR __stdcall GetFaultReason ( EXCEPTION_POINTERS * pExPtrs )
             }
             else
             {
-                if ( dwDisp > 0 )
+                if ( dwDisp64 > 0 )
                 {
                     iCurr += wsprintf ( g_szBuff + iCurr          ,
                                         _T ( "%s()+%04d byte(s)" ),
                                         pSym->Name                ,
-                                        dwDisp                     ) ;
+                                        dwDisp64                     ) ;
                 }
                 else
                 {
@@ -509,6 +509,7 @@ LPCTSTR __stdcall GetFaultReason ( EXCEPTION_POINTERS * pExPtrs )
         ZeroMemory ( &g_stLine , sizeof ( IMAGEHLP_LINE ) ) ;
         g_stLine.SizeOfStruct = sizeof ( IMAGEHLP_LINE ) ;
 
+        DWORD dwDisp;
         if ( TRUE ==
               InternalSymGetLineFromAddr ((HANDLE)
                                             GetCurrentProcessId ( )    ,
@@ -613,6 +614,13 @@ LPCTSTR  __stdcall
     g_stFrame.AddrStack.Mode      = AddrModeFlat                ;
     g_stFrame.AddrFrame.Offset    = pExPtrs->ContextRecord->Ebp ;
     g_stFrame.AddrFrame.Mode      = AddrModeFlat                ;
+    #elif defined(_WIN64)
+    g_stFrame.AddrPC.Offset = pExPtrs->ContextRecord->Rip;
+    g_stFrame.AddrPC.Mode = AddrModeFlat;
+    g_stFrame.AddrStack.Offset = pExPtrs->ContextRecord->Rsp;
+    g_stFrame.AddrStack.Mode = AddrModeFlat;
+    g_stFrame.AddrFrame.Offset = pExPtrs->ContextRecord->Rbp;
+    g_stFrame.AddrFrame.Mode = AddrModeFlat;
     #else
     g_stFrame.AddrPC.Offset       = (DWORD)pExPtrs->ContextRecord->Fir ;
     g_stFrame.AddrPC.Mode         = AddrModeFlat ;
@@ -646,11 +654,14 @@ BOOL __stdcall CH_ReadProcessMemory ( HANDLE                      ,
                                       DWORD   nSize               ,
                                       LPDWORD lpNumberOfBytesRead  )
 {
-    return ( ReadProcessMemory ( GetCurrentProcess ( ) ,
-                                 lpBaseAddress         ,
-                                 lpBuffer              ,
-                                 nSize                 ,
-                                 lpNumberOfBytesRead    ) ) ;
+    DWORD_PTR read;
+    BOOL b = ReadProcessMemory(GetCurrentProcess(),
+        lpBaseAddress,
+        lpBuffer,
+        nSize,
+        &read);
+    *lpNumberOfBytesRead = read;
+    return b; 
 }
 
 // The internal function that does all the stack walking
@@ -756,7 +767,7 @@ LPCTSTR __stdcall
         }
 
         ASSERT ( iCurr < ( BUFF_SIZE - MAX_PATH ) ) ;
-        DWORD dwDisp ;
+        DWORD dwDisp64 ;
 
         // Output the symbol name?
         if ( GSTSO_SYMBOL == ( dwOpts & GSTSO_SYMBOL ) )
@@ -768,11 +779,12 @@ LPCTSTR __stdcall
             pSym->SizeOfStruct = sizeof ( IMAGEHLP_SYMBOL ) ;
             pSym->MaxNameLength = SYM_BUFF_SIZE -
                                   sizeof ( IMAGEHLP_SYMBOL ) ;
+            DWORD_PTR dwDisp64;
 
             if ( TRUE ==
                   SymGetSymFromAddr ( (HANDLE)GetCurrentProcessId ( ) ,
                                       g_stFrame.AddrPC.Offset         ,
-                                      &dwDisp                         ,
+                                      &dwDisp64                         ,
                                       pSym                            ))
             {
                 iCurr += wsprintf ( g_szBuff + iCurr , _T ( ", " ) ) ;
@@ -791,12 +803,12 @@ LPCTSTR __stdcall
                 }
                 else
                 {
-                    if ( dwDisp > 0 )
+                    if ( dwDisp64 > 0 )
                     {
                         iCurr += wsprintf ( g_szBuff + iCurr         ,
                                             _T( "%s()") ,
                                             pSym->Name               ,
-                                            dwDisp                   );
+                                            dwDisp64                  );
                     }
                     else
                     {
@@ -828,7 +840,7 @@ LPCTSTR __stdcall
                    InternalSymGetLineFromAddr ( (HANDLE)
                                                   GetCurrentProcessId(),
                                                 g_stFrame.AddrPC.Offset,
-                                                &dwDisp                ,
+                                                &dwDisp64                ,
                                                 &g_stLine             ))
             {
                 iCurr += wsprintf ( g_szBuff + iCurr , _T ( ", " ) ) ;
@@ -848,13 +860,13 @@ LPCTSTR __stdcall
                 }
                 else
                 {
-                    if ( dwDisp > 0 )
+                    if ( dwDisp64 > 0 )
                     {
                         iCurr += wsprintf(g_szBuff + iCurr             ,
                                        _T("%s, %d"),
                                           g_stLine.FileName            ,
                                           g_stLine.LineNumber          ,
-                                          dwDisp                     );
+                                          dwDisp64                     );
                     }
                     else
                     {
