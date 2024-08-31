@@ -48,6 +48,7 @@ float CAutosaveManager::shedule_Scale		()
 #include "UIGameCustom.h"
 #include "Actor.h"
 #include "MainMenu.h"
+#include "string_table.h"
 
 void CAutosaveManager::shedule_Update		(u32 dt)
 {
@@ -67,7 +68,7 @@ void CAutosaveManager::shedule_Update		(u32 dt)
 	update_autosave_time		();
 
 	string_path					temp;
-	strconcat					(sizeof(temp),temp,Core.UserName,"_","autosave");
+	strconcat					(sizeof(temp),temp,Core.UserName," - ",CStringTable().translate("autosave").c_str());
 	NET_Packet					net_packet;
 	net_packet.w_begin			(M_SAVE_GAME);
 	net_packet.w_stringZ		(temp);
