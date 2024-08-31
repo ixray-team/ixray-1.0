@@ -290,7 +290,7 @@ public      :
     }
 
     BOOL SymGetSymFromAddr ( IN  DWORD               dwAddr          ,
-                             OUT PDWORD_PTR              pdwDisplacement ,
+                             OUT PDWORD              pdwDisplacement ,
                              OUT PIMAGEHLP_SYMBOL    Symbol           )
     {
         return ( ::SymGetSymFromAddr ( m_hProcess       ,
@@ -426,12 +426,7 @@ public      :
     {
         return ( ::SymRegisterCallback ( m_hProcess         ,
                                          CallbackFunction   ,
-#ifdef _WIN64
-                                         (ULONG64)UserContext         
-#else
-                                        UserContext
-#endif
-        ) ) ;
+                                         UserContext         ) ) ;
     }
 
 
