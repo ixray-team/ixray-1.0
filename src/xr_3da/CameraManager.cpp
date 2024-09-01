@@ -379,6 +379,7 @@ void CCameraManager::ApplyDevice (float _viewport_near)
 
 		T->set_cm_imfluence			(pp_affected.cm_influence);
 		T->set_cm_interpolate		(pp_affected.cm_interpolate);
+		T->set_cm_textures			(pp_affected.cm_tex1, pp_affected.cm_tex2);
 	}
 }
 

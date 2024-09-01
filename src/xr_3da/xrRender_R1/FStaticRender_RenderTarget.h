@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../xrRender/ColorMapManager.h"
+
 
 class CRenderTarget		: public IRender_Target
 {
@@ -13,10 +15,11 @@ private:
 
 	ref_rt				RT;
 	ref_rt				RT_distort;
+	ref_rt				RT_color_map;
 	IDirect3DSurface9*	ZB;
 
-	ref_shader			s_postprocess;
-	ref_shader			s_postprocess_D;
+	ref_shader			s_postprocess[2];	//	Igor: 0 - plain, 1 - colormapped
+	ref_shader			s_postprocess_D[2];	//	Igor: 0 - plain, 1 - colormapped
 	ref_geom			g_postprocess;
 	
 	float				im_noise_time;
@@ -38,12 +41,14 @@ private:
 	u32					frame_distort;
 	float				param_color_map_influence;
 	float				param_color_map_interpolate;
+	ColorMapManager		color_map_manager;
 public:
 	IDirect3DSurface9*	pTempZB;
 
 private:
 	BOOL				Create				()	;
 	BOOL				NeedPostProcess		()	;
+	bool				NeedColorMapping	()	;
 	BOOL				Available			()	{ return bAvailable; }
 	BOOL				Perform				()	;
 
@@ -71,6 +76,7 @@ public:
 
 	virtual void		set_cm_imfluence	(float	f)		{ param_color_map_influence = f;							}
 	virtual void		set_cm_interpolate	(float	f)		{ param_color_map_interpolate = f;							}
+	virtual void		set_cm_textures		(const shared_str &tex0, const shared_str &tex1) {color_map_manager.SetTextures(tex0, tex1);}
 
 	virtual u32			get_width			()				{ return curWidth;											}
 	virtual u32			get_height			()				{ return curHeight;											}

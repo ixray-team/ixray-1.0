@@ -76,7 +76,7 @@ BOOL CRenderTarget::u_need_PP	()
 		int		_b	= color_get_B(param_color_add)	;
 		if (_r>2 || _g>2 || _b>2)	_cadd	= true	;
 	}
-	return _blur || _gray || _noise || _dual || _cbase || _cadd; 
+	return _blur || _gray || _noise || _dual || _cbase || _cadd || u_need_CM();
 }
 
 struct TL_2c3uv		{
@@ -98,7 +98,8 @@ void CRenderTarget::phase_pp		()
 {
 	// combination/postprocess
 	u_setrt				( Device.dwWidth,Device.dwHeight,HW.pBaseRT,NULL,NULL,HW.pBaseZB);
-	RCache.set_Shader	(s_postprocess	);
+	bool	bCMap = u_need_CM();
+	RCache.set_Element	(s_postprocess->E[bCMap ? 4 : 0]);
 
 	int		gblend		= clampr		(iFloor((1-param_gray)*255.f),0,255);
 	int		nblend		= clampr		(iFloor((1-param_noise)*255.f),0,255);
