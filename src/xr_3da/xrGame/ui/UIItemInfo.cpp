@@ -188,9 +188,10 @@ void CUIItemInfo::InitItem(CInventoryItem* pInvItem)
 		int iGridHeight						= pInvItem->GetGridHeight();
 		int iXPos							= pInvItem->GetXPos();
 		int iYPos							= pInvItem->GetYPos();
+		int UseHQ							= EngineExternal()[EEngineExternalUI::HQIcons];
 
-		UIItemImage->GetUIStaticItem().SetOriginalRect(	float(iXPos*INV_GRID_WIDTH), float(iYPos*INV_GRID_HEIGHT),
-														float(iGridWidth*INV_GRID_WIDTH),	float(iGridHeight*INV_GRID_HEIGHT));
+		UIItemImage->GetUIStaticItem().SetOriginalRect(	float(iXPos*(1 + UseHQ)*INV_GRID_WIDTH), float(iYPos*(1 + UseHQ)*INV_GRID_HEIGHT),
+														float(iGridWidth*(1 + UseHQ)*INV_GRID_WIDTH),	float(iGridHeight*(1 + UseHQ)*INV_GRID_HEIGHT));
 		UIItemImage->TextureOn				();
 		UIItemImage->ClipperOn				();
 		UIItemImage->SetStretchTexture		(true);
@@ -198,8 +199,7 @@ void CUIItemInfo::InitItem(CInventoryItem* pInvItem)
 												0.0f, 
 												float(iGridWidth*INV_GRID_WIDTH),	
 												float(iGridHeight*INV_GRID_HEIGHT)};
-		if(UI()->is_16_9_mode())
-			v_r.x2 /= 1.328f;
+		v_r.x2 *= UI()->get_current_kx();
 
 		UIItemImage->GetUIStaticItem().SetRect	(v_r);
 		UIItemImage->SetWidth					(_min(v_r.width(),	UIItemImageSize.x));

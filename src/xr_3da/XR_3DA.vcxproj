@@ -499,6 +499,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EngineExternal.h" />
     <ClInclude Include="_d3d_extensions.h" />
     <ClInclude Include="CopyProtection.h" />
     <ClInclude Include="defines.h" />
@@ -623,6 +624,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="defines.cpp" />
+    <ClCompile Include="EngineExternal.cpp" />
+    <ClCompile Include="EngineExternalEnums.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Dedicated|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
