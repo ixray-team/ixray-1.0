@@ -67,6 +67,7 @@ void CUITrackBar::Init(float x, float y, float width, float height){
 
 	m_pSlider->Init		(0, (height - item_height)/2, item_width, item_height);
 	m_pSlider->InitTexture(SLIDER_TEXTURE);
+	m_pSlider->SetStretchTexture(true);
 }	
 
 void CUITrackBar::SetCurrentValue()

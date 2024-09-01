@@ -34,12 +34,15 @@ class CUIFrameLine: public CUICustomItem
 	{
 		flValidSize = 1
 	};
+public:
+	bool		bStretchTexture;
 
 protected:
 	float		iSize;
 	Fvector2	iPos;
 	u8			uFlags;
 	bool		bHorizontalOrientation;
+	Fvector2	m_parent_wnd_size;
 
 	void		UpdateSize		();
 public:
@@ -50,6 +53,7 @@ public:
 	IC void		SetPos			(float left, float top)		{ iPos.set(left,top);	uFlags &=~ flValidSize; }
 	IC void		SetSize			(float size)				{ iSize = size;			uFlags &=~ flValidSize; }
 	IC void		SetOrientation	(bool bIsHorizontal)	{ bHorizontalOrientation = bIsHorizontal; uFlags &=~ flValidSize; }
+	void		SetElementsRect	(CUIStaticItem& item,int idx);
 	void		Render			();
 };
 
