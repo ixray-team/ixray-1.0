@@ -62,6 +62,9 @@ void CUITrackBar::Init(float x, float y, float width, float height){
 	strconcat			(sizeof(buf),buf,SLIDER_TEXTURE,"_e");
 	item_width			= CUITextureMaster::GetTextureWidth(buf);
     item_height			= CUITextureMaster::GetTextureHeight(buf);
+
+	item_width			*= UI()->get_current_kx();
+
 	m_pSlider->Init		(0, (height - item_height)/2, item_width, item_height);
 	m_pSlider->InitTexture(SLIDER_TEXTURE);
 }	
