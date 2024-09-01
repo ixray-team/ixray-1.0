@@ -21,6 +21,9 @@ CRenderTarget::CRenderTarget()
 	param_noise_fps		= 25.f;
 	param_noise_scale	= 1.f;
 
+	param_color_map_influence = 0.0f;
+	param_color_map_interpolate = 0.0f;
+
 	im_noise_time		= 1/100;
 	im_noise_shift_w	= 0;
 	im_noise_shift_h	= 0;
@@ -266,10 +269,12 @@ void CRenderTarget::End		()
 	pv->set(du+float(_w),	dv+float(_h),	p_color, p_gray, r1.x, r1.y, l1.x, l1.y, n1.x, n1.y);	pv++;
 	pv->set(du+float(_w),	dv+0,			p_color, p_gray, r1.x, r0.y, l1.x, l0.y, n1.x, n0.y);	pv++;
 	RCache.Vertex.Unlock									(4,g_postprocess.stride());
+	static	shared_str	s_colormap		= "c_colormap";
 
 	// Actual rendering
 	static	shared_str	s_brightness	= "c_brightness";
 	RCache.set_c		(s_brightness,color_get_R(p_brightness)/255.f,color_get_G(p_brightness)/255.f,color_get_B(p_brightness)/255.f,0);
+	RCache.set_c		(s_colormap, param_color_map_influence,param_color_map_interpolate,0,0);
 	RCache.set_Geometry	(g_postprocess);
 	RCache.Render		(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 }
@@ -290,3 +295,4 @@ void	CRenderTarget::phase_distortion	()
 
 	if (g_pGamePersistent)	g_pGamePersistent->OnRenderPPUI_PP()	;	// PP-UI
 }
+

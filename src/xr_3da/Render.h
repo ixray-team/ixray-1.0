@@ -122,6 +122,9 @@ public:
 	virtual void					set_color_add		(u32	f)							= 0;
 	virtual u32						get_width			()									= 0;
 	virtual u32						get_height			()									= 0;
+
+	virtual void					set_cm_imfluence	(float	f)							{};
+	virtual void					set_cm_interpolate	(float	f)							{};
 	virtual ~IRender_Target()		{};
 };
 

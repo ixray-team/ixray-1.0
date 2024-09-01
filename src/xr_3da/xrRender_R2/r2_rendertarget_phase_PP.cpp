@@ -130,7 +130,14 @@ void CRenderTarget::phase_pp		()
 
 	// Actual rendering
 	static	shared_str	s_brightness	= "c_brightness";
+	static	shared_str	s_colormap		= "c_colormap";
 	RCache.set_c		(s_brightness,color_get_R(p_brightness)/255.f,color_get_G(p_brightness)/255.f,color_get_B(p_brightness)/255.f,0);
+	RCache.set_c		(s_colormap, param_color_map_influence,param_color_map_interpolate,0,0);
 	RCache.set_Geometry	(g_postprocess);
 	RCache.Render		(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+}
+
+bool CRenderTarget::u_need_CM()
+{
+	return (param_color_map_influence > 0.001f);
 }

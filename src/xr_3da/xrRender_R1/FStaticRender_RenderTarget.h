@@ -36,6 +36,8 @@ private:
 	u32					param_color_add;
 
 	u32					frame_distort;
+	float				param_color_map_influence;
+	float				param_color_map_interpolate;
 public:
 	IDirect3DSurface9*	pTempZB;
 
@@ -66,6 +68,9 @@ public:
 	virtual void		set_color_base		(u32	f)		{ param_color_base=f;										}
 	virtual void		set_color_gray		(u32	f)		{ param_color_gray=f;										}
 	virtual void		set_color_add		(u32	f)		{ param_color_add=f;										}
+
+	virtual void		set_cm_imfluence	(float	f)		{ param_color_map_influence = f;							}
+	virtual void		set_cm_interpolate	(float	f)		{ param_color_map_interpolate = f;							}
 
 	virtual u32			get_width			()				{ return curWidth;											}
 	virtual u32			get_height			()				{ return curHeight;											}

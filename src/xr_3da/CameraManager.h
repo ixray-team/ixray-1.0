@@ -50,39 +50,16 @@ struct ENGINE_API SPPInfo {
 	SColor		color_base;
 	SColor		color_gray;
 	SColor		color_add;
+	float		cm_influence;
+	float		cm_interpolate;
+	shared_str			cm_tex1;
+	shared_str			cm_tex2;
 
-	IC SPPInfo& operator += (const SPPInfo &ppi) {
-		blur		+= ppi.blur;
-		gray		+= ppi.gray;
-		duality.h	+= ppi.duality.h; duality.v += ppi.duality.v;
-		noise.intensity += ppi.noise.intensity; noise.grain += ppi.noise.grain;
-		noise.fps	+= ppi.noise.fps;
-		color_base	+= ppi.color_base;
-		color_gray	+= ppi.color_gray;
-		color_add	+= ppi.color_add;
-		return *this;
-	}
-	IC SPPInfo& operator -= (const SPPInfo &ppi) {
-		blur		-= ppi.blur;
-		gray		-= ppi.gray;
-		duality.h	-= ppi.duality.h; duality.v -= ppi.duality.v;
-		noise.intensity -= ppi.noise.intensity; noise.grain -= ppi.noise.grain;
-		noise.fps	-= ppi.noise.fps;
-		color_base	-= ppi.color_base;
-		color_gray	-= ppi.color_gray;
-		color_add	-= ppi.color_add;
-		return *this;
-	}
+	SPPInfo& add		(const SPPInfo &ppi);
+	SPPInfo& sub		(const SPPInfo &ppi);
 	void normalize		();
-	SPPInfo				()
-	{
-		blur = gray = duality.h = duality.v = 0;
-		noise.intensity=0; noise.grain = 1; noise.fps = 10;
-		color_base.set	(.5f,	.5f,	.5f);
-		color_gray.set	(.333f, .333f,	.333f);
-		color_add.set	(0.f,	0.f,	0.f);
-	}
-	SPPInfo&	lerp(const SPPInfo& def, const SPPInfo& to, float factor);
+	SPPInfo				();
+	SPPInfo&	lerp	(const SPPInfo& def, const SPPInfo& to, float factor);
 	void		validate(LPCSTR str);
 };
 
