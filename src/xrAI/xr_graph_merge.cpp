@@ -7,6 +7,9 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+
+#include <random>
+
 #include "xr_ini.h"
 #include "xrLevel.h"
 #include "xrAI.h"
@@ -21,6 +24,8 @@
 #include "guid_generator.h"
 #include "game_graph_builder.h"
 #include <direct.h>
+
+thread_local std::mt19937 rng = std::mt19937(std::random_device()());
 
 extern LPCSTR GAME_CONFIG;
 extern LPCSTR LEVEL_GRAPH_NAME;
@@ -400,7 +405,7 @@ public:
 
 		R_ASSERT2				(!l_dwaNodes.empty(),"Can't create at least one death point for specified graph point");
 
-		std::random_shuffle		(l_dwaNodes.begin(),l_dwaNodes.end());
+		std::shuffle(l_dwaNodes.begin(), l_dwaNodes.end(), rng);
 
 		u32						m = l_dwaNodes.size() > 10 ? _min(iFloor(.1f*l_dwaNodes.size()),255) : l_dwaNodes.size(), l_dwStartIndex = m_tpLevelPoints.size();
 		m_tpLevelPoints.resize	(l_dwStartIndex + m);

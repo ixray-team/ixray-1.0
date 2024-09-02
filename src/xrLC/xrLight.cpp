@@ -8,6 +8,10 @@ xrCriticalSection	task_CS
 	(MUTEX_PROFILE_ID(task_C_S))
 #endif // PROFILE_CRITICAL_SECTIONS
 ;
+
+#include <random>
+
+thread_local std::mt19937 rng = std::mt19937(std::random_device()());
 xr_vector<int>		task_pool;
 
 class CLMThread		: public CThread
@@ -70,7 +74,7 @@ void CBuild::Light()
 		mem_Compact		();
 
 		// Randomize deflectors
-		std::random_shuffle	(g_deflectors.begin(),g_deflectors.end());
+		std::shuffle(g_deflectors.begin(),g_deflectors.end(), rng);
 		for					(u32 dit = 0; dit<g_deflectors.size(); dit++)	task_pool.push_back(dit);
 
 		// Main process (4 threads)

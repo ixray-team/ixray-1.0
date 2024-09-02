@@ -180,6 +180,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src\xrServerEntities;$(SolutionDir)src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;$(SolutionDir)sdk\include\lua;$(SolutionDir)src\3rd party\luajit\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -239,6 +240,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src\xrServerEntities;$(SolutionDir)src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;$(SolutionDir)sdk\include\lua;$(SolutionDir)src\3rd party\luajit\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -299,6 +301,7 @@
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(SolutionDir)src\xrServerEntities;$(SolutionDir)src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;$(SolutionDir)sdk\include\lua;$(SolutionDir)src\3rd party\luajit\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -361,6 +364,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src\xrServerEntities;$(SolutionDir)src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;$(SolutionDir)sdk\include\lua;$(SolutionDir)src\3rd party\luajit\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -420,6 +424,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src\xrServerEntities;$(SolutionDir)src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;$(SolutionDir)sdk\include\lua;$(SolutionDir)src\3rd party\luajit\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -480,6 +485,7 @@
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(SolutionDir)src\xrServerEntities;$(SolutionDir)src\xrCore\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\;$(SolutionDir)sdk\include\lua;$(SolutionDir)src\3rd party\luajit\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

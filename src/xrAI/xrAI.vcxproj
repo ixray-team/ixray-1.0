@@ -168,6 +168,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -229,6 +230,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -289,6 +291,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -348,6 +351,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -402,6 +406,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -463,6 +468,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\loki\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

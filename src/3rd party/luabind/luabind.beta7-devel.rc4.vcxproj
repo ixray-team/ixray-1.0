@@ -74,6 +74,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4530;4100;4714;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
@@ -108,6 +109,7 @@
       <DisableSpecificWarnings>4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>

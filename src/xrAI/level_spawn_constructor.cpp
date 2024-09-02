@@ -7,6 +7,9 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+
+#include <random>
+
 #include "level_spawn_constructor.h"
 #include "game_level_cross_table.h"
 #include "level_graph.h"
@@ -23,6 +26,8 @@
 #include "restriction_space.h"
 
 #define IGNORE_ZERO_SPAWN_POSITIONS
+
+extern thread_local std::mt19937 rng;
 
 const float y_shift_correction = .15f;
 
@@ -510,7 +515,7 @@ void CLevelSpawnConstructor::generate_artefact_spawn_positions	()
 #endif
 		}
 		else
-			std::random_shuffle			(l_tpaStack.begin(),l_tpaStack.end());
+			std::shuffle(l_tpaStack.begin(), l_tpaStack.end(), rng);
 
 		zone->m_artefact_position_offset= m_level_points.size();
 		m_level_points.resize			(zone->m_artefact_position_offset + zone->m_artefact_spawn_count);

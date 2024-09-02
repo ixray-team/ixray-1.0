@@ -91,6 +91,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -124,6 +125,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -154,6 +156,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
