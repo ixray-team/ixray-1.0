@@ -25,8 +25,8 @@ CUICursor::~CUICursor	()
 
 void CUICursor::OnScreenRatioChanged()
 {
-	xr_delete					(m_static);
-	InitInternal				();
+	xr_delete(m_static);
+	InitInternal();
 }
 
 void CUICursor::InitInternal()
@@ -38,8 +38,7 @@ void CUICursor::InitInternal()
 	m_static->SetOriginalRect	(rect);
 	Fvector2					sz;
 	sz.set						(rect.rb);
-	if(UI()->is_16_9_mode())
-		sz.x					/= 1.2f;
+	sz.x						*= UI()->get_current_kx();
 
 	m_static->SetWndSize		(sz);
 	m_static->SetStretchTexture	(true);
