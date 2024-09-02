@@ -50,7 +50,9 @@ u32						dwTimeStart		= 0;
 
 u32						XRP_MAX_SIZE	= 1024*1024*640; // bytes
 
-DEFINE_VECTOR(_finddata_t,FFVec,FFIt);
+using FFVec = xr_vector<_finddata_t>;
+using FFIt = FFVec::iterator;
+
 IC bool pred_str_ff(const _finddata_t& x, const _finddata_t& y)
 {	
 	return xr_strcmp(x.name,y.name)<0;	

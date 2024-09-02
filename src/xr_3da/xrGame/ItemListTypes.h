@@ -43,10 +43,7 @@ public:
     IC void				SetIcon			(int index){icon_index=index;}
 };
 
-DEFINE_VECTOR			(ListItem*,ListItemsVec,ListItemsIt);
-//---------------------------------------------------------------------------
+using ListItemsVec = xr_vector<ListItem*>;
+using ListItemsIt = ListItemsVec::iterator;
+
 #endif
-
-
-
-

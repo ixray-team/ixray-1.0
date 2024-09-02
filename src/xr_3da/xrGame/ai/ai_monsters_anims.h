@@ -11,7 +11,8 @@
 #include "../../SkeletonAnimated.h"
 #include "../ai_debug.h"
 
-DEFINE_VECTOR	(MotionID,ANIM_VECTOR, ANIM_IT);
+using ANIM_VECTOR = xr_vector<MotionID>;
+using ANIM_IT = ANIM_VECTOR::iterator;
 
 class CAniVector {
 public:

@@ -46,8 +46,11 @@ struct SOGFFace{
 	WORD		v[3];
 };
 
-DEFINE_VECTOR(SOGFVert,OGFVertVec,OGFVertIt);
-DEFINE_VECTOR(SOGFFace,OGFFaceVec,OGFFaceIt);
+using OGFVertVec = xr_vector<SOGFVert>;
+using OGFVertIt = OGFVertVec::iterator;
+
+using OGFFaceVec = xr_vector<SOGFFace>;
+using OGFFaceIt = OGFFaceVec::iterator;
 
 class CObjectOGFCollectorPacked
 {
@@ -109,8 +112,9 @@ public:
     IC int			getVS		() 	{return m_Verts.size();}
     IC int			getTS		() 	{return m_Faces.size();}
 };
-//----------------------------------------------------
-DEFINE_VECTOR(CObjectOGFCollectorPacked*,COGFCPVec,COGFCPIt)
+
+using COGFCPVec = xr_vector<CObjectOGFCollectorPacked*>;
+using COGFCPIt = COGFCPVec::iterator;
 
 class CExportObjectOGF
 {
@@ -148,7 +152,10 @@ class CExportObjectOGF
             }
         }
     };
-	DEFINE_VECTOR		(SSplit*,SplitVec,SplitIt);
+
+    using SplitVec = xr_vector<SSplit*>;
+    using SplitIt = SplitVec::iterator;
+
 	SplitVec			m_Splits;
 	CEditableObject*	m_Source;
     Fbox 				m_Box;   	

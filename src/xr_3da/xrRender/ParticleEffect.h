@@ -73,7 +73,10 @@ namespace PS
 
 	    virtual u32			ParticlesCount		();
 	};
-	DEFINE_VECTOR				(PS::CPEDef*,PEDVec,PEDIt);
+
+	using PEDVec = xr_vector<PS::CPEDef*>;
+	using PEDIt = PEDVec::iterator;
+
     void OnEffectParticleBirth	(void* owner, u32 param, PAPI::Particle& m, u32 idx);
     void OnEffectParticleDead	(void* owner, u32 param, PAPI::Particle& m, u32 idx);
 

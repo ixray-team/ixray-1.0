@@ -10,7 +10,10 @@ enum ETaskState {
 
 
 typedef shared_str		TASK_ID;
-DEFINE_VECTOR			(TASK_ID, TASK_ID_VECTOR, TASK_ID_IT);
+
+using TASK_ID_VECTOR = xr_vector<TASK_ID>;
+using TASK_ID_IT = TASK_ID_VECTOR::iterator;
+
 extern shared_str		g_active_task_id;
 extern u16				g_active_task_objective_id;
 
@@ -30,7 +33,8 @@ struct SGameTaskKey : public IPureSerializeObject<IReader,IWriter>,public IPureD
 	virtual void destroy							();
 };
 
-DEFINE_VECTOR (SGameTaskKey, GameTasks, GameTasks_it);
+using GameTasks = xr_vector<SGameTaskKey>;
+using GameTasks_it = GameTasks::iterator;
 
 struct CGameTaskRegistry : public CALifeAbstractRegistry<u16, GameTasks> {
 	virtual void save(IWriter &stream){

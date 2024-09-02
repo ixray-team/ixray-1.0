@@ -38,11 +38,10 @@ public:
 	virtual void		load					(IReader &stream);
 };
 
-
-DEFINE_VECTOR(CLevelFogOfWar,FOG_STORAGE_T,FOG_STORAGE_IT);
+using FOG_STORAGE_T = xr_vector<CLevelFogOfWar>;
+using FOG_STORAGE_IT = FOG_STORAGE_T::iterator;
 
 typedef CALifeAbstractRegistry<u16, FOG_STORAGE_T> CFogOfWarRegistry;
-
 
 class CFogOfWarMngr
 {

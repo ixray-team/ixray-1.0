@@ -33,7 +33,9 @@ struct face_props	{
 	Fvector	norm;
 	void	set		(u16 mtl, u16 sect, const Fvector& n){material=mtl;sector=sect;norm.set(n);}
 };
-DEFINE_VECTOR(face_props,FPVec,FPVecIt);
+
+using FPVec = xr_vector<face_props>;
+using FPVecIt = FPVec::iterator;
 
 void SimplifyCFORM		(CDB::CollectorPacked& CL)
 {
