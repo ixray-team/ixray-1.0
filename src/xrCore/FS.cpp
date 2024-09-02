@@ -281,8 +281,11 @@ IReader*	IReader::open_chunk(u32 ID)
 		}
 	} else return 0;
 };
-void	IReader::close()
-{	xr_delete((IReader*)this); }
+
+void IReader::close() {
+    auto pointer = (IReader*) this;
+    xr_delete(pointer);
+}
 
 IReader*	IReader::open_chunk_iterator	(u32& ID, IReader* _prev)
 {
