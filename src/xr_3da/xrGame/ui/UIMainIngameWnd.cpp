@@ -350,7 +350,7 @@ void CUIMainIngameWnd::SetAmmoIcon (const shared_str& sect_name)
 
 	UIWeaponIcon.SetWndPos	(x, UIWeaponIcon_rect.y1);
 	
-	UIWeaponIcon.SetWidth	(w);
+	UIWeaponIcon.SetWidth	(w*UI()->get_current_kx());
 	UIWeaponIcon.SetHeight	(h);
 };
 
