@@ -26,9 +26,8 @@ public:
 
 	static void					Destroy					();
 	
-//.	STRING_INDEX				IndexById				(const STRING_ID& str_id)		const;
 	STRING_VALUE				translate				(const STRING_ID& str_id)		const;
-//.	STRING_VALUE				translate				(const STRING_INDEX str_index)	const;
+			void				rescan					();
 
 	static	BOOL				m_bWriteErrorsToLog;
 	static	void				ReparseKeyBindings		();
@@ -36,6 +35,5 @@ private:
 			void				Init					();
 			void				Load					(LPCSTR xml_file);
 	static STRING_VALUE			ParseLine				(LPCSTR str, LPCSTR key, bool bFirst);
-//.	bool						GetKeyboardItem			(LPCSTR src, char* dst);
 	static STRING_TABLE_DATA*	pData;
 };
