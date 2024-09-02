@@ -24,7 +24,7 @@ void CStringTable::Init		()
     
 	pData				= xr_new<STRING_TABLE_DATA>();
 	
-	//имя языка, если не задано (NULL), то первый <text> в <string> в XML
+	//РёРјСЏ СЏР·С‹РєР°, РµСЃР»Рё РЅРµ Р·Р°РґР°РЅРѕ (NULL), С‚Рѕ РїРµСЂРІС‹Р№ <text> РІ <string> РІ XML
 	pData->m_sLanguage	= pSettings->r_string("string_table", "language");
 
 	LPCSTR S			= pSettings->r_string("string_table", "files");
@@ -46,13 +46,11 @@ void CStringTable::Load	(LPCSTR xml_file)
 	string_path					xml_file_full;
 	strconcat					(sizeof(xml_file_full),xml_file_full, xml_file, ".xml");
 	string_path					_s;
-	strconcat					(sizeof(_s),_s, STRING_TABLE_PATH, "\\", *(pData->m_sLanguage) );
+	strconcat					(sizeof(_s),_s, "text", "\\", *(pData->m_sLanguage) );
 
-	bool xml_result				= uiXml.Init(CONFIG_PATH, _s, xml_file_full);
-	if(!xml_result)
-		Debug.fatal(DEBUG_INFO,"string table xml file not found %s, for language %s", xml_file_full, *(pData->m_sLanguage));
+	uiXml.Load(CONFIG_PATH, _s, xml_file_full);
 
-	//общий список всех записей таблицы в файле
+	//РѕР±С‰РёР№ СЃРїРёСЃРѕРє РІСЃРµС… Р·Р°РїРёСЃРµР№ С‚Р°Р±Р»РёС†С‹ РІ С„Р°Р№Р»Рµ
 	int string_num = uiXml.GetNodesNum		(uiXml.GetRoot(), "string");
 
 	for(int i=0; i<string_num; ++i)

@@ -47,7 +47,8 @@ CScriptXmlInit& CScriptXmlInit::operator =(const CScriptXmlInit& other){
 }
 
 void CScriptXmlInit::ParseFile(LPCSTR xml_file){
-	m_xml.Init(CONFIG_PATH, UI_PATH, xml_file);
+
+	m_xml.Load(CONFIG_PATH, UI_PATH, xml_file);
 }
 
 void CScriptXmlInit::InitWindow(LPCSTR path, int index, CUIWindow* pWnd){

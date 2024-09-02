@@ -1,9 +1,9 @@
 #pragma once
 
 #ifdef XRGAME_EXPORTS
-	#include "../../../xrXMLParser/xrXMLParser.h"
+	#include "../../../xrCore/XMLParser/xrXMLParser.h"
 #else
-	#include "../xrXMLParser/xrXMLParser.h"
+	#include "../xrCore/XMLParser/xrXMLParser.h"
 #endif
 
 class CUIXml :public CXml

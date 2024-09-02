@@ -140,7 +140,7 @@ bool CUIXmlInit::InitFrameWindow(CUIXml& xml_doc, LPCSTR path,
 
 	if(*tex_name) pWnd->InitLeftBottom(*tex_name, x,y);
 */
-	//инициализировать заголовок окна
+	//РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ Р·Р°РіРѕР»РѕРІРѕРє РѕРєРЅР°
 	strconcat(sizeof(buf),buf,path,":title");
 	if(xml_doc.NavigateToNode(buf,index)) InitStatic(xml_doc, buf, index, pWnd->UITitleText);
 	
@@ -1173,8 +1173,7 @@ void CUIXmlInit::InitColorDefs()
 	m_pColorDefs = xr_new<ColorDefs>();
 
 	CUIXml uiXml;
-	bool flag = uiXml.Init(CONFIG_PATH, UI_PATH, COLOR_DEFINITIONS);
-	R_ASSERT3(flag, "xml file not found", COLOR_DEFINITIONS);
+	uiXml.Load(CONFIG_PATH, UI_PATH, COLOR_DEFINITIONS);
 
 	int num = uiXml.GetNodesNum("colors", 0, "color");
 

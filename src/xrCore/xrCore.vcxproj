@@ -218,6 +218,10 @@
       <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">false</ShowIncludes>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="XmlParser\tinyxml.cpp" />
+    <ClCompile Include="XmlParser\tinyxmlerror.cpp" />
+    <ClCompile Include="XmlParser\tinyxmlparser.cpp" />
+    <ClCompile Include="XmlParser\xrXMLParser.cpp" />
     <ClCompile Include="xrCore.cpp" />
     <ClCompile Include="_compressed_normal.cpp" />
     <ClCompile Include="_math.cpp" />
@@ -397,6 +401,8 @@
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="XmlParser\tinyxml.h" />
+    <ClInclude Include="XmlParser\xrXMLParser.h" />
     <ClInclude Include="xrCore.h" />
     <ClInclude Include="xrCore_platform.h" />
     <ClInclude Include="_bitwise.h" />

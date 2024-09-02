@@ -73,6 +73,9 @@
     <Filter Include="ptmalloc3">
       <UniqueIdentifier>{9b138eed-a86c-4b97-a0a5-19d0af0ab403}</UniqueIdentifier>
     </Filter>
+    <Filter Include="XmlParser">
+      <UniqueIdentifier>{1ad2b447-f393-45f4-8e01-70abbf0345da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -256,6 +259,18 @@
     </ClCompile>
     <ClCompile Include="ptmalloc3\sysdeps\win32\win32.c">
       <Filter>ptmalloc3</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParser\tinyxml.cpp">
+      <Filter>XmlParser</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParser\tinyxmlerror.cpp">
+      <Filter>XmlParser</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParser\tinyxmlparser.cpp">
+      <Filter>XmlParser</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParser\xrXMLParser.cpp">
+      <Filter>XmlParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -527,6 +542,12 @@
     <ClInclude Include="doug_lea_allocator.h" />
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h">
       <Filter>ptmalloc3</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlParser\tinyxml.h">
+      <Filter>XmlParser</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlParser\xrXMLParser.h">
+      <Filter>XmlParser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

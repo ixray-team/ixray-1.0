@@ -31,8 +31,7 @@ void create_force_progress()
 {
 	VERIFY							(!g_MissileForceShape);
 	CUIXml uiXml;
-	bool xml_result					= uiXml.Init(CONFIG_PATH, UI_PATH, "grenade.xml");
-	R_ASSERT3						(xml_result, "xml file not found", "grenade.xml");
+	uiXml.Load(CONFIG_PATH, UI_PATH, "grenade.xml");
 
 	CUIXmlInit xml_init;
 	g_MissileForceShape				= xr_new<CUIProgressShape>();
@@ -77,7 +76,7 @@ void CMissile::Load(LPCSTR section)
 	m_vHudThrowPoint	= pSettings->r_fvector3(*hud_sect,"throw_point");
 	m_vHudThrowDir		= pSettings->r_fvector3(*hud_sect,"throw_dir");
 
-	//çàãðóçèòü àíèìàöèè HUD-à
+	//Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¸ HUD-Ð°
 	m_sAnimShow			= pSettings->r_string(*hud_sect, "anim_show");
 	m_sAnimHide			= pSettings->r_string(*hud_sect, "anim_hide");
 	m_sAnimIdle			= pSettings->r_string(*hud_sect, "anim_idle");
