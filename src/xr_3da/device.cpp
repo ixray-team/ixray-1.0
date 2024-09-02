@@ -100,7 +100,6 @@ void CRenderDevice::End		(void)
 	g_bRendering		= FALSE;
 	// end scene
 	RCache.OnFrameEnd	();
-	Memory.dbg_check		();
     CHK_DX				(HW.pDevice->EndScene());
 
 	HRESULT _hr		= HW.pDevice->Present( NULL, NULL, NULL, NULL );

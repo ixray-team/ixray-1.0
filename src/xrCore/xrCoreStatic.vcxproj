@@ -181,6 +181,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp" />
+    <ClCompile Include="memory_alloc_pure.cpp" />
+    <ClCompile Include="memory_alloc_xr.cpp" />
     <ClCompile Include="stdafx.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -216,14 +218,9 @@
     <ClCompile Include="Xr_ini.cpp" />
     <ClCompile Include="stream_reader.cpp" />
     <ClCompile Include="file_stream_reader.cpp" />
-    <ClCompile Include="memory_allocation_stats.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="memory_usage.cpp" />
     <ClCompile Include="xrMemory.cpp" />
     <ClCompile Include="xrMemory_align.cpp" />
-    <ClCompile Include="xrMemory_debug.cpp" />
     <ClCompile Include="xrMemory_POOL.cpp" />
     <ClCompile Include="xrMemory_pso_Copy.cpp">
       <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">AssemblyAndSourceCode</AssemblerOutput>
@@ -353,7 +350,6 @@
     </ClCompile>
     <ClCompile Include="xrsharedmem.cpp" />
     <ClCompile Include="xrstring.cpp" />
-    <ClCompile Include="memory_monitor.cpp" />
     <ClCompile Include="ppmd_compressor.cpp" />
     <ClCompile Include="Model.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -379,6 +375,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h" />
+    <ClInclude Include="memory_alloc_pure.h" />
+    <ClInclude Include="memory_alloc_xr.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="xrCore.h" />
@@ -456,7 +454,6 @@
     <ClInclude Include="xrstring.h" />
     <ClInclude Include="intrusive_ptr.h" />
     <ClInclude Include="intrusive_ptr_inline.h" />
-    <ClInclude Include="memory_monitor.h" />
     <ClInclude Include="ppmd_compressor.h" />
     <ClInclude Include="PPMd.h" />
     <ClInclude Include="PPMdType.h" />
