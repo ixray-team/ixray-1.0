@@ -1029,9 +1029,12 @@ bool CUIXmlInit::InitMultiTexture(CUIXml &xml_doc, LPCSTR path, int index, CUI3t
 	strconcat(sizeof(buff),buff, path, ":texture");
 	shared_str texture = xml_doc.Read(buff, index, NULL);
 
+	bool stretch_flag = xml_doc.ReadAttribInt(path, index, "stretch") ? true : false;
+
 	if (texture.size() > 0)
 	{
 		pWnd->InitTexture(*texture);
+		pWnd->SetStretchTexture(stretch_flag);
 		return true;
 	}
 
@@ -1040,6 +1043,7 @@ bool CUIXmlInit::InitMultiTexture(CUIXml &xml_doc, LPCSTR path, int index, CUI3t
 	if (texture.size())
 	{
         pWnd->m_background.CreateE()->InitTexture(*texture);
+		pWnd->m_background.CreateE()->SetStretchTexture(stretch_flag);
 		success = true;
 	}
 
@@ -1048,6 +1052,7 @@ bool CUIXmlInit::InitMultiTexture(CUIXml &xml_doc, LPCSTR path, int index, CUI3t
 	if (texture.size())
 	{
 		pWnd->m_background.CreateT()->InitTexture(*texture);
+		pWnd->m_background.CreateT()->SetStretchTexture(stretch_flag);
 		success = true;
 	}
 
@@ -1056,6 +1061,7 @@ bool CUIXmlInit::InitMultiTexture(CUIXml &xml_doc, LPCSTR path, int index, CUI3t
 	if (texture.size())
 	{
 		pWnd->m_background.CreateD()->InitTexture(*texture);
+		pWnd->m_background.CreateD()->SetStretchTexture(stretch_flag);
 		success = true;
 	}
 
@@ -1064,6 +1070,7 @@ bool CUIXmlInit::InitMultiTexture(CUIXml &xml_doc, LPCSTR path, int index, CUI3t
 	if (texture.size())
 	{
 		pWnd->m_background.CreateH()->InitTexture(*texture);
+		pWnd->m_background.CreateH()->SetStretchTexture(stretch_flag);
 		success = true;
 	}
 
