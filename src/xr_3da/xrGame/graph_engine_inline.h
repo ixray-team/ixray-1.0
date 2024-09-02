@@ -48,6 +48,10 @@ IC	bool CGraphEngine::search		(
 {
 #ifndef AI_COMPILER
 	Device.Statistic->AI_Path.Begin();
+	if (start_node == _index_type(-1) || dest_node == _index_type(-1)) {
+		return false;
+	}
+
 	START_PROFILE("graph_engine")
 	START_PROFILE("graph_engine/search")
 #endif
@@ -90,6 +94,10 @@ IC	bool CGraphEngine::search			(
 {
 #ifndef AI_COMPILER
 	Device.Statistic->AI_Path.Begin();
+	if (start_node == _index_type(-1) || dest_node == _index_type(-1)) {
+		return false;
+	}
+
 	START_PROFILE("graph_engine")
 	START_PROFILE("graph_engine/search")
 #endif
@@ -134,6 +142,10 @@ IC	bool CGraphEngine::search			(
 {
 #ifndef AI_COMPILER
 	Device.Statistic->AI_Path.Begin();
+	if (start_node == _index_type(-1) || dest_node == _index_type(-1)) {
+		return false;
+	}
+
 	START_PROFILE("graph_engine")
 	START_PROFILE("graph_engine/search")
 #endif
