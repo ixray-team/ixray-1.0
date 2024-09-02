@@ -11,6 +11,7 @@ enum class EEngineExternalPhysical {
 };
 
 enum class EEngineExternalGame {
+	UseNewScopeSystem,
 	None
 };
 
