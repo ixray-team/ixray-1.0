@@ -149,8 +149,12 @@ IC	bool			UpdatePrice			(CUICellItem* pItem, int index);
 
 	BoxInfo			m_boxesDefs[4];
 
-	DEF_VECTOR(WPN_SECT_NAMES, shared_str); // vector of weapons. it represents ONE section 
-	DEF_VECTOR(WPN_LISTS, WPN_SECT_NAMES); // vector of sections
+	// vector of weapons. it represents ONE section 
+	using WPN_SECT_NAMES = xr_vector<shared_str>;
+	using WPN_SECT_NAMES_it = WPN_SECT_NAMES::iterator;
+	// vector of sections
+	using WPN_LISTS = xr_vector<WPN_SECT_NAMES>;
+	using WPN_LISTS_it = WPN_LISTS::iterator;
 	
 	WPN_LISTS		m_wpnSectStorage;
 

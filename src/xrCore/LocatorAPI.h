@@ -41,13 +41,21 @@ private:
 		void					*hSrcFile, *hSrcMap;
 		u32						size;
 	};
-	DEFINE_MAP_PRED				(LPCSTR,FS_Path*,PathMap,PathPairIt,pred_str);
+
+	using PathMap = xr_map<LPCSTR, FS_Path*, pred_str>;
+	using PathPairIt = PathMap::iterator;
+
 	PathMap						pathes;
 
-	DEFINE_SET_PRED				(file,files_set,files_it,file_pred);
-    DEFINE_VECTOR				(archive,archives_vec,archives_it);
+	using files_set = xr_set<file, file_pred>;
+	using files_it = files_set::iterator;
 
-	DEFINE_VECTOR				(_finddata_t,FFVec,FFIt);
+	using archives_vec = xr_vector<archive>;
+	using archives_it = archives_vec::iterator;
+
+	using FFVec = xr_vector<_finddata_t>;
+	using FFIt = FFVec::iterator;
+
 	FFVec						rec_files;
 
     int							m_iLockRescan	; 

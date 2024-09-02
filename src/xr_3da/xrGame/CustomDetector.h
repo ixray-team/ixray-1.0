@@ -77,11 +77,15 @@ protected:
 	CInventoryOwner*	m_pCurrentInvOwner;
 
 	//информация об онаруживаемых зонах
-	DEFINE_MAP(CLASS_ID, ZONE_TYPE, ZONE_TYPE_MAP, ZONE_TYPE_MAP_IT);
+	using ZONE_TYPE_MAP = xr_map<CLASS_ID, ZONE_TYPE>;
+	using ZONE_TYPE_MAP_IT = ZONE_TYPE_MAP::iterator;
+
 	ZONE_TYPE_MAP m_ZoneTypeMap;
 	
 	//список обнаруженных зон и информация о них
-	DEFINE_MAP(CCustomZone*, ZONE_INFO, ZONE_INFO_MAP, ZONE_INFO_MAP_IT);
+	using ZONE_INFO_MAP = xr_map<CCustomZone*, ZONE_INFO>;
+	using ZONE_INFO_MAP_IT = ZONE_INFO_MAP::iterator;
+
 	ZONE_INFO_MAP m_ZoneInfoMap;
 	
 	shared_str						m_nightvision_particle;

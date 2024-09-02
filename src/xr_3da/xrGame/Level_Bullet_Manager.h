@@ -84,8 +84,12 @@ private:
 	collide::rq_results		m_rq_results;
 
 private:
-	DEFINE_VECTOR						(ref_sound,SoundVec,SoundVecIt);
-	DEFINE_VECTOR						(SBullet,BulletVec,BulletVecIt);
+	using SoundVec = xr_vector<ref_sound>;
+	using SoundVecIt = SoundVec::iterator;
+
+	using BulletVec = xr_vector<SBullet>;
+	using BulletVecIt = BulletVec::iterator;
+
 	typedef std::pair<float,float>		_hit		;
 	friend	CLevel;
 

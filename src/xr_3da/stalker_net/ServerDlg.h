@@ -41,8 +41,9 @@ protected:
 	char	m_Maps[GAME_END_LIST][20][1024];
 	int		m_MapsNum[GAME_END_LIST];	
 
-	DEF_VECTOR(shared_str_vec, shared_str)
-	DEF_MAP(storage_map, EGameTypes, shared_str_vec)
+	using shared_str_vec = xr_vector<shared_str>;
+	using storage_map = xr_map<EGameTypes, shared_str_vec>;
+
 	storage_map				m_maps;
 
 
