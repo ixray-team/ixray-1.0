@@ -26,5 +26,3 @@ IC float	Magnitude (Fvector v0, Fvector v1)
 
 	return sqrt(vr[0]*vr[0] + vr[1]*vr[1] + vr[2]*vr[2]);
 }
-
-#define DEF_VECTOR(N,T)				typedef std::vector<T> N;		typedef N::iterator N##_it;

@@ -47,7 +47,8 @@ struct HitData
 	void				Load						(FILE* pFile);
 };
 
-DEF_VECTOR	(HITS_VEC, HitData);
+using HITS_VEC = std::vector<HitData>;
+using HITS_VEC_it = HITS_VEC::iterator;
 
 #define MAX_BASKET		34
 struct Weapon_Statistic
@@ -84,7 +85,8 @@ struct Weapon_Statistic
 	void				Load						(FILE* pFile);
 };
 
-DEF_VECTOR		(WEAPON_STATS, Weapon_Statistic);
+using WEAPON_STATS = std::vector<Weapon_Statistic>;
+using WEAPON_STATS_it = WEAPON_STATS::iterator;
 
 struct Player_Statistic
 {
@@ -113,7 +115,8 @@ struct Player_Statistic
 	void				Load			(FILE* pFile);
 };
 
-DEF_VECTOR	(PLAYERS_STATS, Player_Statistic);
+using PLAYERS_STATS = std::vector<Player_Statistic>;
+using PLAYERS_STATS_it = PLAYERS_STATS::iterator;
 
 struct Used_Name
 {
@@ -121,7 +124,9 @@ struct Used_Name
 	bool			operator	==		(LPCSTR name){int res = strcmp(Name, name);return	res	 == 0;}
 	Used_Name (char* pName) { strcpy(Name, pName);};
 };
-DEF_VECTOR	(USED_NAMES, Used_Name);
+
+using USED_NAMES = std::vector<Used_Name>;
+using USED_NAMES_it = USED_NAMES::iterator;
 
 struct WeaponUsageStatistic 
 {

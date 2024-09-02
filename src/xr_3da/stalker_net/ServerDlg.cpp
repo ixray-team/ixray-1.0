@@ -213,10 +213,6 @@ BOOL CServerDlg::OnInitDialog()
 
 #include "Misc_Ruts.h"
 
-//DEF_VECTOR(shared_str_vec, shared_str)
-//DEF_MAP(storage_map, EGameTypes, shared_str_vec)
-//storage_map				m_maps;
-
 void	CServerDlg::LoadMapList()
 {
 	string_path			fn;
