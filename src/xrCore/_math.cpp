@@ -2,6 +2,8 @@
 #pragma hdrstop
 
 #include <process.h>
+#include <winver.h>
+#include <VersionHelpers.h>
 
 // mmsystem.h
 #define MMNOSOUND
@@ -126,8 +128,6 @@ namespace FPU
 namespace CPU 
 {
 	XRCORE_API u64				clk_per_second	;
-	XRCORE_API u64				clk_per_milisec	;
-	XRCORE_API u64				clk_per_microsec;
 	XRCORE_API u64				clk_overhead	;
 	XRCORE_API float			clk_to_seconds	;
 	XRCORE_API float			clk_to_milisec	;
@@ -136,7 +136,7 @@ namespace CPU
 	XRCORE_API u64				qpc_overhead	= 0	;
 	XRCORE_API u32				qpc_counter		= 0	;
 	
-	XRCORE_API _processor_info	ID;
+	XRCORE_API processor_info	ID;
 
 	XRCORE_API u64				QPC	()			{
 		u64		_dest	;
@@ -155,93 +155,90 @@ namespace CPU
 
 	void Detect	()
 	{
-		// General CPU identification
-		if (!_cpuid	(&ID))	
-		{
-			// Core.Fatal		("Fatal error: can't detect CPU/FPU.");
-			abort				();
-		}
-
 		// Timers & frequency
-		u64			start,end;
-		u32			dwStart,dwTest;
+		SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
 
-		SetPriorityClass		(GetCurrentProcess(),REALTIME_PRIORITY_CLASS);
+		u64 start = GetCLK();
+		Sleep(1000);
 
-		// Detect Freq
-		dwTest	= timeGetTime();
-		do { dwStart = timeGetTime(); } while (dwTest==dwStart);
-		start	= GetCLK();
-		while (timeGetTime()-dwStart<1000) ;
-		end		= GetCLK();
-		clk_per_second = end-start;
+		clk_per_second = GetCLK() - start;
 
 		// Detect RDTSC Overhead
-		clk_overhead	= 0;
-		u64 dummy		= 0;
-		for (int i=0; i<256; i++)	{
-			start			=	GetCLK();
-			clk_overhead	+=	GetCLK()-start-dummy;
+		clk_overhead = 0;
+		for (u32 i = 0; i < 256; i++) {
+			start = GetCLK();
+			clk_overhead += GetCLK() - start;
 		}
-		clk_overhead		/=	256;
 
-		// Detect QPC Overhead
-		QueryPerformanceFrequency	((PLARGE_INTEGER)&qpc_freq)	;
-		qpc_overhead	= 0;
-		for (int i=0; i<256; i++)	{
-			start			=	QPC();
-			qpc_overhead	+=	QPC()-start-dummy;
-		}
-		qpc_overhead		/=	256;
+		clk_overhead /= 256;
+		clk_per_second -= clk_overhead;
 
-		SetPriorityClass	(GetCurrentProcess(),NORMAL_PRIORITY_CLASS);
+		// Detect QPC
+		LARGE_INTEGER Freq;
+		QueryPerformanceFrequency(&Freq);
+		qpc_freq = Freq.QuadPart;
 
-		clk_per_second	-=	clk_overhead;
-		clk_per_milisec	=	clk_per_second/1000;
-		clk_per_microsec	=	clk_per_milisec/1000;
-
-		_control87	( _PC_64,   MCW_PC );
-//		_control87	( _RC_CHOP, MCW_RC );
-		double a,b;
-		a = 1;		b = double(clk_per_second);
-		clk_to_seconds = float(double(a/b));
-		a = 1000;	b = double(clk_per_second);
-		clk_to_milisec = float(double(a/b));
-		a = 1000000;b = double(clk_per_second);
-		clk_to_microsec = float(double(a/b));
+		// Restore normal priority
+		SetPriorityClass(GetCurrentProcess(), NORMAL_PRIORITY_CLASS);
 	}
 };
 
+bool g_initialize_cpu_called = false;
+
+using SetThreadDescriptionDesc = HRESULT(WINAPI*)(HANDLE, PCWSTR);
+static SetThreadDescriptionDesc SetThreadDescriptionProc;
+
 //------------------------------------------------------------------------------------
-void _initialize_cpu	(void) 
-{
-	Msg("* Detected CPU: %s %s, F%d/M%d/S%d, %.2f mhz, %d-clk 'rdtsc'",
-		CPU::ID.v_name,CPU::ID.model_name,
-		CPU::ID.family,CPU::ID.model,CPU::ID.stepping,
-		float(CPU::clk_per_second/u64(1000000)),
+void _initialize_cpu(void) {
+	Msg("* Detected CPU: %s [%s], F%d/M%d/S%d, %.2f mhz, %d-clk 'rdtsc'",
+		CPU::ID.modelName, CPU::ID.vendor,
+		CPU::ID.family, CPU::ID.model, CPU::ID.stepping,
+		float(CPU::clk_per_second / u64(1000000)),
 		u32(CPU::clk_overhead)
-		);
+	);
 
-//	DUMP_PHASE;
+	string256	features;	strcpy_s(features, sizeof(features), "RDTSC");
 
-	if (strstr(Core.Params,"-x86"))		{
-		CPU::ID.feature	&= ~_CPU_FEATURE_3DNOW	;
-		CPU::ID.feature	&= ~_CPU_FEATURE_SSE	;
-		CPU::ID.feature	&= ~_CPU_FEATURE_SSE2	;
-	};
+	if (CPU::ID.hasFeature(CPUFeature::MMX))
+		strcat_s(features, ", MMX");
 
-	string128	features;	strcpy_s(features,sizeof(features),"RDTSC");
-    if (CPU::ID.feature&_CPU_FEATURE_MMX)	strcat(features,", MMX");
-    if (CPU::ID.feature&_CPU_FEATURE_3DNOW)	strcat(features,", 3DNow!");
-    if (CPU::ID.feature&_CPU_FEATURE_SSE)	strcat(features,", SSE");
-    if (CPU::ID.feature&_CPU_FEATURE_SSE2)	strcat(features,", SSE2");
-	Msg("* CPU Features: %s\n",features);
+	if (CPU::ID.hasFeature(CPUFeature::AMD_3DNowExt))
+		strcat_s(features, ", 3DNow!");
 
-	Fidentity.identity		();	// Identity matrix
-	Didentity.identity		();	// Identity matrix
-	pvInitializeStatics		();	// Lookup table for compressed normals
-	FPU::initialize			();
-	_initialize_cpu_thread	();
+	if (CPU::ID.hasFeature(CPUFeature::SSE))
+		strcat_s(features, ", SSE");
+
+	if (CPU::ID.hasFeature(CPUFeature::SSE2))
+		strcat_s(features, ", SSE2");
+
+	if (CPU::ID.hasFeature(CPUFeature::SSE3))
+		strcat_s(features, ", SSE3");
+
+	if (CPU::ID.hasFeature(CPUFeature::SSE41))
+		strcat_s(features, ", SSE 4.1");
+
+	if (CPU::ID.hasFeature(CPUFeature::SSE42))
+		strcat_s(features, ", SSE 4.2");
+
+	if (CPU::ID.hasFeature(CPUFeature::SSE4a))
+		strcat_s(features, ", SSE 4.a");
+
+	if (CPU::ID.hasFeature(CPUFeature::HT))
+		strcat_s(features, ", HT");
+
+	Msg("* CPU features: %s", features);
+	Msg("* CPU cores/threads: %d/%d\n", CPU::ID.n_cores, CPU::ID.n_threads);
+
+	Fidentity.identity();	// Identity matrix
+	Didentity.identity();	// Identity matrix
+	pvInitializeStatics();	// Lookup table for compressed normals
+	FPU::initialize();
+	_initialize_cpu_thread();
+
+	g_initialize_cpu_called = true;
+
+	auto Kernellib = GetModuleHandle("kernel32.dll");
+	SetThreadDescriptionProc = (SetThreadDescriptionDesc)GetProcAddress(Kernellib, "SetThreadDescription");
 }
 
 #ifdef M_BORLAND
@@ -267,7 +264,7 @@ void _initialize_cpu_thread	()
 	// fpu & sse 
 	FPU::m24r	();
 #endif  // XRCORE_STATIC
-	if (CPU::ID.feature&_CPU_FEATURE_SSE)	{
+	if (CPU::ID.hasFeature(CPUFeature::SSE2)) {
 		//_mm_setcsr ( _mm_getcsr() | (_MM_FLUSH_ZERO_ON+_MM_DENORMALS_ZERO_ON) );
 		_MM_SET_FLUSH_ZERO_MODE			(_MM_FLUSH_ZERO_ON);
 		if (_denormals_are_zero_supported)	{
@@ -288,19 +285,34 @@ struct THREAD_NAME	{
 	DWORD	dwThreadID;
 	DWORD	dwFlags;
 };
-void	thread_name	(const char* name)
+
+void thread_name(const char* name)
 {
 	THREAD_NAME		tn;
-	tn.dwType		= 0x1000;
-	tn.szName		= name;
-	tn.dwThreadID	= DWORD(-1);
-	tn.dwFlags		= 0;
-	__try
+	tn.dwType = 0x1000;
+	tn.szName = name;
+	tn.dwThreadID = DWORD(-1);
+	tn.dwFlags = 0;
+
+	if (SetThreadDescriptionProc != nullptr)
 	{
-		RaiseException(0x406D1388,0,sizeof(tn)/sizeof(DWORD),(DWORD*)&tn);
+		int len = strlen(name);
+		wchar_t* WName = new wchar_t[len + 1];
+
+		// Converts the path to wide characters
+		int needed = MultiByteToWideChar(0, 0, name, len + 1, WName, len + 1);
+		SetThreadDescriptionProc(GetCurrentThread(), WName);
+		delete[] WName;
 	}
-	__except(EXCEPTION_CONTINUE_EXECUTION)
+	else
 	{
+		__try
+		{
+			RaiseException(0x406D1388, 0, sizeof(tn) / sizeof(DWORD), (ULONG_PTR*)&tn);
+		}
+		__except (EXCEPTION_CONTINUE_EXECUTION)
+		{
+		}
 	}
 }
 #pragma pack(pop)
