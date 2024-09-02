@@ -263,14 +263,20 @@ void CHUDManager::SetHitmarkType		(LPCSTR tex_name)
 	HitMarker.InitShader				(tex_name);
 }
 #include "ui\UIMainInGameWnd.h"
+#include "UIGameCustom.h"
 void CHUDManager::OnScreenRatioChanged()
 {
+	if (GetUI()->UIGame())
+		GetUI()->UIGame()->HideShownDialogs();
+
 	xr_delete							(pUI->UIMainIngameWnd);
 
 	pUI->UIMainIngameWnd				= xr_new<CUIMainIngameWnd>	();
 	pUI->UIMainIngameWnd->Init			();
 	pUI->UnLoad							();
 	pUI->Load							(pUI->UIGame());
+	pUI->OnConnected					();
+	GetUICursor()->OnScreenRatioChanged	();
 }
 
 void CHUDManager::OnDisconnected()
