@@ -26,12 +26,12 @@
 #include "inventory_item.h"
 #include "inventory.h"
 
-u32 C_ON_ENEMY		D3DCOLOR_XRGB(0xff,0,0);
-u32 C_ON_NEUTRAL	D3DCOLOR_XRGB(0xff,0xff,0x80);
-u32 C_ON_FRIEND		D3DCOLOR_XRGB(0,0xff,0);
+u32 C_ON_ENEMY		D3DCOLOR_RGBA(0xff,0,0,0x80);
+u32 C_ON_NEUTRAL	D3DCOLOR_RGBA(0xff,0xff,0x80,0x80);
+u32 C_ON_FRIEND		D3DCOLOR_RGBA(0,0xff,0,0x80);
 
 
-#define C_DEFAULT	D3DCOLOR_XRGB(0xff,0xff,0xff)
+#define C_DEFAULT	D3DCOLOR_RGBA(0xff,0xff,0xff,0x80)
 #define C_SIZE		0.025f
 #define NEAR_LIM	0.5f
 
@@ -146,10 +146,9 @@ void CHUDTarget::Render()
 	F->SetAligment		(CGameFont::alCenter);
 	F->OutSetI			(0.f,0.05f);
 
-	if (psHUD_Flags.test(HUD_CROSSHAIR_DIST)){
-		F->SetColor		(C);
-		F->OutNext		("%4.1f",RQ.range);
-	}
+	if (psHUD_Flags.test(HUD_CROSSHAIR_DIST))
+		F->OutSkip();
+
 
 	if (psHUD_Flags.test(HUD_INFO)){ 
 		if (RQ.O){
@@ -160,7 +159,11 @@ void CHUDTarget::Render()
 			if (IsGameTypeSingle())
 			{
 				CInventoryOwner* our_inv_owner		= smart_cast<CInventoryOwner*>(pCurEnt);
-				if (E && E->g_Alive() && !E->cast_base_monster())
+				if (E && E->g_Alive() && E->cast_base_monster())
+				{
+					C = C_ON_ENEMY;
+				}
+				else if (E && E->g_Alive() && !E->cast_base_monster())
 				{
 //.					CInventoryOwner* our_inv_owner		= smart_cast<CInventoryOwner*>(pCurEnt);
 					CInventoryOwner* others_inv_owner	= smart_cast<CInventoryOwner*>(E);
@@ -232,7 +235,14 @@ void CHUDTarget::Render()
 		}
 		clamp(fuzzyShowInfo,0.f,1.f);
 	}
+	
 
+	if (psHUD_Flags.test(HUD_CROSSHAIR_DIST))
+	{
+		F->OutSetI		(0.f,0.05f);
+		F->SetColor		(C);
+		F->OutNext		("%4.1f",RQ.range);
+	}
 	//отрендерить кружочек или крестик
 	if(!m_bShowCrosshair){
 		// actual rendering
