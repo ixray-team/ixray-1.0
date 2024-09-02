@@ -108,7 +108,7 @@ void CCF_Skeleton::BuildState()
 	
 	if (vis_mask!=K->LL_GetBonesVisible()){
 		vis_mask		= K->LL_GetBonesVisible();
-		elements.clear_not_free();
+		elements.resize(0);
 		bv_box.set		(K->vis.box);
 		bv_box.getsphere(bv_sphere.P,bv_sphere.R);
 		for (u16 i=0; i<K->LL_BoneCount(); i++){

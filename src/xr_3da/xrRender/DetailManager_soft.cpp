@@ -122,7 +122,7 @@ void CDetailManager::soft_Render	()
 			}
 		}
 		// Clean up
-		_vis.clear_not_free	();
+		_vis.resize(0);
 	}
 }
 

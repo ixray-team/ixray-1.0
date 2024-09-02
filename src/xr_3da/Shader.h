@@ -37,7 +37,6 @@ struct	ENGINE_API		STextureList	: public xr_resource_flagged, public xr_vector<s
 							return TRUE;
 						}
 	virtual		void	clear();
-	virtual		void	clear_not_free();
 };
 typedef	resptr_core<STextureList,resptr_base<STextureList> >								ref_texture_list;
 //////////////////////////////////////////////////////////////////////////

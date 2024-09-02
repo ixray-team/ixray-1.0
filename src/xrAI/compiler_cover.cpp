@@ -485,7 +485,7 @@ void compute_non_covers		()
 			continue;
 		}
 
-		cover_pairs.clear_not_free		();
+		cover_pairs.resize(0);
 		cover_pairs.reserve				(nearest.size());
 
 		float				cumulative_weight = 0.f;

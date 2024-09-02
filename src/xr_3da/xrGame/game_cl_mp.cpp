@@ -88,8 +88,8 @@ game_cl_mp::~game_cl_mp()
 	if (m_BloodLossIconsShader)
 		m_BloodLossIconsShader.destroy();
 	
-	m_pSndMessagesInPlay.clear_and_free();
-	m_pSndMessages.clear_and_free();
+	m_pSndMessagesInPlay.clear();
+	m_pSndMessages.clear();
 
 //	xr_delete(m_pSpeechMenu);
 	DestroyMessagesMenus();

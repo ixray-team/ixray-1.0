@@ -56,7 +56,7 @@ void CGameFont::Initialize		(LPCSTR cShader, LPCSTR cTextureName)
 		strcpy_s				(cTexture, sizeof(cTexture), cTextureName);
 
 	uFlags						&=~fsValid;
-	vTS.set						(1.f,1.f); // обязательно !!!
+	vTS.set						(1.f,1.f); // РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ !!!
 
 	eCurrentAlignment			= alLeft;
 	vInterval.set				(1.f,1.f);
@@ -265,7 +265,7 @@ void CGameFont::OnRender()
 			RCache.Render			(D3DPT_TRIANGLELIST,vOffset,0,vCount,0,vCount/2);
 		}
 	}
-	strings.clear_not_free			();
+	strings.resize(0);
 }
 
 u16 CGameFont::GetCutLengthPos( float fTargetWidth , const char * pszText )

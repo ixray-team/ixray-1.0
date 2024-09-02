@@ -605,7 +605,7 @@ void ProcessLTX(LPCSTR tgt_name, LPCSTR params, BOOL bFast)
 	itE				= fl_list.end();
 	for (;it!=itE;++it) xr_free(*it);
 
-	exclude_exts.clear_and_free();
+	exclude_exts.clear();
 }
 
 
