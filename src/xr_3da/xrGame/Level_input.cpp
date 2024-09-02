@@ -16,7 +16,7 @@
 #include "WeaponHUD.h"
 #include "xrServer.h"
 #include "autosave_manager.h"
-
+#include "string_table.h"
 #include "actor.h"
 #include "huditem.h"
 #include "ui/UIDialogWnd.h"
@@ -143,7 +143,7 @@ void CLevel::IR_OnKeyboardPress	(int key)
 		FS.rescan_pathes			();
 #endif // DEBUG
 		string_path					saved_game,command;
-		strconcat					(sizeof(saved_game),saved_game,Core.UserName,"_","quicksave");
+		strconcat					(sizeof(saved_game),saved_game,Core.UserName," - ",CStringTable().translate("quicksave").c_str());
 		if (!CSavedGameWrapper::valid_saved_game(saved_game))
 			return;
 
