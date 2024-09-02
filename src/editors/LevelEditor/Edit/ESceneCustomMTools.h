@@ -125,6 +125,7 @@ public:
     virtual void		GetBBox 				(Fbox& bb, bool bSelOnly)=0;
 };
 
-DEFINE_MAP(ObjClassID,ESceneCustomMTools*,SceneToolsMap,SceneToolsMapPairIt);
+using SceneToolsMap = xr_map<ObjClassID, ESceneCustomMTools*>;
+using SceneToolsMapPairIt = SceneToolsMap::iterator;
+
 #endif //ESceneCustomMToolsH
- 

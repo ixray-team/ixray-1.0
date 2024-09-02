@@ -17,8 +17,8 @@ class CUILevelMap;
 class CUIMapHint;
 class CMapLocation;
 
-DEFINE_MAP(shared_str,CUICustomMap*,GameMaps,GameMapsPairIt);
-
+using GameMaps = xr_map<shared_str, CUICustomMap*>;
+using GameMapsPairIt = GameMaps::iterator;
 
 class CUIMapWnd: public CUIWindow, public CUIWndCallback
 {
