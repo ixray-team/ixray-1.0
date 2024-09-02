@@ -393,6 +393,7 @@
     <ClInclude Include="OPC_VolumeCollider.h" />
     <ClInclude Include="Opcode.h" />
     <ClInclude Include="xrXRC.h" />
+    <ClInclude Include="xr_collide_defs.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

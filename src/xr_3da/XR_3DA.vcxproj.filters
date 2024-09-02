@@ -70,9 +70,6 @@
     <Filter Include="Render\Visibility">
       <UniqueIdentifier>{fcc93f28-ec13-4c67-a309-c8b7843837ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Render\Visibility\Frustum">
-      <UniqueIdentifier>{b64ea59c-7136-462b-893f-4a9451f0b00e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Render\Particle system">
       <UniqueIdentifier>{2605ed89-0ed9-49a2-b9e1-120f704bb648}</UniqueIdentifier>
     </Filter>
@@ -252,9 +249,6 @@
     <ClInclude Include="xr_area.h">
       <Filter>Game API\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="xr_collide_defs.h">
-      <Filter>Game API\Collision</Filter>
-    </ClInclude>
     <ClInclude Include="xr_collide_form.h">
       <Filter>Game API\Collision</Filter>
     </ClInclude>
@@ -314,9 +308,6 @@
     </ClInclude>
     <ClInclude Include="vis_common.h">
       <Filter>Render\Visibility</Filter>
-    </ClInclude>
-    <ClInclude Include="Frustum.h">
-      <Filter>Render\Visibility\Frustum</Filter>
     </ClInclude>
     <ClInclude Include="PS_instance.h">
       <Filter>Render\Particle system</Filter>
@@ -667,9 +658,6 @@
     </ClCompile>
     <ClCompile Include="SkeletonX.cpp">
       <Filter>Render\Visuals\Skeleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Frustum.cpp">
-      <Filter>Render\Visibility\Frustum</Filter>
     </ClCompile>
     <ClCompile Include="PS_instance.cpp">
       <Filter>Render\Particle system</Filter>

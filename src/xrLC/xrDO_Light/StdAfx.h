@@ -21,7 +21,7 @@
 #include "clsid.h"
 #include "defines.h"
 #include "cl_log.h"
-#include "xrCDB.h"
+#include "../xrCDB/xrCDB.h"
 #include "_d3d_extensions.h"
 
 #include <fcntl.h>

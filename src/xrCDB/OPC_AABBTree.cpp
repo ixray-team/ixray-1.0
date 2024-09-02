@@ -47,6 +47,10 @@
 #include "stdafx.h"
 #pragma hdrstop
 
+namespace Opcode {
+#	include "OPC_TreeBuilders.h"
+} // namespace Opcode
+
 using namespace Opcode;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +180,7 @@ bool AABBTreeNode::Subdivide(AABBTreeBuilder* builder)
 
 		// Compute variances
 		Point Vars(0.0f, 0.0f, 0.0f);
-		for(udword i=0;i<mNbPrimitives;i++)
+		for(u32 i=0;i<mNbPrimitives;i++)
 		{
 			udword Index = mNodePrimitives[i];
 			float Cx = builder->GetSplittingValue(Index, 0);
@@ -323,7 +327,7 @@ AABBTree::AABBTree() : mIndices(null), mTotalNbNodes(0)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 AABBTree::~AABBTree()
 {
-	xr_free(mIndices);
+	CFREE(mIndices);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,8 +347,8 @@ bool AABBTree::Build(AABBTreeBuilder* builder)
 	builder->SetNbInvalidSplits(0);
 
 	// Initialize indices. This list will be modified during build.
-	xr_free(mIndices);
-	mIndices	= xr_alloc<udword>(builder->mNbPrimitives);
+	CFREE(mIndices);
+	mIndices	= CALLOC(udword,builder->mNbPrimitives);
 	CHECKALLOC(mIndices);
 	for(udword i=0;i<builder->mNbPrimitives;i++)	mIndices[i] = i;
 

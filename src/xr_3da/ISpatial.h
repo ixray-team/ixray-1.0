@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../xrCore/xrPool.h"
-#include "xr_collide_defs.h"
+#include "../xrCDB/xr_collide_defs.h"
 
 #pragma pack(push,4)
 

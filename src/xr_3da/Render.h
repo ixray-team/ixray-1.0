@@ -1,7 +1,7 @@
 #ifndef _RENDER_H_
 #define _RENDER_H_
 
-#include "frustum.h"
+#include "../xrCDB/frustum.h"
 #include "vis_common.h"
 #include "IRenderDetailModel.h"
 

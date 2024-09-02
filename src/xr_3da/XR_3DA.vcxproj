@@ -536,7 +536,6 @@
     <ClInclude Include="Effector.h" />
     <ClInclude Include="EffectorPP.h" />
     <ClInclude Include="xr_area.h" />
-    <ClInclude Include="xr_collide_defs.h" />
     <ClInclude Include="xr_collide_form.h" />
     <ClInclude Include="bone.h" />
     <ClInclude Include="envelope.h" />
@@ -557,7 +556,6 @@
     <ClInclude Include="SkeletonMotions.h" />
     <ClInclude Include="SkeletonX.h" />
     <ClInclude Include="vis_common.h" />
-    <ClInclude Include="Frustum.h" />
     <ClInclude Include="PS_instance.h" />
     <ClInclude Include="LightAnimLibrary.h" />
     <ClInclude Include="GameFont.h" />
@@ -693,10 +691,6 @@
       <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">All</AssemblerOutput>
       <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Release_Dedicated|Win32'">All</AssemblerOutput>
       <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">All</AssemblerOutput>
-    </ClCompile>
-    <ClCompile Include="Frustum.cpp">
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed_Dedicated|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ClCompile Include="PS_instance.cpp" />
     <ClCompile Include="LightAnimLibrary.cpp" />

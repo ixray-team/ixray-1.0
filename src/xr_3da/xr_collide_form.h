@@ -1,7 +1,7 @@
 #ifndef __XR_COLLIDE_FORM_H__
 #define __XR_COLLIDE_FORM_H__
 
-#include "xr_collide_defs.h"
+#include "../xrCDB/xr_collide_defs.h"
 
 // refs
 class ENGINE_API	CObject;
@@ -84,10 +84,10 @@ class ENGINE_API	ICollisionForm
 {
 	friend class	CObjectSpace;
 protected:
-	CObject*		owner;			// βλΰδελεφ
+	CObject*		owner;			// Π²Π»Π°Π΄ΠµΠ»ΠµΡ†
 	u32				dwQueryID;
 protected:
-	Fbox			bv_box;			// (Local) BBox ξαϊεκςΰ
+	Fbox			bv_box;			// (Local) BBox ΠΎΠ±ΡΠµΠΊΡ‚Π°
 	Fsphere			bv_sphere;		// (Local) Sphere 
 private:
 	ECollisionFormType	m_type;

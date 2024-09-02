@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "xrCDB.h"
+#include "../xrCDB/xrCDB.h"
 #ifndef XRGAME_EXPORTS
 #	include "Sound.h"
 #endif

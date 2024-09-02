@@ -1,8 +1,10 @@
 #ifndef xr_collide_defsH
 #define xr_collide_defsH
-#pragma once
+//#pragma once
 
-class ENGINE_API CObject;
+#include "xrcdb.h"
+
+class CObject;
 namespace collide 
 {
 	struct			tri {
@@ -128,11 +130,13 @@ namespace collide
 			if (0==results.capacity())	results.reserve(8);
 			results.push_back			(res);
 		}
-		IC int			r_count			()	{ return results.size();	}
+		IC int			r_count			()	{ return (int)results.size();	}
 		IC rq_result*	r_begin			()	{ return &*results.begin();	}
 		IC rq_result*	r_end			()	{ return &*results.end();	}
 		IC void			r_clear			()	{ results.resize(0); }
 		IC void			r_sort			()	{ std::sort(results.begin(),results.end(),r_sort_pred);}
+		IC rqVec		&r_results		()	{ return results; }
+
 	};
 	typedef  BOOL		rq_callback 	(rq_result& result, LPVOID user_data);
 	typedef  BOOL		test_callback 	(const ray_defs& rd, CObject* object, LPVOID user_data);

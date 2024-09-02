@@ -1,4 +1,5 @@
 #include "stdafx.h"
+//.#include "../xrCore/xrCore.h"
 #pragma hdrstop
 
 #include "xrCDB.h"
@@ -11,7 +12,7 @@ namespace CDB
 		I=verts.begin();	E=verts.end();
 		for (;I!=E;I++)		if (I->similar(V,eps)) return u32(I-verts.begin());
 		verts.push_back		(V);
-		return verts.size	()-1;
+		return (u32)verts.size	()-1;
 	}
 
 	void	Collector::add_face_D	(
@@ -20,9 +21,9 @@ namespace CDB
 		)
 	{
 		TRI T;
-		T.verts		[0] = verts.size();
-		T.verts		[1] = verts.size()+1;
-		T.verts		[2] = verts.size()+2;  
+		T.verts		[0] = (u32)verts.size();
+		T.verts		[1] = (u32)verts.size()+1;
+		T.verts		[2] = (u32)verts.size()+2;  
 		T.dummy			= dummy;
 
 		verts.push_back(v0);
@@ -34,9 +35,9 @@ namespace CDB
 	void	Collector::add_face		(	const Fvector& v0, const Fvector& v1, const Fvector& v2, u16 material, u16 sector )
 	{
 		TRI			T;
-		T.verts	[0]		= verts.size();
-		T.verts	[1]		= verts.size()+1;
-		T.verts	[2]		= verts.size()+2;
+		T.verts	[0]		= (u32)verts.size();
+		T.verts	[1]		= (u32)verts.size()+1;
+		T.verts	[2]		= (u32)verts.size()+2;
 		T.material		= material;
 		T.sector		= sector;
 
@@ -111,7 +112,7 @@ namespace CDB
 	{
 #if 1
 		VERIFY							(faces.size() < 65536);
-		const u32						edge_count = faces.size()*3;
+		const u32						edge_count = (u32)faces.size()*3;
 #ifdef _EDITOR
 		xr_vector<edge> _edges			(edge_count);
 		edge 							*edges = &*_edges.begin();
@@ -349,7 +350,7 @@ namespace CDB
 		}
 		if (0xffffffff==P)
 		{
-			P = verts.size();
+			P = (u32)verts.size();
 			verts.push_back(V);
 
 			VM[ix][iy][iz].push_back(P);
