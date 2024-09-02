@@ -11,7 +11,6 @@
 #pragma comment(lib,"IMAGEHLP.LIB")
 #pragma comment(lib,"winmm.LIB")
 #pragma comment(lib,"xrCDB.lib")
-#pragma comment(lib,"FreeImage.lib")
 #pragma comment(lib,"xrCore.lib")
 
 #define PROTECTED_BUILD

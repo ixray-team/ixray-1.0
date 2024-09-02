@@ -157,7 +157,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\FreeImage\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_WINDOWS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -199,7 +199,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;$(SolutionDir)sdk\FreeImage\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -213,7 +213,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\FreeImage\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;DEBUG;_WINDOWS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -247,7 +247,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;$(SolutionDir)sdk\FreeImage\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -267,7 +267,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\FreeImage\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src; .\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src; .\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;DEBUG;_WINDOWS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -305,7 +305,7 @@
       <TerminalServerAware />
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;$(SolutionDir)sdk\FreeImage\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -320,7 +320,7 @@
     <ClCompile>
       <AdditionalOptions>/Gs  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\FreeImage\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src; .\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src; .\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;DEBUG;_WINDOWS;_SECURE_SCL=0;PRIQUEL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -358,7 +358,7 @@
       <TerminalServerAware />
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;$(SolutionDir)sdk\FreeImage\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -372,7 +372,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\FreeImage\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;DEBUG;_WINDOWS;_SECURE_SCL=0;PRIQUEL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -406,7 +406,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;$(SolutionDir)sdk\FreeImage\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -427,7 +427,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\FreeImage\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\MagicSoftware\FreeMagic\Include\;$(SolutionDir)\src\xrCore\;..\xrQSlim\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_WINDOWS;_SECURE_SCL=0;PRIQUEL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -469,7 +469,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;$(SolutionDir)sdk\FreeImage\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -737,11 +737,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets" Condition="Exists('..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" />
+    <Import Project="..\..\packages\ImeSense.Packages.FreeImage.WinMerge.2023.8.19-open\build\native\ImeSense.Packages.FreeImage.WinMerge.targets" Condition="Exists('..\..\packages\ImeSense.Packages.FreeImage.WinMerge.2023.8.19-open\build\native\ImeSense.Packages.FreeImage.WinMerge.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets'))" />
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.FreeImage.WinMerge.2023.8.19-open\build\native\ImeSense.Packages.FreeImage.WinMerge.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.FreeImage.WinMerge.2023.8.19-open\build\native\ImeSense.Packages.FreeImage.WinMerge.targets'))" />
   </Target>
 </Project>

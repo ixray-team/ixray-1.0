@@ -84,9 +84,6 @@
     <ClInclude Include="ETextureParams.h">
       <Filter>External</Filter>
     </ClInclude>
-    <ClInclude Include="FreeImage.h">
-      <Filter>External</Filter>
-    </ClInclude>
     <ClInclude Include="progmesh.h">
       <Filter>External</Filter>
     </ClInclude>
@@ -202,6 +199,7 @@
       <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Model</Filter>
     </ClInclude>
     <ClInclude Include="xrGameMaterials.h" />
+    <ClInclude Include="FreeImage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
