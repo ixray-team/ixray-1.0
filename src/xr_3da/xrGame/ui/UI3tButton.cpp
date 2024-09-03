@@ -118,6 +118,14 @@ void CUI3tButton::SetHeight(float height)
 	m_background.SetHeight		(height);
 }
 
+void CUI3tButton::InitButton(Fvector2 pos, Fvector2 size)
+{
+	m_background.SetWndPos(Fvector2().set(0, 0));
+	m_background.SetWndSize(size);
+	CUIButton::SetWndPos(pos);
+	CUIButton::SetWndSize(size);
+}
+
 void CUI3tButton::InitTexture(LPCSTR tex_name)
 {
 	string_path 		tex_enabled;
@@ -183,10 +191,13 @@ void CUI3tButton::SetTextureOffset(float x, float y)
 
 void CUI3tButton::DrawTexture()
 {
-	if(m_bTextureEnable)
+	if (m_bTextureEnable)
 	{
-		m_background.SetStretchTexture(GetStretchTexture());
-		m_background.Draw();
+		if (&m_background)
+		{
+			m_background.SetStretchTexture(GetStretchTexture());
+			m_background.Draw();
+		}
 	}
 }
 
