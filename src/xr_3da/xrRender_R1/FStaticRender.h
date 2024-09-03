@@ -31,6 +31,7 @@ public:
 		u32		vis_intersect		: 1;	// config
 
 		u32		distortion			: 1;	// run-time modified
+		u32		color_mapping		: 1;	// true if SM 1.4 and higher
 		u32		disasm				: 1;	// config
 		u32		forceskinw			: 1;	// config
 	}			o;

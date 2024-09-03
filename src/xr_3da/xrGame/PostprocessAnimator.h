@@ -14,8 +14,9 @@
     #include "CameraManager.h"
 #endif /*_PP_EDITOR_*/
 
-#define POSTPROCESS_PARAMS_COUNT    10
-#define POSTPROCESS_FILE_VERSION    0x0001
+#define POSTPROCESS_PARAMS_COUNT    11
+//.#define POSTPROCESS_FILE_VERSION    0x0001
+#define POSTPROCESS_FILE_VERSION    0x0002
 
 #define POSTPROCESS_FILE_EXTENSION  ".ppe"
 
@@ -33,6 +34,8 @@ typedef enum _pp_params
     pp_noise_i              =   7,
     pp_noise_g              =   8,
     pp_noise_f              =   9,
+    pp_cm_influence         =   10,
+    pp_last					=	11,
     pp_force_dword          =   0x7fffffff
 } pp_params;
 
@@ -46,11 +49,14 @@ public:
     virtual void    save                            (IWriter &pWriter) = 0;
     virtual float   get_length                      () = 0;
     virtual size_t  get_keys_count                  () = 0;
+	virtual ~CPostProcessParam() {}
 #ifdef _PP_EDITOR_
-    virtual void    add_value                       (float time, float value, float t, float c, float b, int index = 0) = 0;
-    virtual void    update_value                    (float time, float value, float t, float c, float b, int index = 0) = 0;
-    virtual void    get_value                       (float time, float &value, float &t, float &c, float &b, int index = 0) = 0;
+    virtual void    add_value                       (float time, float value,  int index = 0) = 0;
+    virtual void    delete_value                    (float time) = 0;
+    virtual void    update_value                    (float time, float value,  int index = 0) = 0;
+    virtual void    get_value                       (float time, float &value, int index = 0) = 0;
     virtual float   get_key_time                    (size_t index) = 0;
+    virtual void   clear_all_keys                   () = 0;
 #endif /*_PP_EDITOR_*/
 };
 
@@ -60,31 +66,22 @@ protected:
     CEnvelope       m_Value;
     float          *m_pfParam;
 public:
-                    CPostProcessValue               (float *pfparam) { m_pfParam = pfparam; }
+                    CPostProcessValue               (float *pfparam) 		{m_pfParam = pfparam;}
     virtual void    update                          (float dt)
                     {
                     *m_pfParam = m_Value.Evaluate (dt);
                     }
     virtual void    load                            (IReader &pReader);
     virtual void    save                            (IWriter &pWriter);
-    virtual float   get_length                      ()
-                    {
-                    float mn, mx;
-                    return m_Value.GetLength (&mn, &mx);
-                    }
-    virtual size_t  get_keys_count                  ()
-                    {
-                    return m_Value.keys.size ();
-                    }
+    virtual float   get_length                      ()                    	{float mn, mx; return m_Value.GetLength (&mn, &mx);}
+    virtual size_t  get_keys_count                  () 						{return m_Value.keys.size ();}
 #ifdef _PP_EDITOR_
-    virtual void    add_value                       (float time, float value, float t, float c, float b, int index = 0);
-    virtual void    update_value                    (float time, float value, float t, float c, float b, int index = 0);
-    virtual void    get_value                       (float time, float &value, float &t, float &c, float &b, int index = 0);
-    virtual float   get_key_time                    (size_t index)
-                    {
-                    VERIFY (index < get_keys_count ());
-                    return m_Value.keys[index]->time;
-                    }
+    virtual void    add_value                       (float time, float value, int index = 0);
+    virtual void    delete_value                    (float time);
+    virtual void    update_value                    (float time, float value, int index = 0);
+    virtual void    get_value                       (float time, float &valueb, int index = 0);
+    virtual float   get_key_time                    (size_t index)  {VERIFY (index < get_keys_count ()); return m_Value.keys[index]->time;}
+    virtual void   clear_all_keys                  ();
 #endif /*_PP_EDITOR_*/
 };
 
@@ -121,14 +118,16 @@ public:
                     return m_Red.keys.size ();
                     }
 #ifdef _PP_EDITOR_
-    virtual void    add_value                       (float time, float value, float t, float c, float b, int index = 0);
-    virtual void    update_value                    (float time, float value, float t, float c, float b, int index = 0);
-    virtual void    get_value                       (float time, float &value, float &t, float &c, float &b, int index = 0);
+    virtual void    add_value                       (float time, float value, int index = 0);
+    virtual void    delete_value                    (float time);
+    virtual void    update_value                    (float time, float value, int index = 0);
+    virtual void    get_value                       (float time, float &value, int index = 0);
     virtual float   get_key_time                    (size_t index)
                     {
                     VERIFY (index < get_keys_count ());
                     return m_Red.keys[index]->time;
                     }
+    virtual void   clear_all_keys                  ();
 #endif /*_PP_EDITOR_*/
 };
 
@@ -140,9 +139,9 @@ class CPostprocessAnimator
 #endif
 {
 protected:
+    SPPInfo											m_EffectorParams;
     CPostProcessParam                               *m_Params[POSTPROCESS_PARAMS_COUNT];
     shared_str										m_Name;
-    SPPInfo											m_EffectorParams;
 	float											m_factor;
 	float											m_dest_factor;
 	bool											m_bStop;
@@ -164,8 +163,9 @@ public:
 		void		SetCurrentFactor				(float f);
 		void		SetCyclic						(bool b)					{m_bCyclic=b;}
         float       GetLength                       ();
-virtual	BOOL		Valid							();
+        SPPInfo&	PPinfo							() {return m_EffectorParams;}
 #ifndef _PP_EDITOR_
+virtual	BOOL		Valid							();
 virtual	BOOL		Process							(SPPInfo &PPInfo);
 #else
 virtual	BOOL		Process							(float dt, SPPInfo &PPInfo);

@@ -76,7 +76,7 @@ BOOL CRenderTarget::u_need_PP	()
 		int		_b	= color_get_B(param_color_add)	;
 		if (_r>2 || _g>2 || _b>2)	_cadd	= true	;
 	}
-	return _blur || _gray || _noise || _dual || _cbase || _cadd; 
+	return _blur || _gray || _noise || _dual || _cbase || _cadd || u_need_CM();
 }
 
 struct TL_2c3uv		{
@@ -98,7 +98,8 @@ void CRenderTarget::phase_pp		()
 {
 	// combination/postprocess
 	u_setrt				( Device.dwWidth,Device.dwHeight,HW.pBaseRT,NULL,NULL,HW.pBaseZB);
-	RCache.set_Shader	(s_postprocess	);
+	bool	bCMap = u_need_CM();
+	RCache.set_Element	(s_postprocess->E[bCMap ? 4 : 0]);
 
 	int		gblend		= clampr		(iFloor((1-param_gray)*255.f),0,255);
 	int		nblend		= clampr		(iFloor((1-param_noise)*255.f),0,255);
@@ -130,7 +131,14 @@ void CRenderTarget::phase_pp		()
 
 	// Actual rendering
 	static	shared_str	s_brightness	= "c_brightness";
+	static	shared_str	s_colormap		= "c_colormap";
 	RCache.set_c		(s_brightness,color_get_R(p_brightness)/255.f,color_get_G(p_brightness)/255.f,color_get_B(p_brightness)/255.f,0);
+	RCache.set_c		(s_colormap, param_color_map_influence,param_color_map_interpolate,0,0);
 	RCache.set_Geometry	(g_postprocess);
 	RCache.Render		(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+}
+
+bool CRenderTarget::u_need_CM()
+{
+	return (param_color_map_influence > 0.001f);
 }

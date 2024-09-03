@@ -22,20 +22,61 @@ float psCamSlideInert = 0.25f;
 SPPInfo		pp_identity;
 SPPInfo		pp_zero;
 
-void SPPInfo::normalize() 
+SPPInfo& SPPInfo::add (const SPPInfo &ppi) 
 {
-	/*
-	noise.intensity = _max(_min(noise.intensity, 1.f), 0.f);
-	noise.color.r = _max(_min(noise.color.r, 1.f), 0.f);
-	noise.color.g = _max(_min(noise.color.g, 1.f), 0.f);
-	noise.color.b = _max(_min(noise.color.b, 1.f), 0.f);
-	noise.color.a = _max(_min(noise.color.a, 1.f), 0.f);
-	blend_color.r = _max(_min(blend_color.r, 1.f), 0.f);
-	blend_color.g = _max(_min(blend_color.g, 1.f), 0.f);
-	blend_color.b = _max(_min(blend_color.b, 1.f), 0.f);
-	blend_color.a = _max(_min(blend_color.a, 1.f), 0.f);
-	*/
+	blur			+= ppi.blur;
+	gray			+= ppi.gray;
+	duality.h		+= ppi.duality.h; 
+	duality.v		+= ppi.duality.v;
+	
+	noise.intensity	= _max(noise.intensity, ppi.noise.intensity);
+	noise.grain		= _max(noise.grain, ppi.noise.grain);
+	noise.fps		= _max(noise.fps, ppi.noise.fps);
+	color_base		+= ppi.color_base;
+	color_gray		+= ppi.color_gray;
+	color_add		+= ppi.color_add;
+
+	if(ppi.cm_tex1.size())
+	{
+		if(cm_tex1.size())
+		{
+			cm_tex2			= ppi.cm_tex1;
+			cm_interpolate	= 1.0f - cm_influence/(cm_influence+ppi.cm_influence);
+		}else
+		{
+			cm_tex1			= ppi.cm_tex1;
+			cm_influence	= ppi.cm_influence;
+			cm_interpolate	= 0.0f;
+		}
+		cm_influence		= _max(cm_influence, ppi.cm_influence);
+	}
+	return			*this;
 }
+
+SPPInfo& SPPInfo::sub (const SPPInfo &ppi) 
+{
+	blur		-= ppi.blur;
+	gray		-= ppi.gray;
+	duality.h	-= ppi.duality.h; 
+	duality.v	-= ppi.duality.v;
+	color_base	-= ppi.color_base;
+	color_gray	-= ppi.color_gray;
+	color_add	-= ppi.color_add;
+	return *this;
+}
+
+SPPInfo::SPPInfo				()
+{
+	blur = gray = duality.h = duality.v = 0;
+	noise.intensity=0; noise.grain = 1; noise.fps = 10;
+	color_base.set	(.5f,	.5f,	.5f);
+	color_gray.set	(.333f, .333f,	.333f);
+	color_add.set	(0.f,	0.f,	0.f);
+	cm_influence	= 0.0f;
+	cm_interpolate	= 0.0f;
+}
+void SPPInfo::normalize() 
+{}
 
 void SPPInfo::validate(LPCSTR str)
 {
@@ -88,9 +129,14 @@ SPPInfo& SPPInfo::lerp(const SPPInfo& def, const SPPInfo& to, float factor)
 		def.color_add.g	+ (to.color_add.g - def.color_add.g) * factor, 
 		def.color_add.b	+ (to.color_add.b - def.color_add.b) * factor
 		);
+
+	pp.cm_tex1					= to.cm_tex1;
+	pp.cm_tex2					= to.cm_tex2;
+	pp.cm_influence				+= def.cm_influence	+ (to.cm_influence - def.cm_influence) * factor;
+	pp.cm_interpolate			+= def.cm_interpolate	+ (to.cm_interpolate - def.cm_interpolate) * factor;
+
 	return *this;
 }
-
 CCameraManager::CCameraManager(bool bApplyOnUpdate)
 {
 #ifdef DEBUG
@@ -273,8 +319,8 @@ void CCameraManager::Update(const Fvector& P, const Fvector& D, const Fvector& N
 			if((eff->Valid())&&eff->Process(l_PPInf)) 
 			{
 				++_count;
-				pp_affected			+= l_PPInf;
-				pp_affected			-= pp_identity;
+				pp_affected.add(l_PPInf);
+				pp_affected.sub(pp_identity);
 				pp_affected.validate("in cycle");
 			}else 
 				RemovePPEffector(eff->Type());
@@ -330,6 +376,10 @@ void CCameraManager::ApplyDevice (float _viewport_near)
 		T->set_color_base			(pp_affected.color_base);
 		T->set_color_gray			(pp_affected.color_gray);
 		T->set_color_add			(pp_affected.color_add);
+
+		T->set_cm_imfluence			(pp_affected.cm_influence);
+		T->set_cm_interpolate		(pp_affected.cm_interpolate);
+		T->set_cm_textures			(pp_affected.cm_tex1, pp_affected.cm_tex2);
 	}
 }
 
@@ -346,6 +396,8 @@ void CCameraManager::ResetPP()
 	T->set_color_base		(pp_identity.color_base);
 	T->set_color_gray		(pp_identity.color_gray);
 	T->set_color_add		(pp_identity.color_add);
+	T->set_cm_imfluence		(0.0f);
+	T->set_cm_interpolate	(1.0f);
 }
 
 void CCameraManager::Dump()
