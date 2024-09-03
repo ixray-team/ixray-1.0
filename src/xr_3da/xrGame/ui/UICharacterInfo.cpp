@@ -239,24 +239,33 @@ void CUICharacterInfo::ResetAllStrings()
 
 void CUICharacterInfo::UpdateRelation()
 {
-	if(!m_icons[eUIRelation] ||!m_icons[eUIRelationCaption]) return;
+	if (!m_icons[eUIRelation] || !m_icons[eUIRelationCaption])
+		return;
 
-		if (Actor()->ID()==m_ownerID || !hasOwner())
+	if (Actor()->ID() == m_ownerID || !hasOwner())
+	{
+		if (m_icons[eUIRelationCaption])	m_icons[eUIRelationCaption]->Show(false);
+		if (m_icons[eUIRelation])		m_icons[eUIRelation]->Show(false);
+	}
+	else
+	{
+		bool showRelation = m_icons[eUIName]->IsShown();
+
+		if (m_icons[eUIRelationCaption])
+			m_icons[eUIRelationCaption]->Show(showRelation);
+
+		if (m_icons[eUIRelation])
+			m_icons[eUIRelation]->Show(showRelation);
+
+		if (showRelation)
 		{
-			if(m_icons[eUIRelationCaption])	m_icons[eUIRelationCaption]->Show	(false);
-			if(m_icons[eUIRelation])		m_icons[eUIRelation]->Show			(false);
-		}
-		else
-		{
-			if(m_icons[eUIRelationCaption])	m_icons[eUIRelationCaption]->Show	(true);
-			if(m_icons[eUIRelation])		m_icons[eUIRelation]->Show			(true);
+			CSE_ALifeTraderAbstract* T = ch_info_get_from_id(m_ownerID);
+			CSE_ALifeTraderAbstract* TA = ch_info_get_from_id(Actor()->ID());
 
-			CSE_ALifeTraderAbstract* T = ch_info_get_from_id	(m_ownerID);
-			CSE_ALifeTraderAbstract* TA = ch_info_get_from_id	(Actor()->ID());
-
-			SetRelation(RELATION_REGISTRY().GetRelationType(T,		TA),
-						RELATION_REGISTRY().GetAttitude(T,			TA));
+			SetRelation(RELATION_REGISTRY().GetRelationType(T, TA),
+				RELATION_REGISTRY().GetAttitude(T, TA));
 		}
+	}
 }
 
 void CUICharacterInfo::Update()
