@@ -10,6 +10,7 @@
 //#include "../skeletoncustom.h"
 #include "../skeletonanimated.h"
 #include <../xrODE/ode/src/util.h>
+#include <../xrODE/include\ode\objects.h>
 #ifdef DEBUG
 #include	"PHDebug.h"
 #endif
@@ -378,13 +379,22 @@ void CPHElement::PhTune(dReal step)
 	if(contact_effector)contact_effector->Apply();
 	VERIFY_BOUNDARIES2(cast_fv(dBodyGetPosition(m_body)),phBoundaries,PhysicsRefObject(),"PhTune body position");
 }
-void CPHElement::PhDataUpdate(dReal step){
+void CPHElement::PhDataUpdate(dReal step)
+{
+	if (!isActive())
+		return;
+	
+	if (isFixed())
+	{
+		dBodySetLinearVel(m_body, 0, 0, 0);
+		dBodySetAngularVel(m_body, 0, 0, 0);
+		dBodySetForce(m_body, 0, 0, 0);
+		dBodySetTorque(m_body, 0, 0, 0);
+		return;
+	}
 
-	if(! isActive())return;
 	
 	///////////////skip for disabled elements////////////////////////////////////////////////////////////
-	//b_enabled_onstep=!!dBodyIsEnabled(m_body);
-	//VERIFY_BOUNDARIES2(cast_fv(dBodyGetPosition(m_body)),phBoundaries,PhysicsRefObject(),"PhDataUpdate begin, body position");
 #ifdef DEBUG
 	if(ph_dbg_draw_mask.test(phDbgDrawMassCenters))
 	{
@@ -1490,15 +1500,23 @@ bool CPHElement::get_ApplyByGravity()
 
 void	CPHElement::Fix()
 {
+	if (isFixed())
+		return;
+
+	dBodySetNoUpdatePosMode(m_body, 1);
 	m_flags.set(flFixed,TRUE);
 	FixBody(m_body);
 }
 void	CPHElement::ReleaseFixed()
 {
-	if(!isFixed())	return;
+	if(!isFixed())	
+		return;
+	dBodySetNoUpdatePosMode(m_body, 0);
 	m_flags.set(flFixed,FALSE);
-	if(!isActive())return;
+	if(!isActive())
+		return;
 	dBodySetMass(m_body,&m_mass);
+	dBodySetGravityMode(m_body, 1);
 }
 void CPHElement::applyGravityAccel				(const Fvector& accel)
 {

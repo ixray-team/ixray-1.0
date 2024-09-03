@@ -316,3 +316,4 @@ dWorldAddBody
 dWorldAddJoint
 dWorldRemoveBody
 dWorldRemoveJoint
+dBodySetNoUpdatePosMode
