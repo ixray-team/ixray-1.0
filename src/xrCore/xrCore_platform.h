@@ -23,25 +23,24 @@
 #endif
 
 #define NOGDICAPMASKS
-#define NOSYSMETRICS
 #define NOMENUS
 #define NOICONS
 #define NOKEYSTATES
 #define NODRAWTEXT
 #define NOMEMMGR
-#define NOMETAFILE
 #define NOSERVICE
 #define NOCOMM
 #define NOHELP
 #define NOPROFILER
 #define NOMCX
-#define NOMINMAX
 #define DOSWIN32
 #define _WIN32_DCOM
 
 #pragma warning(push)
 #pragma warning(disable:4005)
 #include <windows.h>
+#include <atlstr.h>
+#include <atlimage.h>
 #ifndef __BORLANDC__
 	#include <windowsx.h>
 #endif

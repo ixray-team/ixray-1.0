@@ -825,6 +825,7 @@
     <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="ixray_splash.png" />
     <Image Include="stalker.ico">
       <DeploymentContent>true</DeploymentContent>
     </Image>
