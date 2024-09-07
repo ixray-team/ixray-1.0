@@ -447,7 +447,10 @@ void CActor::g_cl_Orientate	(u32 mstate_rl, float dt)
 		r_torso.yaw		=	unaffected_r_torso.yaw + dangle.y;
 		r_torso.pitch	=	unaffected_r_torso.pitch + dangle.x;
 	}
-	
+
+	if (eacLookAt == cam_active && inventory().GetActiveSlot() == NO_ACTIVE_SLOT)
+		r_torso.pitch = 0;
+
 	// если есть движение - выровнять модель по камере
 	if (mstate_rl&mcAnyMove)	{
 		r_model_yaw		= angle_normalize(r_torso.yaw);
