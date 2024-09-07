@@ -28,14 +28,6 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "stalker.ico"
 
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
-
-IDB_BITMAP2             BITMAP                  "ui_splash3.bmp"
-
 #endif    // Russian (Russia) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -92,7 +84,7 @@ IDD_STARTUP DIALOGEX 0, 0, 333, 165
 STYLE DS_ABSALIGN | DS_SETFONT | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    CONTROL         IDB_BITMAP2,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,0,0,333,165
+    CONTROL         116,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,0,0,333,165
 END
 
 
