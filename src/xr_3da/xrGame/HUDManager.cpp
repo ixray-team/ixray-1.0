@@ -265,7 +265,7 @@ void CHUDManager::SetHitmarkType		(LPCSTR tex_name)
 #include "ui\UIMainInGameWnd.h"
 extern CUIXml* pWpnScopeXml;
 
-void CHUDManager::OnScreenRatioChanged()
+void CHUDManager::OnScreenResolutionChanged()
 {
 	xr_delete							(pUI->UIMainIngameWnd);
 	if (EngineExternal()[EEngineExternalGame::UseNewScopeSystem])

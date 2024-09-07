@@ -19,7 +19,7 @@ DECLARE_MESSAGE(AppDeactivate);
 DECLARE_MESSAGE(AppStart);
 DECLARE_MESSAGE(AppEnd);
 DECLARE_MESSAGE(DeviceReset);
-
+DECLARE_MESSAGE(ScreenResolutionChanged);
 
 
 //-----------------------------------------------------------------------------
