@@ -15,7 +15,7 @@
 #include "SkeletonX.h"
 #include "SkeletonCustom.h"
 #include "fmesh.h"
-#include "xrCPU_Pipe.h"
+#include "xrCPU_Pipe/xrCPU_Pipe.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
