@@ -33,10 +33,6 @@ IC void MouseRayFromPoint	( Fvector& direction, int x, int y, Fmatrix& m_CamMat 
 void CRender::Screenshot		(IRender_interface::ScreenshotMode mode, LPCSTR name)
 {
 	if (!Device.b_is_Ready)			return;
-	if ((psDeviceFlags.test(rsFullscreen)) == 0) {
-		Log("~ Can't capture screen while in windowed mode...");
-		return;
-	}
 
 	// Create temp-surface
 	IDirect3DSurface9*	pFB;
