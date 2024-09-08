@@ -60,7 +60,14 @@ IC	const CObjectItemAbstract &CObjectFactory::item	(const CLASS_ID &clsid) const
 {
 	actualize			();
 	const_iterator		I = std::lower_bound(clsids().begin(),clsids().end(),clsid,CObjectItemPredicate());
-	VERIFY				((I != clsids().end()) && ((*I)->clsid() == clsid));
+#ifdef DEBUG
+	if (!(I != clsids().end()) && ((*I)->clsid() == clsid))
+	{
+		string16	tmp;
+		CLSID2TEXT(clsid, tmp);
+		Debug.fatal(DEBUG_INFO, "Invalid class name:", tmp);
+	}
+#endif
 	return				(**I);
 }
 #else
@@ -96,7 +103,14 @@ IC	int	CObjectFactory::script_clsid	(const CLASS_ID &clsid) const
 {
 	actualize			();
 	const_iterator		I = std::lower_bound(clsids().begin(),clsids().end(),clsid,CObjectItemPredicate());
-	VERIFY				((I != clsids().end()) && ((*I)->clsid() == clsid));
+#ifdef DEBUG
+	if (!(I != clsids().end()) && ((*I)->clsid() == clsid))
+	{
+		string16	tmp;
+		CLSID2TEXT(clsid, tmp);
+		Debug.fatal(DEBUG_INFO, "Invalid class name:", tmp);
+	}
+#endif
 	return				(int(I - clsids().begin()));
 }
 
