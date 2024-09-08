@@ -31,7 +31,7 @@
 	</progress_bar_armor>
 	
 	<static_weapon x="900" y="692" width="123" height="65" stretch="1">
-		<text complex_mode="0" x="45" y="0" font="letterica16" r="255" g="255" b="255" a="130"/>
+		<text complex_mode="0" x="37" y="0" font="letterica16" r="255" g="255" b="255" a="130"/>
 		<texture>ui_hud_frame_patron</texture>
 	</static_weapon>
 	
@@ -45,7 +45,7 @@
 	
 	<static_pda_online x="104" y="167" width="27" height="28" light_anim="ui_pda_contacts" la_cyclic="0" la_texture="0" la_text="1" la_alpha="1" stretch="1">
 		<texture>ui_hud_map_counter</texture>
-		<text y="4" align="c" font="graffiti19" r="238" g="155" b="23" a="255"/>
+		<text y="6" align="c" font="graffiti19" r="238" g="155" b="23" a="255"/>
 	</static_pda_online>
 	
 	
@@ -90,7 +90,7 @@
 
 
 	<flashing_icons>
-		<flashing_icon x="13" y="210" width="48" height="29" type="pda" light_anim="ui_slow_blinking_alpha">
+		<flashing_icon x="13" y="210" width="39" height="29" type="pda" light_anim="ui_slow_blinking_alpha" stretch="1">
 			<texture>ui_hud_icon_PDA</texture>
 		</flashing_icon>
 	</flashing_icons>

@@ -154,25 +154,15 @@ void CMainMenu::Activate	(bool bActivate)
 		Device.Pause				(TRUE, FALSE, TRUE, "mm_activate1");
 			m_Flags.set				(flActive|flNeedChangeCapture,TRUE);
 
-		{
-			DLL_Pure* dlg = NEW_INSTANCE(TEXT2CLSID("MAIN_MNU"));
-			if(!dlg) 
-			{
-				m_Flags.set				(flActive|flNeedChangeCapture,FALSE);
-				return;
-			}
-			xr_delete					(m_startDialog);
-			m_startDialog				= smart_cast<CUIDialogWnd*>(dlg);
-			VERIFY						(m_startDialog);
-		}
+		m_Flags.set					(flRestoreCursor,GetUICursor()->IsVisible());
+
+		if(!ReloadUI())				return;
 
 		m_Flags.set					(flRestoreConsole,Console->bVisible);
 		
 		if(b_is_single)	m_Flags.set	(flRestorePause,Device.Paused());
 		
 		Console->Hide				();
-
-		m_Flags.set					(flRestoreCursor,GetUICursor()->IsVisible());
 
 		if(b_is_single)
 		{
@@ -182,8 +172,8 @@ void CMainMenu::Activate	(bool bActivate)
 				Device.Pause			(TRUE, TRUE, FALSE, "mm_activate2");
 		}
 
-		m_startDialog->m_bWorkInPause		= true;
-		StartStopMenu						(m_startDialog,true);
+		//m_startDialog->m_bWorkInPause		= true;
+		//StartStopMenu						(m_startDialog,true);
 		
 		if(g_pGameLevel)
 		{
@@ -246,6 +236,28 @@ void CMainMenu::Activate	(bool bActivate)
 	}
 }
 
+bool CMainMenu::ReloadUI()
+{
+	if(m_startDialog)
+	{
+		StartStopMenu						(m_startDialog,true);
+		CleanInternals						();
+	}
+	DLL_Pure* dlg = NEW_INSTANCE(TEXT2CLSID("MAIN_MNU"));
+	if(!dlg) 
+	{
+		m_Flags.set				(flActive|flNeedChangeCapture,FALSE);
+		return false;
+	}
+	xr_delete					(m_startDialog);
+	m_startDialog				= smart_cast<CUIDialogWnd*>(dlg);
+	VERIFY						(m_startDialog);
+	m_startDialog->m_bWorkInPause= true;
+	StartStopMenu				(m_startDialog,true);
+
+	m_activatedScreenRatio		= (float)Device.dwWidth/(float)Device.dwHeight > (1024.0f/768.0f+0.01f);
+	return true;
+}
 bool CMainMenu::IsActive()
 {
 	return !!m_Flags.test(flActive);
@@ -430,7 +442,14 @@ void CMainMenu::OnFrame()
 		m_pGameSpyFull->Update();
 
 	if(IsActive())
+	{
 		CheckForErrorDlg();
+		bool b_is_16_9	= (float)Device.dwWidth/(float)Device.dwHeight > (1024.0f/768.0f+0.01f);
+		if(b_is_16_9 !=m_activatedScreenRatio)
+		{
+			ReloadUI();
+		}
+	}
 }
 
 void CMainMenu::OnDeviceCreate()
@@ -543,12 +562,6 @@ void CMainMenu::OnDownloadPatch(CUIWindow*, void*)
 	string4096 FilePath = "";
 	char* FileName = NULL;
 	GetFullPathName(fileName, 4096, FilePath, &FileName);
-	/*
-	if (strrchr(fileName, '/')) fileName = strrchr(fileName, '/')+1;
-	else
-		if (strrchr(fileName, '\\')) fileName = strrchr(fileName, '\\')+1;
-	if (!fileName) return;
-	*/
 
 	string_path		fname;
 	if (FS.path_exist("$downloads$"))
