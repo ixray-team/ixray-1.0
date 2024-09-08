@@ -53,7 +53,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ETools", "src\ETools\ETools
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrD3D9-Null", "src\xr_3da\xrGame\xrD3D9-Null\xrD3D9-Null.vcxproj", "{0899B131-F1D4-4876-9BA1-67AC821DB9E1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrGameSpy", "src\xr_3da\xrGame\xrGameSpy\xrGameSpy.vcxproj", "{5535F6B4-7AE6-4B66-8AEA-CC31C14D7AB7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrGameSpy", "src\xrGameSpy\xrGameSpy.vcxproj", "{5535F6B4-7AE6-4B66-8AEA-CC31C14D7AB7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stalker_net", "src\xr_3da\Stalker_Net\Stalker_net.vcxproj", "{AF9ACB0D-451A-4878-A04C-0B9E221CC705}"
 EndProject
