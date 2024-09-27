@@ -45,7 +45,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-    <Import Project="..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets" Condition="Exists('..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets')" />
+    <Import Project="..\..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets" Condition="Exists('..\..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets')" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -282,7 +282,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\xrCore\xrCore.vcxproj">
+    <ProjectReference Include="..\..\xrCore\xrCore.vcxproj">
       <Project>{a0f7d1fb-59a7-4717-a7e4-96f37e91998e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
@@ -295,6 +295,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ImeSense.Packages.Nvtt.Runtimes.win-x86.2024.6.1-open\build\native\ImeSense.Packages.Nvtt.Runtimes.win-x86.targets'))" />
   </Target>
 </Project>
