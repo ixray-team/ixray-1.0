@@ -378,7 +378,7 @@
     <ClCompile Include="xrFace.cpp">
       <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Internal</Filter>
     </ClCompile>
-    <ClCompile Include="..\xr_3da\xrLoadSurface.cpp">
+    <ClCompile Include="..\xrEngine\xrLoadSurface.cpp">
       <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Internal</Filter>
     </ClCompile>
     <ClCompile Include="tga.cpp">

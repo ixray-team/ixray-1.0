@@ -3,10 +3,10 @@
 
 #include <functional>
 
-#include "../xr_3da/fdemorecord.h"
-#include "../xr_3da/fdemoplay.h"
-#include "../xr_3da/environment.h"
-#include "../xr_3da/igame_persistent.h"
+#include "../xrEngine/fdemorecord.h"
+#include "../xrEngine/fdemoplay.h"
+#include "../xrEngine/environment.h"
+#include "../xrEngine/igame_persistent.h"
 #include "ParticlesObject.h"
 #include "Level.h"
 #include "xrServer.h"
@@ -38,14 +38,14 @@
 #include "mt_config.h"
 #include "phcommander.h"
 #include "map_manager.h"
-#include "../xr_3da/CameraManager.h"
+#include "../xrEngine/CameraManager.h"
 #include "level_sounds.h"
 #include "car.h"
 #include "trade_parameters.h"
 #include "game_cl_base_weapon_usage_statistic.h"
 #include "clsid_game.h"
 #include "MainMenu.h"
-#include "../xr_3da/XR_IOConsole.h"
+#include "../xrEngine/XR_IOConsole.h"
 
 #ifdef DEBUG
 #	include "level_debug.h"

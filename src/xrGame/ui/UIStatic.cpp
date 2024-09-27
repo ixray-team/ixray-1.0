@@ -4,7 +4,7 @@
 #include "UITextureMaster.h"
 #include "uiframewindow.h"
 #include "../HUDManager.h"
-#include "../../xr_3da/LightAnimLibrary.h"
+#include "../../xrEngine/LightAnimLibrary.h"
 #include "uilines.h"
 #include "../string_table.h"
 #include "../ui_base.h"

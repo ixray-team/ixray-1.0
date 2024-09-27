@@ -4,7 +4,7 @@
 #include "../../ai_object_location.h"
 #include "../../ai_space.h"
 #include "../../level_graph.h"
-#include "../../../xr_3da/skeletoncustom.h"
+#include "../../../xrEngine/skeletoncustom.h"
 
 // проверить, находится ли объект entity на ноде
 // возвращает позицию объекта, если он находится на ноде, или центр его ноды

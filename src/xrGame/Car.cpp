@@ -3,7 +3,7 @@
 #include "Physics.h"
 
 #ifdef DEBUG
-#	include "../xr_3da/StatGraph.h"
+#	include "../xrEngine/StatGraph.h"
 #	include "PHDebug.h"
 #endif // DEBUG
 
@@ -19,7 +19,7 @@
 #include "script_entity_action.h"
 #include "inventory.h"
 #include "xrserver_objects_alife_items.h"
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 #include "level.h"
 #include "ui/UIMainIngameWnd.h"
 #include "CarWeapon.h"

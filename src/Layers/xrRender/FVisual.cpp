@@ -9,7 +9,7 @@
 #include <d3dx9.h>
 #pragma warning(default:4995)
 
-#include "..\..\xr_3da\fmesh.h"
+#include "..\..\xrEngine\fmesh.h"
 #include "fvisual.h"
 
 //////////////////////////////////////////////////////////////////////

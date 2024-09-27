@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include "../xr_3da/effectorPP.h"
-#include "../xr_3da/effector.h"
-#include "../xr_3da/cameramanager.h"
+#include "../xrEngine/effectorPP.h"
+#include "../xrEngine/effector.h"
+#include "../xrEngine/cameramanager.h"
 
 
 #define SLEEP_EFFECTOR_TYPE_ID 8

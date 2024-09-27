@@ -105,7 +105,7 @@ bool CUIVotingCategory::OnKeyboard(int dik, EUIMessages keyboard_action)
 	return false;
 }
 
-#include "../../xr_3da/xr_ioconsole.h"
+#include "../../xrEngine/xr_ioconsole.h"
 
 void CUIVotingCategory::OnBtn(int i)
 {

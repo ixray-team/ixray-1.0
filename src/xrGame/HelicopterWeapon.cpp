@@ -3,7 +3,7 @@
 #include "ExplosiveRocket.h"
 #include "xrMessages.h"
 #include "../xrNetServer/net_utils.h"
-#include "..\xr_3da\skeletoncustom.h"
+#include "..\xrEngine\skeletoncustom.h"
 #include "Level.h"
 
 void  

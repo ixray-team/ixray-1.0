@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../../xr_3da/effector.h"
+#include "../../../../xrEngine/effector.h"
 #include "../../../pp_effector_custom.h"
 
 ////////////////////////////////////////////////////////////////////////////////////

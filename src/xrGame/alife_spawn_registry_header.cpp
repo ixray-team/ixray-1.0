@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "alife_spawn_registry_header.h"
 #include "alife_space.h"
-#include "../xr_3da/xrlevel.h"
+#include "../xrEngine/xrlevel.h"
 
 CALifeSpawnHeader::~CALifeSpawnHeader	()
 {

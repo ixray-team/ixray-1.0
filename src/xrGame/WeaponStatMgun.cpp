@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "WeaponStatMgun.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/skeletoncustom.h"
 #include "PhysicsShell.h"
 #include "weaponAmmo.h"
 #include "object_broker.h"

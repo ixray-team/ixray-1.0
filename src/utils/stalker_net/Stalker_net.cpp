@@ -33,7 +33,7 @@ CStalker_netApp::~CStalker_netApp()
 
 CStalker_netApp theApp;
 
-// Calculating build number from XR_3DA for correct resources reading
+// Calculating build number from xrEngine for correct resources reading
 
 // computing build id
 XRCORE_API	LPCSTR	build_date;
@@ -87,7 +87,7 @@ typedef void DUMMY_STUFF (const void*,const u32&,void*);
 XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
 
 #define TRIVIAL_ENCRYPTOR_DECODER
-#include "..\..\xr_3da\trivial_encryptor.h"
+#include "..\..\xrEngine\trivial_encryptor.h"
 
 // CStalker_netApp initialization
 

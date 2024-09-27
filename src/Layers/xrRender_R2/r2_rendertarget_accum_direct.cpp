@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "..\..\xr_3da\igame_persistent.h"
-#include "..\..\xr_3da\environment.h"
+#include "..\..\xrEngine\igame_persistent.h"
+#include "..\..\xrEngine\environment.h"
 
 void CRenderTarget::accum_direct		(u32 sub_phase)
 {

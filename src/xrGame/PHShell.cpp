@@ -10,7 +10,7 @@
 #include "SpaceUtils.h"
 #include "MathUtils.h"
 #include "PhysicsShellHolder.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/skeletoncustom.h"
 #include "PHCollideValidator.h"
 #include "game_object_space.h"
 //#pragma warning(disable:4995)

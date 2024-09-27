@@ -2,15 +2,15 @@
 #include "torch.h"
 #include "entity.h"
 #include "actor.h"
-#include "../xr_3da/LightAnimLibrary.h"
+#include "../xrEngine/LightAnimLibrary.h"
 #include "PhysicsShell.h"
 #include "xrserver_objects_alife_items.h"
 #include "ai_sounds.h"
 
 #include "HUDManager.h"
 #include "level.h"
-#include "../xr_3da/skeletoncustom.h"
-#include "../xr_3da/camerabase.h"
+#include "../xrEngine/skeletoncustom.h"
+#include "../xrEngine/camerabase.h"
 #include "inventory.h"
 #include "game_base_space.h"
 

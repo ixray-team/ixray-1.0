@@ -3,7 +3,7 @@
 #include "hudtarget.h"
 
 #include "actor.h"
-#include "../xr_3da/igame_level.h"
+#include "../xrEngine/igame_level.h"
 #include "clsid_game.h"
 #include "GamePersistent.h"
 

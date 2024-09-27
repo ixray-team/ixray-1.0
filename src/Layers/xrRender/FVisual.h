@@ -8,7 +8,7 @@
 #ifdef _EDITOR
 #	include "fbasicvisual.h"
 #else
-#	include "..\..\xr_3da\fbasicvisual.h"
+#	include "..\..\xrEngine\fbasicvisual.h"
 #endif
 
 class	Fvisual					: public		IRender_Visual, public IRender_Mesh

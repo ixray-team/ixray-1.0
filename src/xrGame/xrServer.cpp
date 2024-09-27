@@ -9,9 +9,9 @@
 #include "level.h"
 #include "game_cl_base.h"
 #include "ai_space.h"
-#include "../xr_3da/IGame_Persistent.h"
+#include "../xrEngine/IGame_Persistent.h"
 
-#include "../xr_3da/XR_IOConsole.h"
+#include "../xrEngine/XR_IOConsole.h"
 //#include "script_engine.h"
 #include "ui/UIInventoryUtilities.h"
 

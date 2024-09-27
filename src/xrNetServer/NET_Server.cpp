@@ -133,7 +133,7 @@ void gen_auth_code()
 		test.push_back			(xr_string("xrrender_r2.dll"));
 		test.push_back			(xr_string("xrsound.dll"));
 		test.push_back			(xr_string("xrxmlparser.dll"));
-//		test.push_back			(xr_string("xr_3da.exe"));
+//		test.push_back			(xr_string("xrEngine.exe"));
 
 		FS.auth_generate		(ignore,test);
 }

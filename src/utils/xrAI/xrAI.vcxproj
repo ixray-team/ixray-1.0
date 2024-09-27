@@ -732,7 +732,7 @@
     </ClCompile>
     <ClCompile Include="compiler_smooth.cpp" />
     <ClCompile Include="motion_simulator.cpp" />
-    <ClCompile Include="..\..\xr_3da\xrLoadSurface.cpp" />
+    <ClCompile Include="..\..\xrEngine\xrLoadSurface.cpp" />
     <ClCompile Include="level_graph.cpp" />
     <ClCompile Include="level_graph_vertex.cpp" />
     <ClCompile Include="xrCrossTable.cpp" />

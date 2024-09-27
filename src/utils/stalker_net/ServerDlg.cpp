@@ -670,7 +670,7 @@ void CServerDlg::OnBnClickedStartServer()
 //	-noprefetch
 	string512	temp;
 	char cmdline[4096];
-	sprintf(cmdline, "%sxr_3da.exe %s -xclsx %s%s%s%s%s%s%s -nointro -external -nocache -start Server(%s/%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s) client(localhost%s%s%s)", 
+	sprintf(cmdline, "%sxrEngine.exe %s -xclsx %s%s%s%s%s%s%s -nointro -external -nocache -start Server(%s/%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s) client(localhost%s%s%s)", 
 			(iDedicated == 1) ? "dedicated\\" : "",
 			(iDedicated == 1) ? "-nosound" : "",
 			//---------------------------------
@@ -746,10 +746,10 @@ void CServerDlg::OnBnClickedStartServer()
 			sprintf(NewEnvPath , "PATH=%s;%s", ModuleFilePath,envpath);
 			_putenv(NewEnvPath);
 
-			strcat(ModuleFilePath, "dedicated\\xr_3DA.exe");
+			strcat(ModuleFilePath, "dedicated\\xrEngine.exe");
 		}
 		else
-			strcat(ModuleFilePath, "xr_3da.exe");
+			strcat(ModuleFilePath, "xrEngine.exe");
 
 		_args[0] = ModuleFilePath;//g_sLaunchOnExit_app;
 		_args[1] = cmdline;//g_sLaunchOnExit_params;

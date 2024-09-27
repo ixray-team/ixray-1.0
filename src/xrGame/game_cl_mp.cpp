@@ -24,7 +24,7 @@
 #include "ui/UIVote.h"
 #include "ui/UIMessageBoxEx.h"
 #include "string_table.h"
-#include "../xr_3da/IGame_Persistent.h"
+#include "../xrEngine/IGame_Persistent.h"
 #include "MainMenu.h"
 
 

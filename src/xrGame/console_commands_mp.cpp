@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../xr_3da/xr_ioconsole.h"
-#include "../xr_3da/xr_ioc_cmd.h"
+#include "../xrEngine/xr_ioconsole.h"
+#include "../xrEngine/xr_ioc_cmd.h"
 #include "level.h"
 #include "xrServer.h"
 #include "game_cl_base.h"

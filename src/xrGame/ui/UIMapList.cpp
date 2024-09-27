@@ -9,7 +9,7 @@
 #include "UIMapInfo.h"
 #include "UIComboBox.h"
 #include "UIListBoxItem.h"
-#include "../../xr_3da/xr_ioconsole.h"
+#include "../../xrEngine/xr_ioconsole.h"
 #include "../string_table.h"
 #include "CExtraContentFilter.h"
 
@@ -64,7 +64,7 @@ CUIMapList::~CUIMapList(){
 }
 
 void CUIMapList::StartDedicatedServer(){
-	strcpy					(g_sLaunchOnExit_app,"dedicated\\xr_3da.exe");
+	strcpy					(g_sLaunchOnExit_app,"dedicated\\xrEngine.exe");
 
 	strcpy					(g_sLaunchOnExit_params,"-i -nosound -");
 	strcat					(g_sLaunchOnExit_params,GetCommandLine(""));

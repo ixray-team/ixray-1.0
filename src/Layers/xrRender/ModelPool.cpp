@@ -4,10 +4,10 @@
 #include "ModelPool.h"
 
 #ifndef _EDITOR
-	#include "..\..\xr_3da\IGame_Persistent.h"
-    #include "..\..\xr_3da\fmesh.h"
-    #include "..\..\xr_3da\fhierrarhyvisual.h"
-    #include "..\..\xr_3da\SkeletonAnimated.h"
+	#include "..\..\xrEngine\IGame_Persistent.h"
+    #include "..\..\xrEngine\fmesh.h"
+    #include "..\..\xrEngine\fhierrarhyvisual.h"
+    #include "..\..\xrEngine\SkeletonAnimated.h"
 	#include "fvisual.h"
 	#include "fprogressive.h"
 	#include "fskinned.h"

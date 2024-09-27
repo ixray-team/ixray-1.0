@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #ifdef DEBUG
 #include "ode_include.h"
-#include "../xr_3da/StatGraph.h"
+#include "../xrEngine/StatGraph.h"
 #include "PHDebug.h"
 #endif
 #include "alife_space.h"
 #include "hit.h"
 #include "PHDestroyable.h"
 #include "car.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/skeletoncustom.h"
 #include "ExtendedGeom.h"
 
 CCar::SWheel::SWheelCollisionParams::SWheelCollisionParams()

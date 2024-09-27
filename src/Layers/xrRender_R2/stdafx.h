@@ -5,7 +5,7 @@
 #pragma once
 
 #pragma warning(disable:4995)
-#include "..\..\xr_3da\stdafx.h"
+#include "..\..\xrEngine\stdafx.h"
 #pragma warning(disable:4995)
 #include <d3dx9.h>
 #pragma warning(default:4995)
@@ -18,14 +18,14 @@
 #define		R_R2	2
 #define		RENDER	R_R2
 
-#include "..\..\xr_3da\resourcemanager.h"
-#include "..\..\xr_3da\vis_common.h"
-#include "..\..\xr_3da\render.h"
-#include "..\..\xr_3da\_d3d_extensions.h"
-#include "..\..\xr_3da\igame_level.h"
-#include "..\..\xr_3da\blenders\blender.h"
-#include "..\..\xr_3da\blenders\blender_clsid.h"
-#include "..\..\xr_3da\psystem.h"
+#include "..\..\xrEngine\resourcemanager.h"
+#include "..\..\xrEngine\vis_common.h"
+#include "..\..\xrEngine\render.h"
+#include "..\..\xrEngine\_d3d_extensions.h"
+#include "..\..\xrEngine\igame_level.h"
+#include "..\..\xrEngine\blenders\blender.h"
+#include "..\..\xrEngine\blenders\blender_clsid.h"
+#include "..\..\xrEngine\psystem.h"
 #include "..\xrRender\xrRender_console.h"
 #include "r2.h"
 

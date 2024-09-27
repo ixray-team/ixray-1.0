@@ -3,7 +3,7 @@
 #include "ogf_face.h"
 #include "std_classes.h"
 #include "fs.h"
-#include "..\xr_3da\fmesh.h"
+#include "..\xrEngine\fmesh.h"
 
 using namespace std;
 

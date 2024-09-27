@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#include "..\..\xr_3da\psystem.h"
+#include "..\..\xrEngine\psystem.h"
 #include "ParticleGroup.h"
 #include "PSLibrary.h"
 

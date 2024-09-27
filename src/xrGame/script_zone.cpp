@@ -10,7 +10,7 @@
 #include "script_zone.h"
 #include "script_game_object.h"
 #include "xrserver_objects_alife_monsters.h"
-#include "../xr_3da/xr_collide_form.h"
+#include "../xrEngine/xr_collide_form.h"
 #include "script_callback_ex.h"
 #include "game_object_space.h"
 

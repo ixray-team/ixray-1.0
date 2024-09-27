@@ -1,8 +1,8 @@
 // exxZERO Time Stamp AddIn. Document modified at : Thursday, March 07, 2002 14:12:50 , by user : Oles , from computer : OLES
 #include "stdafx.h"
 #include "HitMarker.h"
-#include "../xr_3da/render.h"
-#include "../xr_3da/LightAnimLibrary.h"
+#include "../xrEngine/render.h"
+#include "../xrEngine/LightAnimLibrary.h"
 #include "UIStaticItem.h"
 
 static Fvector2			as_PC[5];

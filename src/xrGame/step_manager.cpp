@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 #include "step_manager_defs.h"
 #include "step_manager.h"
 #include "entity_alive.h"

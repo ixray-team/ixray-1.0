@@ -4,13 +4,13 @@
 #include "PHDynamicData.h"
 #include "Physics.h"
 #include "ExtendedGeom.h"
-#include "../xr_3da/cl_intersect.h"
+#include "../xrEngine/cl_intersect.h"
 #include "tri-colliderKNoOPC\__aabb_tri.h"
 
 #include "phaicharacter.h"
 
 #ifdef DEBUG
-#	include "../xr_3da/StatGraph.h"
+#	include "../xrEngine/StatGraph.h"
 #	include "PHDebug.h"
 #	include "level.h"
 #	include "debug_renderer.h"

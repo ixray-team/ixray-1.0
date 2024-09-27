@@ -5,7 +5,7 @@
 
 #include "stdafx.h"
 #include "Tracer.h"
-#include "../xr_3da/render.h"
+#include "../xrEngine/render.h"
 
 const u32	MAX_TRACERS	= (1024*5);
 const float TRACER_SIZE = 0.13f;

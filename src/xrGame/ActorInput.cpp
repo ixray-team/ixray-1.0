@@ -3,7 +3,7 @@
 #include "Actor.h"
 #include "Torch.h"
 #include "trade.h"
-#include "../xr_3da/CameraBase.h"
+#include "../xrEngine/CameraBase.h"
 #ifdef DEBUG
 #include "PHDebug.h"
 #endif

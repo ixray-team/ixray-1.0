@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "PHGeometryOwner.h"
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 
 CPHGeometryOwner::CPHGeometryOwner()
 {

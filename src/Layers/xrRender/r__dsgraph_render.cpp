@@ -1,13 +1,13 @@
 #include "stdafx.h"
 
-#include "..\..\xr_3da\render.h"
-#include "..\..\xr_3da\irenderable.h"
-#include "..\..\xr_3da\igame_persistent.h"
-#include "..\..\xr_3da\environment.h"
+#include "..\..\xrEngine\render.h"
+#include "..\..\xrEngine\irenderable.h"
+#include "..\..\xrEngine\igame_persistent.h"
+#include "..\..\xrEngine\environment.h"
 
-#include "..\..\xr_3da\fhierrarhyvisual.h"
-#include "..\..\xr_3da\SkeletonCustom.h"
-#include "..\..\xr_3da\fmesh.h"
+#include "..\..\xrEngine\fhierrarhyvisual.h"
+#include "..\..\xrEngine\SkeletonCustom.h"
+#include "..\..\xrEngine\fmesh.h"
 #include "flod.h"
 
 using namespace		R_dsgraph;

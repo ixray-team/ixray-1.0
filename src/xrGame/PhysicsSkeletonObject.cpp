@@ -3,8 +3,8 @@
 #include "PhysicsShell.h"
 #include "phsynchronize.h"
 #include "xrserver_objects_alife.h"
-#include "../xr_3da/skeletoncustom.h"
-#include "../xr_3da/xr_collide_form.h"
+#include "../xrEngine/skeletoncustom.h"
+#include "../xrEngine/xr_collide_form.h"
 
 CPhysicsSkeletonObject::CPhysicsSkeletonObject()
 {

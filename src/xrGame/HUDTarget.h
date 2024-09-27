@@ -1,7 +1,7 @@
 #pragma once
 
 #include "HUDCrosshair.h"
-#include "../xr_3da/xr_collide_defs.h"
+#include "../xrEngine/xr_collide_defs.h"
 
 class CHUDManager;
 

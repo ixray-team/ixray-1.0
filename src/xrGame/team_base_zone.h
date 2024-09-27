@@ -9,7 +9,7 @@
 #pragma once
 
 #include "GameObject.h"
-#include "../xr_3da/feel_touch.h"
+#include "../xrEngine/feel_touch.h"
 
 class CTeamBaseZone : public CGameObject, public Feel::Touch {
 protected:

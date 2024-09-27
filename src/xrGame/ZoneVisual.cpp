@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "CustomZone.h"
-#include "../xr_3da/SkeletonAnimated.h"
+#include "../xrEngine/SkeletonAnimated.h"
 #include "ZoneVisual.h"
 #include "xrServer_Objects_ALife_Monsters.h"
-#include "../xr_3da/SkeletonAnimated.h"
+#include "../xrEngine/SkeletonAnimated.h"
 CVisualZone::CVisualZone						()
 {
 }

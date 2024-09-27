@@ -6,7 +6,7 @@
 #include "PHMovementControl.h"
 #include "CustomMonster.h"
 #include "PhysicsShell.h"
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 #include "Actor.h"
 #include "CustomZone.h"
 #include "Extendedgeom.h"
@@ -24,7 +24,7 @@
 #	include "PHDebug.h"
 #endif // DEBUG
 
-#include "../xr_3da/device.h"
+#include "../xrEngine/device.h"
 
 #ifdef PRIQUEL
 #	define USE_SMART_HITS

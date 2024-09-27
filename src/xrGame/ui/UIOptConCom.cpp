@@ -1,6 +1,6 @@
 #include "StdAfx.h"
-#include "../../xr_3da/xr_ioconsole.h"
-#include "../../xr_3da/xr_ioc_cmd.h"
+#include "../../xrEngine/xr_ioconsole.h"
+#include "../../xrEngine/xr_ioc_cmd.h"
 #include "UIOptConCom.h"
 #include "../xrcore/xrCore.h"
 #include "../game_base_space.h"

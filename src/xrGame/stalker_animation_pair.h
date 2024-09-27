@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 #include "ai/ai_monsters_anims.h"
 
 class CBlend;

@@ -3,7 +3,7 @@
 #include "SpaceUtils.h"
 #include "GameObject.h"
 #include "PhysicsShellHolder.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/skeletoncustom.h"
 #include "PHCollideValidator.h"
 void CPHStaticGeomShell::get_spatial_params()
 {

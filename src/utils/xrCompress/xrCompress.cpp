@@ -24,7 +24,7 @@ XRCORE_API DUMMY_STUFF	*g_dummy_stuff;
 #ifdef PROTECTED_BUILD
 #	define TRIVIAL_ENCRYPTOR_ENCODER
 #	define TRIVIAL_ENCRYPTOR_DECODER
-#	include "../xr_3da/trivial_encryptor.h"
+#	include "../xrEngine/trivial_encryptor.h"
 #	undef TRIVIAL_ENCRYPTOR_ENCODER
 #	undef TRIVIAL_ENCRYPTOR_DECODER
 #endif // PROTECTED_BUILD

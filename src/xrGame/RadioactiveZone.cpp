@@ -3,7 +3,7 @@
 #include "hudmanager.h"
 #include "level.h"
 #include "xrmessages.h"
-#include "../xr_3da/bone.h"
+#include "../xrEngine/bone.h"
 #include "clsid_game.h"
 #include "game_base_space.h"
 #include "Hit.h"
