@@ -210,6 +210,7 @@
   <ItemGroup>
     <ClCompile Include="doug_lea_allocator.cpp" />
     <ClCompile Include="FTimer.cpp" />
+    <ClCompile Include="os_clipboard.cpp" />
     <ClCompile Include="ptmalloc3\malloc.c" />
     <ClCompile Include="ptmalloc3\sysdeps\win32\win32.c" />
     <ClCompile Include="stdafx.cpp">
@@ -218,6 +219,7 @@
       <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">false</ShowIncludes>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="string_concatenations.cpp" />
     <ClCompile Include="xrCore.cpp" />
     <ClCompile Include="_compressed_normal.cpp" />
     <ClCompile Include="_math.cpp" />
@@ -392,11 +394,16 @@
     <ClCompile Include="xrSyncronize.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="buffer_vector.h" />
+    <ClInclude Include="buffer_vector_inline.h" />
     <ClInclude Include="doug_lea_allocator.h" />
     <ClInclude Include="FTimer.h" />
+    <ClInclude Include="os_clipboard.h" />
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="string_concatenations.h" />
+    <ClInclude Include="string_concatenations_inline.h" />
     <ClInclude Include="xrCore.h" />
     <ClInclude Include="xrCore_platform.h" />
     <ClInclude Include="_bitwise.h" />

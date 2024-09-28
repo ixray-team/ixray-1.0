@@ -257,6 +257,12 @@
     <ClCompile Include="ptmalloc3\sysdeps\win32\win32.c">
       <Filter>ptmalloc3</Filter>
     </ClCompile>
+    <ClCompile Include="os_clipboard.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="string_concatenations.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -527,6 +533,21 @@
     <ClInclude Include="doug_lea_allocator.h" />
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h">
       <Filter>ptmalloc3</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer_vector.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer_vector_inline.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="os_clipboard.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="string_concatenations.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="string_concatenations_inline.h">
+      <Filter>Kernel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

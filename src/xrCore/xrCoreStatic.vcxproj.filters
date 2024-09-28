@@ -247,6 +247,12 @@
       <Filter>Compression\rt</Filter>
     </ClCompile>
     <ClCompile Include="xrSyncronize.cpp" />
+    <ClCompile Include="os_clipboard.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="string_concatenations.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -523,6 +529,21 @@
       <Filter>Compression\rt</Filter>
     </ClInclude>
     <ClInclude Include="xrSyncronize.h" />
+    <ClInclude Include="buffer_vector.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer_vector_inline.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="os_clipboard.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="string_concatenations.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="string_concatenations_inline.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="xrCore.rc">
