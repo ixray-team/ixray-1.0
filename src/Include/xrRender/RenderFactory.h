@@ -45,7 +45,7 @@ public:
 	virtual void DestroyStatsRender(IStatsRender *pObject) = 0;
 	*/
 //	RENDER_FACTORY_INTERFACE(UISequenceVideoItem)
-//	RENDER_FACTORY_INTERFACE(UIShader)
+	RENDER_FACTORY_INTERFACE(UIShader)
 //	RENDER_FACTORY_INTERFACE(StatGraphRender)
 //	RENDER_FACTORY_INTERFACE(ConsoleRender)
 	RENDER_FACTORY_INTERFACE(RenderDeviceRender)

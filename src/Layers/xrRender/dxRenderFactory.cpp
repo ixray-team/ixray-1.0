@@ -13,7 +13,7 @@
  //#include "dxWallMarkArray.h"
 #include "dxStatsRender.h"
 //#include "dxUISequenceVideoItem.h"
-//#include "dxUIShader.h"
+#include "dxUIShader.h"
 
 dxRenderFactory RenderFactoryImpl;
 
@@ -30,7 +30,7 @@ dxRenderFactory RenderFactoryImpl;
 } \
 
 //	RENDER_FACTORY_IMPLEMENT(UISequenceVideoItem)
-//	RENDER_FACTORY_IMPLEMENT(UIShader)
+	RENDER_FACTORY_IMPLEMENT(UIShader)
 //	RENDER_FACTORY_IMPLEMENT(StatGraphRender)
 //	RENDER_FACTORY_IMPLEMENT(ConsoleRender)
 	RENDER_FACTORY_IMPLEMENT(RenderDeviceRender)

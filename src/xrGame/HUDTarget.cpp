@@ -26,6 +26,9 @@
 #include "inventory_item.h"
 #include "inventory.h"
 
+#include "../Include/xrRender/UIRender.h"
+#include "../Include/xrRender/UiShader.h"
+
 u32 C_ON_ENEMY		D3DCOLOR_RGBA(0xff,0,0,0x80);
 u32 C_ON_NEUTRAL	D3DCOLOR_RGBA(0xff,0xff,0x80,0x80);
 u32 C_ON_FRIEND		D3DCOLOR_RGBA(0,0xff,0,0x80);
@@ -60,8 +63,7 @@ CHUDTarget::CHUDTarget	()
 {    
 	fuzzyShowInfo		= 0.f;
 	RQ.range			= 0.f;
-	hGeom.create		(FVF::F_TL, RCache.Vertex.Buffer(), RCache.QuadIB);
-	hShader.create		("hud\\cursor","ui\\cursor");
+	hShader->create("hud\\cursor", "ui\\cursor");
 
 	RQ.set				(NULL, 0.f, -1);
 
@@ -246,11 +248,9 @@ void CHUDTarget::Render()
 	//отрендерить кружочек или крестик
 	if(!m_bShowCrosshair){
 		// actual rendering
-		u32			vOffset;
-		FVF::TL*	pv		= (FVF::TL*)RCache.Vertex.Lock(4,hGeom.stride(),vOffset);
-		
+		UIRender->StartPrimitive(6, IUIRender::ptTriList, IUIRender::ePointType::pttTL);
+
 		Fvector2		scr_size;
-//.		scr_size.set	(float(::Render->getTarget()->get_width()), float(::Render->getTarget()->get_height()));
 		scr_size.set	(float(Device.dwWidth) ,float(Device.dwHeight));
 		float			size_x = scr_size.x	* di_size;
 		float			size_y = scr_size.y * di_size;
@@ -264,16 +264,19 @@ void CHUDTarget::Render()
 		float cx		    = (PT.p.x+1)*w_2;
 		float cy		    = (PT.p.y+1)*h_2;
 
-		pv->set				(cx - size_x, cy + size_y, C, 0, 1); ++pv;
-		pv->set				(cx - size_x, cy - size_y, C, 0, 0); ++pv;
-		pv->set				(cx + size_x, cy + size_y, C, 1, 1); ++pv;
-		pv->set				(cx + size_x, cy - size_y, C, 1, 0); ++pv;
+		//	TODO: return code back to indexed rendering since we use quads
+		// Tri 1
+		UIRender->PushPoint(cx - size_x, cy + size_y, 0, C, 0, 1);
+		UIRender->PushPoint(cx - size_x, cy - size_y, 0, C, 0, 0);
+		UIRender->PushPoint(cx + size_x, cy + size_y, 0, C, 1, 1);
+		// Tri 2
+		UIRender->PushPoint(cx + size_x, cy + size_y, 0, C, 1, 1);
+		UIRender->PushPoint(cx - size_x, cy - size_y, 0, C, 0, 0);
+		UIRender->PushPoint(cx + size_x, cy - size_y, 0, C, 1, 0);
 
 		// unlock VB and Render it as triangle LIST
-		RCache.Vertex.Unlock(4,hGeom.stride());
-		RCache.set_Shader	(hShader);
-		RCache.set_Geometry	(hGeom);
-		RCache.Render		(D3DPT_TRIANGLELIST,vOffset,0,4,0,2);
+		UIRender->SetShader(*hShader);
+		UIRender->FlushPrimitive();
 	}else{
 		//отрендерить прицел
 		HUDCrosshair.cross_color	= C;
