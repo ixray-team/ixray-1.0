@@ -48,31 +48,31 @@
 	</static_player_money>
 
 	<static_diff_money x="914" y="65" width="112" height="34">
-		<text font="graffiti32" color="ui_green" align="c" vert_align="c"/>
+		<text font="graffiti32" color="green" align="c" vert_align="c"/>
 	</static_diff_money>
 	
 	<static_curr_items_money x="784" y="10" width="73" height="34">
-		<text font="graffiti22" color="ui_8" vert_align="c" align="c"/>
+		<text font="graffiti22" color="ui_clr_2" vert_align="c" align="c"/>
 	</static_curr_items_money>
 
 	<static_preset_money_last x="903" y="476" width="61" height="27">
-		<text font="graffiti22" color="ui_5" align="c" vert_align="c"/>
+		<text font="graffiti22" color="ui_clr_3" align="c" vert_align="c"/>
 	</static_preset_money_last>
 
 	<static_preset_money_1 x="903" y="207" width="61" height="27">
-		<text font="graffiti22" color="ui_5" align="c" vert_align="c"/>
+		<text font="graffiti22" color="ui_clr_3" align="c" vert_align="c"/>
 	</static_preset_money_1>
 	
 	<static_preset_money_2 x="903" y="295" width="61" height="27">
-		<text font="graffiti22" color="ui_5" align="c" vert_align="c"/>
+		<text font="graffiti22" color="ui_clr_3" align="c" vert_align="c"/>
 	</static_preset_money_2>
 	
 	<static_preset_money_3 x="903" y="386" width="61" height="27">
-		<text font="graffiti22" color="ui_5" align="c" vert_align="c"/>
+		<text font="graffiti22" color="ui_clr_3" align="c" vert_align="c"/>
 	</static_preset_money_3>
 	
 	<static_preset_money_def x="903" y="566" width="61" height="27">
-		<text font="graffiti22" color="ui_5" align="c" vert_align="c"/>
+		<text font="graffiti22" color="ui_clr_3" align="c" vert_align="c"/>
 	</static_preset_money_def>
 	
 	<static_player_rank x="876" y="19" width="38" height="47" stretch="1"/>

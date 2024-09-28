@@ -11,7 +11,7 @@
 //#include "dxObjectSpaceRender.h"
 #include "dxFontRender.h"
  //#include "dxWallMarkArray.h"
-//#include "dxStatsRender.h"
+#include "dxStatsRender.h"
 //#include "dxUISequenceVideoItem.h"
 //#include "dxUIShader.h"
 
@@ -38,7 +38,7 @@ dxRenderFactory RenderFactoryImpl;
 //		RENDER_FACTORY_IMPLEMENT(ObjectSpaceRender)
 #	endif // DEBUG
 //	RENDER_FACTORY_IMPLEMENT(WallMarkArray)
-//	RENDER_FACTORY_IMPLEMENT(StatsRender)
+	RENDER_FACTORY_IMPLEMENT(StatsRender)
 
 //  RENDER_FACTORY_IMPLEMENT(ThunderboltRender)
 //  RENDER_FACTORY_IMPLEMENT(ThunderboltDescRender)
