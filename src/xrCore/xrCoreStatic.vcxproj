@@ -100,6 +100,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -135,6 +136,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -170,6 +172,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -179,6 +182,9 @@
   <ItemGroup>
     <ClCompile Include="FTimer.cpp" />
     <ClCompile Include="os_clipboard.cpp" />
+    <ClCompile Include="Platform\Windows\OSFile.cpp" />
+    <ClCompile Include="Platform\Windows\OSThread.cpp" />
+    <ClCompile Include="Platform\Windows\UTF8.cpp" />
     <ClCompile Include="stdafx.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -381,12 +387,19 @@
     <ClInclude Include="buffer_vector_inline.h" />
     <ClInclude Include="FTimer.h" />
     <ClInclude Include="os_clipboard.h" />
+    <ClInclude Include="Platform\Platform.h" />
+    <ClInclude Include="Platform\PlatformAPI.h" />
+    <ClInclude Include="Platform\Windows\OSFile.h" />
+    <ClInclude Include="Platform\Windows\OSMath.h" />
+    <ClInclude Include="Platform\Windows\OSThread.h" />
+    <ClInclude Include="Platform\Windows\PlatformAPI.h" />
+    <ClInclude Include="Platform\Windows\PlatformInit.h" />
+    <ClInclude Include="Platform\Windows\UTF8.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="string_concatenations.h" />
     <ClInclude Include="string_concatenations_inline.h" />
     <ClInclude Include="xrCore.h" />
-    <ClInclude Include="xrCore_platform.h" />
     <ClInclude Include="_bitwise.h" />
     <ClInclude Include="_color.h" />
     <ClInclude Include="_compressed_normal.h" />

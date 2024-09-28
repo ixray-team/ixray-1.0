@@ -25,7 +25,7 @@
 	#error Please enable multi-threaded library...
 #endif
 
-#	include "xrCore_platform.h"
+#include "Platform/Platform.h"
 
 /*
 // stl-config
@@ -102,6 +102,7 @@
 	#endif
 #endif
 
+#include <filesystem>
 #include <time.h>
 // work-around dumb borland compiler
 #ifdef __BORLANDC__
@@ -187,7 +188,7 @@
 #include "clsid.h"
 #include "xrSyncronize.h"
 #include "xrMemory.h"
-#include "xrDebug.h"
+#include "Platform/PlatformAPI.h"
 
 #include "_stl_extensions.h"
 #include "xrsharedmem.h"
@@ -272,6 +273,16 @@ public:
 	void		_initialize	(LPCSTR ApplicationName, LogCallback cb=0, BOOL init_fs=TRUE, LPCSTR fs_fname=0);
 	void		_destroy	();
 };
+
+#include <DirectXMath.h>
+namespace Platform
+{
+	XRCORE_API xr_string TCHAR_TO_ANSI_U8(const xr_special_char* C);
+	XRCORE_API xr_string CP_TCHAR_TO_ANSI_U8(const xr_special_char* C);
+	XRCORE_API xr_string UTF8_to_CP1251(xr_string const& utf8);
+	XRCORE_API xr_string ANSI_TO_UTF8(const xr_string& ansi);
+}
+
 extern XRCORE_API xrCore Core;
 
 #endif

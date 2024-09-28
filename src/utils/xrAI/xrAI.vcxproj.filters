@@ -825,9 +825,6 @@
     <ClCompile Include="motion_simulator.cpp">
       <Filter>Compiler</Filter>
     </ClCompile>
-    <ClCompile Include="..\xrEngine\xrLoadSurface.cpp">
-      <Filter>Compiler</Filter>
-    </ClCompile>
     <ClCompile Include="level_graph.cpp">
       <Filter>ALife\search\graphs\level_graph</Filter>
     </ClCompile>
@@ -915,6 +912,7 @@
     <ClCompile Include="guid_generator.cpp">
       <Filter>ALife\guid_generator</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\xrEngine\xrLoadSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">

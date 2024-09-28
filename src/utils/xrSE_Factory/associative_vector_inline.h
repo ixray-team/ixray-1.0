@@ -37,13 +37,13 @@ IC	_associative_vector::associative_vector													(const key_compare &predi
 
 TEMPLATE_SPECIALIZATION
 template <typename _iterator_type>
-IC	_associative_vector::associative_vector													(_iterator_type first, _iterator_type last, const key_compare &predicate = key_compare(), const allocator_type &allocator = allocator_type()) :
-//	inherited			(first,last,allocator),
-	inherited			(first,last),
-	value_compare		(predicate)
+IC _associative_vector::associative_vector(_iterator_type first, _iterator_type last, const key_compare& predicate, const allocator_type& allocator)
+    : //	inherited			(first,last,allocator),
+    inherited(first, last), value_compare(predicate)
 {
-	std::sort			(begin(),end(),(value_compare&)(*this));
+    std::sort(begin(), end(), (value_compare&)(*this));
 }
+
 
 TEMPLATE_SPECIALIZATION
 IC	typename _associative_vector::iterator _associative_vector::begin						()
@@ -195,189 +195,167 @@ IC	void _associative_vector::actualize														() const
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::iterator _associative_vector::lower_bound					(const key_type &key)
+IC typename _associative_vector::iterator _associative_vector::lower_bound(const key_type& key)
 {
-	actualize			();
-	value_compare		&self = *this;
-	return				(std::lower_bound(begin(),end(),key,self));
+    actualize();
+    value_compare& self = *this;
+    return (std::lower_bound(begin(), end(), key, self));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::const_iterator _associative_vector::lower_bound			(const key_type &key) const
+IC typename _associative_vector::const_iterator _associative_vector::lower_bound(const key_type& key) const
 {
-	actualize			();
-	const value_compare	&self = *this;
-	return				(std::lower_bound(begin(),end(),key,self));
+    actualize();
+    const value_compare& self = *this;
+    return (std::lower_bound(begin(), end(), key, self));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::iterator _associative_vector::upper_bound					(const key_type &key)
+IC typename _associative_vector::iterator _associative_vector::upper_bound(const key_type& key)
 {
-	actualize			();
-	value_compare		&self = *this;
-	return				(std::upper_bound(begin(),end(),key,self));
+    actualize();
+    value_compare& self = *this;
+    return (std::upper_bound(begin(), end(), key, self));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::const_iterator _associative_vector::upper_bound			(const key_type &key) const
+IC typename _associative_vector::const_iterator _associative_vector::upper_bound(const key_type& key) const
 {
-	actualize			();
-	const value_compare	&self = *this;
-	return				(std::upper_bound(begin(),end(),key,self));
+    actualize();
+    const value_compare& self = *this;
+    return (std::upper_bound(begin(), end(), key, self));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::insert_result _associative_vector::insert					(const value_type &value)
+IC typename _associative_vector::insert_result _associative_vector::insert(const value_type& value)
 {
-	actualize			();
-	bool				found = true;
-	iterator			I = lower_bound(value.first);
-	if (I == end() || operator()(value.first,(*I).first)) {
-		I				= inherited::insert(I,value);
-		found			= false;
-	}
-	else
-		*I				= value;
-	return				(insert_result(I,!found));
+    actualize();
+    bool found = true;
+    iterator I = lower_bound(value.first);
+    if (I == end() || (*this)(value.first, (*I).first))
+    {
+        I = inherited::insert(I, value);
+        found = false;
+    }
+    else
+        *I = value;
+    return (insert_result(I, !found));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::iterator _associative_vector::insert						(iterator where, const value_type &value)
+IC typename _associative_vector::iterator _associative_vector::insert(iterator where, const value_type& value)
 {
-	if	(
-			(where != end()) && 
-			(operator()(*where,value)) &&
-			((where - begin()) == size()) &&
-			(!operator()(value,*(where + 1))) &&
-			(operator()(*(where + 1),value))
-		)
-			return		(inherited::insert(where,value));
+    if ((where != end()) && ((*this)(*where, value)) && ((where - begin()) == size()) && (!(*this)(value, *(where + 1))) && ((*this)(*(where + 1), value)))
+        return (inherited::insert(where, value));
 
-	return				(insert(val).first);
+    return (insert(value).first);
 }
 
 TEMPLATE_SPECIALIZATION
 template <class _iterator_type>
-IC	void _associative_vector::insert														(_iterator_type first, _iterator_type last)
+IC void _associative_vector::insert(_iterator_type first, _iterator_type last)
 {
-	if ((last - first) < log2(size() + (last - first))) {
-		for ( ; first != last; ++first)
-			insert		(*first);
+    if ((last - first) < log2(size() + (last - first)))
+    {
+        for (; first != last; ++first)
+            insert(*first);
 
-		return;
-	}
+        return;
+    }
 
-	inherited::insert	(end(),first,last);
-	std::sort			(begin(),end(),(value_compare&)(*this));
+    inherited::insert(end(), first, last);
+    std::sort(begin(), end(), (value_compare&)(*this));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::iterator _associative_vector::find						(const key_type &key)
+IC typename _associative_vector::iterator _associative_vector::find(const key_type& key)
 {
-	actualize			();
-	iterator			I = lower_bound(key);
-	if (I == end())
-		return			(end());
+    actualize();
+    iterator I = lower_bound(key);
+    if (I == end())
+        return (end());
 
-	if (operator()(key,(*I).first))
-		return			(end());
+    if ((*this)(key, (*I).first))
+        return (end());
 
-	return				(I);
+    return (I);
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::const_iterator _associative_vector::find					(const key_type &key) const
+IC typename _associative_vector::const_iterator _associative_vector::find(const key_type& key) const
 {
-	actualize			();
-	const_iterator		I = lower_bound(key);
-	if (I == end())
-		return			(end());
+    actualize();
+    const_iterator I = lower_bound(key);
+    if (I == end())
+        return (end());
 
-	if (operator()(key,(*I).first))
-		return			(end());
+    if ((*this)(key, (*I).first))
+        return (end());
 
-	return				(I);
+    return (I);
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::size_type _associative_vector::count						(const key_type &key) const
+IC typename _associative_vector::size_type _associative_vector::count(const key_type& key) const
 {
-	actualize			();
-	return				(find(key) == end() ? 0 : 1);
+    actualize();
+    return (find(key) == end() ? 0 : 1);
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::equal_range_result _associative_vector::equal_range		(const key_type &key)
+IC typename _associative_vector::equal_range_result _associative_vector::equal_range(const key_type& key)
 {
-	actualize			();
-	iterator			I = lower_bound(key);
-	if (I == end())
-		return			(equal_range_result(end(),end()));
+    actualize();
+    iterator I = lower_bound(key);
+    if (I == end())
+        return (equal_range_result(end(), end()));
 
-	if (operator()(key,(*I).first))
-		return			(equal_range_result(I,I));
+    if ((*this)(key, (*I).first))
+        return (equal_range_result(I, I));
 
-	VERIFY				(!operator()(key,(*I).first));
-	return				(equal_range_result(I,I+1));
+    VERIFY(!(*this)(key, (*I).first));
+    return (equal_range_result(I, I + 1));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::const_equal_range_result _associative_vector::equal_range	(const key_type &key) const
+IC typename _associative_vector::const_equal_range_result _associative_vector::equal_range(const key_type& key) const
 {
-	actualize			();
-	const_iterator		I = lower_bound(key);
-	if (I == end())
-		return			(const_equal_range_result(end(),end()));
+    actualize();
+    const_iterator I = lower_bound(key);
+    if (I == end())
+        return (const_equal_range_result(end(), end()));
 
-	if (operator()(key,(*I).first))
-		return			(const_equal_range_result(I,I));
+    if ((*this)(key, (*I).first))
+        return (const_equal_range_result(I, I));
 
-	VERIFY				(!operator()(key,(*I).first));
-	return				(const_equal_range_result(I,I+1));
+    VERIFY(!(*this)(key, (*I).first));
+    return (const_equal_range_result(I, I + 1));
 }
 
 TEMPLATE_SPECIALIZATION
-IC	typename _associative_vector::self_type &_associative_vector::operator=					(const self_type &right)
+IC typename _associative_vector::self_type& _associative_vector::operator=(const self_type& right)
 {
-	(inherited&)(*this)	= right;
-	return				(*this);
+    (inherited&)(*this) = right;
+    return (*this);
 }
 
 TEMPLATE_SPECIALIZATION
-IC	bool _associative_vector::operator<														(const self_type &right) const
-{
-	return				(((const inherited &)(*this)) < right);
-}
+IC bool _associative_vector::operator<(const self_type& right) const { return (((const inherited&)(*this)) < right); }
 
 TEMPLATE_SPECIALIZATION
-IC	bool _associative_vector::operator<=													(const self_type &right) const
-{
-	return				!(right < left);
-}
+IC bool _associative_vector::operator<=(const self_type& right) const { return !(right < *this); }
 
 TEMPLATE_SPECIALIZATION
-IC	bool _associative_vector::operator>														(const self_type &right) const
-{
-	return				(right < left);
-}
+IC bool _associative_vector::operator>(const self_type& right) const { return (right < *this); }
 
 TEMPLATE_SPECIALIZATION
-IC	bool _associative_vector::operator>=													(const self_type &right) const
-{
-	return				!(left < right);
-}
+IC bool _associative_vector::operator>=(const self_type& right) const { return !(*this < right); }
 
 TEMPLATE_SPECIALIZATION
-IC	bool _associative_vector::operator==													(const self_type &right) const
-{
-	return				(((const inherited &)(*this)) == right);
-}
+IC bool _associative_vector::operator==(const self_type& right) const { return (((const inherited&)(*this)) == right); }
 
 TEMPLATE_SPECIALIZATION
-IC	bool _associative_vector::operator!=													(const self_type &right) const
-{
-	return				!(left == right);
-}
+IC bool _associative_vector::operator!=(const self_type& right) const { return !(*this == right); }
 
 #undef TEMPLATE_SPECIALIZATION
 #undef _associative_vector

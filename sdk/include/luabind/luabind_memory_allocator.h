@@ -6,8 +6,7 @@
 //	Description : luabind memory allocator template class
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef LUABIND_MEMORY_ALLOCATOR_H_INCLUDED
-#define LUABIND_MEMORY_ALLOCATOR_H_INCLUDED
+#pragma once
 
 namespace luabind {
 
@@ -46,7 +45,7 @@ public:
 public:
 	inline pointer				address				(reference value) const;
 	inline const_pointer		address				(const_reference value) const;
-	inline	pointer				allocate			(size_type n, const void * p=0) const;
+	inline	pointer				allocate			(size_type n, const void* p = nullptr) const;
 	inline	char				*__charalloc		(size_type n);
 	inline	void				deallocate			(pointer p, size_type n) const;
 	inline	void				deallocate			(void *p, size_type n) const;
@@ -63,5 +62,3 @@ public:
 } // namespace luabind
 
 #include <luabind/luabind_memory_allocator_inline.h>
-
-#endif // #ifndef LUABIND_MEMORY_ALLOCATOR_H_INCLUDED

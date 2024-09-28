@@ -73,6 +73,12 @@
     <Filter Include="Compression\rt">
       <UniqueIdentifier>{3efdd019-5d5d-437c-a459-f68d0431b1b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{97ab2937-8236-445a-9998-1203c482f006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{9aa7e257-c7f1-479c-a185-a096e8794632}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -253,6 +259,15 @@
     <ClCompile Include="string_concatenations.cpp">
       <Filter>Kernel</Filter>
     </ClCompile>
+    <ClCompile Include="Platform\Windows\OSFile.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\OSThread.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\UTF8.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -265,9 +280,6 @@
       <Filter>Kernel</Filter>
     </ClInclude>
     <ClInclude Include="xrCore.h">
-      <Filter>Kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="xrCore_platform.h">
       <Filter>Kernel</Filter>
     </ClInclude>
     <ClInclude Include="_bitwise.h">
@@ -543,6 +555,30 @@
     </ClInclude>
     <ClInclude Include="string_concatenations_inline.h">
       <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Platform.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\PlatformAPI.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\OSFile.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\OSMath.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\OSThread.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\PlatformAPI.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\PlatformInit.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\UTF8.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

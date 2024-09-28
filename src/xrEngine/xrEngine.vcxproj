@@ -180,6 +180,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -241,6 +242,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -306,6 +308,7 @@
       <CompileAs>Default</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

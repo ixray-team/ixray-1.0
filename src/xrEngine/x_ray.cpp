@@ -21,7 +21,6 @@
 #include <process.h>
 #include <wincodec.h>
 #include <thread>
-#include <../xrCore/xrCore_platform.h>
 
 //---------------------------------------------------------------------
 ENGINE_API CInifile* pGameIni		= NULL;
