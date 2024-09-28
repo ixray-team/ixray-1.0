@@ -10,10 +10,17 @@
 class ENGINE_API IRender_DetailModel;
 class ENGINE_API CLAItem;
 
+#include "../Include/xrRender/FactoryPtr.h"
+#include "../Include/xrRender/LensFlareRender.h"
+#include "../Include/xrRender/ThunderboltDescRender.h"
+#include "../Include/xrRender/ThunderboltRender.h"
+
+class CEnvironment;
+
 struct SThunderboltDesc
 {
-	// geom
-	IRender_DetailModel*		l_model;
+	FactoryPtr<IThunderboltDescRender> m_pRender;
+
     // sound
     ref_sound					snd;
     // gradient
@@ -23,8 +30,9 @@ struct SThunderboltDesc
 	    Fvector2				fRadius;
         shared_str				texture;
         shared_str				shader;
-        ref_shader				hShader;
-    	SFlare()				{ fOpacity = 0; fRadius.set(0.f,0.f);}
+		FactoryPtr<IFlareRender> m_pFlare;
+
+		SFlare()				{ fOpacity = 0; fRadius.set(0.f,0.f);}
 	};
     SFlare						m_GradientTop;
     SFlare						m_GradientCenter;
@@ -50,6 +58,7 @@ public:
 //
 class ENGINE_API CEffect_Thunderbolt
 {
+	friend class dxThunderboltRender;
 protected:
 	DEFINE_VECTOR(SThunderboltCollection*,CollectionVec,CollectionVecIt);
 	CollectionVec				collection;
@@ -58,16 +67,14 @@ private:
     Fmatrix				  		current_xform;
 	Fvector3					current_direction;
 
-	ref_geom			  		hGeom_model;
-    // states
+	FactoryPtr<IThunderboltRender> m_pRender;
+	// states
 	enum EState
 	{
         stIdle,
 		stWorking
 	};
 	EState						state;
-
-	ref_geom			  		hGeom_gradient;
 
     Fvector						lightning_center;
     float						lightning_size;
