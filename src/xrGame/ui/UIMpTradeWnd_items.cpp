@@ -5,7 +5,7 @@
 #include "../object_broker.h"
 #include "UICellItem.h"
 #include "UIDragDropListEx.h"
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 #include "UIMpItemsStoreWnd.h"
 
 

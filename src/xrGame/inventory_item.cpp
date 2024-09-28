@@ -17,7 +17,7 @@
 #include "Level.h"
 #include "game_cl_base.h"
 #include "Actor.h"
-#include "string_table.h"
+#include "../xrEngine/string_table.h"
 #include "../xrEngine/skeletoncustom.h"
 #include "ai_object_location.h"
 #include "object_broker.h"

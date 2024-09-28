@@ -10,7 +10,7 @@
 #include "clsid_game.h"
 #include "Actor.h"
 #include "game_cl_base.h"
-#include "xr_level_controller.h"
+#include "../xrEngine/xr_level_controller.h"
 #include "hudItem.h"
 #include "weapon.h"
 #include "eatable_item_object.h" 

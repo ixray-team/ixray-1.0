@@ -1349,7 +1349,7 @@ void game_sv_mp::ConsoleCommands_Create	()
 void game_sv_mp::ConsoleCommands_Clear	()
 {
 };
-#include "string_table.h"
+#include "../xrEngine/string_table.h"
 void game_sv_mp::DumpOnlineStatistic()
 {
 	xrGameSpyServer* srv		= smart_cast<xrGameSpyServer*>(m_server);

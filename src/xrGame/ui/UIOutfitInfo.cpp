@@ -5,7 +5,7 @@
 #include "UIScrollView.h"
 #include "../actor.h"
 #include "../CustomOutfit.h"
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 
 CUIOutfitInfo::CUIOutfitInfo()
 {

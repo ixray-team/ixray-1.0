@@ -8,7 +8,7 @@
 #include "UIProgressBar.h"
 #include "UIScrollView.h"
 
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 #include "../Inventory_Item.h"
 #include "UIInventoryUtilities.h"
 #include "../PhysicsShellHolder.h"

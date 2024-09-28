@@ -107,9 +107,9 @@ enum _key_group{
 	_mp		=	_both | (1<<2)	,
 };
 
-extern _key_group g_current_keygroup;
+extern ENGINE_API _key_group g_current_keygroup;
 
-bool is_group_not_conflicted(_key_group g1, _key_group g2);
+ENGINE_API bool is_group_not_conflicted(_key_group g1, _key_group g2);
 
 struct _action
 {
@@ -118,16 +118,16 @@ struct _action
 	_key_group		key_group;
 };
 
-LPCSTR			dik_to_keyname			(int _dik);
-int				keyname_to_dik			(LPCSTR _name);
-_keyboard*		keyname_to_ptr			(LPCSTR _name);
-_keyboard*		dik_to_ptr				(int _dik, bool bSafe);
+ENGINE_API LPCSTR			dik_to_keyname			(int _dik);
+ENGINE_API int				keyname_to_dik			(LPCSTR _name);
+ENGINE_API _keyboard*		keyname_to_ptr			(LPCSTR _name);
+ENGINE_API _keyboard*		dik_to_ptr				(int _dik, bool bSafe);
 
-LPCSTR			id_to_action_name		(EGameActions _id);
-EGameActions	action_name_to_id		(LPCSTR _name);
-_action*		action_name_to_ptr		(LPCSTR _name);
+ENGINE_API LPCSTR			id_to_action_name		(EGameActions _id);
+ENGINE_API EGameActions	action_name_to_id		(LPCSTR _name);
+ENGINE_API _action*		action_name_to_ptr		(LPCSTR _name);
 
-extern _action		actions		[];
+extern ENGINE_API _action		actions		[];
 //extern _keyboard	keyboards	[];
 //extern xr_vector< _keyboard >	keyboards;
 
@@ -138,19 +138,19 @@ struct _binding
 	_keyboard*		m_keyboard[2];
 };
 
-extern _binding g_key_bindings[];
+extern ENGINE_API _binding g_key_bindings[];
 
-bool				is_binded			(EGameActions action_id, int dik);
-int					get_action_dik		(EGameActions action_id);
-EGameActions		get_binded_action	(int dik);
+ENGINE_API bool				is_binded			(EGameActions action_id, int dik);
+ENGINE_API int					get_action_dik		(EGameActions action_id);
+ENGINE_API EGameActions		get_binded_action	(int dik);
 
-extern void		CCC_RegisterInput();
+ENGINE_API void		CCC_RegisterInput();
 
 struct _conCmd	{
 	shared_str	cmd;
 };
 
-class ConsoleBindCmds{
+class ENGINE_API ConsoleBindCmds{
 public:
 	xr_map<int,_conCmd>		m_bindConsoleCmds;
 
@@ -161,9 +161,9 @@ public:
 	void 	save			(IWriter* F);
 };
 
-void GetActionAllBinding	(LPCSTR action, char* dst_buff, int dst_buff_sz);
+ENGINE_API void GetActionAllBinding	(LPCSTR action, char* dst_buff, int dst_buff_sz);
 
-extern ConsoleBindCmds		bindConsoleCmds;
+extern ENGINE_API ConsoleBindCmds		bindConsoleCmds;
 
 // 0xED - max vavue in DIK* enum
 #define MOUSE_1		(0xED + 100)

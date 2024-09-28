@@ -40,7 +40,7 @@ bool CUIListBox::OnMouse(float x, float y, EUIMessages mouse_action)
 	return false;
 }
 
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 CUIListBoxItem* CUIListBox::AddItem(LPCSTR text)
 {
 	if (!text)			

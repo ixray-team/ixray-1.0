@@ -1345,7 +1345,6 @@
     <ClInclude Include="level_sounds.h" />
     <ClInclude Include="debug_renderer.h" />
     <ClInclude Include="debug_renderer_inline.h" />
-    <ClInclude Include="xr_level_controller.h" />
     <ClInclude Include="level_debug.h" />
     <ClInclude Include="actor_mp_client.h" />
     <ClInclude Include="actor_mp_server.h" />
@@ -1590,8 +1589,6 @@
     <ClInclude Include="smart_cast_impl0.h" />
     <ClInclude Include="smart_cast_impl1.h" />
     <ClInclude Include="smart_cast_impl2.h" />
-    <ClInclude Include="string_table.h" />
-    <ClInclude Include="string_table_defs.h" />
     <ClInclude Include="associative_vector.h" />
     <ClInclude Include="associative_vector_inline.h" />
     <ClInclude Include="associative_vector_compare_predicate.h" />
@@ -4415,7 +4412,6 @@
     <ClCompile Include="autosave_manager.cpp" />
     <ClCompile Include="level_sounds.cpp" />
     <ClCompile Include="debug_renderer.cpp" />
-    <ClCompile Include="xr_level_controller.cpp" />
     <ClCompile Include="level_debug.cpp" />
     <ClCompile Include="actor_mp_client.cpp" />
     <ClCompile Include="actor_mp_client_export.cpp" />
@@ -5610,7 +5606,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="smart_cast_stats.cpp" />
-    <ClCompile Include="string_table.cpp" />
     <ClCompile Include="RegistryFuncs.cpp" />
     <ClCompile Include="battleye_system.cpp" />
     <ClCompile Include="xr_Server_BattlEye.cpp" />

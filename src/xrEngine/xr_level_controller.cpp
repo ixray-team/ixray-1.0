@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include <dinput.h>
-#include "../xrEngine/xr_ioconsole.h"
-#include "../xrEngine/xr_input.h"
-#include "../xrEngine/xr_ioc_cmd.h"
+#include "xr_ioconsole.h"
+#include "xr_input.h"
+#include "xr_ioc_cmd.h"
 #include "xr_level_controller.h"
 #include "string_table.h"
 
-_binding	g_key_bindings		[bindings_count]; 
-_key_group	g_current_keygroup	= _sp;
+ENGINE_API _binding	g_key_bindings		[bindings_count];
+ENGINE_API _key_group	g_current_keygroup	= _sp;
 
-_action  actions[]		= {
+ENGINE_API _action  actions[]		= {
 	{ "left",				kLEFT					,_both},	
 	{ "right",				kRIGHT					,_both},	
 	{ "up",					kUP						,_both},	
@@ -216,7 +216,7 @@ void remap_keys()
 	}
 }
 
-LPCSTR id_to_action_name(int _id)
+ENGINE_API LPCSTR id_to_action_name(int _id)
 {
 	int idx				= 0;
 	while( actions[idx].action_name )
@@ -229,7 +229,7 @@ LPCSTR id_to_action_name(int _id)
 	return			NULL;
 }
 
-EGameActions action_name_to_id(LPCSTR _name)
+ENGINE_API EGameActions action_name_to_id(LPCSTR _name)
 {
 	_action* action = action_name_to_ptr(_name);
 	if(action)
@@ -238,7 +238,7 @@ EGameActions action_name_to_id(LPCSTR _name)
 		return	kNOTBINDED;
 }
 
-_action* action_name_to_ptr(LPCSTR _name)
+ENGINE_API _action* action_name_to_ptr(LPCSTR _name)
 {
 	int idx				= 0;
 	while( actions[idx].action_name )
@@ -251,7 +251,7 @@ _action* action_name_to_ptr(LPCSTR _name)
 	return			NULL;
 }
 
-LPCSTR	dik_to_keyname			(int _dik)
+ENGINE_API LPCSTR	dik_to_keyname			(int _dik)
 {
 	_keyboard* kb = dik_to_ptr(_dik, true);
 	if(kb)
@@ -260,7 +260,7 @@ LPCSTR	dik_to_keyname			(int _dik)
 		return NULL;
 }
 
-_keyboard* dik_to_ptr(int _dik, bool bSafe)
+ENGINE_API _keyboard* dik_to_ptr(int _dik, bool bSafe)
 {
 	int idx =0;
 	while(keyboards[idx].key_name)
@@ -275,13 +275,13 @@ _keyboard* dik_to_ptr(int _dik, bool bSafe)
 	return			NULL;
 }
 
-int	keyname_to_dik (LPCSTR _name)
+ENGINE_API int	keyname_to_dik (LPCSTR _name)
 {
 	_keyboard* _kb = keyname_to_ptr(_name);
 	return _kb->dik;
 }
 
-_keyboard*	keyname_to_ptr(LPCSTR _name)
+ENGINE_API _keyboard*	keyname_to_ptr(LPCSTR _name)
 {
 	int idx =0;
 	while(keyboards[idx].key_name)
@@ -296,17 +296,17 @@ _keyboard*	keyname_to_ptr(LPCSTR _name)
 	return			NULL;
 }
 
-bool is_group_not_conflicted(_key_group g1, _key_group g2)
+ENGINE_API bool is_group_not_conflicted(_key_group g1, _key_group g2)
 {
 	return ((g1==_sp && g2==_mp) || (g1==_mp && g2==_sp));
 }
 
-bool is_group_matching(_key_group g1, _key_group g2)
+ENGINE_API bool is_group_matching(_key_group g1, _key_group g2)
 {
 	return ( (g1==g2) || (g1==_both) || (g2==_both) );
 }
 
-bool is_binded(EGameActions _action_id, int _dik)
+ENGINE_API bool is_binded(EGameActions _action_id, int _dik)
 {
 	_binding* pbinding = &g_key_bindings[_action_id];
 	if(pbinding->m_keyboard[0] && pbinding->m_keyboard[0]->dik==_dik)
@@ -318,7 +318,7 @@ bool is_binded(EGameActions _action_id, int _dik)
 	return false;
 }
 
-int get_action_dik(EGameActions _action_id)
+ENGINE_API int get_action_dik(EGameActions _action_id)
 {
 	_binding* pbinding = &g_key_bindings[_action_id];
 
@@ -331,7 +331,7 @@ int get_action_dik(EGameActions _action_id)
 	return 0;
 }
 
-EGameActions get_binded_action(int _dik)
+ENGINE_API EGameActions get_binded_action(int _dik)
 {
 	for(int idx=0; idx<bindings_count; ++idx)
 	{
@@ -350,7 +350,7 @@ EGameActions get_binded_action(int _dik)
 	return kNOTBINDED;
 }
 
-void GetActionAllBinding		(LPCSTR _action, char* dst_buff, int dst_buff_sz)
+ENGINE_API void GetActionAllBinding		(LPCSTR _action, char* dst_buff, int dst_buff_sz)
 {
 	int			action_id	= action_name_to_id(_action);
 	_binding*	pbinding	= &g_key_bindings[action_id];
@@ -373,7 +373,7 @@ void GetActionAllBinding		(LPCSTR _action, char* dst_buff, int dst_buff_sz)
 					
 }
 
-ConsoleBindCmds	bindConsoleCmds;
+ENGINE_API ConsoleBindCmds	bindConsoleCmds;
 BOOL bRemapped = FALSE;
 
 class CCC_Bind : public IConsole_Command
@@ -613,7 +613,7 @@ void ConsoleBindCmds::save(IWriter* F)
 }
 
 
-void CCC_RegisterInput()
+ENGINE_API void CCC_RegisterInput()
 {
 	initialize_bindings									();
 	CMD2(CCC_Bind,				"bind",					0);

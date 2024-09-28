@@ -6,7 +6,7 @@
 #include "ui/UIMultiTextStatic.h"
 #include "ui/UIXmlInit.h"
 #include "object_broker.h"
-#include "string_table.h"
+#include "../xrEngine/string_table.h"
 
 struct predicate_remove_stat {
 	bool	operator() (SDrawStaticStruct& s) {
