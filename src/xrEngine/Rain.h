@@ -12,9 +12,13 @@
 class ENGINE_API IRender_DetailModel;
 
 
+#include "../Include/xrRender/FactoryPtr.h"
+#include "../Include/xrRender/RainRender.h"
+
 //
 class ENGINE_API CEffect_Rain
 {
+	friend class dxRainRender;
 private:
 	struct	Item
 	{
@@ -43,13 +47,8 @@ private:
 		stWorking
 	};
 private:
-	// Visualization	(rain)
-	ref_shader						SH_Rain;
-	ref_geom						hGeom_Rain;
-
-	// Visualization	(drops)
-	IRender_DetailModel*			DM_Drop;
-	ref_geom						hGeom_Drops;
+	// Visualization (rain) and (drops)
+	FactoryPtr<IRainRender> m_pRender;
 	
 	// Data and logic
 	xr_vector<Item>					items;

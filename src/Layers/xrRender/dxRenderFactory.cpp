@@ -5,7 +5,7 @@
 //#include "dxConsoleRender.h"
 //#include "dxThunderboltRender.h"
 //#include "dxThunderboltDescRender.h"
-//#include "dxRainRender.h"
+#include "dxRainRender.h"
 #include "dxEnvironmentRender.h"
 #include "dxRenderDeviceRender.h"
 //#include "dxObjectSpaceRender.h"
@@ -42,7 +42,7 @@ dxRenderFactory RenderFactoryImpl;
 
 //  RENDER_FACTORY_IMPLEMENT(ThunderboltRender)
 //  RENDER_FACTORY_IMPLEMENT(ThunderboltDescRender)
-//    RENDER_FACTORY_IMPLEMENT(RainRender)
+    RENDER_FACTORY_IMPLEMENT(RainRender)
     RENDER_FACTORY_IMPLEMENT(LensFlareRender)
     RENDER_FACTORY_IMPLEMENT(EnvironmentRender)
     RENDER_FACTORY_IMPLEMENT(EnvDescriptorMixerRender)
