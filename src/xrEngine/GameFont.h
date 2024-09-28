@@ -1,14 +1,13 @@
-#ifndef GameFontH
-#define GameFontH
+
 #pragma once
 
 #include "MbHelpers.h"
 
-class ENGINE_API CGameFont
-#ifndef M_BORLAND
-	: public pureRender
-#endif
+#include "../Include/xrRender/FontRender.h"
+
+class ENGINE_API CGameFont : public pureRender
 {
+	friend class dxFontRender;
 public:
 	enum EAligment{
 		alLeft				= 0,
@@ -18,7 +17,7 @@ public:
 private:
 	struct String
 	{
-		string512	string;
+		string1024	string;
 		float		x,y;
 		float		height;
 		u32			c;
@@ -41,8 +40,7 @@ protected:
 	float					fTCHeight;
 	xr_vector<String>		strings;
 
-	ref_shader				pShader;
-	ref_geom				pGeom;
+	IFontRender*			pFontRender;
 
 	u32						nNumChars;
 
@@ -113,5 +111,3 @@ public:
 	shared_str				m_font_name;
 #endif
 };
-
-#endif // _XR_GAMEFONT_H_

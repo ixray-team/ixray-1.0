@@ -62,7 +62,6 @@ private:
 #	ifdef DEBUG
 //		FACTORY_PTR_INSTANCIATE(ObjectSpaceRender)
 #	endif // DEBUG
-//	FACTORY_PTR_INSTANCIATE(ApplicationRender)
 //	FACTORY_PTR_INSTANCIATE(WallMarkArray)
 //	FACTORY_PTR_INSTANCIATE(StatsRender);
 #endif // _EDITOR
@@ -77,7 +76,7 @@ private:
 //    FACTORY_PTR_INSTANCIATE(EnvDescriptorRender)
 //    FACTORY_PTR_INSTANCIATE(EnvDescriptorMixerRender)
 #endif // _EDITOR
-//	FACTORY_PTR_INSTANCIATE(FontRender)
+	FACTORY_PTR_INSTANCIATE(FontRender)
 /*
 void FactoryPtr<IStatsRender>::CreateObject(void)
 {

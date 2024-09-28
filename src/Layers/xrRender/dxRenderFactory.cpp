@@ -10,8 +10,7 @@
 //#include "dxEnvironmentRender.h"
 #include "dxRenderDeviceRender.h"
 //#include "dxObjectSpaceRender.h"
-//#include "dxFontRender.h"
-//#include "dxApplicationRender.h"
+#include "dxFontRender.h"
  //#include "dxWallMarkArray.h"
 //#include "dxStatsRender.h"
 //#include "dxUISequenceVideoItem.h"
@@ -39,7 +38,6 @@ dxRenderFactory RenderFactoryImpl;
 #	ifdef DEBUG
 //		RENDER_FACTORY_IMPLEMENT(ObjectSpaceRender)
 #	endif // DEBUG
-//	RENDER_FACTORY_IMPLEMENT(ApplicationRender)
 //	RENDER_FACTORY_IMPLEMENT(WallMarkArray)
 //	RENDER_FACTORY_IMPLEMENT(StatsRender)
 
@@ -51,4 +49,4 @@ dxRenderFactory RenderFactoryImpl;
 //    RENDER_FACTORY_IMPLEMENT(EnvDescriptorMixerRender)
 //    RENDER_FACTORY_IMPLEMENT(EnvDescriptorRender)
 //    RENDER_FACTORY_IMPLEMENT(FlareRender)
-//RENDER_FACTORY_IMPLEMENT(FontRender)
+RENDER_FACTORY_IMPLEMENT(FontRender)

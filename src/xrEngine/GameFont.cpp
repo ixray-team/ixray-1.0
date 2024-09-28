@@ -2,9 +2,8 @@
 #pragma hdrstop
 
 #include "GameFont.h"
-#ifndef _EDITOR
-    #include "Render.h"
-#endif
+#include "Render.h"
+
 #ifdef _EDITOR
 unsigned short int mbhMulti2Wide
 	( wide_char *WideStr , wide_char *WidePos , const unsigned short int WideStrSize , const char *MultiStr  ){return 0;};
@@ -13,8 +12,13 @@ unsigned short int mbhMulti2Wide
 extern ENGINE_API BOOL g_bRendering; 
 ENGINE_API Fvector2		g_current_font_scale={1.0f,1.0f};
 
+#include "../Include/xrAPI/xrAPI.h"
+#include "../Include/xrRender/RenderFactory.h"
+#include "../Include/xrRender/FontRender.h"
+
 CGameFont::CGameFont(LPCSTR section, u32 flags)
 {
+	pFontRender					= RenderFactory->CreateFontRender();
 	fCurrentHeight				= 0.0f;
 	fXStep						= 0.0f;
 	fYStep						= 0.0f;
@@ -33,6 +37,7 @@ CGameFont::CGameFont(LPCSTR section, u32 flags)
 
 CGameFont::CGameFont(LPCSTR shader, LPCSTR texture, u32 flags)
 {
+	pFontRender					= RenderFactory->CreateFontRender();
 	fCurrentHeight				= 0.0f;
 	fXStep						= 0.0f;
 	fYStep						= 0.0f;
@@ -120,8 +125,7 @@ void CGameFont::Initialize		(LPCSTR cShader, LPCSTR cTextureName)
 	CInifile::Destroy			(ini);
 
 	// Shading
-	pShader.create				(cShader,cTexture);
-	pGeom.create				(FVF::F_TL, RCache.Vertex.Buffer(), RCache.QuadIB);
+	pFontRender->Initialize(cShader, cTexture);
 }
 
 CGameFont::~CGameFont()
@@ -130,8 +134,7 @@ CGameFont::~CGameFont()
 		xr_free( TCMap );
 
 	// Shading
-	pShader.destroy		();
-	pGeom.destroy		();
+	RenderFactory->DestroyFontRender(pFontRender);
 }
 
 #define DI2PX(x) float(iFloor((x+1)*float(::Render->getTarget()->get_width())*0.5f))
@@ -155,116 +158,7 @@ u32 CGameFont::smart_strlen( const char* S )
 
 void CGameFont::OnRender()
 {
-	VERIFY				(g_bRendering);
-	if (pShader)		RCache.set_Shader	(pShader);
-
-	if (!(uFlags&fsValid)){
-		CTexture* T		= RCache.get_ActiveTexture(0);
-		vTS.set			((int)T->get_Width(),(int)T->get_Height());
-		fTCHeight		= fHeight/float(vTS.y);
-		uFlags			|= fsValid;
-	}
-
-	for (u32 i=0; i<strings.size(); ){
-		// calculate first-fit
-		int		count	=	1;
-
-		int length = smart_strlen( strings[ i ].string );
-
-		while	((i+count)<strings.size()) {
-			int L = smart_strlen( strings[ i + count ].string );
-
-			if ((L+length)<MAX_MB_CHARS){
-				count	++;
-				length	+=	L;
-			}
-			else		break;
-		}
-
-		// lock AGP memory
-		u32	vOffset;
-		FVF::TL* v		= (FVF::TL*)RCache.Vertex.Lock	(length*4,pGeom.stride(),vOffset);
-		FVF::TL* start	= v;
-
-		// fill vertices
-		u32 last		= i+count;
-		for (; i<last; i++) {
-			String		&PS	= strings[i];
-			wide_char wsStr[ MAX_MB_CHARS ];
-
-			int	len	= IsMultibyte() ? 
-				mbhMulti2Wide( wsStr , NULL , MAX_MB_CHARS , PS.string ) :
-				xr_strlen( PS.string );
-
-			if (len) {
-				float	X	= float(iFloor(PS.x));
-				float	Y	= float(iFloor(PS.y));
-				float	S	= PS.height*g_current_font_scale.y;
-				float	Y2	= Y+S;
-				float fSize = 0;
-
-				if ( PS.align )
-					fSize = IsMultibyte() ? SizeOf_( wsStr ) : SizeOf_( PS.string );
-
-				switch ( PS.align )
-				{
-				case alCenter:	
-						X	-= ( iFloor( fSize * 0.5f ) ) * g_current_font_scale.x;	
-						break;
-				case alRight:	
-						X	-=	iFloor( fSize );
-						break;
-				}
-
-				u32	clr,clr2;
-				clr2 = clr	= PS.c;
-				if (uFlags&fsGradient){
-					u32	_R	= color_get_R	(clr)/2;
-					u32	_G	= color_get_G	(clr)/2;
-					u32	_B	= color_get_B	(clr)/2;
-					u32	_A	= color_get_A	(clr);
-					clr2	= color_rgba	(_R,_G,_B,_A);
-				}
-
-				float	tu,tv;
-				for (int j=0; j<len; j++)
-				{
-					Fvector l;
-
-					l = IsMultibyte() ? GetCharTC( wsStr[ 1 + j ] ) : GetCharTC( ( u16 ) ( u8 ) PS.string[j] );
-
-					float scw		= l.z * g_current_font_scale.x;
-
-					float fTCWidth	= l.z/vTS.x;
-
-					if (!fis_zero(l.z))
-					{
-						tu			= ( l.x / vTS.x ) + ( 0.5f / vTS.x );
-						tv			= ( l.y / vTS.y ) + ( 0.5f / vTS.y );
-
-						v->set( X , Y2 , clr2 , tu , tv + fTCHeight );						v++;
-						v->set( X ,	Y , clr , tu , tv );									v++;
-						v->set( X + scw , Y2 , clr2 , tu + fTCWidth , tv + fTCHeight );		v++;
-						v->set( X + scw , Y , clr , tu + fTCWidth , tv );					v++;
-					}
-					X += scw * vInterval.x;
-					if ( IsMultibyte() ) {
-						X -= 2;
-						if ( IsNeedSpaceCharacter( wsStr[ 1 + j ] ) )
-							X += fXStep;
-					}
-				}
-			}
-		}
-
-		// Unlock and draw
-		u32 vCount = (u32)(v-start);
-		RCache.Vertex.Unlock		(vCount,pGeom.stride());
-		if (vCount){
-			RCache.set_Geometry		(pGeom);
-			RCache.Render			(D3DPT_TRIANGLELIST,vOffset,0,vCount,0,vCount/2);
-		}
-	}
+	pFontRender->OnRender(*this);
 	strings.clear_not_free			();
 }
 
