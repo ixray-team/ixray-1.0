@@ -39,6 +39,7 @@ extern ECORE_API	float		ps_r1_pps_u;
 extern ECORE_API	float		ps_r1_pps_v;
 
 // R1-specific
+extern ECORE_API	float		ps_r1_fog_luminance;	//1.f r1-only
 extern ECORE_API	int			ps_r1_GlowsPerFrame;	// r1-only
 extern ECORE_API	Flags32		ps_r1_flags;			// r1-only
 enum

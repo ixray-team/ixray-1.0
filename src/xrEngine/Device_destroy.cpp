@@ -50,25 +50,17 @@ void CRenderDevice::Destroy	(void) {
 
 #include "IGame_Level.h"
 #include "CustomHUD.h"
-extern BOOL bNeed_re_create_env;
 void CRenderDevice::Reset		(bool precache)
 {
 	bool b_16_before	= (float)dwWidth/(float)dwHeight > (1024.0f/768.0f+0.01f);
 
 	ShowCursor				(TRUE);
 	u32 tm_start			= TimerAsync();
-	if (g_pGamePersistent){
-
-//.		g_pGamePersistent->Environment().OnDeviceDestroy();
-	}
 
 	m_pRender->Reset(m_hWnd, dwWidth, dwHeight, fWidth_2, fHeight_2);
 
-	if (g_pGamePersistent)
-	{
-//.		g_pGamePersistent->Environment().OnDeviceCreate();
-		bNeed_re_create_env = TRUE;
-	}
+	g_pGamePersistent->Environment().bNeed_re_create_env = true;
+
 	_SetupStates			();
 	if (precache)
 		PreCache			(20);

@@ -17,6 +17,7 @@
 #define		R_R1	1
 #define		R_R2	2
 #define		RENDER	R_R2
+#include "../xrRender/xrD3DDefs.h"
 
 #include "..\..\xrEngine\resourcemanager.h"
 #include "..\..\xrEngine\vis_common.h"

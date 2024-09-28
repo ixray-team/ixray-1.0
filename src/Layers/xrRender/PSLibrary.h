@@ -4,10 +4,11 @@
 #ifndef PSLibraryH
 #define PSLibraryH
 
+#include "..\..\Include\xrRender\particles_systems_library_interface.hpp"
 #include "ParticleEffect.h"
 #include "ParticleGroup.h"
 
-class ECORE_API CPSLibrary	{
+class ECORE_API CPSLibrary : public particles_systems::library_interface {
     PS::PEDVec			m_PEDs;
     PS::PGDVec			m_PGDs;
 
@@ -46,6 +47,11 @@ public:
 
     void				Reload			();
     bool				Save			();
+
+    virtual	PS::CPGDef const* const* particles_group_begin() const;
+    virtual	PS::CPGDef const* const* particles_group_end() const;
+    virtual	void						particles_group_next(PS::CPGDef const* const*& iterator) const;
+    virtual	shared_str const& particles_group_id(PS::CPGDef const& particles_group) const;
 };
 
 #define PSLIB_FILENAME 			"particles.xr"

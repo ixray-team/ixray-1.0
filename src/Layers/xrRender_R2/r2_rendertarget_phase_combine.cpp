@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "..\..\xrEngine\igame_persistent.h"
 #include "..\..\xrEngine\environment.h"
+#include "../xrRender/dxEnvironmentRender.h"
 
 #define STENCIL_CULL 0
 
@@ -103,9 +104,11 @@ void	CRenderTarget::phase_combine	()
 		pv->set						(hclip(_w+EPS,	_w),	hclip(EPS,		_h),	p1.x, p0.y);	pv++;
 		RCache.Vertex.Unlock		(4,g_combine_VP->vb_stride);
 
+		dxEnvDescriptorMixerRender& envdescren = *(dxEnvDescriptorMixerRender*)(&*envdesc.m_pDescriptorMixer);
+
 		// Setup textures
-		IDirect3DBaseTexture9*	e0	= _menu_pp?0:envdesc.sky_r_textures_env[0].second->surface_get();
-		IDirect3DBaseTexture9*	e1	= _menu_pp?0:envdesc.sky_r_textures_env[1].second->surface_get();
+		IDirect3DBaseTexture9* e0 = _menu_pp ? 0 : envdescren.sky_r_textures_env[0].second->surface_get();
+		IDirect3DBaseTexture9* e1 = _menu_pp ? 0 : envdescren.sky_r_textures_env[1].second->surface_get();
 		t_envmap_0->surface_set		(e0);	_RELEASE(e0);
 		t_envmap_1->surface_set		(e1);	_RELEASE(e1);
 	

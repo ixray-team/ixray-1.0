@@ -55,6 +55,8 @@ float		ps_r1_pps_v					= 0.f	;
 // R1-specific
 int			ps_r1_GlowsPerFrame			= 16	;					// r1-only
 
+float		ps_r1_fog_luminance			= 1.1f;
+
 // R2
 float		ps_r2_ssaLOD_A				= 48.f	;
 float		ps_r2_ssaLOD_B				= 32.f	;
@@ -295,6 +297,7 @@ void		xrRender_initconsole	()
 
 	// R1-specific
 	CMD4(CCC_Integer,	"r1_glows_per_frame",	&ps_r1_GlowsPerFrame,		2,		32		);
+	CMD4(CCC_Float,		"r1_fog_luminance",		&ps_r1_fog_luminance,		0.2f,	5.f		);
 
 	// R2
 	CMD4(CCC_Float,		"r2_ssa_lod_a",			&ps_r2_ssaLOD_A,			16,		96		);

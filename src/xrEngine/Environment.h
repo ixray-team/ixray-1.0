@@ -16,23 +16,8 @@ class ENGINE_API	CPerlinNoise1D;
 
 #define DAY_LENGTH		86400.f
 
-#include "..\Layers\xrRender\blenders\Blender.h"
-class CBlender_skybox		: public IBlender  
-{
-public:
-	virtual		LPCSTR		getComment()	{ return "INTERNAL: combiner";	}
-	virtual		BOOL		canBeDetailed()	{ return FALSE;	}
-	virtual		BOOL		canBeLMAPped()	{ return FALSE;	}
-
-	virtual		void		Compile			(CBlender_Compile& C)
-	{
-		C.r_Pass			("sky2",		"sky2",			FALSE,	TRUE, FALSE);
-		C.r_Sampler_clf		("s_sky0",		"$null"			);
-		C.r_Sampler_clf		("s_sky1",		"$null"			);
-		C.r_Sampler_rtf		("s_tonemap",	"$user$tonemap"	);	//. hack
-		C.r_End				();
-	}
-};
+#include "../Include/xrRender/FactoryPtr.h"
+#include "../Include/xrRender/EnvironmentRender.h"
 
 // t-defs
 class ENGINE_API	CEnvModifier
@@ -90,9 +75,7 @@ public:
 	shared_str			sky_texture_env_name;
 	shared_str			clouds_texture_name	;
 
-	ref_texture			sky_texture		;
-	ref_texture			sky_texture_env	;
-	ref_texture			clouds_texture	;
+	FactoryPtr<IEnvDescriptorRender> m_pDescriptor;
 
 	Fvector4			clouds_color	;
 	Fvector3			sky_color		;
@@ -144,9 +127,7 @@ public:
 
 class ENGINE_API		CEnvDescriptorMixer: public CEnvDescriptor{
 public:
-	STextureList		sky_r_textures;		
-	STextureList		sky_r_textures_env;	
-	STextureList		clouds_r_textures;	
+	FactoryPtr<IEnvDescriptorMixerRender> m_pDescriptorMixer;
 	float				weight;				
 
 	float				fog_near;		
@@ -159,6 +140,8 @@ public:
 
 class ENGINE_API	CEnvironment
 {
+	friend class dxEnvironmentRender;
+
 	struct str_pred {	
 		IC bool operator()(const shared_str& x, const shared_str& y) const
 		{	return xr_strcmp(x,y)<0;	}
@@ -184,11 +167,13 @@ public:
 	static bool sort_env_etl_pred	(const CEnvDescriptor* x, const CEnvDescriptor* y)
 	{	return x->exec_time_loaded < y->exec_time_loaded;	}
 protected:
-	CBlender_skybox			m_b_skybox;
 	CPerlinNoise1D*			PerlinNoise1D;
 
 	float					fGameTime;
 public:
+	FactoryPtr<IEnvironmentRender> m_pRender;
+	BOOL bNeed_re_create_env;
+
 	float					wind_strength_factor;	
 	float					wind_gust_factor;
 	// Environments
@@ -208,19 +193,11 @@ public:
 	xr_vector<CEnvModifier>	Modifiers;
 	EnvAmbVec				Ambients;
 
-	ref_shader				sh_2sky;
-	ref_geom				sh_2geom;
-
-	ref_shader				clouds_sh;
-	ref_geom				clouds_geom;
-
 	CEffect_Rain*			eff_Rain;
 	CLensFlare*				eff_LensFlare;
 	CEffect_Thunderbolt*	eff_Thunderbolt;
 
 	float					fTimeFactor;
-	ref_texture				tonemap;
-	ref_texture				tsky0,tsky1;
 
     void					SelectEnvs			(float gt);
 

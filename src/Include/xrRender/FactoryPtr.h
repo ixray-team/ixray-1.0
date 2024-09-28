@@ -72,9 +72,9 @@ private:
 //    FACTORY_PTR_INSTANCIATE(ThunderboltDescRender)
     FACTORY_PTR_INSTANCIATE(LensFlareRender)
 //    FACTORY_PTR_INSTANCIATE(RainRender)
-//    FACTORY_PTR_INSTANCIATE(EnvironmentRender)
-//    FACTORY_PTR_INSTANCIATE(EnvDescriptorRender)
-//    FACTORY_PTR_INSTANCIATE(EnvDescriptorMixerRender)
+    FACTORY_PTR_INSTANCIATE(EnvironmentRender)
+    FACTORY_PTR_INSTANCIATE(EnvDescriptorRender)
+   FACTORY_PTR_INSTANCIATE(EnvDescriptorMixerRender)
 #endif // _EDITOR
 	FACTORY_PTR_INSTANCIATE(FontRender)
 /*

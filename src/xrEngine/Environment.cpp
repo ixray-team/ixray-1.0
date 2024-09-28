@@ -14,14 +14,12 @@
 
 #include "xr_input.h"
 
-#include "resourcemanager.h"
-
 #ifndef _EDITOR
 	#include "IGame_Level.h"
 #endif
 
-#include "D3DUtils.h"
-#include "../xrCore/xrCore.h"
+#include "../xrcore/xrCore.h"
+#include "../Include/xrRender/EnvironmentRender.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -38,6 +36,8 @@ static const float			MAX_NOISE_FREQ	= 0.03f;
 // environment
 CEnvironment::CEnvironment	()
 {
+	bNeed_re_create_env = false;
+
 	bWFX					= false;
 	Current[0]				= 0;
 	Current[1]				= 0;
@@ -47,10 +47,6 @@ CEnvironment::CEnvironment	()
     eff_LensFlare 			= 0;
     eff_Thunderbolt			= 0;
 	OnDeviceCreate			();
-#ifdef _EDITOR
-	ed_from_time			= 0.f;
-	ed_to_time				= DAY_LENGTH;
-#endif
 	fGameTime				= 0.f;
     fTimeFactor				= 12.f;
 
@@ -70,8 +66,7 @@ CEnvironment::CEnvironment	()
 	PerlinNoise1D->SetOctaves(2);
 	PerlinNoise1D->SetAmplitude(0.66666f);
 
-	tsky0					= Device.Resources->_CreateTexture("$user$sky0");
-	tsky1					= Device.Resources->_CreateTexture("$user$sky1");
+	// Moved to impl constructor
 }
 CEnvironment::~CEnvironment	()
 {
@@ -339,28 +334,7 @@ void CEnvironment::OnFrame()
 	}
 	VERIFY2						(CurrentEnv.sun_dir.y<0,"Invalid sun direction settings in lerp");
 
-	if (::Render->get_generation()==IRender_interface::GENERATION_R2){
-		//. very very ugly hack
-		if (HW.Caps.raster_major >= 3 && HW.Caps.geometry.bVTF){
-			// tonemapping in VS
-			CurrentEnv.sky_r_textures.push_back		(std::make_pair(u32(D3DVERTEXTEXTURESAMPLER0),tonemap));	//. hack
-			CurrentEnv.sky_r_textures_env.push_back	(std::make_pair(u32(D3DVERTEXTEXTURESAMPLER0),tonemap));	//. hack
-			CurrentEnv.clouds_r_textures.push_back	(std::make_pair(u32(D3DVERTEXTEXTURESAMPLER0),tonemap));	//. hack
-		} else {
-			// tonemapping in PS
-			CurrentEnv.sky_r_textures.push_back		(std::make_pair(2,tonemap));								//. hack
-			CurrentEnv.sky_r_textures_env.push_back	(std::make_pair(2,tonemap));								//. hack
-			CurrentEnv.clouds_r_textures.push_back	(std::make_pair(2,tonemap));								//. hack
-		}
-		
-	}
-
-	//. Setup skybox textures, somewhat ugly
-	IDirect3DBaseTexture9*	e0	= CurrentEnv.sky_r_textures[0].second->surface_get();
-	IDirect3DBaseTexture9*	e1	= CurrentEnv.sky_r_textures[1].second->surface_get();
-	
-	tsky0->surface_set		(e0);	_RELEASE(e0);
-	tsky1->surface_set		(e1);	_RELEASE(e1);
+	m_pRender->OnFrame(*this);
 
 	PerlinNoise1D->SetFrequency		(wind_gust_factor*MAX_NOISE_FREQ);
 	wind_strength_factor			= clampr(PerlinNoise1D->GetContinious(Device.fTimeGlobal)+0.5f,0.f,1.f); 
@@ -370,10 +344,5 @@ void CEnvironment::OnFrame()
 	int t_id							=	(current_weight<0.5f)?Current[0]->tb_id:Current[1]->tb_id;
     eff_Thunderbolt->OnFrame			(t_id,CurrentEnv.bolt_period,CurrentEnv.bolt_duration);
 	eff_Rain->OnFrame					();
-
-	// ******************** Environment params (setting)
-	CHK_DX(HW.pDevice->SetRenderState( D3DRS_FOGCOLOR,	color_rgba_f(CurrentEnv.fog_color.x,CurrentEnv.fog_color.y,CurrentEnv.fog_color.z,0) )); 
-	CHK_DX(HW.pDevice->SetRenderState( D3DRS_FOGSTART,	*(u32 *)(&CurrentEnv.fog_near)	));
-	CHK_DX(HW.pDevice->SetRenderState( D3DRS_FOGEND,	*(u32 *)(&CurrentEnv.fog_far)	));
 }
 
