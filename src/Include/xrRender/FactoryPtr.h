@@ -67,10 +67,10 @@ private:
 #endif // _EDITOR
 
 #ifndef _EDITOR
-//    FACTORY_PTR_INSTANCIATE(FlareRender)
+    FACTORY_PTR_INSTANCIATE(FlareRender)
 //    FACTORY_PTR_INSTANCIATE(ThunderboltRender)
 //    FACTORY_PTR_INSTANCIATE(ThunderboltDescRender)
-//    FACTORY_PTR_INSTANCIATE(LensFlareRender)
+    FACTORY_PTR_INSTANCIATE(LensFlareRender)
 //    FACTORY_PTR_INSTANCIATE(RainRender)
 //    FACTORY_PTR_INSTANCIATE(EnvironmentRender)
 //    FACTORY_PTR_INSTANCIATE(EnvDescriptorRender)
