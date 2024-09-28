@@ -11,8 +11,9 @@
 
 
 #ifndef _EDITOR
-class IRender_interface;
-extern XRAPI_API IRender_interface*	Render;
+//morrazzzz: Leave it like this for now!
+//class IRender_interface;
+//extern XRAPI_API IRender_interface*	Render; //Finish it!
 
 class IRenderFactory;
 extern XRAPI_API IRenderFactory*	RenderFactory;
@@ -20,8 +21,8 @@ extern XRAPI_API IRenderFactory*	RenderFactory;
 class CDUInterface;
 extern XRAPI_API CDUInterface*	DU;
 
-struct xr_token;
-extern XRAPI_API xr_token*	vid_mode_token;
+//struct xr_token;
+//extern XRAPI_API xr_token*	vid_mode_token; //Finish it!
 
 class IUIRender;
 extern XRAPI_API IUIRender*	UIRender;

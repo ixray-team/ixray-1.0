@@ -7,8 +7,8 @@
 #pragma warning(pop)
 
 #include "ResourceManager.h"
-#include "blenders\Blender_Recorder.h"
-#include "blenders\Blender.h"
+#include "..\Layers\xrRender\blenders\Blender_Recorder.h"
+#include "..\Layers\xrRender\blenders\Blender.h"
 
 #include "igame_persistent.h"
 #include "environment.h"

@@ -4,7 +4,7 @@
 #pragma once
 #include "ETextureParams.h"
 
-class CTextureDescrMngr
+class ENGINE_API CTextureDescrMngr
 {
 	struct texture_assoc
 	{

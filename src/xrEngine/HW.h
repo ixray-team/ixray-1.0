@@ -35,7 +35,7 @@ public:
 
 	void					CreateD3D				();
 	void					DestroyD3D				();
-	void					CreateDevice			(HWND hw);
+	void					CreateDevice			(HWND hw, bool move_window);
 	void					DestroyDevice			();
 
 	void					Reset					(HWND hw);
@@ -53,6 +53,8 @@ public:
 #else
 	void	Validate(void)	{};
 #endif
+private:
+	bool m_move_window;
 };
 
 extern ENGINE_API CHW		HW;

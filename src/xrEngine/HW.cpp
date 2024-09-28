@@ -9,6 +9,7 @@
 #pragma warning(default:4995)
 #include "HW.h"
 #include "xr_IOconsole.h"
+#include "IGame_Persistent.h"
 
 #ifndef _EDITOR
 	void	fill_vid_mode_list			(CHW* _hw);
@@ -176,34 +177,39 @@ void	CHW::selectResolution	(u32 &dwWidth, u32 &dwHeight, BOOL bWindowed)
 
 }
 
-void		CHW::CreateDevice		(HWND m_hWnd)
+void		CHW::CreateDevice		(HWND m_hWnd, bool move_window)
 {
+	m_move_window = move_window;
 	CreateD3D				();
 
 	// General - select adapter and device
-#ifdef DEDICATED_SERVER
-	BOOL  bWindowed			= TRUE;
+
+	BOOL  bWindowed = TRUE;
+
+#ifndef _EDITOR
+	if (!g_dedicated_server)
+		bWindowed = !psDeviceFlags.is(rsFullscreen);
 #else
-	BOOL  bWindowed			= !psDeviceFlags.is(rsFullscreen);
-#endif
+	bWindowed = 1;
+#endif    
 
 	DevAdapter				= D3DADAPTER_DEFAULT;
 	DevT					= Caps.bForceGPU_REF?D3DDEVTYPE_REF:D3DDEVTYPE_HAL;
 
-//. #ifdef DEBUG
+#ifndef	MASTER_GOLD
 	// Look for 'NVIDIA NVPerfHUD' adapter
 	// If it is present, override default settings
-	for (UINT Adapter=0;Adapter<pD3D->GetAdapterCount();Adapter++)	{
+	for (UINT Adapter = 0; Adapter < pD3D->GetAdapterCount(); Adapter++) {
 		D3DADAPTER_IDENTIFIER9 Identifier;
-		HRESULT Res=pD3D->GetAdapterIdentifier(Adapter,0,&Identifier);
-		if (SUCCEEDED(Res) && (xr_strcmp(Identifier.Description,"NVIDIA NVPerfHUD")==0))
+		HRESULT Res = pD3D->GetAdapterIdentifier(Adapter, 0, &Identifier);
+		if (SUCCEEDED(Res) && (xr_strcmp(Identifier.Description, "NVIDIA PerfHUD") == 0))
 		{
-			DevAdapter	=Adapter;
-			DevT		=D3DDEVTYPE_REF;
+			DevAdapter = Adapter;
+			DevT = D3DDEVTYPE_REF;
 			break;
 		}
 	}
-//. #endif
+#endif	//	MASTER_GOLD
 
 
 	// Display the name of video board
@@ -264,7 +270,10 @@ void		CHW::CreateDevice		(HWND m_hWnd)
 	}
 
 	if ((D3DFMT_UNKNOWN==fTarget) || (D3DFMT_UNKNOWN==fTarget))	{
-		Msg					("Failed to initialize graphics hardware.\nPlease try to restart the game.");
+		Msg("Failed to initialize graphics hardware.\n"
+			"Please try to restart the game.\n"
+			"Can not find matching format for back buffer."
+		);		
 		FlushLog			();
 		MessageBox			(NULL,"Failed to initialize graphics hardware.\nPlease try to restart the game.","Error!",MB_OK|MB_ICONERROR);
 		TerminateProcess	(GetCurrentProcess(),0);
@@ -322,7 +331,9 @@ void		CHW::CreateDevice		(HWND m_hWnd)
 	}
 	if (D3DERR_DEVICELOST==R)	{
 		// Fatal error! Cannot create rendering device AT STARTUP !!!
-		Msg					("Failed to initialize graphics hardware.\nPlease try to restart the game.");
+		Msg("Failed to initialize graphics hardware.\n"
+			"Please try to restart the game.\n"
+			"CreateDevice returned 0x%08x(D3DERR_DEVICELOST)", R);		
 		FlushLog			();
 		MessageBox			(NULL,"Failed to initialize graphics hardware.\nPlease try to restart the game.","Error!",MB_OK|MB_ICONERROR);
 		TerminateProcess	(GetCurrentProcess(),0);
