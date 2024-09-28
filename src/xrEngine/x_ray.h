@@ -4,6 +4,8 @@
 // refs
 class ENGINE_API CGameFont;
 
+class ILoadingScreen;
+
 // definition
 class ENGINE_API CApplication	:
 	public pureFrame,
@@ -17,14 +19,9 @@ class ENGINE_API CApplication	:
 	};
 	string256				app_title;
 private:
-//	ref_shader				ll_hLogo;
-//	ref_shader				ll_hLogo1;
-	ref_shader				hLevelLogo;
-	ref_geom				ll_hGeom;
-	ref_geom				ll_hGeom2;
+	ILoadingScreen*			loadingScreen;
 
-	ref_shader				sh_progress;
-//	ref_shader				sh_progress2;
+	int						max_load_stage;
 	int						load_stage;
 
 	u32						ll_dwReference;
@@ -52,6 +49,7 @@ public:
 	void					SetLoadLogo			(ref_shader NewLoadLogo);
 	void					LoadSwitch			();
 	void					LoadDraw			();
+	void					LoadForceFinish		();
 
 	virtual	void			OnEvent				(EVENT E, u64 P1, u64 P2);
 
@@ -61,7 +59,8 @@ public:
 
 	virtual void			OnFrame				();
 			void			load_draw_internal	();
-			void			destroy_loading_shaders();
+			void			SetLoadingScreen	(ILoadingScreen* newScreen);
+			void			DestroyLoadingScreen();
 };
 
 extern ENGINE_API	CApplication*	pApp;

@@ -501,6 +501,9 @@
     <ClInclude Include="..\Layers\xrRender\blenders\Blender_Recorder.h">
       <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
     </ClInclude>
+    <ClInclude Include="ILoadingScreen.h">
+      <Filter>Game API</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="defines.cpp">

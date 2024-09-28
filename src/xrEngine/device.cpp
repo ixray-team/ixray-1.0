@@ -73,7 +73,7 @@ void CRenderDevice::End		(void)
 			if(precache_light) precache_light->set_active	(false);
 			if(precache_light) precache_light.destroy		();
 			::Sound->set_master_volume						(1.f);
-			pApp->destroy_loading_shaders					();
+			pApp->DestroyLoadingScreen						();
 			m_pRender->ResourcesDestroyNecessaryTextures();
 			Memory.mem_compact								();
 			Msg												("* MEMORY USAGE: %d K",Memory.mem_usage()/1024);
