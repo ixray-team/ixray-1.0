@@ -49,7 +49,7 @@ public:
 	RENDER_FACTORY_INTERFACE(StatGraphRender)
 	RENDER_FACTORY_INTERFACE(RenderDeviceRender)
 #	ifdef DEBUG
-//		RENDER_FACTORY_INTERFACE(ObjectSpaceRender)
+		RENDER_FACTORY_INTERFACE(ObjectSpaceRender)
 #	endif // DEBUG
 //	RENDER_FACTORY_INTERFACE(WallMarkArray)
 	RENDER_FACTORY_INTERFACE(StatsRender)
