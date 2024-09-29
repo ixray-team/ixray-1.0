@@ -13,8 +13,7 @@ class dxRenderFactory : public IRenderFactory
 #ifndef _EDITOR	
 	RENDER_FACTORY_DECLARE(UISequenceVideoItem)
 	RENDER_FACTORY_DECLARE(UIShader)
-//	RENDER_FACTORY_DECLARE(StatGraphRender)
-//	RENDER_FACTORY_DECLARE(ConsoleRender)
+	RENDER_FACTORY_DECLARE(StatGraphRender)
 	RENDER_FACTORY_DECLARE(RenderDeviceRender)
 #	ifdef DEBUG
 //		RENDER_FACTORY_DECLARE(ObjectSpaceRender)
