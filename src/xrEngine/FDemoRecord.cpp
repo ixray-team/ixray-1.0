@@ -277,9 +277,9 @@ BOOL CDemoRecord::Process(Fvector &P, Fvector &D, Fvector &N, float& fFov, float
 		m_vAngularVelocity.lerp	(m_vAngularVelocity,m_vR,0.3f);
 
 		float speed = m_fSpeed1, ang_speed = m_fAngSpeed1;
-		if (Console->IR_GetKeyState(DIK_LSHIFT))		{ speed=m_fSpeed0; ang_speed=m_fAngSpeed0;}
-		else if (Console->IR_GetKeyState(DIK_LALT))		{ speed=m_fSpeed2; ang_speed=m_fAngSpeed2;}
-		else if (Console->IR_GetKeyState(DIK_LCONTROL)) { speed=m_fSpeed3; ang_speed=m_fAngSpeed3;}
+		if (IR_GetKeyState(DIK_LSHIFT))		{ speed=m_fSpeed0; ang_speed=m_fAngSpeed0;}
+		else if (IR_GetKeyState(DIK_LALT))		{ speed=m_fSpeed2; ang_speed=m_fAngSpeed2;}
+		else if (IR_GetKeyState(DIK_LCONTROL)) { speed=m_fSpeed3; ang_speed=m_fAngSpeed3;}
 		m_vT.mul				(m_vVelocity, Device.fTimeDelta * speed);
 		m_vR.mul				(m_vAngularVelocity, Device.fTimeDelta * ang_speed);
 

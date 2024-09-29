@@ -244,6 +244,12 @@ public:
 		if (g_pGamePersistent && MainMenu()) MainMenu()->ValidateCDKey();
 	}
 	virtual void		Save			(IWriter *F)	{};
+
+	virtual void	fill_tips(vecTips& tips, u32 mode)
+	{
+		tips.push_back("xxxx-xxxx-xxxx-xxxx");
+		tips.push_back("clear");
+	}
 };
 
 class CCC_KickPlayerByName : public IConsole_Command {

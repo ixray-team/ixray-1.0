@@ -2,10 +2,11 @@
 #include "XR_IOConsole.h"
 #include "IGame_Level.h"
 
-class ENGINE_API CTextConsole :
-	public CConsole
+class ENGINE_API CTextConsole : public CConsole
 {
-	typedef CConsole inherited ;
+private:
+	typedef CConsole inherited;
+
 private:
 	HWND*	m_pMainWnd;
 
@@ -31,22 +32,24 @@ private:
 	bool	m_bNeedUpdate;
 	u32		m_dwLastUpdateTime;
 
-	CServerInfo server_info;
+	u32		m_last_time;
+	CServerInfo m_server_info;
 
 public:
-	CTextConsole();
-	virtual ~CTextConsole();
+					CTextConsole();
+	virtual			~CTextConsole();
 
 	virtual	void	Initialize	();
 	virtual	void	Destroy		();
 
-	void	AddString	(LPCSTR string);
-	void	OnPaint		();
+	virtual void			OnRender	();
+	virtual void	/*_BCL*/	OnFrame		();
 
-	virtual void	OnRender			(void);
-	virtual void	OnFrame				(void);
+//	virtual void	IR_OnKeyboardPress		(int dik);
 
-	virtual void	IR_OnKeyboardPress		(int dik);
-};
+			void	AddString	(LPCSTR string);
+			void	OnPaint		();
+
+};// class TextConsole
 
 //extern ENGINE_API CTextConsole* TextConsole;

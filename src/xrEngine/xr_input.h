@@ -89,6 +89,7 @@ public:
 
 public:
 			void				exclusive_mode				(const bool &exclusive);
+			bool				get_exclusive_mode			();
 			bool				get_dik_name				(int dik, LPSTR dest, int dest_sz);
 };
 
