@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "../Include/xrRender/DebugRender.h"
+
 #ifdef DEBUG
 class CDebugRenderer {
 private:
@@ -18,7 +20,7 @@ private:
 	xr_vector<u16>		m_line_indices;
 
 private:
-			void	add_lines		(const Fvector *vertices, const u16 *pairs, const int &pair_count, const u32 &color);
+	void add_lines(Fvector const* vertices, u32 const& vertex_count, u16 const* pairs, u32 const& pair_count, u32 const& color);
 
 public:
 					CDebugRenderer	();
@@ -27,6 +29,7 @@ public:
 public:
 	IC		void	draw_line		(const Fmatrix &matrix, const Fvector &vertex0, const Fvector &vertex1, const u32 &color);
 	IC		void	draw_aabb		(const Fvector &center, const float &half_radius_x, const float &half_radius_y, const float &half_radius_z, const u32 &color);
+	        void	draw_obb		(const Fmatrix& matrix, const u32& color);
 			void	draw_obb		(const Fmatrix &matrix, const Fvector &half_size, const u32 &color);
 			void	draw_ellipse	(const Fmatrix &matrix, const u32 &color);
 };
