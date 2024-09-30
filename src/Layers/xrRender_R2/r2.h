@@ -229,9 +229,12 @@ public:
 
 	// wallmarks
 	virtual void					add_StaticWallmark			(ref_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V);
+	virtual void                    add_StaticWallmark			(IWallMarkArray* pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V);
+	virtual void                    add_StaticWallmark			(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V);
 	virtual void					clear_static_wallmarks		();
 	virtual void					add_SkeletonWallmark		(intrusive_ptr<CSkeletonWallmark> wm);
 	virtual void					add_SkeletonWallmark		(const Fmatrix* xf, CKinematics* obj, ref_shader& sh, const Fvector& start, const Fvector& dir, float size);
+	virtual void                    add_SkeletonWallmark		(const Fmatrix* xf, CKinematics* obj, IWallMarkArray* pArray, const Fvector& start, const Fvector& dir, float size);
 
 	//
 	virtual IBlender*				blender_create				(CLASS_ID cls);

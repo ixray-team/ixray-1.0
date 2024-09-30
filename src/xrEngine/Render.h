@@ -5,6 +5,11 @@
 #include "vis_common.h"
 #include "IRenderDetailModel.h"
 
+#include "../Include/xrAPI/xrAPI.h"
+#include "../Include/xrRender/FactoryPtr.h"
+class IUIShader;
+typedef FactoryPtr<IUIShader> wm_shader;
+
 #ifdef _EDITOR
     #error you cant include this file in borland
 #endif
@@ -206,10 +211,12 @@ public:
 	virtual	void					add_Occluder			(Fbox2&	bb_screenspace	)					= 0;	// mask screen region as oclluded (-1..1, -1..1)
 	virtual void					add_Visual				(IRender_Visual*	V	)					= 0;	// add visual leaf	(no culling performed at all)
 	virtual void					add_Geometry			(IRender_Visual*	V	)					= 0;	// add visual(s)	(all culling performed)
-	virtual void					add_StaticWallmark		(ref_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V)=0;
+	virtual void					add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V) = 0;
+	//	Prefer this function when possible
+	virtual void					add_StaticWallmark(IWallMarkArray* pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V) = 0;
 	virtual void					clear_static_wallmarks	()=0;
-	virtual void					add_SkeletonWallmark	(intrusive_ptr<CSkeletonWallmark> wm)						= 0;
-	virtual void					add_SkeletonWallmark	(const Fmatrix* xf, CKinematics* obj, ref_shader& sh, const Fvector& start, const Fvector& dir, float size)=0;
+	virtual void add_SkeletonWallmark(intrusive_ptr<CSkeletonWallmark> wm) = 0; //REMOVE ME!!!
+	virtual void					add_SkeletonWallmark(const Fmatrix* xf, CKinematics* obj, IWallMarkArray* pArray, const Fvector& start, const Fvector& dir, float size) = 0;
 
 	virtual IBlender*				blender_create			(CLASS_ID cls)								= 0;
 	virtual void					blender_destroy			(IBlender* &)								= 0;

@@ -200,6 +200,7 @@ void CBulletManager::FireShotmark (SBullet* bullet, const Fvector& vDir, const F
 
 	if (R.O)
 	{
+/*      add_SkeletonWallmark not implemented now...
 		particle_dir		 = vDir;
 		particle_dir.invert	();
 
@@ -217,8 +218,8 @@ void CBulletManager::FireShotmark (SBullet* bullet, const Fvector& vDir, const F
 			::Render->add_SkeletonWallmark	(&R.O->renderable.xform, 
 							PKinematics(R.O->Visual()), *pWallmarkShader,
 							p, bullet->dir, bullet->wallmark_size);
-		}		
-	} 
+		}*/		
+	}  
 	else 
 	{
 		//вычислить нормаль к пораженной поверхности
@@ -226,13 +227,10 @@ void CBulletManager::FireShotmark (SBullet* bullet, const Fvector& vDir, const F
 		Fvector*	pVerts	= Level().ObjectSpace.GetStaticVerts();
 		CDB::TRI*	pTri	= Level().ObjectSpace.GetStaticTris()+R.element;
 
-		ref_shader* pWallmarkShader =	(!mtl_pair || mtl_pair->CollideMarks.empty())?
-										NULL:&mtl_pair->CollideMarks[::Random.randI(0,mtl_pair->CollideMarks.size())];;
-
-		if (pWallmarkShader && ShowMark)
+		if (mtl_pair && !mtl_pair->m_pCollideMarks->empty() && ShowMark)
 		{
 			//добавить отметку на материале
-			::Render->add_StaticWallmark	(*pWallmarkShader, vEnd, bullet->wallmark_size, pTri, pVerts);
+			::Render->add_StaticWallmark(&*mtl_pair->m_pCollideMarks, vEnd, bullet->wallmark_size, pTri, pVerts);
 		}
 	}
 
