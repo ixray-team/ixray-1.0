@@ -7,7 +7,7 @@ class CUICustomEdit : public CUIWindow, public CUILinesOwner {
 	u32				m_max_symb_count;
 public:
 	CUICustomEdit();
-	virtual ~CUICustomEdit();
+	virtual ~CUICustomEdit() = default;
 	// CUILinesOwner
 	virtual void			SetFont(CGameFont* pFont)					{CUILinesOwner::SetFont(pFont);}
 	virtual CGameFont*		GetFont()									{return CUILinesOwner::GetFont();}
@@ -19,14 +19,15 @@ public:
 
 	virtual bool	OnMouse			(float x, float y, EUIMessages mouse_action);
 	virtual bool	OnKeyboard		(int dik, EUIMessages keyboard_action);
+	virtual bool	OnKeyboardHold(int dik);
 	virtual void	OnFocusLost		();
 
 	virtual void	Update			();
 	virtual void	Draw			();
 
 			void	CaptureFocus	(bool bCapture) { m_bInputFocus = bCapture; }
-	virtual	void	SetText			(LPCSTR str);
-	virtual const char* GetText();
+	virtual	void	SetText			(const char* str);
+	virtual const char*	GetText();
 			void	SetMaxCharCount	(u32 cnt)			{m_max_symb_count = cnt;}
 	virtual void	Enable			(bool status);
 			void	SetNumbersOnly	(bool status);
@@ -35,18 +36,20 @@ public:
 			void	SetDbClickMode	(bool mode = true)	{m_bFocusByDbClick = mode;}
 			void	SetCursorColor	(u32 color)			{m_lines.SetCursorColor(color);}
 			
+			//Какой-то недодел
 			void	SetLightAnim			(LPCSTR lanim);
+
+			virtual void			SetTextPosX(float x);
+			virtual void			SetTextPosY(float y);
 
 protected:
 
 	bool KeyPressed(int dik);
 	bool KeyReleased(int dik);
 
-	void AddLetter(char c);
 	virtual void AddChar(char c);
 
 	bool m_bInputFocus;
-	bool m_bShift;
 
 	bool m_bNumbersOnly;
 	bool m_bFloatNumbers;
