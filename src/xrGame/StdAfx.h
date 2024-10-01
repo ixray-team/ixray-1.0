@@ -10,9 +10,6 @@
 // this include MUST be here, since smart_cast is used >1800 times in the project
 #include "smart_cast.h"
 
-#define READ_IF_EXISTS(ltx,method,section,name,default_value)\
-	((ltx->line_exist(section,name)) ? (ltx->method(section,name)) : (default_value))
-
 
 #if XRAY_EXCEPTIONS
 IC	xr_string	string2xr_string(LPCSTR s) {return *shared_str(s ? s : "");}
