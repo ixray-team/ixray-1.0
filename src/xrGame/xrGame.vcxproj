@@ -512,6 +512,7 @@
     <ClInclude Include="damage_manager.h" />
     <ClInclude Include="damage_manager_inline.h" />
     <ClInclude Include="DamageSource.h" />
+    <ClInclude Include="UIFontDefines.h" />
     <ClInclude Include="ui\UIHelper.h" />
     <ClInclude Include="ui\UILoadingScreen.h" />
     <ClInclude Include="ui_defs.h" />
@@ -1798,7 +1799,6 @@
     <ClInclude Include="ui\UIColorAnimatorWrapper.h" />
     <ClInclude Include="ui\UIActorInfo.h" />
     <ClInclude Include="ui\UIStalkersRankingWnd.h" />
-    <ClInclude Include="ui\UIDebugFonts.h" />
     <ClInclude Include="ui\UIOptionsItem.h" />
     <ClInclude Include="ui\UIOptionsManager.h" />
     <ClInclude Include="ui\UIOptionsManagerScript.h" />
@@ -6253,10 +6253,6 @@
     <ClCompile Include="ui\UIColorAnimatorWrapper.cpp" />
     <ClCompile Include="ui\UIActorInfo.cpp" />
     <ClCompile Include="ui\UIStalkersRankingWnd.cpp" />
-    <ClCompile Include="ui\UIDebugFonts.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Priquel|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="ui\UIOptionsItem.cpp" />
     <ClCompile Include="ui\UIOptionsManager.cpp" />
     <ClCompile Include="ui\UIOptionsManagerScript.cpp">

@@ -21,6 +21,7 @@
 #include <process.h>
 #include <wincodec.h>
 #include <thread>
+#include "string_table.h"
 
 //---------------------------------------------------------------------
 ENGINE_API CInifile* pGameIni		= NULL;
@@ -238,10 +239,11 @@ void Startup					( )
 	}
 
 	// Initialize APP
-//#ifndef DEDICATED_SERVER
 	ShowWindow( Device.m_hWnd , SW_SHOWNORMAL );
+	g_FontManager = new CFontManager();
 	Device.Create				( );
-//#endif
+	g_FontManager->InitializeFonts();
+
 	LALib.OnCreate				( );
 	pApp						= xr_new<CApplication>	();
 	g_pGamePersistent			= (IGame_Persistent*)	NEW_INSTANCE (CLSID_GAME_PERSISTANT);
@@ -251,6 +253,7 @@ void Startup					( )
 	// Destroy LOGO
 	DestroyWindow				(logoWindow);
 	logoWindow					= NULL;
+	xr_delete(g_pStringTable);
 
 	// Main cycle
 	Memory.mem_usage();
@@ -824,6 +827,8 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance,
 
 		InitInput();
 
+		g_pStringTable = new CStringTable();
+
 		InitConsole				();
 
 		LPCSTR benchName = "-batch_benchmark ";
@@ -959,27 +964,6 @@ LPCSTR _GetFontTexName (LPCSTR section)
 	return pSettings->r_string(section,tex_names[def_idx]);
 }
 
-void _InitializeFont(CGameFont*& F, LPCSTR section, u32 flags)
-{
-	LPCSTR font_tex_name = _GetFontTexName(section);
-	R_ASSERT(font_tex_name);
-
-	if(!F){
-		F = xr_new<CGameFont> ("font", font_tex_name, flags);
-		Device.seqRender.Add( F, REG_PRIORITY_LOW-1000 );
-	}else
-		F->Initialize("font",font_tex_name);
-
-	if (pSettings->line_exist(section,"size")){
-		float sz = pSettings->r_float(section,"size");
-		if (flags&CGameFont::fsDeviceIndependent)	F->SetHeightI(sz);
-		else										F->SetHeight(sz);
-	}
-	if (pSettings->line_exist(section,"interval"))
-		F->SetInterval(pSettings->r_fvector2(section,"interval"));
-
-}
-
 CApplication::CApplication()
 {
 	ll_dwReference	= 0;
@@ -994,9 +978,6 @@ CApplication::CApplication()
 	// levels
 	Level_Current				= 0;
 	Level_Scan					( );
-
-	// Font
-	pFontSystem					= NULL;
 
 	// Register us
 	Device.seqFrame.Add			(this, REG_PRIORITY_HIGH+1000);
@@ -1013,10 +994,6 @@ CApplication::CApplication()
 CApplication::~CApplication()
 {
 	Console->Hide				( );
-
-	// font
-	Device.seqRender.Remove		( pFontSystem		);
-	xr_delete					( pFontSystem		);
 
 	Device.seqFrameMT.Remove	(&SoundProcessor);
 	Device.seqFrame.Remove		(&SoundProcessor);

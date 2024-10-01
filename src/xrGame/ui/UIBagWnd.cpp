@@ -11,6 +11,7 @@
 #include "../weapon.h"
 #include "../xrServer_Objects_ALife_Items.h"
 #include "../game_cl_Deathmatch.h"
+#include "../UIFontDefines.h"
 
 CUIBagWnd::CUIBagWnd()
 {
@@ -313,7 +314,7 @@ void CUIBagWnd::FillUpGroup(const u32 group)
 
             // Set custom draw
 			itoa						(j+1, tmp_str ,10);
-			CBuyItemCustomDrawCell* p	= xr_new<CBuyItemCustomDrawCell>(tmp_str,UI()->Font()->pFontLetterica16Russian);
+			CBuyItemCustomDrawCell* p	= xr_new<CBuyItemCustomDrawCell>(tmp_str,UI()->Font()->GetFont(LETTERICA16_FONT_NAME));
 			itm->SetCustomDraw			(p);
             
 			// Set Number
@@ -449,7 +450,7 @@ void CUIBagWnd::PutItemToGroup(CUICellItem* pItem, int iGroup)
 		++subSection_group3[iActiveSection - GROUP_31];
 		
 		sprintf_s						(tmp_str, "%d", subSection_group3[iActiveSection - GROUP_31]);
-		CBuyItemCustomDrawCell* p	= xr_new<CBuyItemCustomDrawCell>(tmp_str, UI()->Font()->pFontLetterica16Russian);
+		CBuyItemCustomDrawCell* p	= xr_new<CBuyItemCustomDrawCell>(tmp_str, UI()->Font()->GetFont(LETTERICA16_FONT_NAME));
 		pItem->SetCustomDraw		(p);
 
 		m_info[pItem->m_index].short_cut = subSection_group3[iActiveSection - GROUP_31] % 10;

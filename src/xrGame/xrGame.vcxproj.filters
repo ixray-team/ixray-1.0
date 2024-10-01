@@ -6135,9 +6135,6 @@
     <ClInclude Include="ui\UIStalkersRankingWnd.h">
       <Filter>UI\Common\Statistics</Filter>
     </ClInclude>
-    <ClInclude Include="ui\UIDebugFonts.h">
-      <Filter>UI\Common\_Debug Fonts</Filter>
-    </ClInclude>
     <ClInclude Include="ui\UIOptionsItem.h">
       <Filter>UI\Common\OptionsItem</Filter>
     </ClInclude>
@@ -6556,6 +6553,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="ui_defs.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFontDefines.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -9247,9 +9247,6 @@
     </ClCompile>
     <ClCompile Include="ui\UIStalkersRankingWnd.cpp">
       <Filter>UI\Common\Statistics</Filter>
-    </ClCompile>
-    <ClCompile Include="ui\UIDebugFonts.cpp">
-      <Filter>UI\Common\_Debug Fonts</Filter>
     </ClCompile>
     <ClCompile Include="ui\UIOptionsItem.cpp">
       <Filter>UI\Common\OptionsItem</Filter>
