@@ -54,19 +54,23 @@ void CUIListItemServer::Init(LIST_SRV_ITEM& params, float x, float y, float widt
 
 	m_version.Init(offset, 0, params.size.version, height);
 
-	float icon_size = CUITextureMaster::GetTextureHeight("ui_icon_password");
+	float icon_size_h = CUITextureMaster::GetTextureHeight("ui_icon_password");
+	float icon_size_w = icon_size_h*UI()->get_current_kx();
 
-	m_iconPass.Init(0,0,icon_size,icon_size);
+	m_iconPass.Init(0,0,icon_size_w,icon_size_h);
 	m_iconPass.InitTexture("ui_icon_password");
+	m_iconPass.SetStretchTexture(true);
 
-	m_iconDedicated.Init(icon_size,0,icon_size,icon_size);
+	m_iconDedicated.Init(icon_size_w,0,icon_size_w,icon_size_h);
 	m_iconDedicated.InitTexture("ui_icon_dedicated");
+	m_iconDedicated.SetStretchTexture(true);
 
 	//m_iconPunkBuster.Init(icon_size*2,0,icon_size,icon_size);
 	//m_iconPunkBuster.InitTexture("ui_icon_punkbuster");
 
-	m_iconUserPass.Init(icon_size*2,0,icon_size,icon_size);
+	m_iconUserPass.Init(icon_size_w*2,0,icon_size_w,icon_size_h);
 	m_iconUserPass.InitTexture("ui_icon_punkbuster"); //("ui_icon_userpass");
+	m_iconUserPass.SetStretchTexture(true);
 
 	SetParams(params);
 
