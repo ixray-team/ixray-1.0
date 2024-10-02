@@ -3,7 +3,8 @@
 
 CUIFrameLineWnd::CUIFrameLineWnd()
 	:	bHorizontal(true),
-		m_bTextureAvailable(false)
+		m_bTextureAvailable(false),
+	m_bStretchTexture(false)
 {
 	AttachChild(&UITitleText);
 }
@@ -34,6 +35,13 @@ void CUIFrameLineWnd::InitTexture(LPCSTR tex_name, bool horizontal){
 
 	Frect			rect;
 	GetAbsoluteRect	(rect);
+
+	Fvector2 size;
+	size.x = rect.x2 - rect.x1;
+	size.y = rect.y2 - rect.y1;
+
+	UIFrameLine.set_parent_wnd_size(size);
+	UIFrameLine.bStretchTexture = m_bStretchTexture;
 
 	bHorizontal = horizontal;
 

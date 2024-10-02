@@ -132,7 +132,7 @@ bool CUIXmlInit::InitFrameWindow(CUIXml& xml_doc, LPCSTR path,
 
 	if(*tex_name) pWnd->InitLeftBottom(*tex_name, x,y);
 */
-	//инициализировать заголовок окна
+	//РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ Р·Р°РіРѕР»РѕРІРѕРє РѕРєРЅР°
 	strconcat(sizeof(buf),buf,path,":title");
 	if(xml_doc.NavigateToNode(buf,index)) InitStatic(xml_doc, buf, index, pWnd->UITitleText);
 	
@@ -746,6 +746,9 @@ bool CUIXmlInit::InitFrameLine(CUIXml& xml_doc, const char* path, int index, CUI
 	R_ASSERT2(xml_doc.NavigateToNode(path,index), "XML node not found");
 
 	string256 buf;
+
+	bool stretch_flag = xml_doc.ReadAttribInt(path, index, "stretch") ? true : false;
+	pWnd->SetStretchTexture(stretch_flag);
 
 	float x			= xml_doc.ReadAttribFlt(path, index, "x");
 	float y			= xml_doc.ReadAttribFlt(path, index, "y");
