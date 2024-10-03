@@ -148,7 +148,7 @@ void CUIMainIngameWnd::Init()
 
 	UIWeaponIcon.Enable			(false);
 
-	//индикаторы 
+	//РёРЅРґРёРєР°С‚РѕСЂС‹ 
 	UIZoneMap->Init				();
 	UIZoneMap->SetScale			(DEFAULT_MAP_SCALE);
 
@@ -159,19 +159,19 @@ void CUIMainIngameWnd::Init()
 	}
 
 
-	//Полоса прогресса здоровья
+	//РџРѕР»РѕСЃР° РїСЂРѕРіСЂРµСЃСЃР° Р·РґРѕСЂРѕРІСЊСЏ
 	UIStaticHealth.AttachChild	(&UIHealthBar);
 //.	xml_init.InitAutoStaticGroup(uiXml,"static_health", &UIStaticHealth);
 	xml_init.InitProgressBar	(uiXml, "progress_bar_health", 0, &UIHealthBar);
 
-	//Полоса прогресса армора
+	//РџРѕР»РѕСЃР° РїСЂРѕРіСЂРµСЃСЃР° Р°СЂРјРѕСЂР°
 	UIStaticArmor.AttachChild	(&UIArmorBar);
 //.	xml_init.InitAutoStaticGroup(uiXml,"static_armor", &UIStaticArmor);
 	xml_init.InitProgressBar	(uiXml, "progress_bar_armor", 0, &UIArmorBar);
 
 	
 
-	// Подсказки, которые возникают при наведении прицела на объект
+	// РџРѕРґСЃРєР°Р·РєРё, РєРѕС‚РѕСЂС‹Рµ РІРѕР·РЅРёРєР°СЋС‚ РїСЂРё РЅР°РІРµРґРµРЅРёРё РїСЂРёС†РµР»Р° РЅР° РѕР±СЉРµРєС‚
 	AttachChild					(&UIStaticQuickHelp);
 	xml_init.InitStatic			(uiXml, "quick_info", 0, &UIStaticQuickHelp);
 
@@ -181,7 +181,7 @@ void CUIMainIngameWnd::Init()
 	xml_init.InitScrollView		(uiXml, "icons_scroll_view", 0, m_UIIcons);
 	AttachChild					(m_UIIcons);
 
-	// Загружаем иконки 
+	// Р—Р°РіСЂСѓР¶Р°РµРј РёРєРѕРЅРєРё 
 	if(IsGameTypeSingle())
 	{
 		xml_init.InitStatic		(uiXml, "starvation_static", 0, &UIStarvationIcon);
@@ -219,11 +219,11 @@ void CUIMainIngameWnd::Init()
 		"invincible"
 	};
 
-	// Загружаем пороговые значения для индикаторов
+	// Р—Р°РіСЂСѓР¶Р°РµРј РїРѕСЂРѕРіРѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ РёРЅРґРёРєР°С‚РѕСЂРѕРІ
 	EWarningIcons j = ewiWeaponJammed;
 	while (j < ewiInvincible)
 	{
-		// Читаем данные порогов для каждого индикатора
+		// Р§РёС‚Р°РµРј РґР°РЅРЅС‹Рµ РїРѕСЂРѕРіРѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ РёРЅРґРёРєР°С‚РѕСЂР°
 		shared_str cfgRecord = pSettings->r_string("main_ingame_indicators_thresholds", *warningStrings[static_cast<int>(j) - 1]);
 		u32 count = _GetItemCount(*cfgRecord);
 
@@ -263,7 +263,7 @@ void CUIMainIngameWnd::Init()
 	UIStaticDiskIO.SetWndRect				(1000,750,16,16);
 	UIStaticDiskIO.GetUIStaticItem().SetRect(0,0,16,16);
 	UIStaticDiskIO.InitTexture				("ui\\ui_disk_io");
-	UIStaticDiskIO.SetOriginalRect			(0,0,32,32);
+	UIStaticDiskIO.SetOriginalRect			(0 / UI()->get_current_kx(), 0, 32 / UI()->get_current_kx(), 32);
 	UIStaticDiskIO.SetStretchTexture		(TRUE);
 
 
@@ -460,14 +460,14 @@ void CUIMainIngameWnd::Update()
 
 			xr_vector<float>::reverse_iterator	rit;
 
-			// Сначала проверяем на точное соответсвие
+			// РЎРЅР°С‡Р°Р»Р° РїСЂРѕРІРµСЂСЏРµРј РЅР° С‚РѕС‡РЅРѕРµ СЃРѕРѕС‚РІРµС‚СЃРІРёРµ
 			rit  = std::find(m_Thresholds[i].rbegin(), m_Thresholds[i].rend(), value);
 
-			// Если его нет, то берем последнее меньшее значение ()
+			// Р•СЃР»Рё РµРіРѕ РЅРµС‚, С‚Рѕ Р±РµСЂРµРј РїРѕСЃР»РµРґРЅРµРµ РјРµРЅСЊС€РµРµ Р·РЅР°С‡РµРЅРёРµ ()
 			if (rit == m_Thresholds[i].rend())
 				rit = std::find_if(m_Thresholds[i].rbegin(), m_Thresholds[i].rend(), std::bind(std::less<float>(), std::placeholders::_1, value));
 
-			// Минимальное и максимальное значения границы
+			// РњРёРЅРёРјР°Р»СЊРЅРѕРµ Рё РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёСЏ РіСЂР°РЅРёС†С‹
 			float min = m_Thresholds[i].front();
 			float max = m_Thresholds[i].back();
 
@@ -501,7 +501,7 @@ bool CUIMainIngameWnd::OnKeyboardPress(int dik)
 #if 0//def DEBUG
 	test_key(dik);
 #endif
-	// поддержка режима adjust hud mode
+	// РїРѕРґРґРµСЂР¶РєР° СЂРµР¶РёРјР° adjust hud mode
 	bool flag = false;
 	if (g_bHudAdjustMode)
 	{
@@ -960,7 +960,7 @@ void CUIMainIngameWnd::SetWarningIconColor(EWarningIcons icon, const u32 cl)
 {
 	bool bMagicFlag = true;
 
-	// Задаем цвет требуемой иконки
+	// Р—Р°РґР°РµРј С†РІРµС‚ С‚СЂРµР±СѓРµРјРѕР№ РёРєРѕРЅРєРё
 	switch(icon)
 	{
 	case ewiAll:
@@ -1001,7 +1001,7 @@ void CUIMainIngameWnd::TurnOffWarningIcon(EWarningIcons icon)
 
 void CUIMainIngameWnd::SetFlashIconState_(EFlashingIcons type, bool enable)
 {
-	// Включаем анимацию требуемой иконки
+	// Р’РєР»СЋС‡Р°РµРј Р°РЅРёРјР°С†РёСЋ С‚СЂРµР±СѓРµРјРѕР№ РёРєРѕРЅРєРё
 	FlashingIcons_it icon = m_FlashingIcons.find(type);
 	R_ASSERT2(icon != m_FlashingIcons.end(), "Flashing icon with this type not existed");
 	icon->second->Show(enable);
@@ -1014,14 +1014,14 @@ void CUIMainIngameWnd::InitFlashingIcons(CUIXml* node)
 
 	CUIXmlInit xml_init;
 	CUIStatic *pIcon = NULL;
-	// Пробегаемся по всем нодам и инициализируем из них статики
+	// РџСЂРѕР±РµРіР°РµРјСЃСЏ РїРѕ РІСЃРµРј РЅРѕРґР°Рј Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РёР· РЅРёС… СЃС‚Р°С‚РёРєРё
 	for (int i = 0; i < staticsCount; ++i)
 	{
 		pIcon = xr_new<CUIStatic>();
 		xml_init.InitStatic(*node, flashingIconNodeName, i, pIcon);
 		shared_str iconType = node->ReadAttrib(flashingIconNodeName, i, "type", "none");
 
-		// Теперь запоминаем иконку и ее тип
+		// РўРµРїРµСЂСЊ Р·Р°РїРѕРјРёРЅР°РµРј РёРєРѕРЅРєСѓ Рё РµРµ С‚РёРї
 		EFlashingIcons type = efiPdaTask;
 
 		if		(iconType == "pda")		type = efiPdaTask;

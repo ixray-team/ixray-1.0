@@ -18,8 +18,8 @@
 	</back>
 
 
-    <dragdrop_bag x="22" y="46" width="295" height="415"
-            cell_width = "31" cell_height="41" rows_num="10" cols_num="9" 
+    <dragdrop_bag x="22" y="46" width="307" height="415"
+            cell_width="29" cell_height="39" rows_num="10" cols_num="10" 
             unlimited="1" group_similar="1"/>
 
     <dragdrop_belt x="600" y="136" width="225" height="60"
