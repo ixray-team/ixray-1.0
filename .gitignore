@@ -38,6 +38,7 @@ UpgradeLog*.htm
 *.~*
 
 # X-Ray resources
+mods/
 *.db*
 
 # X-Ray user files
