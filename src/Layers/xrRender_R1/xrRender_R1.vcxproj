@@ -210,6 +210,7 @@
     <ClInclude Include="..\xrRender\dxRainRender.h" />
     <ClInclude Include="..\xrRender\dxRenderDeviceRender.h" />
     <ClInclude Include="..\xrRender\dxRenderFactory.h" />
+    <ClInclude Include="..\xrRender\dxStatGraphRender.h" />
     <ClInclude Include="..\xrRender\dxStatsRender.h" />
     <ClInclude Include="..\xrRender\dxThunderboltDescRender.h" />
     <ClInclude Include="..\xrRender\dxThunderboltRender.h" />
@@ -279,6 +280,7 @@
     <ClCompile Include="..\xrRender\dxRainRender.cpp" />
     <ClCompile Include="..\xrRender\dxRenderDeviceRender.cpp" />
     <ClCompile Include="..\xrRender\dxRenderFactory.cpp" />
+    <ClCompile Include="..\xrRender\dxStatGraphRender.cpp" />
     <ClCompile Include="..\xrRender\dxStatsRender.cpp" />
     <ClCompile Include="..\xrRender\dxThunderboltDescRender.cpp" />
     <ClCompile Include="..\xrRender\dxThunderboltRender.cpp" />

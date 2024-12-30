@@ -1,9 +1,14 @@
 //---------------------------------------------------------------------------
 #ifndef StatGraphH
 #define StatGraphH
+
+#include "../Include/xrRender/FactoryPtr.h"
+#include "../Include/xrRender/StatGraphRender.h"
+
 //---------------------------------------------------------------------------
 class ENGINE_API CStatGraph	: public pureRender
 {
+	friend class dxStatGraphRender;
 public:
 	enum EStyle{
     	stBar,
@@ -55,8 +60,7 @@ protected:
 	u32				base_color;
 	u32				rect_color;
 	u32				back_color;
-	ref_geom 		hGeomTri;
-	ref_geom 		hGeomLine;
+	FactoryPtr<IStatGraphRender> m_pRender;
 
 	
 	struct SMarker {
@@ -70,14 +74,6 @@ protected:
 
 	MarkersDeq		m_Markers;
 
-protected:
-	virtual void	RenderBack		();
-
-	virtual void	RenderBars		( FVF::TL0uv** ppv, ElementsDeq* pelements );
-	virtual void	RenderLines		( FVF::TL0uv** ppv, ElementsDeq* pelements );
-	virtual void	RenderBarLines	( FVF::TL0uv** ppv, ElementsDeq* pelements );
-//	virtual void	RenderPoints	( FVF::TL0uv** ppv, ElementsDeq* pelements );
-	virtual	void	RenderMarkers	( FVF::TL0uv** ppv, MarkersDeq* pmarkers );
 public:
   					CStatGraph	();
 					~CStatGraph	();
