@@ -214,6 +214,7 @@
     <ClInclude Include="..\xrRender\dxThunderboltDescRender.h" />
     <ClInclude Include="..\xrRender\dxThunderboltRender.h" />
     <ClInclude Include="..\xrRender\dxUIRender.h" />
+    <ClInclude Include="..\xrRender\dxUISequenceVideoItem.h" />
     <ClInclude Include="..\xrRender\dxUIShader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="..\xrRender\dxThunderboltDescRender.cpp" />
     <ClCompile Include="..\xrRender\dxThunderboltRender.cpp" />
     <ClCompile Include="..\xrRender\dxUIRender.cpp" />
+    <ClCompile Include="..\xrRender\dxUISequenceVideoItem.cpp" />
     <ClCompile Include="..\xrRender\dxUIShader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

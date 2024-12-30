@@ -7,6 +7,7 @@
 #include "../../xrEngine/xr_input.h"
 #include "../../xrEngine/xr_level_controller.h"
 
+#include "../Include/xrRender/UISequenceVideoItem.h"
 #include "../Include/xrRender/UIShader.h"
 #include "../Include/xrRender/UIRender.h"
 
@@ -17,7 +18,6 @@ extern ENGINE_API BOOL bShowPauseString;
 //-----------------------------------------------------------------------------
 CUISequenceVideoItem::CUISequenceVideoItem(CUISequencer* owner):CUISequenceItem(owner)
 {
-	m_texture				= NULL;
 	m_flags.set				(etiPlaying|etiNeedStart|etiDelayed|etiBackVisible,FALSE);
 	m_delay					= 0.f;
 	m_wnd					= NULL;
@@ -112,33 +112,35 @@ void CUISequenceVideoItem::Update()
 	u32 sync_tm				= (0==m_sound[0]._handle())?Device.dwTimeContinual:(m_sound[0]._feedback()?m_sound[0]._feedback()->play_time():m_sync_time);
 	m_sync_time				= sync_tm;
 	// processing A&V
-	if (m_texture){
-		BOOL is_playing		= m_sound[0]._handle()?!!m_sound[0]._feedback():m_texture->video_IsPlaying();
-		if (is_playing){
-			m_texture->video_Sync		(m_sync_time);
-		}else{
+	if (m_texture->HasTexture()){
+		bool is_playing = m_sound[0]._handle() ? !!m_sound[0]._feedback() : m_texture->video_IsPlaying();
+		if (is_playing)
+			m_texture->video_Sync(m_sync_time);
+		else
+		{
 			// sync start
-			if (m_flags.test(etiNeedStart)){
-				m_sound[0].play_at_pos	(NULL, Fvector().set(-0.5f,0.f,0.3f), sm_2D);
-				m_sound[1].play_at_pos	(NULL, Fvector().set(+0.5f,0.f,0.3f), sm_2D);
-				m_texture->video_Play	(FALSE,m_sync_time);
+			if (m_flags.test(etiNeedStart))
+			{
+				m_sound[0].play_at_pos	(nullptr, Fvector().set(-0.5f,0.f,0.3f), sm_2D);
+				m_sound[1].play_at_pos	(nullptr, Fvector().set(+0.5f,0.f,0.3f), sm_2D);
+				m_texture->video_Play	(false,m_sync_time);
 				m_flags.set				(etiNeedStart,FALSE);
-				CUIWindow* w			= m_owner->MainWnd()->FindChild("back");
-				if (w)					w->Show(!!m_flags.test(etiBackVisible));
-			}else{
-				m_flags.set				(etiPlaying,FALSE);
+				if (CUIWindow* w = m_owner->MainWnd()->FindChild("back"))					
+					w->Show(!!m_flags.test(etiBackVisible));
 			}
+			else
+				m_flags.set				(etiPlaying,FALSE);
 		}
 	}
 }
 
 void CUISequenceVideoItem::OnRender()
 {
-	if (!m_texture && m_wnd->GetShader() && m_wnd->GetShader()->inited())
+	if (!m_texture->HasTexture() && m_wnd->GetShader() && m_wnd->GetShader()->inited())
 	{
 		UIRender->SetShader(*m_wnd->GetShader());
-		m_texture = RCache.get_ActiveTexture(0);
-		m_texture->video_Stop				();
+		m_texture->CaptureTexture();
+		m_texture->video_Stop();
 	}
 }
 
@@ -183,7 +185,7 @@ bool CUISequenceVideoItem::Stop	(bool bForce)
 
 	m_sound[0].stop				();
 	m_sound[1].stop				();
-	m_texture					= 0;
+	m_texture->ResetTexture();
 
 	if(m_flags.test(etiNeedPauseOn) && !m_flags.test(etiStoredPauseState))
 		Device.Pause			(FALSE, TRUE, TRUE, "videoitem_stop");
