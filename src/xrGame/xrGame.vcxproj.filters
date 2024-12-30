@@ -6558,6 +6558,12 @@
     <ClInclude Include="ui\UIGameTutorial.h">
       <Filter>UI\Tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="ui\UILoadingScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\UIHelper.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="damage_manager.cpp">
@@ -9703,6 +9709,12 @@
     </ClCompile>
     <ClCompile Include="ui\UIGameTutorialVideoItem.cpp">
       <Filter>UI\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UILoadingScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UIHelper.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

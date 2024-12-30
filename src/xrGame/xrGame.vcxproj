@@ -515,6 +515,8 @@
     <ClInclude Include="damage_manager.h" />
     <ClInclude Include="damage_manager_inline.h" />
     <ClInclude Include="DamageSource.h" />
+    <ClInclude Include="ui\UIHelper.h" />
+    <ClInclude Include="ui\UILoadingScreen.h" />
     <ClInclude Include="wrapper_abstract.h" />
     <ClInclude Include="wrapper_abstract_inline.h" />
     <ClInclude Include="action_management_config.h" />
@@ -2155,6 +2157,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pch_script.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)$(ProjectName)_script.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="ui\UIHelper.cpp" />
+    <ClCompile Include="ui\UILoadingScreen.cpp" />
     <ClCompile Include="visual_memory_manager.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug_Priquel|Win32'">pch_script.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug_Priquel|Win32'">$(IntDir)$(ProjectName)_script.pch</PrecompiledHeaderOutputFile>

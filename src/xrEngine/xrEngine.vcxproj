@@ -527,6 +527,7 @@
     <ClInclude Include="..\Layers\xrRender\blenders\Blender_CLSID.h" />
     <ClInclude Include="..\Layers\xrRender\blenders\Blender_Recorder.h" />
     <ClInclude Include="EngineExternal.h" />
+    <ClInclude Include="ILoadingScreen.h" />
     <ClInclude Include="_d3d_extensions.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="stdafx.h" />
