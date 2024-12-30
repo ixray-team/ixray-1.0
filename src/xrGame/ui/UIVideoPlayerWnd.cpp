@@ -6,6 +6,7 @@
 #include "../level.h"
 #include "../hudmanager.h"
 #include <dinput.h>
+#include "../Include/xrRender/UIShader.h"
 
 void CUIVideoPlayerWnd::SendMessage	(CUIWindow* pWnd, s16 msg, void* pData)
 {
@@ -64,13 +65,14 @@ void CUIVideoPlayerWnd::SetFile		(LPCSTR fn)
 	}
 }
 
-void CUIVideoPlayerWnd::Draw		()
+void CUIVideoPlayerWnd::Draw()
 {
-	inherited::Draw	();
-	if(!m_texture && m_surface->GetShader()){
-		RCache.set_Shader							(m_surface->GetShader());
-		m_texture = RCache.get_ActiveTexture		(0);
-		m_texture->video_Stop						();
+	inherited::Draw();
+	if (!m_texture && m_surface->GetShader()->inited())
+	{
+		UIRender->SetShader(*m_surface->GetShader());
+		m_texture = RCache.get_ActiveTexture(0);
+		m_texture->video_Stop();
 	}
 }
 

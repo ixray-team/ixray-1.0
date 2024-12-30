@@ -11,6 +11,8 @@
 #include "mt_config.h"
 #include "game_cl_base_weapon_usage_statistic.h"
 
+#include "../Include/xrRender/UIRender.h"
+
 #ifdef DEBUG
 #	include "debug_renderer.h"
 #endif
@@ -352,13 +354,9 @@ void CBulletManager::Render	()
 
 	if(m_BulletsRendered.empty()) return;
 
-	u32	vOffset			=	0	;
 	u32 bullet_num		=	m_BulletsRendered.size();
 
-	FVF::LIT	*verts		=	(FVF::LIT	*) RCache.Vertex.Lock((u32)bullet_num*8,
-										tracers.sh_Geom->vb_stride,
-										vOffset);
-	FVF::LIT	*start		=	verts;
+	UIRender->StartPrimitive((u32)bullet_num * 12, IUIRender::ptTriList, IUIRender::pttLIT);
 
 	for(BulletVecIt it = m_BulletsRendered.begin(); it!=m_BulletsRendered.end(); it++){
 		SBullet* bullet					= &(*it);
@@ -387,40 +385,18 @@ void CBulletManager::Render	()
 		{
 			length = Device.vCameraPosition.distance_to(bullet->pos) - 0.3f;
 		}
-		/*
-		//---------------------------------------------
-		Fvector vT, v0, v1;
-		vT.mad(Device.vCameraPosition, Device.vCameraDirection, _sqrt(dist2segSqr));
-		v0.mad(vT, Device.vCameraTop, width*.5f);
-		v1.mad(vT, Device.vCameraTop, -width*.5f);
-		Fvector v0r, v1r;
-		Device.mFullTransform.transform(v0r, v0);
-		Device.mFullTransform.transform(v1r, v1);
-		float ViewWidth = v1r.distance_to(v0r);
-*/
-//		float dist = _sqrt(dist2segSqr);
-//		Msg("dist - [%f]; ViewWidth - %f, [%f]", dist, ViewWidth, ViewWidth*float(Device.dwHeight));
-//		Msg("dist - [%f]", dist);
-		//---------------------------------------------
 
 
 		Fvector center;
 		center.mad				(bullet->pos, bullet->dir,  -length*.5f);
-		tracers.Render			(verts, bullet->pos, center, bullet->dir, length, width, bullet->m_u8ColorID);
+		tracers.Render			(bullet->pos, center, bullet->dir, length, width, bullet->m_u8ColorID);
 	}
 
-	u32 vCount					= (u32)(verts-start);
-	RCache.Vertex.Unlock		(vCount,tracers.sh_Geom->vb_stride);
-
-	if (vCount)
-	{
-		RCache.set_CullMode			(CULL_NONE);
-		RCache.set_xform_world		(Fidentity);
-		RCache.set_Shader			(tracers.sh_Tracer);
-		RCache.set_Geometry			(tracers.sh_Geom);
-		RCache.Render				(D3DPT_TRIANGLELIST,vOffset,0,vCount,0,vCount/2);
-		RCache.set_CullMode			(CULL_CCW);
-	}
+	UIRender->CacheSetCullMode(IUIRender::cmNONE);
+	UIRender->CacheSetXformWorld(Fidentity);
+	UIRender->SetShader(*tracers.sh_Tracer);
+	UIRender->FlushPrimitive();
+	UIRender->CacheSetCullMode(IUIRender::cmCCW);
 }
 
 void CBulletManager::CommitRenderSet		()	// @ the end of frame

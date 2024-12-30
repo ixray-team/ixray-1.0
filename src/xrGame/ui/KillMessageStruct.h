@@ -6,6 +6,7 @@
 // Copyright 2005 GSC Game World
 
 #pragma once
+#include "../ui_defs.h"
 
 struct PlayerInfo{
     shared_str	m_name;
@@ -14,7 +15,7 @@ struct PlayerInfo{
 
 struct IconInfo{
 	Frect		m_rect;
-	ref_shader	m_shader;
+	ui_shader	m_shader;
 };
 
 struct KillMessageStruct{

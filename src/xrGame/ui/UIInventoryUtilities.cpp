@@ -15,6 +15,8 @@
 #include "../game_base_space.h"
 #include "../actor.h"
 
+#include "../Include/xrRender/UIShader.h"
+
 #define BUY_MENU_TEXTURE "ui\\ui_mp_buy_menu"
 #define EQUIPMENT_ICONS  "ui\\ui_icon_equipment"
 #define CHAR_ICONS		 "ui\\ui_icons_npc"
@@ -26,10 +28,10 @@ const LPCSTR ratingField			= "rating_names";
 const LPCSTR reputationgField		= "reputation_names";
 const LPCSTR goodwillField			= "goodwill_names";
 
-ref_shader	g_BuyMenuShader			= NULL;
-ref_shader	g_EquipmentIconsShader	= NULL;
-ref_shader	g_MPCharIconsShader		= NULL;
-ref_shader	g_tmpWMShader			= NULL;
+ui_shader* g_BuyMenuShader = nullptr;
+ui_shader* g_EquipmentIconsShader = nullptr;
+ui_shader* g_MPCharIconsShader = nullptr;
+ui_shader* g_tmpWMShader = nullptr;
 static CUIStatic*	GetUIStatic				();
 
 typedef				std::pair<CHARACTER_RANK_VALUE, shared_str>	CharInfoStringID;
@@ -42,16 +44,25 @@ CharInfoStrings		*charInfoGoodwillStrings	= NULL;
 
 void InventoryUtilities::CreateShaders()
 {
-	g_tmpWMShader.create("effects\\wallmark",  "wm\\wm_grenade");
+	g_tmpWMShader = xr_new<ui_shader>();
+	(*g_tmpWMShader)->create("effects\\wallmark", "wm\\wm_grenade");
 }
 
 void InventoryUtilities::DestroyShaders()
 {
-	g_BuyMenuShader.destroy			();
-	g_EquipmentIconsShader.destroy	();
-	g_MPCharIconsShader.destroy		();
-	g_tmpWMShader.destroy			();
+	xr_delete(g_BuyMenuShader);
+	g_BuyMenuShader = nullptr;
+
+	xr_delete(g_EquipmentIconsShader);
+	g_EquipmentIconsShader = nullptr;
+
+	xr_delete(g_MPCharIconsShader);
+	g_MPCharIconsShader = nullptr;
+
+	xr_delete(g_tmpWMShader);
+	g_tmpWMShader = nullptr;
 }
+
 
 bool InventoryUtilities::GreaterRoomInRuck(PIItem item1, PIItem item2)
 {
@@ -155,34 +166,37 @@ bool InventoryUtilities::FreeRoom_inBelt	(TIItemContainer& item_list, PIItem _it
 	return true;
 }
 
-ref_shader& InventoryUtilities::GetBuyMenuShader()
-{	
-	if(!g_BuyMenuShader)
-	{
-		g_BuyMenuShader.create("hud\\default", BUY_MENU_TEXTURE);
-	}
-
-	return g_BuyMenuShader;
-}
-
-ref_shader& InventoryUtilities::GetEquipmentIconsShader()
-{	
-	if(!g_EquipmentIconsShader)
-	{
-		g_EquipmentIconsShader.create("hud\\default", EQUIPMENT_ICONS);
-	}
-
-	return g_EquipmentIconsShader;
-}
-
-ref_shader&	InventoryUtilities::GetMPCharIconsShader()
+const ui_shader& InventoryUtilities::GetBuyMenuShader()
 {
-	if(!g_MPCharIconsShader)
+	if (!g_BuyMenuShader)
 	{
-		g_MPCharIconsShader.create("hud\\default",  MP_CHAR_ICONS);
+		g_BuyMenuShader = xr_new<ui_shader>();
+		(*g_BuyMenuShader)->create("hud\\default", BUY_MENU_TEXTURE);
 	}
 
-	return g_MPCharIconsShader;
+	return *g_BuyMenuShader;
+}
+
+const ui_shader& InventoryUtilities::GetEquipmentIconsShader()
+{
+	if (!g_EquipmentIconsShader)
+	{
+		g_EquipmentIconsShader = xr_new<ui_shader>();
+		(*g_EquipmentIconsShader)->create("hud\\default", EQUIPMENT_ICONS);
+	}
+
+	return *g_EquipmentIconsShader;
+}
+
+const ui_shader& InventoryUtilities::GetMPCharIconsShader()
+{
+	if (!g_MPCharIconsShader)
+	{
+		g_MPCharIconsShader = xr_new<ui_shader>();
+		(*g_MPCharIconsShader)->create("hud\\default", MP_CHAR_ICONS);
+	}
+
+	return *g_MPCharIconsShader;
 }
 
 

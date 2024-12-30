@@ -212,6 +212,8 @@
     <ClInclude Include="..\xrRender\dxStatsRender.h" />
     <ClInclude Include="..\xrRender\dxThunderboltDescRender.h" />
     <ClInclude Include="..\xrRender\dxThunderboltRender.h" />
+    <ClInclude Include="..\xrRender\dxUIRender.h" />
+    <ClInclude Include="..\xrRender\dxUIShader.h" />
     <ClInclude Include="cl_intersect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
@@ -288,6 +290,8 @@
     <ClCompile Include="..\xrRender\dxStatsRender.cpp" />
     <ClCompile Include="..\xrRender\dxThunderboltDescRender.cpp" />
     <ClCompile Include="..\xrRender\dxThunderboltRender.cpp" />
+    <ClCompile Include="..\xrRender\dxUIRender.cpp" />
+    <ClCompile Include="..\xrRender\dxUIShader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Create</PrecompiledHeader>

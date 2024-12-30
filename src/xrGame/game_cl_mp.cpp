@@ -26,6 +26,7 @@
 #include "../xrEngine/string_table.h"
 #include "../xrEngine/IGame_Persistent.h"
 #include "MainMenu.h"
+#include "../Include/xrRender/UIShader.h"
 
 
 #define EQUIPMENT_ICONS "ui\\ui_mp_icon_kill"
@@ -66,27 +67,7 @@ game_cl_mp::game_cl_mp()
 
 game_cl_mp::~game_cl_mp()
 {
-	CL_TEAM_DATA_LIST_it it = TeamList.begin();
-	for(;it!=TeamList.end();++it)
-	{
-		if (it->IndicatorShader)
-			it->IndicatorShader.destroy();
-		if (it->InvincibleShader)
-			it->InvincibleShader.destroy();
-	};
 	TeamList.clear();
-
-	if (m_EquipmentIconsShader)
-		m_EquipmentIconsShader.destroy();
-	
-	if (m_KillEventIconsShader)
-		m_KillEventIconsShader.destroy();
-
-	if (m_RadiationIconsShader)
-		m_RadiationIconsShader.destroy();
-
-	if (m_BloodLossIconsShader)
-		m_BloodLossIconsShader.destroy();
 	
 	m_pSndMessagesInPlay.clear();
 	m_pSndMessages.clear();
@@ -612,11 +593,11 @@ void game_cl_mp::LoadTeamData			(const shared_str& TeamName)
 		
 		LPCSTR ShaderType	= pSettings->r_string(TeamName, "indicator_shader");
 		LPCSTR ShaderTexture = pSettings->r_string(TeamName, "indicator_texture");
-		Team.IndicatorShader.create(ShaderType, ShaderTexture);
+		Team.IndicatorShader->create(ShaderType, ShaderTexture);
 
 		ShaderType	= pSettings->r_string(TeamName, "invincible_shader");
 		ShaderTexture = pSettings->r_string(TeamName, "invincible_texture");
-		Team.InvincibleShader.create(ShaderType, ShaderTexture);
+		Team.InvincibleShader->create(ShaderType, ShaderTexture);
 	};
 	TeamList.push_back(Team);
 }
@@ -665,51 +646,35 @@ void game_cl_mp::OnSwitchPhase			(u32 old_phase, u32 new_phase)
 	}
 }
 
-ref_shader game_cl_mp::GetEquipmentIconsShader	()
+const ui_shader& game_cl_mp::GetEquipmentIconsShader()
 {
-	if (m_EquipmentIconsShader) return m_EquipmentIconsShader;
+	if (m_EquipmentIconsShader->inited())
+		return m_EquipmentIconsShader;
 
-	m_EquipmentIconsShader.create("hud\\default", EQUIPMENT_ICONS);
+	m_EquipmentIconsShader->create("hud\\default", EQUIPMENT_ICONS);
 	return m_EquipmentIconsShader;
 }
 
-ref_shader game_cl_mp::GetKillEventIconsShader	()
+const ui_shader& game_cl_mp::GetKillEventIconsShader()
 {
 	return GetEquipmentIconsShader();
-	/*
-	if (m_KillEventIconsShader) return m_KillEventIconsShader;
-
-	m_KillEventIconsShader.create("hud\\default", KILLEVENT_ICONS);
-	return m_KillEventIconsShader;
-	*/
 }
 
-ref_shader game_cl_mp::GetRadiationIconsShader	()
+const ui_shader& game_cl_mp::GetRadiationIconsShader()
 {
 	return GetEquipmentIconsShader();
-	/*
-	if (m_RadiationIconsShader) return m_RadiationIconsShader;
-
-	m_RadiationIconsShader.create("hud\\default", RADIATION_ICONS);
-	return m_RadiationIconsShader;
-	*/
 }
 
-ref_shader game_cl_mp::GetBloodLossIconsShader	()
+const ui_shader& game_cl_mp::GetBloodLossIconsShader()
 {
 	return GetEquipmentIconsShader();
-	/*
-	if (m_BloodLossIconsShader) return m_BloodLossIconsShader;
-
-	m_BloodLossIconsShader.create("hud\\default", BLOODLOSS_ICONS);
-	return m_BloodLossIconsShader;
-	*/
 }
-ref_shader		game_cl_mp::GetRankIconsShader()
+const ui_shader& game_cl_mp::GetRankIconsShader()
 {
-	if (m_RankIconsShader) return m_RankIconsShader;
+	if (m_RankIconsShader->inited())
+		return m_RankIconsShader;
 
-	m_RankIconsShader.create("hud\\default", RANK_ICONS);
+	m_RankIconsShader->create("hud\\default", RANK_ICONS);
 	return m_RankIconsShader;
 }
 
@@ -742,9 +707,6 @@ void game_cl_mp::OnPlayerKilled			(NET_Packet& P)
 
 	KMS.m_killer.m_name = NULL;
 	KMS.m_killer.m_color = color_rgba(255,255,255,255);
-
-	KMS.m_initiator.m_shader = NULL;
-	KMS.m_ext_info.m_shader = NULL;
 
 	switch (KillType)
 	{
@@ -1212,7 +1174,7 @@ void game_cl_mp::LoadBonuses				()
 			sprintf_s(IconH, "%s_h", IconStr);
 			if (pSettings->line_exist("mp_bonus_icons", IconShader))
 			{			
-				NewBonus.IconShader.create("hud\\default", pSettings->r_string("mp_bonus_icons", IconShader));
+				NewBonus.IconShader->create("hud\\default", pSettings->r_string("mp_bonus_icons", IconShader));
 			}
 			Frect IconRect;
 			IconRect.x1 = READ_IF_EXISTS(pSettings, r_float, "mp_bonus_icons", IconX,0);
@@ -1224,7 +1186,7 @@ void game_cl_mp::LoadBonuses				()
 		else
 		{
 			LPCSTR IconShader = CUITextureMaster::GetTextureFileName("ui_hud_status_blue_01");			
-			NewBonus.IconShader.create("hud\\default", IconShader);
+			NewBonus.IconShader->create("hud\\default", IconShader);
 
 			Frect IconRect;
 			for (u32 r=1; r<=5; r++)

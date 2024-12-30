@@ -273,6 +273,12 @@
     <ClInclude Include="..\xrRender\dxThunderboltRender.h">
       <Filter>Kernel</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\dxUIRender.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\dxUIShader.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -597,6 +603,12 @@
       <Filter>Kernel</Filter>
     </ClCompile>
     <ClCompile Include="..\xrRender\dxThunderboltRender.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxUIRender.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxUIShader.cpp">
       <Filter>Kernel</Filter>
     </ClCompile>
   </ItemGroup>

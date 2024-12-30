@@ -2,6 +2,8 @@
 #include "UIProgressShape.h"
 
 #include "UIStatic.h"
+#include "../Include/xrRender/UIShader.h"
+#include "../Include/xrRender/UIRender.h"
 
 CUIProgressShape::CUIProgressShape(){
 	m_pBackground	= NULL;
@@ -57,16 +59,10 @@ void CUIProgressShape::Draw()
 	if(m_bText)
 		m_pTexture->DrawText		();
 
-	ref_shader sh					= m_pTexture->GetShader();
-	ref_geom	gm					= GetUIGeom();
-	RCache.set_Shader				(sh);
-	CTexture* T						= RCache.get_ActiveTexture(0);
+	UIRender->SetShader(*m_pTexture->GetShader());
 	Fvector2						tsize;
-	tsize.set						(float(T->get_Width()),float(T->get_Height()));
-
-	
-	u32	offset;
-	FVF::TL*	pv					= (FVF::TL*)RCache.Vertex.Lock	(m_sectorCount*3, gm.stride(), offset);
+	UIRender->GetActiveTextureResolution(tsize);
+	UIRender->StartPrimitive(m_sectorCount * 3, IUIRender::ptTriList, IUIRender::ePointType::pttTL);
 
 	Frect pos_rect;
 	m_pTexture->GetAbsoluteRect		(pos_rect);
@@ -107,7 +103,7 @@ void CUIProgressShape::Draw()
 		float ffff					= calc_color		(i+1, m_sectorCount, m_stage, 1.0f);
 		u32 color					= color_argb_f		(ffff,1.0f,1.0f,1.0f); 
 
-		pv->set						(center_pos.x, center_pos.y, color, center_tex.x, center_tex.y);++pv;
+		UIRender->PushPoint(center_pos.x, center_pos.y, 0, color, center_tex.x, center_tex.y);
 
 		Fvector2	tp;
 		tp.set						(prev_pos_pt);
@@ -117,7 +113,10 @@ void CUIProgressShape::Draw()
 		tx.set						(prev_tex_pt);
 		tx.add						(center_tex);
 
-		pv->set						(tp.x, tp.y, color, tx.x, tx.y);++pv;
+		Fvector2 tp1;
+		Fvector2 tx1;
+		tp1.set(tp);
+		tx1.set(tx);
 
 		if(m_bClockwise)
 			curr_angle				-= PI_MUL_2/float(m_sectorCount);
@@ -136,21 +135,17 @@ void CUIProgressShape::Draw()
 		tx.set						(prev_tex_pt);
 		tx.add						(center_tex);
 
-		pv->set						(tp.x, tp.y, color, tx.x, tx.y);++pv;
-
-	if(!m_bClockwise)
-		std::swap					(*(pv-1), *(pv-2));
+		if (m_bClockwise)
+		{
+			UIRender->PushPoint(tp1.x, tp1.y, 0, color, tx1.x, tx1.y);
+			UIRender->PushPoint(tp.x, tp.y, 0, color, tx.x, tx.y);
+		}
+		else
+		{
+			UIRender->PushPoint(tp.x, tp.y, 0, color, tx.x, tx.y);
+			UIRender->PushPoint(tp1.x, tp1.y, 0, color, tx1.x, tx1.y);
+		}
 	}
 
-
-	RCache.Vertex.Unlock		(m_sectorCount*3, gm.stride());
-	RCache.set_Geometry			(gm);
-	
-//	if(!m_bClockwise)
-//		RCache.set_CullMode			(CULL_NONE);
-
-	RCache.Render				(D3DPT_TRIANGLELIST, offset, m_sectorCount);
-
-//	if(!m_bClockwise)
-//		RCache.set_CullMode			(CULL_CCW);
+	UIRender->FlushPrimitive();
 }
