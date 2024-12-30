@@ -314,7 +314,4 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\Stalker_net.manifest" />
-  </ItemGroup>
 </Project>
