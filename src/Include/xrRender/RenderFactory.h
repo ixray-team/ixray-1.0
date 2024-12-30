@@ -57,9 +57,9 @@ public:
 #endif // _EDITOR
 
 #ifndef _EDITOR
-//	RENDER_FACTORY_INTERFACE(EnvironmentRender)
-//	RENDER_FACTORY_INTERFACE(EnvDescriptorMixerRender)
-//	RENDER_FACTORY_INTERFACE(EnvDescriptorRender)
+	RENDER_FACTORY_INTERFACE(EnvironmentRender)
+	RENDER_FACTORY_INTERFACE(EnvDescriptorMixerRender)
+	RENDER_FACTORY_INTERFACE(EnvDescriptorRender)
 //	RENDER_FACTORY_INTERFACE(RainRender)
 	RENDER_FACTORY_INTERFACE(LensFlareRender)
 //	RENDER_FACTORY_INTERFACE(ThunderboltRender)

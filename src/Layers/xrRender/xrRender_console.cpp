@@ -56,6 +56,8 @@ float		ps_r1_pps_v					= 0.f	;
 int			ps_r1_GlowsPerFrame			= 16	;					// r1-only
 int ps_r1_use_terrain_mask = 0;
 
+float		ps_r1_fog_luminance			= 1.1f;
+
 // R2
 float		ps_r2_ssaLOD_A				= 48.f	;
 float		ps_r2_ssaLOD_B				= 32.f	;
@@ -298,6 +300,7 @@ void		xrRender_initconsole	()
 	CMD4(CCC_Integer,	"r1_glows_per_frame",	&ps_r1_GlowsPerFrame,		2,		32		);
 	CMD3(CCC_Mask, "r1_use_terrain_mask", &ps_r1_flags, R1FLAG_TERRAIN_MASK);
 	CMD3(CCC_Mask, "r1_actor_shadow", &ps_r1_flags, R1FLAG_ACTOR_SHADOW);
+	CMD4(CCC_Float, "r1_fog_luminance", &ps_r1_fog_luminance, 0.2f,	5.f);
 
 	// R2
 	CMD4(CCC_Float,		"r2_ssa_lod_a",			&ps_r2_ssaLOD_A,			16,		96		);

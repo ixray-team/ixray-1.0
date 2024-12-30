@@ -203,6 +203,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\xrRender\ColorMapManager.h" />
+    <ClInclude Include="..\xrRender\dxEnvironmentRender.h" />
     <ClInclude Include="..\xrRender\dxFontRender.h" />
     <ClInclude Include="..\xrRender\dxLensFlareRender.h" />
     <ClInclude Include="..\xrRender\dxRenderDeviceRender.h" />
@@ -274,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\xrRender\ColorMapManager.cpp" />
+    <ClCompile Include="..\xrRender\dxEnvironmentRender.cpp" />
     <ClCompile Include="..\xrRender\dxFontRender.cpp" />
     <ClCompile Include="..\xrRender\dxLensFlareRender.cpp" />
     <ClCompile Include="..\xrRender\dxRenderDeviceRender.cpp" />
