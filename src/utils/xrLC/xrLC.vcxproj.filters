@@ -376,9 +376,6 @@
     <ClCompile Include="xrFace.cpp">
       <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Internal</Filter>
     </ClCompile>
-    <ClCompile Include="..\xrEngine\xrLoadSurface.cpp">
-      <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Internal</Filter>
-    </ClCompile>
     <ClCompile Include="tga.cpp">
       <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Internal\Targa</Filter>
     </ClCompile>
@@ -424,6 +421,7 @@
     <ClCompile Include="xrMU_Model_Load.cpp">
       <Filter>%2a%2a%2a COMPILER %2a%2a%2a\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\xrEngine\xrLoadSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">

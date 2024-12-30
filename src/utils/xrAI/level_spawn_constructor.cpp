@@ -24,7 +24,7 @@
 #include "space_restrictor_wrapper.h"
 #include "object_broker.h"
 #include "restriction_space.h"
-
+#include <random>
 #define IGNORE_ZERO_SPAWN_POSITIONS
 
 extern thread_local std::mt19937 rng;

@@ -73,6 +73,12 @@
     <Filter Include="XmlParser">
       <UniqueIdentifier>{1ad2b447-f393-45f4-8e01-70abbf0345da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{5f363df5-ffa7-47db-810a-c5f885734810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{278c4163-6ce0-43d7-b7ce-c9553ec71276}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -265,11 +271,14 @@
     <ClCompile Include="string_concatenations.cpp">
       <Filter>Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="memory_alloc_pure.cpp">
-      <Filter>Memory manager</Filter>
+    <ClCompile Include="Platform\Windows\OSFile.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="memory_alloc_xr.cpp">
-      <Filter>Memory manager</Filter>
+    <ClCompile Include="Platform\Windows\OSThread.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\UTF8.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,9 +292,6 @@
       <Filter>Kernel</Filter>
     </ClInclude>
     <ClInclude Include="xrCore.h">
-      <Filter>Kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="xrCore_platform.h">
       <Filter>Kernel</Filter>
     </ClInclude>
     <ClInclude Include="_bitwise.h">
@@ -564,6 +570,30 @@
     </ClInclude>
     <ClInclude Include="memory_alloc_xr.h">
       <Filter>Memory manager</Filter>
+    </ClCompile>
+    <ClInclude Include="Platform\Platform.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\PlatformAPI.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\OSFile.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\OSMath.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\OSThread.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\PlatformAPI.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\PlatformInit.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\UTF8.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

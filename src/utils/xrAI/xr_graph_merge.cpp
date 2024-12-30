@@ -24,6 +24,9 @@
 #include "guid_generator.h"
 #include "game_graph_builder.h"
 #include <direct.h>
+#include <random>
+
+thread_local std::mt19937 rng = std::mt19937(std::random_device()());
 
 thread_local std::mt19937 rng = std::mt19937(std::random_device()());
 

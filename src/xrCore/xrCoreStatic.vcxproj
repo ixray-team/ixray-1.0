@@ -184,6 +184,9 @@
     <ClCompile Include="memory_alloc_pure.cpp" />
     <ClCompile Include="memory_alloc_xr.cpp" />
     <ClCompile Include="os_clipboard.cpp" />
+    <ClCompile Include="Platform\Windows\OSFile.cpp" />
+    <ClCompile Include="Platform\Windows\OSThread.cpp" />
+    <ClCompile Include="Platform\Windows\UTF8.cpp" />
     <ClCompile Include="stdafx.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -382,12 +385,19 @@
     <ClInclude Include="memory_alloc_pure.h" />
     <ClInclude Include="memory_alloc_xr.h" />
     <ClInclude Include="os_clipboard.h" />
+    <ClInclude Include="Platform\Platform.h" />
+    <ClInclude Include="Platform\PlatformAPI.h" />
+    <ClInclude Include="Platform\Windows\OSFile.h" />
+    <ClInclude Include="Platform\Windows\OSMath.h" />
+    <ClInclude Include="Platform\Windows\OSThread.h" />
+    <ClInclude Include="Platform\Windows\PlatformAPI.h" />
+    <ClInclude Include="Platform\Windows\PlatformInit.h" />
+    <ClInclude Include="Platform\Windows\UTF8.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="string_concatenations.h" />
     <ClInclude Include="string_concatenations_inline.h" />
     <ClInclude Include="xrCore.h" />
-    <ClInclude Include="xrCore_platform.h" />
     <ClInclude Include="_bitwise.h" />
     <ClInclude Include="_color.h" />
     <ClInclude Include="_compressed_normal.h" />

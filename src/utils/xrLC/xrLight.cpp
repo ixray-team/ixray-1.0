@@ -8,7 +8,6 @@ xrCriticalSection	task_CS
 	(MUTEX_PROFILE_ID(task_C_S))
 #endif // PROFILE_CRITICAL_SECTIONS
 ;
-
 #include <random>
 
 thread_local std::mt19937 rng = std::mt19937(std::random_device()());
