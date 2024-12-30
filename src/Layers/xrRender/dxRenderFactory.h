@@ -25,8 +25,8 @@ class dxRenderFactory : public IRenderFactory
 
 #ifndef _EDITOR	
 	RENDER_FACTORY_DECLARE(FlareRender)
-//	RENDER_FACTORY_DECLARE(ThunderboltRender)
-//	RENDER_FACTORY_DECLARE(ThunderboltDescRender)
+	RENDER_FACTORY_DECLARE(ThunderboltRender)
+	RENDER_FACTORY_DECLARE(ThunderboltDescRender)
 	RENDER_FACTORY_DECLARE(RainRender)
 	RENDER_FACTORY_DECLARE(LensFlareRender)
 	RENDER_FACTORY_DECLARE(EnvironmentRender)

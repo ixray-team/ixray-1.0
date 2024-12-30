@@ -211,6 +211,8 @@
     <ClInclude Include="..\xrRender\dxRenderDeviceRender.h" />
     <ClInclude Include="..\xrRender\dxRenderFactory.h" />
     <ClInclude Include="..\xrRender\dxStatsRender.h" />
+    <ClInclude Include="..\xrRender\dxThunderboltDescRender.h" />
+    <ClInclude Include="..\xrRender\dxThunderboltRender.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="FStaticRender.h" />
@@ -275,6 +277,8 @@
     <ClCompile Include="..\xrRender\dxRenderDeviceRender.cpp" />
     <ClCompile Include="..\xrRender\dxRenderFactory.cpp" />
     <ClCompile Include="..\xrRender\dxStatsRender.cpp" />
+    <ClCompile Include="..\xrRender\dxThunderboltDescRender.cpp" />
+    <ClCompile Include="..\xrRender\dxThunderboltRender.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Create</PrecompiledHeader>
