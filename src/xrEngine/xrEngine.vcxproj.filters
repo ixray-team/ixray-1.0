@@ -342,15 +342,6 @@
     <ClInclude Include="WaveForm.h">
       <Filter>Render\Execution &amp; 3D\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Blenders\Blender.h">
-      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
-    </ClInclude>
-    <ClInclude Include="Blenders\Blender_CLSID.h">
-      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
-    </ClInclude>
-    <ClInclude Include="Blenders\Blender_Recorder.h">
-      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
-    </ClInclude>
     <ClInclude Include="tss.h">
       <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
     </ClInclude>
@@ -488,6 +479,15 @@
     </ClInclude>
     <ClInclude Include="EngineExternal.h">
       <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Layers\xrRender\blenders\Blender.h">
+      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Layers\xrRender\blenders\Blender_CLSID.h">
+      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Layers\xrRender\blenders\Blender_Recorder.h">
+      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -704,15 +704,6 @@
     <ClCompile Include="xr_effgamma.cpp">
       <Filter>Render\Execution &amp; 3D\Gamma</Filter>
     </ClCompile>
-    <ClCompile Include="Blenders\Blender.cpp">
-      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
-    </ClCompile>
-    <ClCompile Include="Blenders\Blender_Palette.cpp">
-      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
-    </ClCompile>
-    <ClCompile Include="Blenders\Blender_Recorder.cpp">
-      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
-    </ClCompile>
     <ClCompile Include="Blender_Recorder_R2.cpp">
       <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
     </ClCompile>
@@ -862,6 +853,15 @@
     </ClCompile>
     <ClCompile Include="EngineExternalEnums.cpp">
       <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Layers\xrRender\blenders\Blender.cpp">
+      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Layers\xrRender\blenders\Blender_Palette.cpp">
+      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Layers\xrRender\blenders\Blender_Recorder.cpp">
+      <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
