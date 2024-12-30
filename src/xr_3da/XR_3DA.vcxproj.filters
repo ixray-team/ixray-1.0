@@ -887,6 +887,7 @@
     <Image Include="ui_splash3.bmp">
       <Filter>General\Resources</Filter>
     </Image>
+    <Image Include="ixray_splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ClientServer.txt" />
