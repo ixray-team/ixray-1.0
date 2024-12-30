@@ -87,7 +87,7 @@ typedef void DUMMY_STUFF (const void*,const u32&,void*);
 XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
 
 #define TRIVIAL_ENCRYPTOR_DECODER
-#include "..\trivial_encryptor.h"
+#include "..\..\xr_3da\trivial_encryptor.h"
 
 // CStalker_netApp initialization
 
