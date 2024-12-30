@@ -128,9 +128,9 @@ void CTextureDescrMngr::LoadTHM()
 		texture_desc& desc		= m_texture_details[fn];
                 desc.m_type                     = tp.type;
 #endif
-		if (STextureParams::ttImage		== tp.fmt ||
-			STextureParams::ttTerrain	== tp.fmt ||
-			STextureParams::ttNormalMap	== tp.fmt	)
+		if (STextureParams::ttImage		== tp.type ||
+			STextureParams::ttTerrain	== tp.type ||
+			STextureParams::ttNormalMap	== tp.type )
 		{
 #ifndef _EDITOR
 		texture_desc& desc		 = m_texture_details[fn];
