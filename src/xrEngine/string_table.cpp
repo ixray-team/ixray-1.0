@@ -57,14 +57,14 @@ void CStringTable::Init		()
 	ReparseKeyBindings();
 }
 
-#include "../xrXmlParser/xrXMLParser.h"
+#include "../xrCore/XmlParser/xrXMLParser.h"
 void CStringTable::Load	(LPCSTR xml_file_full)
 {
 	CXml						uiXml;
 	string_path					_s;
 	strconcat(sizeof(_s), _s, "text\\", pData->m_sLanguage.c_str() );
 
-	uiXml.Load					(CONFIG_PATH, _s, xml_file_full);
+	uiXml.Load(CONFIG_PATH, _s, xml_file_full);
 
 	//общий список всех записей таблицы в файле
 	int string_num = uiXml.GetNodesNum		(uiXml.GetRoot(), "string");

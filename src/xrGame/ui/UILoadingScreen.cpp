@@ -13,7 +13,7 @@ UILoadingScreen::UILoadingScreen()
 
 void UILoadingScreen::Initialize() {
     CUIXml uiXml;
-    uiXml.Init(CONFIG_PATH, UI_PATH, "ui_mm_loading_screen.xml");
+    uiXml.Load(CONFIG_PATH, UI_PATH, "ui_mm_loading_screen.xml");
 
     const auto loadProgressBar = [&]() 
         {

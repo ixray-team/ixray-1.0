@@ -55,7 +55,7 @@ void CUITextureMaster::ParseShTexInfo(LPCSTR xml_file){
 void CUITextureMaster::ParseShTexInfoNew(LPCSTR xml_file)
 {
 	CUIXml						xml;
-	xml.Init					(CONFIG_PATH, "ui\\textures_descr", xml_file);
+	xml.Load(CONFIG_PATH, "ui\\textures_descr", xml_file);
 
 	int files_num				= xml.GetNodesNum("",0,"file");
 
