@@ -264,6 +264,9 @@
     <ClInclude Include="..\xrRender\dxRainRender.h">
       <Filter>Kernel</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\dxStatsRender.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -579,6 +582,9 @@
       <Filter>Kernel</Filter>
     </ClCompile>
     <ClCompile Include="..\xrRender\dxRainRender.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxStatsRender.cpp">
       <Filter>Kernel</Filter>
     </ClCompile>
   </ItemGroup>
