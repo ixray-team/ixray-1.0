@@ -14,7 +14,7 @@
 #include "Spectator.h"
 #include "Inventory.h"
 #include "xrserver_objects_alife_items.h"
-#include "xr_level_controller.h"
+#include "../xrEngine/xr_level_controller.h"
 #include "ui/xrUIXmlParser.h"
 #include "ui/UIFrags.h"
 #include "game_cl_Deathmatch.h"

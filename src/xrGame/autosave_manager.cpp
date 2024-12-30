@@ -48,7 +48,7 @@ float CAutosaveManager::shedule_Scale		()
 #include "UIGameCustom.h"
 #include "Actor.h"
 #include "MainMenu.h"
-#include "string_table.h"
+#include "../xrEngine/string_table.h"
 
 void CAutosaveManager::shedule_Update		(u32 dt)
 {

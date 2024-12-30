@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "string_table.h"
-
-#include "ui/xrUIXmlParser.h"
 #include "xr_level_controller.h"
 
-STRING_TABLE_DATA* CStringTable::pData = NULL;
+ENGINE_API CStringTable* g_pStringTable = nullptr;
+
+STRING_TABLE_DATA* CStringTable::pData = nullptr;
 BOOL CStringTable::m_bWriteErrorsToLog = FALSE;
 
 CStringTable::CStringTable	()
@@ -16,9 +16,10 @@ void CStringTable::Destroy	()
 {
 	xr_delete(pData);
 }
+
 void CStringTable::rescan()
 {
-	if(NULL != pData)	return;
+	if(nullptr != pData)	return;
 	Destroy				();
 	Init				();
 }
@@ -56,11 +57,12 @@ void CStringTable::Init		()
 	ReparseKeyBindings();
 }
 
+#include "../xrXmlParser/xrXMLParser.h"
 void CStringTable::Load	(LPCSTR xml_file_full)
 {
-	CUIXml						uiXml;
+	CXml						uiXml;
 	string_path					_s;
-	strconcat					(sizeof(_s),_s, "text\\", pData->m_sLanguage.c_str() );
+	strconcat(sizeof(_s), _s, "text\\", pData->m_sLanguage.c_str() );
 
 	uiXml.Load					(CONFIG_PATH, _s, xml_file_full);
 
@@ -69,11 +71,16 @@ void CStringTable::Load	(LPCSTR xml_file_full)
 
 	for(int i=0; i<string_num; ++i)
 	{
-		LPCSTR string_name = uiXml.ReadAttrib(uiXml.GetRoot(), "string", i, "id", NULL);
+		LPCSTR string_name = uiXml.ReadAttrib(uiXml.GetRoot(), "string", i, "id", nullptr);
 
-		VERIFY3(pData->m_StringTable.find(string_name) == pData->m_StringTable.end(), "duplicate string table id", string_name);
+		bool isDublicate = pData->m_StringTable.find(string_name) != pData->m_StringTable.end();
+		if (isDublicate)
+		{
+			VERIFY3(!isDublicate, "duplicate string table id", string_name);
+			Msg("! duplicate string table id: %s", string_name);
+		}
 
-		LPCSTR string_text		= uiXml.Read(uiXml.GetRoot(), "string:text", i,  NULL);
+		LPCSTR string_text		= uiXml.Read(uiXml.GetRoot(), "string:text", i,  nullptr);
 
 		if(m_bWriteErrorsToLog && string_text)
 			Msg("[string table] '%s' no translation in '%s'", string_name, pData->m_sLanguage.c_str() );
@@ -98,6 +105,10 @@ void CStringTable::ReparseKeyBindings()
 	}
 }
 
+xr_string CStringTable::LangName()
+{
+	return pData->m_sLanguage.c_str();
+}
 
 STRING_VALUE CStringTable::ParseLine(LPCSTR str, LPCSTR skey, bool bFirst)
 {
@@ -146,9 +157,7 @@ STRING_VALUE CStringTable::ParseLine(LPCSTR str, LPCSTR skey, bool bFirst)
 
 STRING_VALUE CStringTable::translate (const STRING_ID& str_id) const
 {
-	VERIFY					(pData);
-
-	if(pData->m_StringTable.find(str_id)!=pData->m_StringTable.end())
+	if(pData != nullptr && pData->m_StringTable.find(str_id)!=pData->m_StringTable.end())
 		return  pData->m_StringTable[str_id];
 	else
 		return str_id;

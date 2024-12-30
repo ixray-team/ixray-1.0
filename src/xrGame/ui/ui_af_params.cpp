@@ -83,7 +83,7 @@ bool CUIArtefactParams::Check(const shared_str& af_section)
 {
 	return !!pSettings->line_exist(af_section, "af_actor_properties");
 }
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 void CUIArtefactParams::SetInfo(const shared_str& af_section)
 {
 

@@ -492,6 +492,12 @@
     <ClInclude Include="ILoadingScreen.h">
       <Filter>Game API</Filter>
     </ClInclude>
+    <ClInclude Include="string_table.h">
+      <Filter>Game API</Filter>
+    </ClInclude>
+    <ClInclude Include="xr_level_controller.h">
+      <Filter>Game API</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="defines.cpp">
@@ -865,6 +871,12 @@
     </ClCompile>
     <ClCompile Include="..\Layers\xrRender\blenders\Blender_Recorder.cpp">
       <Filter>Render\Execution &amp; 3D\Shaders\Blender</Filter>
+    </ClCompile>
+    <ClCompile Include="string_table.cpp">
+      <Filter>Game API</Filter>
+    </ClCompile>
+    <ClCompile Include="xr_level_controller.cpp">
+      <Filter>Game API</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

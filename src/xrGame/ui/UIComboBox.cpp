@@ -109,7 +109,7 @@ void CUIComboBox::OnListItemSelect()
 	}
 }
 
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 void CUIComboBox::SetCurrentValue()
 {
 	m_list.Clear		();

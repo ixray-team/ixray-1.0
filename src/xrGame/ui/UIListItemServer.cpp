@@ -72,7 +72,7 @@ void CUIListItemServer::Init(LIST_SRV_ITEM& params, float x, float y, float widt
 
 	m_srv_info = params;
 }
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 u32 cut_string_by_length(CGameFont* pFont, LPCSTR src, LPSTR dst, u32 dst_size, float length);
 
 void CUIListItemServer::SetParams(LIST_SRV_ITEM& params){

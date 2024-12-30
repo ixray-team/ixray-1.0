@@ -5,7 +5,7 @@
 #include "../level.h"
 #include "../UICustomItem.h"
 
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 #include "UIFrameWindow.h"
 #include "UIStatic.h"
 #include "UICheckButton.h"
@@ -30,8 +30,6 @@
 #include "UITextureMaster.h"
 #include "UIDragDropListEx.h"
 #include "UItabButtonMP.h"
-
-extern int keyname_to_dik(LPCSTR);
 
 #define ARIAL_FONT_NAME			"arial"
 
@@ -302,7 +300,6 @@ bool CUIXmlInit::InitText(CUIXml& xml_doc, const char* path, int index, IUITextC
 	return true;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////
-extern int keyname_to_dik(LPCSTR);
 
 bool CUIXmlInit::Init3tButton(CUIXml& xml_doc, const char* path, int index, CUI3tButton* pWnd){
 	R_ASSERT3(xml_doc.NavigateToNode(path,index), "XML node not found", path);

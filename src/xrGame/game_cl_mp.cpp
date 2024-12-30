@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "game_cl_mp.h"
-#include "xr_level_controller.h"
+#include "../xrEngine/xr_level_controller.h"
 #include "xrMessages.h"
 #include "GameObject.h"
 #include "Actor.h"
@@ -23,7 +23,7 @@
 #include "ui/UIVotingCategory.h"
 #include "ui/UIVote.h"
 #include "ui/UIMessageBoxEx.h"
-#include "string_table.h"
+#include "../xrEngine/string_table.h"
 #include "../xrEngine/IGame_Persistent.h"
 #include "MainMenu.h"
 

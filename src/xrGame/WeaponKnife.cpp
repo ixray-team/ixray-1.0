@@ -5,7 +5,7 @@
 #include "Entity.h"
 #include "Actor.h"
 #include "level.h"
-#include "xr_level_controller.h"
+#include "../xrEngine/xr_level_controller.h"
 #include "game_cl_base.h"
 #include "../xrEngine/skeletonanimated.h"
 #include "gamemtllib.h"

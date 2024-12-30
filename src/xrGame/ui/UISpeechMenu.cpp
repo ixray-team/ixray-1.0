@@ -6,7 +6,7 @@
 #include "../game_cl_mp.h"
 #include <dinput.h>
 #include "../level.h"
-#include "../string_table.h"
+#include "../../xrEngine/string_table.h"
 #include "../HUDManager.h"
 
 CUISpeechMenu::CUISpeechMenu(LPCSTR section_name){

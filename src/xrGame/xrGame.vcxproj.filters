@@ -4803,9 +4803,6 @@
     <ClInclude Include="debug_renderer_inline.h">
       <Filter>Core\Client\Level\Debug Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="xr_level_controller.h">
-      <Filter>Core\Client\Level Controller</Filter>
-    </ClInclude>
     <ClInclude Include="level_debug.h">
       <Filter>Core\Client\Level Debug</Filter>
     </ClInclude>
@@ -5525,12 +5522,6 @@
     </ClInclude>
     <ClInclude Include="smart_cast_impl2.h">
       <Filter>Core\Common\SmartCast</Filter>
-    </ClInclude>
-    <ClInclude Include="string_table.h">
-      <Filter>Core\Common\StringTable</Filter>
-    </ClInclude>
-    <ClInclude Include="string_table_defs.h">
-      <Filter>Core\Common\StringTable</Filter>
     </ClInclude>
     <ClInclude Include="associative_vector.h">
       <Filter>Core\Common\associative_vector\vector</Filter>
@@ -7946,9 +7937,6 @@
     <ClCompile Include="debug_renderer.cpp">
       <Filter>Core\Client\Level\Debug Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="xr_level_controller.cpp">
-      <Filter>Core\Client\Level Controller</Filter>
-    </ClCompile>
     <ClCompile Include="level_debug.cpp">
       <Filter>Core\Client\Level Debug</Filter>
     </ClCompile>
@@ -8650,9 +8638,6 @@
     </ClCompile>
     <ClCompile Include="smart_cast_stats.cpp">
       <Filter>Core\Common\SmartCast</Filter>
-    </ClCompile>
-    <ClCompile Include="string_table.cpp">
-      <Filter>Core\Common\StringTable</Filter>
     </ClCompile>
     <ClCompile Include="RegistryFuncs.cpp">
       <Filter>Core\Common\Registry</Filter>

@@ -200,7 +200,7 @@ void CHUDManager::Render_Last()
 extern void draw_wnds_rects();
 extern ENGINE_API BOOL bShowPauseString;
 //отрисовка элементов интерфейса
-#include "string_table.h"
+#include "../xrEngine/string_table.h"
 void  CHUDManager::RenderUI()
 {
 	if(!b_online)					return;
