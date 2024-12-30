@@ -17,7 +17,6 @@
 #include "resource.h"
 #include "LightAnimLibrary.h"
 #include "ispatial.h"
-#include "CopyProtection.h"
 #include "Text_Console.h"
 #include <process.h>
 #include <wincodec.h>
@@ -116,7 +115,6 @@ void InitEngine		()
 	Engine.Initialize			( );
 	while (!g_bIntroFinished)	Sleep	(100);
 	Device.Initialize			( );
-	CheckCopyProtection			( );
 }
 
 void InitSettings	()
@@ -254,8 +252,7 @@ void Startup					( )
 	logoWindow					= NULL;
 
 	// Main cycle
-	CheckCopyProtection			( );
-Memory.mem_usage();
+	Memory.mem_usage();
 	Device.Run					( );
 
 	// Destroy APP
@@ -660,16 +657,11 @@ struct damn_keys_filter {
 #undef dwFilterKeysStructSize
 #undef dwToggleKeysStructSize
 
-// ѕриблудина дл€ SecuROM-а
-#include "securom_api.h"
-
 // ‘унци€ дл€ тупых требований THQ и тупых американских пользователей
 BOOL IsOutOfVirtualMemory()
 {
 #define VIRT_ERROR_SIZE 256
 #define VIRT_MESSAGE_SIZE 512
-
-	SECUROM_MARKER_HIGH_SECURITY_ON(1)
 
 	MEMORYSTATUSEX statex;
 	DWORD dwPageFileInMB = 0;
@@ -700,8 +692,6 @@ BOOL IsOutOfVirtualMemory()
 		return 0;
 
 	MessageBox( NULL , pszMessage , pszError , MB_OK | MB_ICONHAND );
-
-	SECUROM_MARKER_HIGH_SECURITY_OFF(1)
 
 	return 1;
 }
@@ -1118,7 +1108,6 @@ void CApplication::LoadBegin	()
 		phase_timer.Start	();
 		load_stage			= 0;
 
-		CheckCopyProtection	();
 	}
 }
 
@@ -1157,7 +1146,6 @@ void CApplication::LoadDraw		()
 		load_draw_internal			();
 
 	Device.End					();
-	CheckCopyProtection			();
 }
 
 void CApplication::LoadTitleInt(LPCSTR str)
@@ -1259,7 +1247,6 @@ void CApplication::Level_Set(u32 L)
 		hLevelLogo.create	("font", "intro\\intro_no_start_picture");
 		
 
-	CheckCopyProtection		();
 }
 
 int CApplication::Level_ID(LPCSTR name)
