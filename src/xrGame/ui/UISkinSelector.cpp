@@ -88,7 +88,8 @@ void CUISkinSelectorWnd::UpdateSkins(){
             m_pImage[i]->InitTextureEx(m_skins[i + m_firstSkin].c_str(), *m_shader);
 		else
 			m_pImage[i]->InitTexture(m_skins[i + m_firstSkin].c_str());
-		m_pImage[i]->RescaleRelative2Rect(m_pImage[i]->GetStaticItem()->GetOriginalRect());
+		// St4lker0k765: is it even necessary? (especially in non 4x3 case)
+		//m_pImage[i]->RescaleRelative2Rect(m_pImage[i]->GetStaticItem()->GetOriginalRect());
 
 		if (m_iActiveIndex - m_firstSkin == i)
 			m_pImage[i]->SetSelectedState(true);
