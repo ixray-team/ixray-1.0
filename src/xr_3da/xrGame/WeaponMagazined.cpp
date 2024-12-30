@@ -868,8 +868,9 @@ void CWeaponMagazined::InitAddons()
 		if(m_eScopeStatus == ALife::eAddonAttachable)
 		{
 			m_sScopeName = pSettings->r_string(cNameSect(), "scope_name");
-			m_iScopeX	 = pSettings->r_s32(cNameSect(),"scope_x");
-			m_iScopeY	 = pSettings->r_s32(cNameSect(),"scope_y");
+			int UseHQ = EngineExternal()[EEngineExternalUI::HQIcons];
+			m_iScopeX	 = pSettings->r_s32(cNameSect(),"scope_x") * (1 + UseHQ);
+			m_iScopeY	 = pSettings->r_s32(cNameSect(),"scope_y") * (1 + UseHQ);
 
 			shared_str scope_tex_name;
 			scope_tex_name = pSettings->r_string(*m_sScopeName, "scope_texture");

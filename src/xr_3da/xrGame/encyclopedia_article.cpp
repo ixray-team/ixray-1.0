@@ -76,10 +76,11 @@ void CEncyclopediaArticle::load_shared	(LPCSTR)
 	{
 		data()->image.SetShader(InventoryUtilities::GetEquipmentIconsShader());
 
-		float x			= float(pSettings->r_u32(ltx, "inv_grid_x") * INV_GRID_WIDTH);
-		float y			= float(pSettings->r_u32(ltx, "inv_grid_y") * INV_GRID_HEIGHT);
-		float width		= float(pSettings->r_u32(ltx, "inv_grid_width") * INV_GRID_WIDTH);
-		float height	= float(pSettings->r_u32(ltx, "inv_grid_height") * INV_GRID_HEIGHT);
+		int UseHQ = EngineExternal()[EEngineExternalUI::HQIcons];
+		float x			= float(pSettings->r_u32(ltx, "inv_grid_x") * INV_GRID_WIDTH * (1 + UseHQ));
+		float y			= float(pSettings->r_u32(ltx, "inv_grid_y") * INV_GRID_HEIGHT * (1 + UseHQ));
+		float width		= float(pSettings->r_u32(ltx, "inv_grid_width") * INV_GRID_WIDTH * (1 + UseHQ));
+		float height	= float(pSettings->r_u32(ltx, "inv_grid_height") * INV_GRID_HEIGHT * (1 + UseHQ));
 
 		data()->image.GetUIStaticItem().SetOriginalRect(x, y, width, height);
 		data()->image.ClipperOn();

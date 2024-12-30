@@ -630,6 +630,8 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance,
 	Core._initialize			("xray",NULL, TRUE, fsgame[0] ? fsgame : NULL);
 	InitSettings				();
 
+	EngineExternal				();
+
 #ifndef DEDICATED_SERVER
 	{
 		damn_keys_filter		filter;

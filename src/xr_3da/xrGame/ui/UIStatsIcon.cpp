@@ -35,13 +35,14 @@ void CUIStatsIcon::InitTexInfo(){
 	float fGridHeight	= pSettings->r_float(artefact_name, "inv_grid_height");
 	float fXPos			= pSettings->r_float(artefact_name, "inv_grid_x");
 	float fYPos			= pSettings->r_float(artefact_name, "inv_grid_y");
+	int UseHQ = EngineExternal()[EEngineExternalUI::HQIcons];
 
 	m_tex_info[ARTEFACT][0].sh = GetEquipmentIconsShader();
 	m_tex_info[ARTEFACT][0].rect.set(
-		fXPos * INV_GRID_WIDTH, 
-		fYPos * INV_GRID_HEIGHT, 
-		fXPos * INV_GRID_WIDTH + fGridWidth * INV_GRID_WIDTH, 
-		fYPos * INV_GRID_HEIGHT + fGridHeight * INV_GRID_HEIGHT);
+		fXPos * INV_GRID_WIDTH * (1 + UseHQ),
+		fYPos * INV_GRID_HEIGHT * (1 + UseHQ),
+		fXPos * INV_GRID_WIDTH + fGridWidth * INV_GRID_WIDTH * (1 + UseHQ), 
+		fYPos * INV_GRID_HEIGHT + fGridHeight * INV_GRID_HEIGHT * (1 + UseHQ));
 
 //	m_tex_info[ARTEFACT][0].rect.set( 200, 400, 50, 50);
 

@@ -332,11 +332,12 @@ void CUIMainIngameWnd::SetAmmoIcon (const shared_str& sect_name)
 
 	float iXPos				= pSettings->r_float(sect_name, "inv_grid_x");
 	float iYPos				= pSettings->r_float(sect_name, "inv_grid_y");
+	int UseHQ				= EngineExternal()[EEngineExternalUI::HQIcons];
 
-	UIWeaponIcon.GetUIStaticItem().SetOriginalRect(	(iXPos		 * INV_GRID_WIDTH),
-													(iYPos		 * INV_GRID_HEIGHT),
-													(iGridWidth	 * INV_GRID_WIDTH),
-													(iGridHeight * INV_GRID_HEIGHT));
+	UIWeaponIcon.GetUIStaticItem().SetOriginalRect(	(iXPos		 *(1 + UseHQ)*INV_GRID_WIDTH),
+													(iYPos		 *(1 + UseHQ)*INV_GRID_HEIGHT),
+													(iGridWidth	 *(1 + UseHQ)*INV_GRID_WIDTH),
+													(iGridHeight *(1 + UseHQ)*INV_GRID_HEIGHT));
 	UIWeaponIcon.SetStretchTexture(true);
 
 	// now perform only width scale for ammo, which (W)size >2
@@ -1082,6 +1083,7 @@ void CUIMainIngameWnd::UpdatePickUpItem	()
 
 
 	shared_str sect_name	= m_pPickUpItem->object().cNameSect();
+	int UseHQ = EngineExternal()[EEngineExternalUI::HQIcons];
 
 	//properties used by inventory menu
 	int m_iGridWidth	= pSettings->r_u32(sect_name, "inv_grid_width");
@@ -1091,10 +1093,10 @@ void CUIMainIngameWnd::UpdatePickUpItem	()
 	int m_iYPos			= pSettings->r_u32(sect_name, "inv_grid_y");
 
 	float scale_x = m_iPickUpItemIconWidth/
-		float(m_iGridWidth*INV_GRID_WIDTH);
+		float(m_iGridWidth*INV_GRID_WIDTH*(1 + UseHQ));
 
 	float scale_y = m_iPickUpItemIconHeight/
-		float(m_iGridHeight*INV_GRID_HEIGHT);
+		float(m_iGridHeight*INV_GRID_HEIGHT*(1 + UseHQ));
 
 	scale_x = (scale_x>1) ? 1.0f : scale_x;
 	scale_y = (scale_y>1) ? 1.0f : scale_y;
@@ -1102,10 +1104,10 @@ void CUIMainIngameWnd::UpdatePickUpItem	()
 	float scale = scale_x<scale_y?scale_x:scale_y;
 
 	UIPickUpItemIcon.GetUIStaticItem().SetOriginalRect(
-		float(m_iXPos * INV_GRID_WIDTH),
-		float(m_iYPos * INV_GRID_HEIGHT),
-		float(m_iGridWidth * INV_GRID_WIDTH),
-		float(m_iGridHeight * INV_GRID_HEIGHT));
+		float(m_iXPos * INV_GRID_WIDTH*(1 + UseHQ)),
+		float(m_iYPos * INV_GRID_HEIGHT*(1 + UseHQ)),
+		float(m_iGridWidth * INV_GRID_WIDTH*(1 + UseHQ)),
+		float(m_iGridHeight * INV_GRID_HEIGHT)*(1 + UseHQ));
 
 	UIPickUpItemIcon.SetStretchTexture(true);
 
