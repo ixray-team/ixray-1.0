@@ -10,7 +10,7 @@
 #include "Actor_Flags.h"
 #include "../SkeletonAnimated.h"
 #include "game_cl_single.h"
-
+#include "Actor.h"
 
 // refs
 class CEntity;
@@ -243,7 +243,13 @@ public:
 	virtual void			OnZoomOut			();
 			bool			IsZoomed			()	const	{return m_bZoomMode;};
 	CUIStaticItem*			ZoomTexture			();	
-			bool			ZoomHideCrosshair	()			{return m_bHideCrosshairInZoom || ZoomTexture();}
+	bool ZoomHideCrosshair() 
+	{
+		CActor* pA = smart_cast<CActor*>(H_Parent());
+		if (pA && pA->cam_Active() == pA->cameras[eacLookAt])
+			return false;
+		return m_bHideCrosshairInZoom || ZoomTexture();
+	}
 
 	IC float				GetZoomFactor		() const		{	return m_fZoomFactor;	}
 	virtual	float			CurrentZoomFactor	();
