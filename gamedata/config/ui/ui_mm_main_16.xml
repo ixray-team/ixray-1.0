@@ -6,11 +6,11 @@
 		</auto_static>
 		
 		<auto_static x="0" y="0" width="85" height="768" stretch="1">
-			<texture>ui\ui_inGame2_menu_l</texture>
+			<texture x="0" y="0" width="128" height="768">ui\ui_inGame2_menu_l</texture>
 		</auto_static>
 
 		<auto_static x="939" y="0" width="86" height="768" stretch="1">
-			<texture>ui\ui_inGame2_menu_r</texture>
+			<texture x="0" y="0" width="128" height="768">ui\ui_inGame2_menu_r</texture>
 		</auto_static>
 	</background>
 
