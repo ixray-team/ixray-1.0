@@ -637,7 +637,6 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineAPI.h" />
     <ClInclude Include="EventAPI.h" />
-    <ClInclude Include="xrCPU_Pipe.h" />
     <ClInclude Include="ai_script_lua_extension.h" />
     <ClInclude Include="ai_script_lua_space.h" />
     <ClInclude Include="ai_script_space.h" />

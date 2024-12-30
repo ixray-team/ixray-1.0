@@ -10,7 +10,7 @@
 #pragma warning(default:4995)
 
 #include "../fmesh.h"
-#include "../xrCPU_Pipe.h"
+#include "../xrCPU_Pipe/xrCPU_Pipe.h"
 #include "FSkinned.h"
 
 #include	"../EnnumerateVertices.h"
