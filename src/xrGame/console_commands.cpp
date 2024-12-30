@@ -46,7 +46,6 @@
 
 #ifdef DEBUG
 #	include "PHDebug.h"
-#	include "ui/UIDebugFonts.h" 
 #	include "game_graph.h"
 #	include "ai_object_location.h"
 #	include "xrServer_objects_alife.h"
@@ -1147,15 +1146,6 @@ public:
 };
 
 
-
-class CCC_DebugFonts : public IConsole_Command {
-public:
-	CCC_DebugFonts (LPCSTR N) : IConsole_Command(N) {bEmptyArgsHandled = true; }
-	virtual void Execute				(LPCSTR args) {
-		HUD().GetUI()->StartStopMenu( xr_new<CUIDebugFonts>(), true);		
-	}
-};
-
 class CCC_DebugNode : public IConsole_Command {
 public:
 	CCC_DebugNode(LPCSTR N) : IConsole_Command(N)  { };
@@ -1790,7 +1780,6 @@ void CCC_RegisterCommands()
 	CMD1(CCC_ScriptDbg,			"script_debug_restart");
 	
 	CMD1(CCC_ShowMonsterInfo,	"ai_monster_info");
-	CMD1(CCC_DebugFonts,		"debug_fonts");
 	CMD1(CCC_TuneAttachableItem,"dbg_adjust_attachable_item");
 
 	// adjust mode support

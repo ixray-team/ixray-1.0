@@ -6,7 +6,6 @@
 
 CUICursor*	GetUICursor		()	{return UI()->GetUICursor();};
 ui_core*	UI				()	{return GamePersistent().m_pUI_core;};
-extern ENGINE_API Fvector2		g_current_font_scale;
 
 void S2DVert::rotate_pt(const Fvector2& pivot, float cosA, float sinA, float kx)
 {
@@ -193,24 +192,18 @@ ui_core::ui_core()
 	if(!g_dedicated_server)
 	{
 		m_pUICursor					= xr_new<CUICursor>();
-		m_pFontManager				= xr_new<CFontManager>();
 	}else
 	{
 		m_pUICursor					= NULL;
-		m_pFontManager				= NULL;
 	}
 	m_bPostprocess				= false;
 	
 	OnDeviceReset				();
 
-	m_current_scale				= &m_scale_;
-//.	g_current_font_scale		= m_scale_;
-	g_current_font_scale.set	(1.0f,1.0f);
 }
 
 ui_core::~ui_core()
 {
-	xr_delete						(m_pFontManager);
 	xr_delete						(m_pUICursor);
 }
 
@@ -226,10 +219,6 @@ void ui_core::pp_start()
 												));
 
 	m_current_scale			= &m_pp_scale_;
-//.	g_current_font_scale	= m_pp_scale_;
-	
-	g_current_font_scale.set(	float(::Render->getTarget()->get_width())/float(Device.dwWidth),	
-								float(::Render->getTarget()->get_height())/float(Device.dwHeight) );
 
 }
 
@@ -237,8 +226,6 @@ void ui_core::pp_stop()
 {
 	m_bPostprocess			= false;
 	m_current_scale			= &m_scale_;
-//.	g_current_font_scale	= m_scale_;
-	g_current_font_scale.set	(1.0f,1.0f);
 }
 
 void ui_core::RenderFont()

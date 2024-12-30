@@ -507,6 +507,9 @@
     <ClInclude Include="line_editor.h">
       <Filter>Engine\Console</Filter>
     </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>Render\Font output</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="defines.cpp">
@@ -901,6 +904,9 @@
     </ClCompile>
     <ClCompile Include="XR_IOConsole_get.cpp">
       <Filter>Engine\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>Render\Font output</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

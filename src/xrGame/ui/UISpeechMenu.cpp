@@ -8,6 +8,7 @@
 #include "../level.h"
 #include "../../xrEngine/string_table.h"
 #include "../HUDManager.h"
+#include "../UIFontDefines.h"
 
 CUISpeechMenu::CUISpeechMenu(LPCSTR section_name){
 	m_pList = xr_new<CUIScrollView>();AttachChild(m_pList);m_pList->SetAutoDelete(true);
@@ -17,7 +18,7 @@ CUISpeechMenu::CUISpeechMenu(LPCSTR section_name){
 	CUIXmlInit::InitScrollView(xml_doc, "speech_menu",0,m_pList);
 	m_pList->SetWndPos(0,0);
 	m_text_color = 0xffffffff;
-	SetFont(UI()->Font()->pFontLetterica18Russian);
+	SetFont(UI()->Font()->GetFont(LETTERICA18_FONT_NAME));
 	CUIXmlInit::InitFont(xml_doc,"speech_menu:text",0,m_text_color,m_pFont);	
     InitList(section_name);
 }

@@ -177,7 +177,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -239,7 +239,7 @@
       <WarningLevel>Level1</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -306,7 +306,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -372,7 +372,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -432,7 +432,7 @@
       <WarningLevel>Level1</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -493,7 +493,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\;$(SolutionDir)sdk\DPlay\;$(SolutionDir)sdk\include\boost\;$(SolutionDir)sdk\luabind\luabind\;$(SolutionDir)\src\xrCore\;$(SolutionDir)sdk\include\;$(SolutionDir)src\3rd party\luajit\src\;$(SolutionDir)sdk\include\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -528,6 +528,7 @@
     <ClInclude Include="..\Layers\xrRender\blenders\Blender_Recorder.h" />
     <ClInclude Include="edit_actions.h" />
     <ClInclude Include="EngineExternal.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="ILoadingScreen.h" />
     <ClInclude Include="line_editor.h" />
     <ClInclude Include="line_edit_control.h" />
@@ -655,6 +656,7 @@
     <ClCompile Include="edit_actions.cpp" />
     <ClCompile Include="EngineExternal.cpp" />
     <ClCompile Include="EngineExternalEnums.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="line_editor.cpp" />
     <ClCompile Include="line_edit_control.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -879,6 +881,7 @@
     <Import Project="..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets')" />
     <Import Project="..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets" Condition="Exists('..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets')" />
     <Import Project="..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets" Condition="Exists('..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" />
+    <Import Project="..\..\packages\ImeSense.Packages.FreeType.2.13.2\build\native\ImeSense.Packages.FreeType.targets" Condition="Exists('..\..\packages\ImeSense.Packages.FreeType.2.13.2\build\native\ImeSense.Packages.FreeType.targets')" />
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -893,5 +896,6 @@
     <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibVorbis.1.3.7.5\build\native\ImeSense.Packages.LibVorbis.targets'))" />
     <Error Condition="!Exists('..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.LibTheora.1.1.1.4\build\native\ImeSense.Packages.LibTheora.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets'))" />
+    <Error Condition="!Exists('..\..\packages\ImeSense.Packages.FreeType.2.13.2\build\native\ImeSense.Packages.FreeType.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ImeSense.Packages.FreeType.2.13.2\build\native\ImeSense.Packages.FreeType.targets'))" />
   </Target>
 </Project>

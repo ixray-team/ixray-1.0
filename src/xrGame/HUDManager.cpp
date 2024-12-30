@@ -6,121 +6,7 @@
 #include "../xrEngine/igame_level.h"
 #include "clsid_game.h"
 #include "GamePersistent.h"
-
-
-CFontManager::CFontManager()
-{
-	Device.seqDeviceReset.Add(this,REG_PRIORITY_HIGH);
-
-	m_all_fonts.push_back(&pFontMedium				);// used cpp
-	m_all_fonts.push_back(&pFontDI					);// used cpp
-	m_all_fonts.push_back(&pFontArial14				);// used xml
-	m_all_fonts.push_back(&pFontGraffiti19Russian	);
-	m_all_fonts.push_back(&pFontGraffiti22Russian	);
-	m_all_fonts.push_back(&pFontLetterica16Russian	);
-	m_all_fonts.push_back(&pFontLetterica18Russian	);
-	m_all_fonts.push_back(&pFontGraffiti32Russian	);
-	m_all_fonts.push_back(&pFontGraffiti50Russian	);
-	m_all_fonts.push_back(&pFontLetterica25			);
-	m_all_fonts.push_back(&pFontStat				);
-
-	FONTS_VEC_IT it		= m_all_fonts.begin();
-	FONTS_VEC_IT it_e	= m_all_fonts.end();
-	for(;it!=it_e;++it)
-		(**it) = NULL;
-
-	InitializeFonts();
-
-}
-
-void CFontManager::InitializeFonts()
-{
-
-	InitializeFont(pFontMedium				,"hud_font_medium"				);
-	InitializeFont(pFontDI					,"hud_font_di",					CGameFont::fsGradient|CGameFont::fsDeviceIndependent);
-	InitializeFont(pFontArial14				,"ui_font_arial_14"				);
-	InitializeFont(pFontGraffiti19Russian	,"ui_font_graffiti19_russian"	);
-	InitializeFont(pFontGraffiti22Russian	,"ui_font_graffiti22_russian"	);
-	InitializeFont(pFontLetterica16Russian	,"ui_font_letterica16_russian"	);
-	InitializeFont(pFontLetterica18Russian	,"ui_font_letterica18_russian"	);
-	InitializeFont(pFontGraffiti32Russian	,"ui_font_graff_32"				);
-	InitializeFont(pFontGraffiti50Russian	,"ui_font_graff_50"				);
-	InitializeFont(pFontLetterica25			,"ui_font_letter_25"			);
-	InitializeFont(pFontStat				,"stat_font",					CGameFont::fsDeviceIndependent);
-
-}
-
-LPCSTR CFontManager::GetFontTexName (LPCSTR section)
-{
-	static char* tex_names[]={"texture800","texture","texture1600"};
-	int def_idx		= 1;//default 1024x768
-	int idx			= def_idx;
-
-#if 0
-	u32 w = Device.dwWidth;
-
-	if(w<=800)		idx = 0;
-	else if(w<=1280)idx = 1;
-	else 			idx = 2;
-#else
-	u32 h = Device.dwHeight;
-
-	if(h<=600)		idx = 0;
-	else if(h<=900)	idx = 1;
-	else 			idx = 2;
-#endif
-
-	while(idx>=0){
-		if( pSettings->line_exist(section,tex_names[idx]) )
-			return pSettings->r_string(section,tex_names[idx]);
-		--idx;
-	}
-	return pSettings->r_string(section,tex_names[def_idx]);
-}
-
-void CFontManager::InitializeFont(CGameFont*& F, LPCSTR section, u32 flags)
-{
-	LPCSTR font_tex_name = GetFontTexName(section);
-	R_ASSERT(font_tex_name);
-
-	if(!F)
-		F = xr_new<CGameFont> ("font", font_tex_name, flags);
-	else
-		F->Initialize("font",font_tex_name);
-
-#ifdef DEBUG
-	F->m_font_name = section;
-#endif
-	if (pSettings->line_exist(section,"size")){
-		float sz = pSettings->r_float(section,"size");
-		if (flags&CGameFont::fsDeviceIndependent)	F->SetHeightI(sz);
-		else										F->SetHeight(sz);
-	}
-	if (pSettings->line_exist(section,"interval"))
-	F->SetInterval(pSettings->r_fvector2(section,"interval"));
-
-}
-
-CFontManager::~CFontManager()
-{
-	Device.seqDeviceReset.Remove(this);
-	FONTS_VEC_IT it		= m_all_fonts.begin();
-	FONTS_VEC_IT it_e	= m_all_fonts.end();
-	for(;it!=it_e;++it)
-		xr_delete(**it);
-}
-
-void CFontManager::Render()
-{
-	FONTS_VEC_IT it		= m_all_fonts.begin();
-	FONTS_VEC_IT it_e	= m_all_fonts.end();
-	for(;it!=it_e;++it)
-		(**it)->OnRender			();
-}
-void CFontManager::OnDeviceReset()
-{
-	InitializeFonts();
-}
+#include "UIFontDefines.h"
 
 //--------------------------------------------------------------------
 CHUDManager::CHUDManager()
@@ -219,7 +105,7 @@ void  CHUDManager::RenderUI()
 	draw_wnds_rects		();
 
 	if( Device.Paused() && bShowPauseString){
-		CGameFont* pFont	= Font().pFontGraffiti50Russian;
+		CGameFont* pFont	= Font().GetFont(GRAFFITI50_FONT_NAME);
 		pFont->SetColor		(0x80FF0000	);
 		LPCSTR _str			= CStringTable().translate("st_game_paused").c_str();
 		

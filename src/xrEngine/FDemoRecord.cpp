@@ -252,31 +252,31 @@ BOOL CDemoRecord::Process(Fvector &P, Fvector &D, Fvector &N, float& fFov, float
 		MakeCubeMapFace(D,N);
 		P.set(m_Camera.c);
 		fAspect = 1.f;
-	}
-	else
-	{
-		if (Console->IR_GetKeyState(DIK_F1))
+	}else{
+		if(IR_GetKeyState(DIK_F1))
 		{
-//			pApp->pFontSystem->SetSizeI	(0.02f);
-			pApp->pFontSystem->SetColor	(color_rgba(255,0,0,255));
-			pApp->pFontSystem->SetAligment(CGameFont::alCenter);
-			pApp->pFontSystem->OutSetI	(0,-.05f);
-			pApp->pFontSystem->OutNext	("%s","RECORDING");
-			pApp->pFontSystem->OutNext	("Key frames count: %d",iCount);
-			pApp->pFontSystem->SetAligment(CGameFont::alLeft);
-			pApp->pFontSystem->OutSetI	(-0.2f,+.05f);
-			pApp->pFontSystem->OutNext	("SPACE");
-			pApp->pFontSystem->OutNext	("BACK");
-			pApp->pFontSystem->OutNext	("ESC");
-			pApp->pFontSystem->OutNext	("F11");
-			pApp->pFontSystem->OutNext	("F12");
-			pApp->pFontSystem->SetAligment(CGameFont::alLeft);
-			pApp->pFontSystem->OutSetI	(0,+.05f);
-			pApp->pFontSystem->OutNext	("= Append Key");
-			pApp->pFontSystem->OutNext	("= Cube Map");
-			pApp->pFontSystem->OutNext	("= Quit");
-			pApp->pFontSystem->OutNext	("= Level Map ScreenShot");
-			pApp->pFontSystem->OutNext	("= ScreenShot");
+			CGameFont* SystemFont = g_FontManager->pFontSystem;
+			SystemFont->SetColor	(color_rgba(255,0,0,255));
+			SystemFont->SetAligment(CGameFont::alCenter);
+			SystemFont->OutSetI	(0,-.05f);
+			SystemFont->OutNext	("%s","RECORDING");
+			SystemFont->OutNext	("Key frames count: %d",iCount);
+			SystemFont->SetAligment(CGameFont::alLeft);
+			SystemFont->OutSetI	(-0.2f,+.05f);
+			SystemFont->OutNext	("SPACE");
+			SystemFont->OutNext	("BACK");
+			SystemFont->OutNext	("ESC");
+			SystemFont->OutNext	("F11");
+			SystemFont->OutNext	("LCONTROL+F11");
+			SystemFont->OutNext	("F12");
+			SystemFont->SetAligment(CGameFont::alLeft);
+			SystemFont->OutSetI	(0,+.05f);
+			SystemFont->OutNext	("= Append Key");
+			SystemFont->OutNext	("= Cube Map");
+			SystemFont->OutNext	("= Quit");
+			SystemFont->OutNext	("= Level Map ScreenShot");
+			SystemFont->OutNext	("= Level Map ScreenShot(High Quality)");
+			SystemFont->OutNext	("= ScreenShot");
 		}
 
 		m_vVelocity.lerp		(m_vVelocity,m_vT,0.3f);
@@ -420,5 +420,4 @@ void CDemoRecord::MakeLevelMapScreenshot()
 
 void CDemoRecord::OnRender()
 {
-	pApp->pFontSystem->OnRender();
 }

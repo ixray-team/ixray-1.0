@@ -7,7 +7,7 @@
 #include "hudtarget.h"
 #include "hudmanager.h"
 #include "GameMtlLib.h"
-
+#include "UIFontDefines.h"
 #include "../xrEngine/Environment.h"
 #include "../xrEngine/CustomHUD.h"
 #include "Entity.h"
@@ -144,7 +144,7 @@ void CHUDTarget::Render()
 	PT.transform		(p2,Device.mFullTransform);
 	float				di_size = C_SIZE/powf(PT.p.w,.2f);
 
-	CGameFont* F		= HUD().Font().pFontGraffiti19Russian;
+	CGameFont* F		= HUD().Font().GetFont(GRAFFITI19_FONT_NAME);
 	F->SetAligment		(CGameFont::alCenter);
 	F->OutSetI			(0.f,0.05f);
 

@@ -38,7 +38,6 @@ CStats::~CStats()
 void _draw_cam_pos(CGameFont* pFont)
 {
 	float sz		= pFont->GetHeight();
-	pFont->SetHeightI(0.02f);
 	pFont->SetColor	(0xffffffff);
 	pFont->Out		(10, 600, "CAMERA POSITION:  [%3.2f,%3.2f,%3.2f]",VPUSH(Device.vCameraPosition));
 	pFont->SetHeight(sz);
@@ -140,7 +139,6 @@ void CStats::Show()
 
 	CGameFont& F = *pFont;
 	float		f_base_size	= 0.01f;
-				F.SetHeightI	(f_base_size);
 
 	// Show them
 	if (psDeviceFlags.test(rsStatistic))
@@ -238,19 +236,16 @@ void CStats::Show()
 
 		//////////////////////////////////////////////////////////////////////////
 		// Renderer specific
-		F.SetHeightI						(f_base_size);
 		F.OutSet						(200,0);
 		Render->Statistics				(&F);
 
 		//////////////////////////////////////////////////////////////////////////
 		// Game specific
-		F.SetHeightI						(f_base_size);
 		F.OutSet						(400,0);
 		g_pGamePersistent->Statistics	(&F);
 
 		//////////////////////////////////////////////////////////////////////////
 		// process PURE STATS
-		F.SetHeightI						(f_base_size);
 		seqStats.Process				(rp_Stats);
 		pFont->OnRender					();
 	};
@@ -267,7 +262,6 @@ void CStats::Show()
 		CGameFont&	F = *((CGameFont*)pFont);
 		F.SetColor						(color_rgba(255,16,16,255));
 		F.OutSet						(300,300);
-		F.SetHeightI						(f_base_size*2);
 		if (fFPS<30)					F.OutNext	("FPS       < 30:   %3.1f",	fFPS);
 		m_pRender->GuardVerts(F);
 		if (psDeviceFlags.test(rsStatistic))
@@ -289,7 +283,6 @@ void CStats::Show()
 		CGameFont&	F = *((CGameFont*)pFont);
 		F.SetColor	(color_rgba(255,16,16,191));
 		F.OutSet	(200,0);
-		F.SetHeightI	(f_base_size);
 #if 0
 		for (u32 it=0; it<errors.size(); it++)
 			F.OutNext("%s",errors[it].c_str());
@@ -373,7 +366,7 @@ void CStats::OnDeviceCreate			()
 
 //	if (!strstr(Core.Params, "-dedicated"))
 #ifndef DEDICATED_SERVER
-	pFont	= xr_new<CGameFont>		("stat_font", CGameFont::fsDeviceIndependent);
+	pFont = g_FontManager->GetFont("stat_font", CGameFont::fsDeviceIndependent);// xr_new<CGameFont>("stat_font", CGameFont::fsDeviceIndependent);
 #endif
 	
 	if(!pSettings->section_exist("evaluation")
