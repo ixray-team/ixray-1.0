@@ -834,7 +834,7 @@ float CActor::currentFOV()
 
 	if (EngineExternal()[EEngineExternalGame::UseNewScopeSystem])
 	{
-		if (eacFirstEye == cam_active && pWeapon &&
+		if (eacFreeLook != cam_active && pWeapon &&
 			pWeapon->IsZoomed() && (!pWeapon->ZoomTextureNew() ||
 				(!pWeapon->IsRotatingToZoom() && pWeapon->ZoomTextureNew())))
 			return pWeapon->GetZoomFactor() * (0.75f);
@@ -843,7 +843,7 @@ float CActor::currentFOV()
 	}
 	else
 	{
-		if (eacFirstEye == cam_active && pWeapon &&
+		if (eacFreeLook != cam_active && pWeapon &&
 			pWeapon->IsZoomed() && (!pWeapon->ZoomTexture() ||
 				(!pWeapon->IsRotatingToZoom() && pWeapon->ZoomTexture())))
 			return pWeapon->GetZoomFactor() * (0.75f);
