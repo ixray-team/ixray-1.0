@@ -4,6 +4,8 @@
 #include "UIOptionsItem.h"
 
 class CUICheckButton : public CUI3tButton, public CUIOptionsItem {
+	friend class CUIXmlInit;
+	typedef CUI3tButton			inherited;
 public:
 	CUICheckButton(void);
 	virtual ~CUICheckButton(void);
@@ -17,8 +19,11 @@ public:
 	virtual void 	SeveBackUpValue			();
 	virtual void 	Undo					();
 
-	virtual void Init(float x, float y, float width, float height);
+	virtual void Init(Fvector2 pos, Fvector2 size, LPCSTR texture_name);
 	virtual void SetTextX(float x) {/*do nothing*/}
+	virtual void OnFocusLost();
+	virtual void OnFocusReceive();
+	virtual void Show(bool status);
 
 	//состояние кнопки
 	bool GetCheck()					{return m_eButtonState == BUTTON_PUSHED;}
@@ -28,6 +33,6 @@ public:
 
 private:
 	bool			b_backup_val;
-	void InitTexture();
+	void InitTexture(LPCSTR texture_name);
 	CUIWindow* m_pDependControl;
 };

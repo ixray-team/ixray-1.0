@@ -22,6 +22,7 @@ public:
 	using CUIButton::Init;
 
 	virtual void 	Init						(float x, float y, float width, float height);
+	virtual	void 	InitButton					(Fvector2 pos, Fvector2 size);
 	virtual void 	InitTexture					(LPCSTR tex_name);
 	virtual void 	InitTexture					(LPCSTR tex_enabled, LPCSTR tex_disabled, LPCSTR tex_touched, LPCSTR tex_highlighted);	
 
