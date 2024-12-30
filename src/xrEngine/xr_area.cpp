@@ -16,17 +16,13 @@ CObjectSpace::CObjectSpace	( )
 	:Lock(MUTEX_PROFILE_ID(CObjectSpace::Lock))
 #endif // PROFILE_CRITICAL_SECTIONS
 {
-#ifdef DEBUG
-	sh_debug.create				("debug\\wireframe","$null");
-#endif
 	m_BoundingVolume.invalidate	();
 }
 //----------------------------------------------------------------------
 CObjectSpace::~CObjectSpace	( )
 {
-#ifdef DEBUG
-	sh_debug.destroy			();
-#endif
+	Sound->set_geometry_occ		(NULL);
+	Sound->set_handler			(NULL);
 }
 //----------------------------------------------------------------------
 IC int	CObjectSpace::GetNearest	( xr_vector<CObject*>&	q_nearest, const Fvector &point, float range, CObject* ignore_object )
@@ -110,30 +106,6 @@ void CObjectSpace::Create(Fvector* verts, CDB::TRI* tris, const hdrCFORM& H, CDB
 #ifdef DEBUG
 void CObjectSpace::dbgRender()
 {
-	R_ASSERT(bDebug);
-
-	RCache.set_Shader(sh_debug);
-	for (u32 i=0; i<q_debug.boxes.size(); i++)
-	{
-		Fobb&		obb		= q_debug.boxes[i];
-		Fmatrix		X,S,R;
-		obb.xform_get(X);
-		RCache.dbg_DrawOBB(X,obb.m_halfsize,D3DCOLOR_XRGB(255,0,0));
-		S.scale		(obb.m_halfsize);
-		R.mul		(X,S);
-		RCache.dbg_DrawEllipse(R,D3DCOLOR_XRGB(0,0,255));
-	}
-	q_debug.boxes.clear();
-
-	for (u32 i=0; i<dbg_S.size(); i++)
-	{
-		std::pair<Fsphere,u32>& P = dbg_S[i];
-		Fsphere&	S = P.first;
-		Fmatrix		M;
-		M.scale		(S.R,S.R,S.R);
-		M.translate_over(S.P);
-		RCache.dbg_DrawEllipse(M,P.second);
-	}
-	dbg_S.clear();
+	m_pRender->dbgRender();
 }
 #endif

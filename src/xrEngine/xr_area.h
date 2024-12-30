@@ -4,6 +4,9 @@
 #include "xr_collide_form.h"
 #include "../xrCDB/xr_collide_defs.h"
 
+#include "../Include/xrRender/FactoryPtr.h"
+#include "../Include/xrRender/ObjectSpaceRender.h"
+
 // refs
 class ENGINE_API	ISpatial;
 class ENGINE_API	ICollisionForm;
@@ -29,9 +32,7 @@ private:
 public:
 
 #ifdef DEBUG
-	ref_shader							sh_debug;
-	clQueryCollision					q_debug;			// MT: dangerous
-	xr_vector<std::pair<Fsphere,u32> >	dbg_S;				// MT: dangerous
+	FactoryPtr<IObjectSpaceRender> m_pRender;
 #endif
 
 private:
@@ -72,7 +73,6 @@ public:
 	// Debugging
 #ifdef DEBUG
 	void								dbgRender			();
-	ref_shader							dbgGetShader		()	{ return sh_debug;	}
 #endif
 };
 

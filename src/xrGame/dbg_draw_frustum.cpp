@@ -106,9 +106,9 @@ void dbg_draw_frustum	(float FOV, float _FAR, float A, Fvector &P, Fvector &D, F
 //	u32 CT	= color_rgba(255,255,255,64);
 	u32 CL	= color_rgba(255,0,0,255);
 	Fmatrix& M	= Fidentity;
-	ref_shader				l_tShaderReference = Level().ObjectSpace.dbgGetShader();
-	RCache.set_Shader		(l_tShaderReference);
-//	RCache.dbg_DrawTRI	(M,COP,_F[0],_F[1],CT);
+//	ref_shader				l_tShaderReference = Level().ObjectSpace.dbgGetShader();
+//	RCache.set_Shader		(l_tShaderReference);
+// 	RCache.dbg_DrawTRI	(M,COP,_F[0],_F[1],CT);
 //	RCache.dbg_DrawTRI	(M,COP,_F[1],_F[2],CT);
 //	RCache.dbg_DrawTRI	(M,COP,_F[2],_F[3],CT);
 //	RCache.dbg_DrawTRI	(M,COP,_F[3],_F[0],CT);

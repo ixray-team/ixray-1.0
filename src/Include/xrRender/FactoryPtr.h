@@ -59,7 +59,7 @@ private:
 	FACTORY_PTR_INSTANCIATE(StatGraphRender)
 	FACTORY_PTR_INSTANCIATE(RenderDeviceRender)
 #	ifdef DEBUG
-//		FACTORY_PTR_INSTANCIATE(ObjectSpaceRender)
+		FACTORY_PTR_INSTANCIATE(ObjectSpaceRender)
 #	endif // DEBUG
 //	FACTORY_PTR_INSTANCIATE(WallMarkArray)
 	FACTORY_PTR_INSTANCIATE(StatsRender);

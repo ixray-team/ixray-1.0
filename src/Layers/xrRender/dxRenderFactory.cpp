@@ -7,7 +7,7 @@
 #include "dxRainRender.h"
 #include "dxEnvironmentRender.h"
 #include "dxRenderDeviceRender.h"
-//#include "dxObjectSpaceRender.h"
+#include "dxObjectSpaceRender.h"
 #include "dxFontRender.h"
  //#include "dxWallMarkArray.h"
 #include "dxStatsRender.h"
@@ -33,7 +33,7 @@ dxRenderFactory RenderFactoryImpl;
 	RENDER_FACTORY_IMPLEMENT(StatGraphRender)
 	RENDER_FACTORY_IMPLEMENT(RenderDeviceRender)
 #	ifdef DEBUG
-//		RENDER_FACTORY_IMPLEMENT(ObjectSpaceRender)
+		RENDER_FACTORY_IMPLEMENT(ObjectSpaceRender)
 #	endif // DEBUG
 //	RENDER_FACTORY_IMPLEMENT(WallMarkArray)
 	RENDER_FACTORY_IMPLEMENT(StatsRender)

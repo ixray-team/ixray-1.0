@@ -47,7 +47,7 @@
       <font font="letterica16" r="216" g="186" b="140" />
     </list>
 
-    <btn_save x="54" y="427" width="131" height="48">
+    <btn_save x="54" y="427" width="131" height="48" stretch="1">
       <texture>ui_button_main02</texture>
       <text font="graffiti22">ui_mm_save</text>
       <text_color>
@@ -58,7 +58,7 @@
       </text_color>
     </btn_save>
 
-    <btn_delete x="184" y="427" width="131" height="48">
+    <btn_delete x="184" y="427" width="131" height="48" stretch="1">
       <texture>ui_button_main02</texture>
       <text font="graffiti22">ui_mm_delete</text>
       <text_color>
@@ -69,7 +69,7 @@
       </text_color>
     </btn_delete>
 
-    <btn_cancel x="314" y="427" width="131" height="48">
+    <btn_cancel x="314" y="427" width="131" height="48" stretch="1">
       <texture>ui_button_main02</texture>
       <text font="graffiti22">ui_mm_cancel</text>
       <text_color>
