@@ -266,7 +266,7 @@ void CHUDManager::SetHitmarkType		(LPCSTR tex_name)
 #include "UIGameCustom.h"
 extern CUIXml* pWpnScopeXml;
 
-void CHUDManager::OnScreenRatioChanged()
+void CHUDManager::OnScreenResolutionChanged()
 {
 	if (GetUI()->UIGame())
 		GetUI()->UIGame()->HideShownDialogs();

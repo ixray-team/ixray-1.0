@@ -92,8 +92,8 @@ void CRenderDevice::Reset		(bool precache)
 	seqDeviceReset.Process(rp_DeviceReset);
 
 	bool b_16_after	= (float)dwWidth/(float)dwHeight > (1024.0f/768.0f+0.01f);
-	if(b_16_after!=b_16_before && g_pGameLevel && g_pGameLevel->pHUD) 
-		g_pGameLevel->pHUD->OnScreenRatioChanged();
+	if(b_16_after != b_16_before) 
+		seqResolutionChanged.Process(rp_ScreenResolutionChanged);
 
 #ifdef DEBUG
 	_SHOW_REF("*ref +CRenderDevice::ResetTotal: DeviceREF:",HW.pDevice);
