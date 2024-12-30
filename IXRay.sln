@@ -58,7 +58,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stalker_net", "src\xr_3da\S
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrStatisticConvert", "src\xr_3da\xrStatisticConvert\xrStatisticConvert.vcxproj", "{2EA2CBBA-16BD-4B97-80B3-3F824CFBD4F1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openal32", "src\xrOpenAL\OpenAL-Windows\Router\Router.vcxproj", "{566551F4-4EF1-4CB4-A131-F982E7606907}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openal32", "src\3rd party\OpenAL\OpenAL-Windows\Router\Router.vcxproj", "{566551F4-4EF1-4CB4-A131-F982E7606907}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrCoreStatic", "src\xrCore\xrCoreStatic.vcxproj", "{F1066EAC-EE25-4C7A-9023-5957A6F7BA27}"
 EndProject
