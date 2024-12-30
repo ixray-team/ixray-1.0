@@ -18,6 +18,8 @@
 #include "level_graph_space.h"
 #include "game_graph_space.h"
 
+#include "../Include/xrRender/DebugShader.h"
+
 namespace LevelGraph {
 	class	CHeader;
 	class	CVertex;
@@ -207,7 +209,7 @@ public:
 #ifdef DEBUG
 #	ifndef AI_COMPILER
 private:
-	ref_shader			sh_debug;
+	debug_shader sh_debug;
 
 private:
 	int					m_current_level_id;

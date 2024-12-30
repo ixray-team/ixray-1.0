@@ -417,3 +417,8 @@ void CDemoRecord::MakeLevelMapScreenshot()
 	m_bMakeLevelMap	= TRUE;
 	m_Stage = 0;
 }
+
+void CDemoRecord::OnRender()
+{
+	pApp->pFontSystem->OnRender();
+}
