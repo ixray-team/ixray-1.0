@@ -7,7 +7,7 @@
 #include "xrServer.h"
 #include "game_cl_base.h"
 
-#include "xrGameSpy/xrGameSpy_MainDefs.h"
+#include "../xrGameSpy/xrGameSpy_MainDefs.h"
 #include "xrGameSpyServer.h"
 #include "gamespy/GameSpy_Full.h"
 
