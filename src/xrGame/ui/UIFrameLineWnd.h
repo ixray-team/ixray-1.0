@@ -22,9 +22,12 @@ public:
 	// Also we can display textual caption on the frame
 	CUIStatic		UITitleText;
 	CUIStatic*		GetTitleStatic(){return &UITitleText;};
-
+		
+	void SetStretchTexture	( bool bStretch )	{ m_bStretchTexture = bStretch; }
+	bool GetStretchTexture	() const			{ return m_bStretchTexture; }
 protected:
 	bool			bHorizontal;
 	bool			m_bTextureAvailable;
 	CUIFrameLine	UIFrameLine;	
+	bool			m_bStretchTexture;
 };

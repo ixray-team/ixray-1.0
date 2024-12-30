@@ -609,10 +609,6 @@ void CCC_Register()
 	// General video control
 	CMD1(CCC_VidMode,	"vid_mode"				);
 
-#ifdef DEBUG
-	CMD3(CCC_Token,		"vid_bpp",				&psCurrentBPP,	vid_bpp_token );
-#endif // DEBUG
-
 	CMD1(CCC_VID_Reset, "vid_restart"			);
 	
 	// Sound
