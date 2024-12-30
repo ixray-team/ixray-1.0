@@ -14,7 +14,7 @@ BEGIN_ENUM(EEngineExternalPhysical) {
 } END_ENUM(EEngineExternalPhysical)
 
 BEGIN_ENUM(EEngineExternalGame) {
-    DECL_ENUM_ELEMENT(None),
+    DECL_ENUM_ELEMENT(UseNewScopeSystem),
 } END_ENUM(EEngineExternalGame)
 
 BEGIN_ENUM(EEngineExternalRender) {

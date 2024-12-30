@@ -11,7 +11,7 @@
 #include "../SkeletonAnimated.h"
 #include "game_cl_single.h"
 #include "Actor.h"
-
+#include "ui/UIWindow.h"
 // refs
 class CEntity;
 class ENGINE_API CMotionDef;
@@ -224,6 +224,7 @@ protected:
 	float			m_fZoomRotateTime;
 	//текстура для снайперского прицела, в режиме приближения
 	CUIStaticItem*	m_UIScope;
+	CUIWindow*		m_UIScopeNew;
 	//коэффициент увеличения прицеливания
 	float			m_fIronSightZoomFactor;
 	//коэффициент увеличения прицела
@@ -243,12 +244,13 @@ public:
 	virtual void			OnZoomOut			();
 			bool			IsZoomed			()	const	{return m_bZoomMode;};
 	CUIStaticItem*			ZoomTexture			();	
+	CUIWindow*				ZoomTextureNew		();	
 	bool ZoomHideCrosshair() 
 	{
 		CActor* pA = smart_cast<CActor*>(H_Parent());
 		if (pA && pA->cam_Active() == pA->cameras[eacLookAt])
 			return false;
-		return m_bHideCrosshairInZoom || ZoomTexture();
+		return m_bHideCrosshairInZoom || (ZoomTexture() || ZoomTextureNew());
 	}
 
 	IC float				GetZoomFactor		() const		{	return m_fZoomFactor;	}

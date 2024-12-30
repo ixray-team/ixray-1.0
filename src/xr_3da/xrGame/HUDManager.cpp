@@ -264,12 +264,16 @@ void CHUDManager::SetHitmarkType		(LPCSTR tex_name)
 }
 #include "ui\UIMainInGameWnd.h"
 #include "UIGameCustom.h"
+extern CUIXml* pWpnScopeXml;
+
 void CHUDManager::OnScreenRatioChanged()
 {
 	if (GetUI()->UIGame())
 		GetUI()->UIGame()->HideShownDialogs();
 
 	xr_delete							(pUI->UIMainIngameWnd);
+	if (EngineExternal()[EEngineExternalGame::UseNewScopeSystem])
+		xr_delete							(pWpnScopeXml);
 
 	pUI->UIMainIngameWnd				= xr_new<CUIMainIngameWnd>	();
 	pUI->UIMainIngameWnd->Init			();

@@ -29,6 +29,7 @@
 
 #define WEAPON_REMOVE_TIME		60000
 #define ROTATION_TIME			0.25f
+extern CUIXml* pWpnScopeXml;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -76,12 +77,16 @@ CWeapon::CWeapon(LPCSTR name)
 	m_ef_main_weapon_type	= u32(-1);
 	m_ef_weapon_type		= u32(-1);
 	m_UIScope				= NULL;
+	m_UIScopeNew			= NULL;
 	m_set_next_ammoType_on_reload = u32(-1);
 }
 
 CWeapon::~CWeapon		()
 {
-	xr_delete	(m_UIScope);
+	if (EngineExternal()[EEngineExternalGame::UseNewScopeSystem])
+		xr_delete	(m_UIScopeNew);
+	else
+		xr_delete	(m_UIScope);
 }
 
 //void CWeapon::Hit(float P, Fvector &dir,	
@@ -749,7 +754,7 @@ void CWeapon::renderable_Render		()
 	RenderLight				();	
 
 	//если мы в режиме снайперки, то сам HUD рисовать не надо
-	if(IsZoomed() && !IsRotatingToZoom() && ZoomTexture())
+	if(IsZoomed() && !IsRotatingToZoom() && (ZoomTexture() || ZoomTextureNew()))
 		m_bRenderHud = false;
 	else
 		m_bRenderHud = true;
@@ -1235,6 +1240,14 @@ CUIStaticItem* CWeapon::ZoomTexture()
 		return NULL;
 }
 
+CUIWindow* CWeapon::ZoomTextureNew()
+{
+	if (UseScopeTexture())
+		return m_UIScopeNew;
+	else
+		return NULL;
+}
+
 void CWeapon::SwitchState(u32 S)
 {
 	if (OnClient()) return;
@@ -1495,13 +1508,20 @@ void CWeapon::modify_holder_params		(float &range, float &fov) const
 
 void CWeapon::OnDrawUI()
 {
-	if(IsZoomed() && ZoomHideCrosshair()){
-		if(ZoomTexture() && !IsRotatingToZoom()){
+	if(IsZoomed() && ZoomHideCrosshair())
+	{
+		if(ZoomTexture() && !IsRotatingToZoom())
+		{
 			ZoomTexture()->SetPos	(0,0);
 			ZoomTexture()->SetRect	(0,0,UI_BASE_WIDTH, UI_BASE_HEIGHT);
 			ZoomTexture()->Render	();
 
 //			m_UILens.Draw();
+		}
+		else if (ZoomTextureNew() && EngineExternal()[EEngineExternalGame::UseNewScopeSystem] && !IsRotatingToZoom())
+		{ 
+			ZoomTextureNew()->Update();
+			ZoomTextureNew()->Draw();
 		}
 	}
 }
@@ -1568,7 +1588,7 @@ bool CWeapon::show_crosshair()
 
 bool CWeapon::show_indicators()
 {
-	return ! ( IsZoomed() && ZoomTexture() );
+	return ! ( IsZoomed() && (ZoomTexture() || ZoomTextureNew()) );
 }
 
 float CWeapon::GetConditionToShow	() const

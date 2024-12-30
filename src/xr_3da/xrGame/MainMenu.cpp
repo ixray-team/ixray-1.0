@@ -114,7 +114,7 @@ void CMainMenu::ReadTextureInfo()
 		_splitpath((*fit).name.c_str(), fn1, fn2, fn3, 0);
 		strcat(fn3, ".xml");
 
-		CUITextureMaster::ParseShTexInfo(fn3);
+		CUITextureMaster::ParseShTexInfoNew(fn3);
 	}
 	if (pSettings->section_exist("texture_desc"))
 	{

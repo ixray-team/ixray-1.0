@@ -832,12 +832,24 @@ float CActor::currentFOV()
 {
 	CWeapon* pWeapon = smart_cast<CWeapon*>(inventory().ActiveItem());	
 
-	if (eacFirstEye == cam_active && pWeapon &&
-		pWeapon->IsZoomed() && (!pWeapon->ZoomTexture() ||
-		(!pWeapon->IsRotatingToZoom() && pWeapon->ZoomTexture())))
-		return pWeapon->GetZoomFactor() * (0.75f);
+	if (EngineExternal()[EEngineExternalGame::UseNewScopeSystem])
+	{
+		if (eacFirstEye == cam_active && pWeapon &&
+			pWeapon->IsZoomed() && (!pWeapon->ZoomTextureNew() ||
+				(!pWeapon->IsRotatingToZoom() && pWeapon->ZoomTextureNew())))
+			return pWeapon->GetZoomFactor() * (0.75f);
+		else
+			return g_fov;
+	}
 	else
-		return g_fov;
+	{
+		if (eacFirstEye == cam_active && pWeapon &&
+			pWeapon->IsZoomed() && (!pWeapon->ZoomTexture() ||
+				(!pWeapon->IsRotatingToZoom() && pWeapon->ZoomTexture())))
+			return pWeapon->GetZoomFactor() * (0.75f);
+		else
+			return g_fov;
+	}
 }
 
 void CActor::UpdateCL	()
