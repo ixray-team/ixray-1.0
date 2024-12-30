@@ -4,7 +4,7 @@
 #include "UIStatic.h"
 #include "UIXmlInit.h"
 #include "../object_broker.h"
-#include "../../xr_3da/xr_input.h"
+#include "../../xrEngine/xr_input.h"
 #include "../xr_level_controller.h"
 #include "../UIGameSp.h"
 #include "../HUDManager.h"

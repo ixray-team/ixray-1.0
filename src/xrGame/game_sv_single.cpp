@@ -9,7 +9,7 @@
 #include "object_broker.h"
 #include "gamepersistent.h"
 #include "xrServer.h"
-#include "..\xr_3da\x_ray.h"
+#include "..\xrEngine\x_ray.h"
 
 game_sv_Single::game_sv_Single			()
 {

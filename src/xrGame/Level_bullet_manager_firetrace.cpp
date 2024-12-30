@@ -12,7 +12,7 @@
 #include "game_cl_base.h"
 #include "xrmessages.h"
 #include "clsid_game.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/skeletoncustom.h"
 #include "Actor.h"
 #include "AI/Stalker/ai_stalker.h"
 #include "character_info.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../xr_3da/CameraBase.h"
+#include "../xrEngine/CameraBase.h"
 
 class CCameraLook	: public CCameraBase
 {

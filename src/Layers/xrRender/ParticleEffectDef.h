@@ -6,8 +6,8 @@
     #include "FBasicVisual.h"
     #include "ParticleCustom.h"
 #else
-    #include "..\..\xr_3da\FBasicVisual.h"
-    #include "..\..\xr_3da\ParticleCustom.h"
+    #include "..\..\xrEngine\FBasicVisual.h"
+    #include "..\..\xrEngine\ParticleCustom.h"
 #endif
 
 namespace PAPI

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../xr_3da/Effector.h"
+#include "../xrEngine/Effector.h"
 
 // приседание после падения
 class CEffectorFall : public CEffectorCam

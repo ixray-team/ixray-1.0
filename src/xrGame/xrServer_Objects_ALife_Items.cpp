@@ -16,7 +16,7 @@
 #ifndef XRGAME_EXPORTS
 #	include "bone.h"
 #else
-#	include "..\xr_3da\bone.h"
+#	include "..\xrEngine\bone.h"
 #	ifdef DEBUG
 #		define PHPH_DEBUG
 #	endif

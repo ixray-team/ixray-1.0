@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\..\xr_3da\ispatial.h"
+#include "..\..\xrEngine\ispatial.h"
 #if RENDER==R_R2
 	#include "light_package.h"
 	#include "light_smapvis.h"

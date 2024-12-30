@@ -9,8 +9,8 @@
 #include "xrserver.h"
 #include "ai_space.h"
 #include "game_sv_event_queue.h"
-#include "../xr_3da/XR_IOConsole.h"
-#include "../xr_3da/xr_ioc_cmd.h"
+#include "../xrEngine/XR_IOConsole.h"
+#include "../xrEngine/xr_ioc_cmd.h"
 #include "string_table.h"
 
 #include "debug_renderer.h"

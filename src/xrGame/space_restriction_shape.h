@@ -9,7 +9,7 @@
 #pragma once
 
 #include "space_restriction_base.h"
-#include "../xr_3da/xr_collide_form.h"
+#include "../xrEngine/xr_collide_form.h"
 
 class CSpaceRestrictor;
 

@@ -9,8 +9,8 @@
 
 #include "stdafx.h"
 #include "damage_manager.h"
-#include "../xr_3da/xr_object.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/xr_object.h"
+#include "../xrEngine/skeletoncustom.h"
 
 CDamageManager::CDamageManager			()
 {

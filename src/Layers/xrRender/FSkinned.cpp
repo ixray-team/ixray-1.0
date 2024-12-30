@@ -9,11 +9,11 @@
 #include <d3dx9.h>
 #pragma warning(default:4995)
 
-#include "..\..\xr_3da\fmesh.h"
+#include "..\..\xrEngine\fmesh.h"
 #include "../../xrCPU_Pipe/xrCPU_Pipe.h"
 #include "FSkinned.h"
 
-#include	"..\..\xr_3da\EnnumerateVertices.h"
+#include	"..\..\xrEngine\EnnumerateVertices.h"
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////

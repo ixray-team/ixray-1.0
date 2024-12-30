@@ -6,7 +6,7 @@
 #pragma once
 
 #include "ParticlesObject.h"
-#include "../xr_3da/bone.h"
+#include "../xrEngine/bone.h"
 
 using PARTICLES_PTR_VECTOR = xr_vector<CParticlesObject*>;
 using PARTICLES_PTR_VECTOR_IT = PARTICLES_PTR_VECTOR::iterator;

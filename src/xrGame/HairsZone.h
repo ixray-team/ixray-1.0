@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CustomZone.h"
-#include "../xr_3da/SkeletonAnimated.h"
+#include "../xrEngine/SkeletonAnimated.h"
 #include "ZoneVisual.h"
 
 #include "script_export_space.h"

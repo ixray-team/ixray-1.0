@@ -825,7 +825,7 @@
     <ClCompile Include="motion_simulator.cpp">
       <Filter>Compiler</Filter>
     </ClCompile>
-    <ClCompile Include="..\xr_3da\xrLoadSurface.cpp">
+    <ClCompile Include="..\xrEngine\xrLoadSurface.cpp">
       <Filter>Compiler</Filter>
     </ClCompile>
     <ClCompile Include="level_graph.cpp">

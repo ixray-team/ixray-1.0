@@ -681,7 +681,7 @@
     <ClCompile Include="OGF_Face_Sphere.cpp" />
     <ClCompile Include="OGF_Face_Stripify.cpp" />
     <ClCompile Include="xrFace.cpp" />
-    <ClCompile Include="..\..\xr_3da\xrLoadSurface.cpp" />
+    <ClCompile Include="..\..\xrEngine\xrLoadSurface.cpp" />
     <ClCompile Include="tga.cpp" />
     <ClCompile Include="Image.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Priquel|Win32'">true</ExcludedFromBuild>

@@ -1,7 +1,7 @@
 // Do NOT build this file seperately. It is included in dTriList.cpp automatically.
 
 
-#include "../../xr_3da/cl_intersect.h"
+#include "../../xrEngine/cl_intersect.h"
 #include "dTriCollideK.h"
 #include "dSortTriPrimitive.h"
 #include "../dCylinder/dCylinder.h"

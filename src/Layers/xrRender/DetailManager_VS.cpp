@@ -7,8 +7,8 @@
 #	include "igame_persistent.h"
 #	include "environment.h"
 #else
-#	include "..\..\xr_3da\igame_persistent.h"
-#	include "..\..\xr_3da\environment.h"
+#	include "..\..\xrEngine\igame_persistent.h"
+#	include "..\..\xrEngine\environment.h"
 #endif
 
 const int			quant	= 16384;

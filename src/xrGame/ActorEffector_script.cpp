@@ -2,7 +2,7 @@
 #include "ai_space.h"
 #include "script_engine.h"
 #include "ActorEffector.h"
-#include "../xr_3da/ObjectAnimator.h"
+#include "../xrEngine/ObjectAnimator.h"
 
 void CAnimatorCamEffectorScriptCB::ProcessIfInvalid(Fvector &p, Fvector &d, Fvector &n, float& fFov, float& fFar, float& fAspect)
 {

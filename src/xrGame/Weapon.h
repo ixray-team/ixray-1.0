@@ -8,7 +8,7 @@
 #include "ShootingObject.h"
 #include "hud_item_object.h"
 #include "Actor_Flags.h"
-#include "../xr_3da/SkeletonAnimated.h"
+#include "../xrEngine/SkeletonAnimated.h"
 #include "game_cl_single.h"
 #include "Actor.h"
 #include "ui/UIWindow.h"

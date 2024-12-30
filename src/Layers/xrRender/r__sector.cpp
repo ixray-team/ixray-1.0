@@ -4,10 +4,10 @@
 
 #include "stdafx.h"
 #include "r__sector.h"
-#include "..\..\xr_3da\xrLevel.h"
-#include "..\..\xr_3da\xr_object.h"
-#include "..\..\xr_3da\fbasicvisual.h"
-#include "..\..\xr_3da\IGame_Persistent.h"
+#include "..\..\xrEngine\xrLevel.h"
+#include "..\..\xrEngine\xr_object.h"
+#include "..\..\xrEngine\fbasicvisual.h"
+#include "..\..\xrEngine\IGame_Persistent.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

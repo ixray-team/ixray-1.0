@@ -12,7 +12,7 @@
 #include "xrMessages.h"
 #include "gamemtllib.h"
 #include "tri-colliderknoopc/dTriList.h"
-#include "../xr_3da/fbasicvisual.h"
+#include "../xrEngine/fbasicvisual.h"
 #include "CalculateTriangle.h"
 #include "actor.h"
 #ifdef DEBUG

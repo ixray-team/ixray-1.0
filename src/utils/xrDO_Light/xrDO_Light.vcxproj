@@ -500,7 +500,7 @@
     <ClCompile Include="cl_log.cpp" />
     <ClCompile Include="compiler.cpp" />
     <ClCompile Include="xrDO_Light.cpp" />
-    <ClCompile Include="..\..\xr_3da\xrLoadSurface.cpp" />
+    <ClCompile Include="..\..\xrEngine\xrLoadSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

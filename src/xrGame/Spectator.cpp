@@ -17,7 +17,7 @@
 #include "team_hierarchy_holder.h"
 #include "squad_hierarchy_holder.h"
 #include "group_hierarchy_holder.h"
-#include "../xr_3da/CameraManager.h"
+#include "../xrEngine/CameraManager.h"
 #include "Inventory.h"
 #include "huditem.h"
 #include "clsid_game.h"
@@ -394,7 +394,7 @@ BOOL			CSpectator::net_Spawn				( CSE_Abstract*	DC )
 	return TRUE;
 };
 
-#include "../xr_3da/IGame_Persistent.h"
+#include "../xrEngine/IGame_Persistent.h"
 void			CSpectator::net_Destroy	()
 {
 	inherited::net_Destroy	();

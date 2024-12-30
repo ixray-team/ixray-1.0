@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CustomZone.h"
-#include "../xr_3da/SkeletonAnimated.h"
+#include "../xrEngine/SkeletonAnimated.h"
 #include "ZoneVisual.h"
 #include "PHObject.h"
 #include "PHMovementControl.h"

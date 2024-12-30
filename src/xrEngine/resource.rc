@@ -137,9 +137,9 @@ BEGIN
             VALUE "CompanyName", "IX-Ray Team"
             VALUE "FileDescription", "IX-Ray Engine"
             VALUE "FileVersion", "1.0.0.0"
-            VALUE "InternalName", "XR_3DA.exe"
+            VALUE "InternalName", "xrEngine.exe"
             VALUE "LegalCopyright", "IX-Ray Team, 2024"
-            VALUE "OriginalFilename", "XR_3DA.exe"
+            VALUE "OriginalFilename", "xrEngine.exe"
             VALUE "ProductName", "IX-Ray Engine"
             VALUE "ProductVersion", "1.0.0.0"
         END

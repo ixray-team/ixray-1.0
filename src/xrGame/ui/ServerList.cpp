@@ -2,7 +2,7 @@
 #include "ServerList.h"
 #include "UIXmlInit.h"
 #include "../string_table.h"
-#include "../../xr_3da/xr_ioconsole.h"
+#include "../../xrEngine/xr_ioconsole.h"
 #include "UIEditBox.h"
 #include "UIColorAnimatorWrapper.h"
 #include "UIListItemAdv.h"

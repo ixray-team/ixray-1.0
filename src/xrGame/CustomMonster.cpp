@@ -16,7 +16,7 @@
 #include "group_hierarchy_holder.h"
 #include "customzone.h"
 #include "clsid_game.h"
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 #include "detail_path_manager.h"
 #include "memory_manager.h"
 #include "visual_memory_manager.h"

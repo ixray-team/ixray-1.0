@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "../xr_3da/effectorpp.h"
+#include "../xrEngine/effectorpp.h"
 #include "script_export_space.h"
-#include "../xr_3da/cameramanager.h"
+#include "../xrEngine/cameramanager.h"
 
 class CScriptEffector : public CEffectorPP {
 public:

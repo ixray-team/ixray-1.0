@@ -5,11 +5,11 @@
 #include "level.h"
 #include "ai_sounds.h"
 #include "clsid_game.h"
-#include "../xr_3da/skeletonanimated.h"
+#include "../xrEngine/skeletonanimated.h"
 #include "script_callback_ex.h"
 #include "game_object_space.h"
 #include "script_game_object.h"
-#include "../xr_3da/LightAnimLibrary.h"
+#include "../xrEngine/LightAnimLibrary.h"
 #include "HudManager.h"
 #include "physicscommon.h"
 //50fps fixed

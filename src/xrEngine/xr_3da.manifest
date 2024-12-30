@@ -3,7 +3,7 @@
 <assemblyIdentity 
     version="1.0.0.0" 
     processorArchitecture="X86" 
-    name="ImeSense.IXRay.XR_3DA"
+    name="ImeSense.IXRay.xrEngine"
     type="win32" 
 /> 
 <description>Main executable for S.T.A.L.K.E.R.: Shadow of Chernobyl</description> 

@@ -136,7 +136,7 @@ void CActor::PickupModeUpdate()
 		if (CanPickItem(frustum,Device.vCameraPosition,*it)) PickupInfoDraw(*it);
 }
 
-#include "../xr_3da/CameraBase.h"
+#include "../xrEngine/CameraBase.h"
 BOOL	g_b_COD_PickUpMode = TRUE;
 void	CActor::PickupModeUpdate_COD	()
 {

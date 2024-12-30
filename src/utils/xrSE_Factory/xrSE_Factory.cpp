@@ -45,7 +45,7 @@ typedef void DUMMY_STUFF (const void*,const u32&,void*);
 XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
 
 #define TRIVIAL_ENCRYPTOR_DECODER
-#include "../xr_3da/trivial_encryptor.h"
+#include "../xrEngine/trivial_encryptor.h"
 
 BOOL APIENTRY DllMain		(HANDLE module_handle, DWORD call_reason, LPVOID reserved)
 {

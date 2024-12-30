@@ -6,7 +6,7 @@
 #include "PHCapture.h"
 #include "Entity.h"
 #include "inventory_item.h"
-#include "../xr_3da/skeletoncustom.h"
+#include "../xrEngine/skeletoncustom.h"
 #include "Actor.h"
 #include "Inventory.h"
 extern	class CPHWorld	*ph_world;

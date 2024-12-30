@@ -5,8 +5,8 @@
 #include "skeletonX.h"
 #include "skeletoncustom.h"
 #else
-#include "..\xr_3da\skeletonX.h"
-#include "..\xr_3da\skeletoncustom.h"
+#include "..\xrEngine\skeletonX.h"
+#include "..\xrEngine\skeletoncustom.h"
 #endif
 
 /*

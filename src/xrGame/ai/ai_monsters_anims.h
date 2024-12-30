@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../../xr_3da/SkeletonAnimated.h"
+#include "../../xrEngine/SkeletonAnimated.h"
 #include "../ai_debug.h"
 
 using ANIM_VECTOR = xr_vector<MotionID>;
