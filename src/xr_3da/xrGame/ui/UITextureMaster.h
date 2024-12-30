@@ -22,6 +22,7 @@ class CUITextureMaster{
 public:
 
 	static void ParseShTexInfo			(LPCSTR xml_file);
+	static void ParseShTexInfoNew		(LPCSTR xml_file);
 
 	static void		InitTexture			(LPCSTR texture_name,		IUISimpleTextureControl* tc);
 	static void		InitTexture			(LPCSTR texture_name, const char* shader_name, IUISimpleTextureControl* tc);
