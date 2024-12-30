@@ -1,3 +1,0 @@
-function main()
-	game.start_tutorial("part_1_pda")
-end
