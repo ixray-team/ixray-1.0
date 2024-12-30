@@ -57,6 +57,9 @@ public:
 	virtual float	CheckLimYaw		( );
 	virtual float	CheckLimPitch	( );
 	virtual float	CheckLimRoll	( );
+
+	virtual void	save			(NET_Packet& output_packet) {};
+	virtual void	load			(IReader& input_packet) {};
 };
 
 #endif // !defined(AFX_CAMERABASE_H__B11F8AE1_1213_11D4_B4E3_4854E82A090D__INCLUDED_)
