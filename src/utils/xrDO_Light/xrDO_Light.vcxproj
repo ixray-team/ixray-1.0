@@ -180,8 +180,9 @@
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)\$(Platform)\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>xrCore.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -239,8 +240,9 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)\$(Platform)\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>xrCore.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
@@ -296,8 +298,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)\$(Platform)\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>xrCore.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Priquel|Win32'">
@@ -355,8 +358,9 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)\$(Platform)\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>xrCore.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Mixed_Priquel|Win32'">
@@ -412,8 +416,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)\$(Platform)\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>xrCore.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Priquel|Win32'">
@@ -460,8 +465,9 @@
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
       <ImportLibrary>$(SolutionDir)lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)\$(Platform)\;$(SolutionDir)sdk\MagicSoftware\FreeMagic\Library\ReleaseDLL\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>xrCore.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

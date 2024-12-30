@@ -28,8 +28,6 @@
 
 thread_local std::mt19937 rng = std::mt19937(std::random_device()());
 
-thread_local std::mt19937 rng = std::mt19937(std::random_device()());
-
 extern LPCSTR GAME_CONFIG;
 extern LPCSTR LEVEL_GRAPH_NAME;
 
