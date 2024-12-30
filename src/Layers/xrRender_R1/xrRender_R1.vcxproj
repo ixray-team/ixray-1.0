@@ -219,6 +219,7 @@
     <ClInclude Include="..\xrRender\dxUIRender.h" />
     <ClInclude Include="..\xrRender\dxUISequenceVideoItem.h" />
     <ClInclude Include="..\xrRender\dxUIShader.h" />
+    <ClInclude Include="..\xrRender\dxWallMarkArray.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="FStaticRender.h" />
@@ -291,6 +292,7 @@
     <ClCompile Include="..\xrRender\dxUIRender.cpp" />
     <ClCompile Include="..\xrRender\dxUISequenceVideoItem.cpp" />
     <ClCompile Include="..\xrRender\dxUIShader.cpp" />
+    <ClCompile Include="..\xrRender\dxWallMarkArray.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Create</PrecompiledHeader>

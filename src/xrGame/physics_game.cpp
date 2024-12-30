@@ -53,11 +53,11 @@ public:
 class CPHWallMarksCall :
 	public CPHAction
 {
-	ref_shader pWallmarkShader;
+	wm_shader pWallmarkShader;
 	Fvector pos;
 	CDB::TRI* T;
 public:
-	CPHWallMarksCall(const Fvector &p,CDB::TRI* Tri,ref_shader s)
+	CPHWallMarksCall(const Fvector& p, CDB::TRI* Tri, const wm_shader& s)
 	{
 		pWallmarkShader=s;
 		pos.set(p);
@@ -105,10 +105,10 @@ void  TContactShotMark(CDB::TRI* T,dContactGeom* c)
 		SGameMtlPair* mtl_pair		= GMLib.GetMaterialPair(T->material,data->material);
 		if(mtl_pair)
 		{
-			if(vel_cret>Pars::vel_cret_wallmark && !mtl_pair->CollideMarks.empty())
+			if(vel_cret>Pars::vel_cret_wallmark && !mtl_pair->m_pCollideMarks->empty())
 			{
-				ref_shader pWallmarkShader = mtl_pair->CollideMarks[::Random.randI(0,mtl_pair->CollideMarks.size())];
-				Level().ph_commander().add_call(xr_new<CPHOnesCondition>(),xr_new<CPHWallMarksCall>( *((Fvector*)c->pos),T,pWallmarkShader));
+				wm_shader WallmarkShader = mtl_pair->m_pCollideMarks->GenerateWallmark();
+				Level().ph_commander().add_call(xr_new<CPHOnesCondition>(), xr_new<CPHWallMarksCall>(*((Fvector*)c->pos), T, WallmarkShader));
 			}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			if(square_cam_dist<SQUARE_SOUND_EFFECT_DIST)
@@ -130,9 +130,8 @@ void  TContactShotMark(CDB::TRI* T,dContactGeom* c)
 				{
 					if(data->ph_ref_object&&!mtl_pair->CollideSounds.empty())
 					{
-						CPHSoundPlayer* sp=NULL;
-						sp=data->ph_ref_object->ph_sound_player();
-						if(sp) sp->Play(mtl_pair,*(Fvector*)c->pos);
+						if (CPHSoundPlayer* sp = data->ph_ref_object->ph_sound_player())
+							sp->Play(mtl_pair, *(Fvector*)c->pos);
 					}
 				}
 			}

@@ -64,6 +64,9 @@
 
     using ShaderVec = xr_vector<ref_shader>;
     using ShaderIt = ShaderVec::iterator;
+
+#include "../Include/xrRender/WallMarkArray.h"
+#include "../Include/xrRender/RenderFactory.h"
 #endif
 
 struct ECORE_API SGameMtl
@@ -166,7 +169,7 @@ public:
     SoundVec			StepSounds;
     SoundVec			CollideSounds;
     PSVec				CollideParticles;
-    ShaderVec			CollideMarks;
+    FactoryPtr<IWallMarkArray> m_pCollideMarks; 
 #ifdef _EDITOR
     PropValue*			propBreakingSounds;
     PropValue*			propStepSounds;

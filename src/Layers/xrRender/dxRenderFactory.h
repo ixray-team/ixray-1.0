@@ -18,7 +18,7 @@ class dxRenderFactory : public IRenderFactory
 #	ifdef DEBUG
 		RENDER_FACTORY_DECLARE(ObjectSpaceRender)
 #	endif // DEBUG
-//	RENDER_FACTORY_DECLARE(WallMarkArray)
+	RENDER_FACTORY_DECLARE(WallMarkArray)
 	RENDER_FACTORY_DECLARE(StatsRender)
 #endif // _EDITOR
 

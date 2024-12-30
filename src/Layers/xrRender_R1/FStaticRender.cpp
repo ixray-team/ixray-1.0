@@ -11,7 +11,10 @@
 #include "..\..\xrEngine\fmesh.h"
 #include "..\..\xrEngine\SkeletonCustom.h"
 #include "..\xrRender\lighttrack.h"
- 
+
+#include "../xrRender/dxWallMarkArray.h"
+#include "../xrRender/dxUIShader.h"
+
 using	namespace		R_dsgraph;
 
 CRender													RImplementation;
@@ -201,6 +204,20 @@ void					CRender::add_StaticWallmark		(ref_shader& S, const Fvector& P, float s,
 	Wallmarks->AddStaticWallmark	(T,verts,P,&*S,s);
 }
 
+void CRender::add_StaticWallmark(IWallMarkArray* pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V)
+{
+	dxWallMarkArray* pWMA = (dxWallMarkArray*)pArray;
+
+	if (ref_shader* pShader = pWMA->dxGenerateWallmark())
+		add_StaticWallmark(*pShader, P, s, T, V);
+}
+
+void CRender::add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V)
+{
+	dxUIShader* pShader = (dxUIShader*)&*S;
+	add_StaticWallmark(pShader->hShader, P, s, T, V);
+}
+
 void					CRender::clear_static_wallmarks	()
 {
 	Wallmarks->clear				();
@@ -214,6 +231,15 @@ void					CRender::add_SkeletonWallmark	(const Fmatrix* xf, CKinematics* obj, ref
 {
 	Wallmarks->AddSkeletonWallmark				(xf, obj, sh, start, dir, size);
 }
+
+void CRender::add_SkeletonWallmark(const Fmatrix* xf, CKinematics* obj, IWallMarkArray* pArray, const Fvector& start, const Fvector& dir, float size)
+{
+	dxWallMarkArray* pWMA = (dxWallMarkArray*)pArray;
+
+	if (ref_shader* pShader = pWMA->dxGenerateWallmark())
+		add_SkeletonWallmark(xf, (CKinematics*)obj, *pShader, start, dir, size);
+}
+
 void					CRender::add_Occluder			(Fbox2&	bb_screenspace	)
 {
 	VERIFY					(_valid(bb_screenspace));

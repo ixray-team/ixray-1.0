@@ -51,7 +51,7 @@ public:
 #	ifdef DEBUG
 		RENDER_FACTORY_INTERFACE(ObjectSpaceRender)
 #	endif // DEBUG
-//	RENDER_FACTORY_INTERFACE(WallMarkArray)
+	RENDER_FACTORY_INTERFACE(WallMarkArray)
 	RENDER_FACTORY_INTERFACE(StatsRender)
 #endif // _EDITOR
 

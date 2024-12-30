@@ -291,6 +291,9 @@
     <ClInclude Include="..\xrRender\dxDebugRender.h">
       <Filter>Kernel</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\dxWallMarkArray.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -633,6 +636,9 @@
       <Filter>Kernel</Filter>
     </ClCompile>
     <ClCompile Include="..\xrRender\dxDebugRender.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxWallMarkArray.cpp">
       <Filter>Kernel</Filter>
     </ClCompile>
   </ItemGroup>
