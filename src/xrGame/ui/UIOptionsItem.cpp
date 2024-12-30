@@ -41,7 +41,7 @@ void CUIOptionsItem::SaveOptStringValue(const char* val)
 
 void CUIOptionsItem::GetOptIntegerValue(int& val, int& min, int& max)
 {
-	Console->GetInteger(m_entry.c_str(), val, min, max);
+	val = Console->GetInteger(m_entry.c_str(), min, max);
 }
 
 void CUIOptionsItem::SaveOptIntegerValue(int val)
@@ -53,7 +53,7 @@ void CUIOptionsItem::SaveOptIntegerValue(int val)
 
 void CUIOptionsItem::GetOptFloatValue(float& val, float& min, float& max)
 {
-	Console->GetFloat(m_entry.c_str(), val, min, max);
+	val = Console->GetFloat(m_entry.c_str(), min, max);
 }
 
 void CUIOptionsItem::SaveOptFloatValue(float val)
@@ -66,7 +66,7 @@ void CUIOptionsItem::SaveOptFloatValue(float val)
 bool CUIOptionsItem::GetOptBoolValue()
 {
 	BOOL val;
-	Console->GetBool(m_entry.c_str(), val);
+	val = Console->GetBool(m_entry.c_str());
 	return val ? true : false;
 }
 
@@ -79,7 +79,7 @@ void CUIOptionsItem::SaveOptBoolValue(bool val)
 
 char* CUIOptionsItem::GetOptTokenValue()
 {
-	return Console->GetToken(m_entry.c_str());
+	return (char*)Console->GetToken(m_entry.c_str());
 }
 
 xr_token* CUIOptionsItem::GetOptToken()

@@ -526,8 +526,11 @@
     <ClInclude Include="..\Layers\xrRender\blenders\Blender.h" />
     <ClInclude Include="..\Layers\xrRender\blenders\Blender_CLSID.h" />
     <ClInclude Include="..\Layers\xrRender\blenders\Blender_Recorder.h" />
+    <ClInclude Include="edit_actions.h" />
     <ClInclude Include="EngineExternal.h" />
     <ClInclude Include="ILoadingScreen.h" />
+    <ClInclude Include="line_editor.h" />
+    <ClInclude Include="line_edit_control.h" />
     <ClInclude Include="string_table.h" />
     <ClInclude Include="xr_level_controller.h" />
     <ClInclude Include="_d3d_extensions.h" />
@@ -649,8 +652,11 @@
     <ClCompile Include="..\Layers\xrRender\blenders\Blender_Palette.cpp" />
     <ClCompile Include="..\Layers\xrRender\blenders\Blender_Recorder.cpp" />
     <ClCompile Include="defines.cpp" />
+    <ClCompile Include="edit_actions.cpp" />
     <ClCompile Include="EngineExternal.cpp" />
     <ClCompile Include="EngineExternalEnums.cpp" />
+    <ClCompile Include="line_editor.cpp" />
+    <ClCompile Include="line_edit_control.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Dedicated|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -660,6 +666,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="string_table.cpp" />
+    <ClCompile Include="XR_IOConsole_callback.cpp" />
+    <ClCompile Include="XR_IOConsole_control.cpp" />
+    <ClCompile Include="XR_IOConsole_get.cpp" />
     <ClCompile Include="xr_level_controller.cpp" />
     <ClCompile Include="x_ray.cpp" />
     <ClCompile Include="IInputReceiver.cpp" />

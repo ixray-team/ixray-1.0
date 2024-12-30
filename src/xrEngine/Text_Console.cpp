@@ -1,28 +1,31 @@
 #include "stdafx.h"
 #include "Text_Console.h"
+#include "line_editor.h"
 
-//ENGINE_API CTextConsole* TextConsole = NULL;
-extern	const char *			ioc_prompt;
+extern char const * const		ioc_prompt;
+extern char const * const		ch_cursor;
 int g_svTextConsoleUpdateRate = 1;
 
 CTextConsole::CTextConsole()
 {
-	m_pMainWnd = NULL;
+	m_pMainWnd    = NULL;
 	m_hConsoleWnd = NULL;
-	m_hLogWnd = NULL;
+	m_hLogWnd     = NULL;
 	m_hLogWndFont = NULL;
 
-	m_bScrollLog = true;
+	m_bScrollLog  = true;
 	m_dwStartLine = 0;
 
-	m_bNeedUpdate = false;
-	m_dwLastUpdateTime = 0;
+	m_bNeedUpdate      = false;
+	m_dwLastUpdateTime = Device.dwTimeGlobal;
+	m_last_time        = Device.dwTimeGlobal;
 }
 
 CTextConsole::~CTextConsole()
 {
 	m_pMainWnd = NULL;
-};
+}
+
 //-------------------------------------------------------------------------------------------
 LRESULT CALLBACK TextConsole_WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 void	CTextConsole::CreateConsoleWnd()
@@ -142,64 +145,63 @@ void	CTextConsole::CreateLogWnd()
 	m_hPrevFont = (HFONT)SelectObject(m_hDC_LogWnd_BackBuffer, m_hLogWndFont);
 	//------------------------------------------------
 	SetTextColor(m_hDC_LogWnd_BackBuffer, RGB(255, 255, 255));
-	SetBkColor(m_hDC_LogWnd_BackBuffer, RGB(0, 0, 0));
+	SetBkColor(m_hDC_LogWnd_BackBuffer, RGB(1, 1, 1));
 	//------------------------------------------------
 	m_hBackGroundBrush = GetStockBrush(BLACK_BRUSH);
 }
 
-void	CTextConsole::Initialize	()
+void CTextConsole::Initialize()
 {
-	CConsole::Initialize();
-	//----------------------------------
-	m_pMainWnd = &Device.m_hWnd;
-	//----------------------------------
+	inherited::Initialize();
+	
+	m_pMainWnd         = &Device.m_hWnd;
+	m_dwLastUpdateTime = Device.dwTimeGlobal;
+	m_last_time        = Device.dwTimeGlobal;
+
 	CreateConsoleWnd();
-	//-----------------------------------
 	CreateLogWnd();
-	//-----------------------------------------------
-	ShowWindow(m_hConsoleWnd, SW_SHOW); 
-	UpdateWindow(m_hConsoleWnd);	
-	//-----------------------------------
-	server_info.ResetData();
-};
 
-void	CTextConsole::Destroy		()
-{
-	CConsole::Destroy();	
-	//-------------------------------------
-	SelectObject(m_hDC_LogWnd_BackBuffer, m_hPrevFont);
-	SelectObject(m_hDC_LogWnd_BackBuffer, m_hOld_BM);
+	ShowWindow( m_hConsoleWnd, SW_SHOW );
+	UpdateWindow( m_hConsoleWnd );	
 
-	if (m_hBB_BM) DeleteObject(m_hBB_BM);
-	if (m_hOld_BM) DeleteObject(m_hOld_BM);
-	if (m_hLogWndFont) DeleteObject (m_hLogWndFont);
-	if (m_hPrevFont) DeleteObject(m_hPrevFont);
-	if (m_hBackGroundBrush) DeleteObject(m_hBackGroundBrush);
-
-	ReleaseDC(m_hLogWnd, m_hDC_LogWnd_BackBuffer);
-	ReleaseDC(m_hLogWnd, m_hDC_LogWnd);
-	//-------------------------------------
-	DestroyWindow(m_hLogWnd);
-	//-------------------------------------
-	DestroyWindow(m_hConsoleWnd);	
+	m_server_info.ResetData();
 }
 
-void	CTextConsole::OnPaint()
+void CTextConsole::Destroy()
+{
+	inherited::Destroy();	
+
+	SelectObject( m_hDC_LogWnd_BackBuffer, m_hPrevFont );
+	SelectObject( m_hDC_LogWnd_BackBuffer, m_hOld_BM );
+
+	if ( m_hBB_BM )           DeleteObject( m_hBB_BM );
+	if ( m_hOld_BM )          DeleteObject( m_hOld_BM );
+	if ( m_hLogWndFont )      DeleteObject( m_hLogWndFont );
+	if ( m_hPrevFont )        DeleteObject( m_hPrevFont );
+	if ( m_hBackGroundBrush ) DeleteObject( m_hBackGroundBrush );
+
+	ReleaseDC( m_hLogWnd, m_hDC_LogWnd_BackBuffer );
+	ReleaseDC( m_hLogWnd, m_hDC_LogWnd );
+
+	DestroyWindow( m_hLogWnd );
+	DestroyWindow( m_hConsoleWnd );
+}
+
+void CTextConsole::OnRender() {} //disable ÑConsole::OnRender()
+
+void CTextConsole::OnPaint()
 {
 	RECT wRC;
-	
-	//------------------------------	
 	PAINTSTRUCT ps;
-	BeginPaint(m_hLogWnd, &ps);
-	//------------------------------
+	BeginPaint( m_hLogWnd, &ps );
 
-	if (m_bNeedUpdate)
+	if ( /*m_bNeedUpdate*/ Device.dwFrame % 2 )
 	{
-		m_dwLastUpdateTime = Device.dwTimeGlobal;
-		m_bNeedUpdate = false;
+//		m_dwLastUpdateTime = Device.dwTimeGlobal;
+//		m_bNeedUpdate = false;
 		
-		GetClientRect(m_hLogWnd, &wRC);
-		DrawLog(m_hDC_LogWnd_BackBuffer, &wRC);
+		GetClientRect( m_hLogWnd, &wRC );
+		DrawLog( m_hDC_LogWnd_BackBuffer, &wRC );
 	}
 	else
 	{
@@ -207,121 +209,134 @@ void	CTextConsole::OnPaint()
 	}
 	
 	
-	BitBlt(	m_hDC_LogWnd, 
+	BitBlt(	m_hDC_LogWnd,
 			wRC.left, wRC.top,
 			wRC.right - wRC.left, wRC.bottom - wRC.top,
-//			ps.rcPaint.left, ps.rcPaint.top,
-//			ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top,
 			m_hDC_LogWnd_BackBuffer,
 			wRC.left, wRC.top,
-//			ps.rcPaint.left, ps.rcPaint.top,
-			SRCCOPY);//(FullUpdate) ? SRCCOPY : NOTSRCCOPY);
+			SRCCOPY); //(FullUpdate) ? SRCCOPY : NOTSRCCOPY);
 /*
-	Msg ("URect - %d:%d - %d:%d", ps.rcPaint.left, ps.rcPaint.top, 
-		ps.rcPaint.right, ps.rcPaint.bottom);
+	Msg ("URect - %d:%d - %d:%d", ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
 */
-	//------------------------------
-	EndPaint(m_hLogWnd, &ps);
+	EndPaint( m_hLogWnd, &ps );
 }
 
-void	CTextConsole::DrawLog(HDC hDC, RECT* pRect)
+void CTextConsole::DrawLog( HDC hDC, RECT* pRect )
 {
 	TEXTMETRIC tm;
 	GetTextMetrics(hDC, &tm);
-	//-------------------------------------------------
+
 	RECT wRC = *pRect;
 	GetClientRect(m_hLogWnd, &wRC);
-	//-------------------------------------------------
 	FillRect(hDC, &wRC, m_hBackGroundBrush);
-	//-------------------------------------------------
-//	INT Width = wRC.right - wRC.left;
-	INT Height = wRC.bottom - wRC.top;
+
+	int Width = wRC.right - wRC.left;
+	int Height = wRC.bottom - wRC.top;
 	wRC = *pRect;
-	int y_top_max = (int)(0.3f * Height);
+	int y_top_max = (int)(0.32f * Height);
+
 	//---------------------------------------------------------------------------------
-	char		buf	[MAX_LEN+5];
-	strcpy_s		(buf,ioc_prompt);
-	strcat		(buf,editor);
-	//if (bCursor) 
-		strcat(buf,"|");
+	LPCSTR s_edt = ec().str_edit();
+	LPCSTR s_cur = ec().str_before_cursor();
 
-	SetTextColor(hDC, RGB(128, 128, 255));
-	TextOut( hDC, 0, Height-tm.tmHeight, buf, xr_strlen(buf) );
+	u32 cur_len = xr_strlen( s_cur ) + xr_strlen( ch_cursor ) + 1;
+	PSTR buf = (PSTR)_alloca( cur_len * sizeof(char) );
+	strcpy_s( buf, cur_len, s_cur );
+	strcat_s( buf, cur_len, ch_cursor );
+	buf[cur_len-1] = 0;
 
-	int YPos = Height - tm.tmHeight - tm.tmHeight;
-	for ( int i = LogFile->size() - 1 - scroll_delta; i >= 0; i-- ) 
+	u32 cur0_len = xr_strlen( s_cur );
+
+	int xb = 25;
+	
+	SetTextColor( hDC, RGB(255, 255, 255) );
+	TextOut( hDC, xb, Height-tm.tmHeight-1, buf, cur_len-1 );
+	buf[ cur0_len ] = 0;
+	
+	SetTextColor(hDC, RGB(0, 0, 0));
+	TextOut( hDC, xb, Height-tm.tmHeight-1, buf, cur0_len );
+
+
+	SetTextColor( hDC, RGB(255, 255, 255) );
+	TextOut( hDC, 0, Height-tm.tmHeight-3, ioc_prompt, xr_strlen(ioc_prompt) ); // ">>> "
+
+	SetTextColor( hDC, (COLORREF)bgr2rgb(get_mark_color( mark11 )) );
+	TextOut( hDC, xb, Height-tm.tmHeight-3, s_edt, xr_strlen(s_edt) );
+
+	SetTextColor( hDC, RGB(205, 205, 225) );
+	u32 log_line = LogFile->size()-1;
+	string16 q, q2;
+	itoa( log_line, q, 10 );
+	strcpy_s( q2, sizeof(q2), "[" );
+	strcat_s( q2, sizeof(q2), q );
+	strcat_s( q2, sizeof(q2), "]" );
+	u32 qn = xr_strlen( q2 );
+
+	TextOut( hDC, Width - 8 * qn, Height-tm.tmHeight-tm.tmHeight, q2, qn );
+
+	int ypos = Height - tm.tmHeight - tm.tmHeight;
+	for( int i = LogFile->size()-1-scroll_delta; i >= 0; --i ) 
 	{
-		YPos -= tm.tmHeight;
-		if ( YPos < y_top_max )	break;
-		LPCSTR Str = *(*LogFile)[i];
-		LPCSTR pOut = Str;
-		if ( !Str ) continue;
-		switch ( Str[0] )
+		ypos -= tm.tmHeight;
+		if ( ypos < y_top_max )
 		{
-		case '~':
-			SetTextColor(hDC, RGB(0, 0, 255));
-			pOut = Str + 2;
-			break;
-		case '!':
-			SetTextColor(hDC, RGB(255, 0, 0));
-			pOut = Str + 2;
-			break;
-		case '*':
-			SetTextColor(hDC, RGB(128, 128, 128));
-			pOut = Str + 2;
-			break;
-		case '-':
-			SetTextColor(hDC, RGB(0, 255, 0));
-			pOut = Str + 2;
-			break;
-		case '#':
-			SetTextColor(hDC, RGB(222, 205, 145));
-			pOut = Str + 2;
-			break;
-		default:
-			SetTextColor(hDC, RGB(255, 255, 255));
 			break;
 		}
-		BOOL res = TextOut( hDC, 10, YPos, pOut, xr_strlen(pOut) );
+		LPCSTR ls = ((*LogFile)[i]).c_str();
+
+		if ( !ls )
+		{
+			continue;
+		}
+		Console_mark cm = (Console_mark)ls[0];
+		COLORREF     c2 = (COLORREF)bgr2rgb( get_mark_color( cm ) );
+		SetTextColor( hDC, c2 );
+		u8 b = (is_mark( cm ))? 2 : 0;
+		LPCSTR pOut = ls + b;
+
+		BOOL res = TextOut( hDC, 10, ypos, pOut, xr_strlen(pOut) );
 		if ( !res )
 		{
-			R_ASSERT(0);
+			R_ASSERT2( 0, "TextOut(..) return NULL" );
 		}
 	}
 
-	if ( g_pGameLevel && ( Device.dwFrame % 5 == 0 ) )
+	if ( g_pGameLevel && ( Device.dwTimeGlobal - m_last_time > 500 ) )
 	{
-		server_info.ResetData();
-		g_pGameLevel->GetLevelInfo( &server_info );
+		m_last_time = Device.dwTimeGlobal;
+
+		m_server_info.ResetData();
+		g_pGameLevel->GetLevelInfo( &m_server_info );
 	}
 
-	YPos = 5;
-	for ( u32 i = 0; i < server_info.Size(); ++i )
+	ypos = 5;
+	for ( u32 i = 0; i < m_server_info.Size(); ++i )
 	{
-		SetTextColor( hDC, server_info[i].color );
-		TextOut( hDC, 10, YPos, server_info[i].name, xr_strlen(server_info[i].name) );
+		SetTextColor( hDC, m_server_info[i].color );
+		TextOut( hDC, 10, ypos, m_server_info[i].name, xr_strlen(m_server_info[i].name) );
 
-		YPos += tm.tmHeight;
-		if ( YPos > y_top_max )	break;
+		ypos += tm.tmHeight;
+		if ( ypos > y_top_max )
+		{
+			break;
+		}
 	}
 }
-
-void	CTextConsole::OnRender			(void)
-{
-	//OnPaint();
-};
-
-void CTextConsole::IR_OnKeyboardPress(int dik)
+/*
+void CTextConsole::IR_OnKeyboardPress( int dik ) !!!!!!!!!!!!!!!!!!!!!
 {
 	m_bNeedUpdate = true;
-	CConsole::IR_OnKeyboardPress(dik);
+	inherited::IR_OnKeyboardPress( dik );
 }
-
-void	CTextConsole::OnFrame			(void)
+*/
+void CTextConsole::OnFrame()
 {
 	inherited::OnFrame();
-	if (!m_bNeedUpdate && m_dwLastUpdateTime+1000/g_svTextConsoleUpdateRate>Device.dwTimeGlobal) return;
-	InvalidateRect(m_hConsoleWnd, NULL, FALSE);
-	SetCursor(LoadCursor( NULL, IDC_ARROW ));	
-	m_bNeedUpdate = true;
+/*	if ( !m_bNeedUpdate && m_dwLastUpdateTime + 1000/g_svTextConsoleUpdateRate > Device.dwTimeGlobal )
+	{
+		return;
+	}
+*/	InvalidateRect( m_hConsoleWnd, NULL, FALSE );
+	SetCursor( LoadCursor( NULL, IDC_ARROW ) );	
+//	m_bNeedUpdate = true;
 }

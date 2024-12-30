@@ -2,6 +2,7 @@
 #define _STL_EXT_internal
 
 using std::swap;
+#include "buffer_vector.h"
 
 #ifdef	__BORLANDC__
 #define M_NOSTDCONTAINERS_EXT
