@@ -3,19 +3,17 @@
 #include "ResourceManager.h"
 #include "render.h"
 #include "IGame_Persistent.h"
+#include "..\include\xrRender\RenderFactory.h"
 
 void CRenderDevice::_Destroy	(BOOL bKeepTextures)
 {
-	DU.OnDeviceDestroy	();
-	m_WireShader.destroy		();
-	m_SelectionShader.destroy	();
+	DUImpl.OnDeviceDestroy	();
 
 	// before destroy
 	b_is_Ready					= FALSE;
 	Statistic->OnDeviceDestroy	();
 	::Render->destroy			();
-	Resources->OnDeviceDestroy	(bKeepTextures);
-	RCache.OnDeviceDestroy		();
+	m_pRender->OnDeviceDestroy(bKeepTextures);
 
 	Memory.mem_compact			();
 }
@@ -26,14 +24,14 @@ void CRenderDevice::Destroy	(void) {
 	Log("Destroying Direct3D...");
 
 	ShowCursor	(TRUE);
-	HW.Validate					();
+	m_pRender->ValidateHW();
 
 	_Destroy					(FALSE);
 
-	xr_delete					(Resources);
+//	xr_delete					(Resources);
 
 	// real destroy
-	HW.DestroyDevice			();
+	m_pRender->DestroyHW();
 
 	seqRender.R.clear			();
 	seqAppActivate.R.clear		();
@@ -45,6 +43,8 @@ void CRenderDevice::Destroy	(void) {
 	seqDeviceReset.R.clear		();
 	seqParallel.clear			();
 
+	RenderFactory->DestroyRenderDeviceRender(m_pRender);
+	m_pRender = 0;
 	xr_delete					(Statistic);
 }
 
@@ -53,9 +53,6 @@ void CRenderDevice::Destroy	(void) {
 extern BOOL bNeed_re_create_env;
 void CRenderDevice::Reset		(bool precache)
 {
-#ifdef DEBUG
-	_SHOW_REF("*ref -CRenderDevice::ResetTotal: DeviceREF:",HW.pDevice);
-#endif // DEBUG
 	bool b_16_before	= (float)dwWidth/(float)dwHeight > (1024.0f/768.0f+0.01f);
 
 	ShowCursor				(TRUE);
@@ -65,14 +62,7 @@ void CRenderDevice::Reset		(bool precache)
 //.		g_pGamePersistent->Environment().OnDeviceDestroy();
 	}
 
-	Resources->reset_begin	();
-	Memory.mem_compact		();
-	HW.Reset				(m_hWnd);
-	dwWidth					= HW.DevPP.BackBufferWidth;
-	dwHeight				= HW.DevPP.BackBufferHeight;
-	fWidth_2				= float(dwWidth/2);
-	fHeight_2				= float(dwHeight/2);
-	Resources->reset_end	();
+	m_pRender->Reset(m_hWnd, dwWidth, dwHeight, fWidth_2, fHeight_2);
 
 	if (g_pGamePersistent)
 	{
@@ -94,8 +84,4 @@ void CRenderDevice::Reset		(bool precache)
 	bool b_16_after	= (float)dwWidth/(float)dwHeight > (1024.0f/768.0f+0.01f);
 	if(b_16_after != b_16_before) 
 		seqResolutionChanged.Process(rp_ScreenResolutionChanged);
-
-#ifdef DEBUG
-	_SHOW_REF("*ref +CRenderDevice::ResetTotal: DeviceREF:",HW.pDevice);
-#endif // DEBUG
 }

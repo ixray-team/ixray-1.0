@@ -21,6 +21,8 @@ class	ENGINE_API	CGammaControl;
 
 #define DEVICE_RESET_PRECACHE_FRAME_COUNT 10
 
+#include "../Include/xrRender/RenderDeviceRender.h"
+
 // refs
 class ENGINE_API CRenderDevice 
 {
@@ -56,6 +58,13 @@ public:
 	ref_shader								m_SelectionShader;
 
 	BOOL									m_bNearer;
+	//morrazzzz: DELETE THE CODE FROM THE BOTTOM!!!
+	CResourceManager* Resources;	 //DELETE THIS!!!
+	CGammaControl							Gamma;  //DELETE THIS!!!!
+	//morrazzzz: DELETE THE CODE THAT IS ON TOP!!!
+
+	IRenderDeviceRender* m_pRender;
+
 	void									SetNearer	(BOOL enabled)
 	{
 		if (enabled&&!m_bNearer){
@@ -65,7 +74,7 @@ public:
 			m_bNearer						= FALSE;
 			mProject._43					+= EPS_L;
 		}
-		RCache.set_xform_project			(mProject);
+		m_pRender->SetCacheXform(mView, mProject);
 	}
 public:
 	// Registrators
@@ -81,9 +90,7 @@ public:
 	CRegistrator	<pureScreenResolutionChanged>	seqResolutionChanged;
 
 	// Dependent classes
-	CResourceManager*						Resources;	  
 	CStats*									Statistic;
-	CGammaControl							Gamma;
 
 	// Engine flow-control
 	float									fTimeDelta;
@@ -120,6 +127,7 @@ public:
 		b_is_Ready			= FALSE;
 		Timer.Start			();
 		m_bNearer			= FALSE;
+		m_pRender			= nullptr;
 	};
 
 	void	Pause							(BOOL bOn, BOOL bTimer, BOOL bSound, LPCSTR reason);

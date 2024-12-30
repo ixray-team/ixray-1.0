@@ -27,54 +27,40 @@ ref_light	precache_light = 0;
 BOOL CRenderDevice::Begin	()
 {
 #ifndef DEDICATED_SERVER
-	HW.Validate		();
-	HRESULT	_hr		= HW.pDevice->TestCooperativeLevel();
-    if (FAILED(_hr))
+	switch (m_pRender->GetDeviceState())
 	{
-		// If the device was lost, do not render until we get it back
-		if		(D3DERR_DEVICELOST==_hr)		{
-			Sleep	(33);
-			return	FALSE;
-		}
+	case IRenderDeviceRender::dsOK:
+		break;
 
+	case IRenderDeviceRender::dsLost:
+		// If the device was lost, do not render until we get it back
+		Sleep(33);
+		return FALSE;
+		break;
+	case IRenderDeviceRender::dsNeedReset:
 		// Check if the device is ready to be reset
-		if		(D3DERR_DEVICENOTRESET==_hr)
-		{
-			Reset	();
-		}
+		Reset();
+		break;
+
+	default:
+		R_ASSERT(0);
 	}
 
-	CHK_DX					(HW.pDevice->BeginScene());
-	RCache.OnFrameBegin		();
-	RCache.set_CullMode		(CULL_CW);
-	RCache.set_CullMode		(CULL_CCW);
-	if (HW.Caps.SceneMode)	overdrawBegin	();
+	m_pRender->Begin();
 	FPU::m24r	();
 	g_bRendering = 	TRUE;
 #endif
 	return		TRUE;
 }
 
-void CRenderDevice::Clear	()
+void CRenderDevice::Clear()
 {
-	CHK_DX(HW.pDevice->Clear(0,0,
-		D3DCLEAR_ZBUFFER|
-		(psDeviceFlags.test(rsClearBB)?D3DCLEAR_TARGET:0)|
-		(HW.Caps.bStencil?D3DCLEAR_STENCIL:0),
-		D3DCOLOR_XRGB(0,0,0),1,0
-		));
+	m_pRender->Clear();
 }
-
-extern void CheckPrivilegySlowdown();
-#include "resourcemanager.h"
 
 void CRenderDevice::End		(void)
 {
 #ifndef DEDICATED_SERVER
-
-	VERIFY	(HW.pDevice);
-
-	if (HW.Caps.SceneMode)	overdrawEnd		();
 
 	// 
 	if (dwPrecacheFrame)
@@ -84,27 +70,21 @@ void CRenderDevice::End		(void)
 		pApp->load_draw_internal	();
 		if (0==dwPrecacheFrame)
 		{
-			Gamma.Update		();
+			m_pRender->updateGamma();
 
 			if(precache_light) precache_light->set_active	(false);
 			if(precache_light) precache_light.destroy		();
 			::Sound->set_master_volume						(1.f);
 			pApp->destroy_loading_shaders					();
-			Resources->DestroyNecessaryTextures				();
+			m_pRender->ResourcesDestroyNecessaryTextures();
 			Memory.mem_compact								();
 			Msg												("* MEMORY USAGE: %d K",Memory.mem_usage()/1024);
-			CheckPrivilegySlowdown							();
 		}
 	}
 
 	g_bRendering		= FALSE;
 	// end scene
-	RCache.OnFrameEnd	();
-    CHK_DX				(HW.pDevice->EndScene());
-
-	HRESULT _hr		= HW.pDevice->Present( NULL, NULL, NULL, NULL );
-	if				(D3DERR_DEVICELOST==_hr)	return;			// we will handle this later
-	//R_ASSERT2		(SUCCEEDED(_hr),	"Presentation failed. Driver upgrade needed?");
+	m_pRender->End();
 #endif
 }
 
@@ -140,7 +120,8 @@ void 			mt_Thread	(void *ptr)	{
 #include "igame_level.h"
 void CRenderDevice::PreCache	(u32 amount)
 {
-	if (HW.Caps.bForceGPU_REF)	amount=0;
+	if (m_pRender->GetForceGPU_REF())
+		amount = 0; 
 #ifdef DEDICATED_SERVER
 	amount = 0;
 #endif
@@ -194,7 +175,7 @@ void CRenderDevice::Run			()
 
 	seqAppStart.Process			(rp_AppStart);
 
-	CHK_DX(HW.pDevice->Clear(0,0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0,0,0),1,0));
+	m_pRender->ClearTarget();
 
 	while( WM_QUIT != msg.message  )
     {
@@ -236,8 +217,7 @@ void CRenderDevice::Run			()
 
 				// Matrices
 				mFullTransform.mul			( mProject,mView	);
-				RCache.set_xform_view		( mView				);
-				RCache.set_xform_project	( mProject			);
+				m_pRender->SetCacheXform	( mView, mProject	);
 				D3DXMatrixInverse			( (D3DXMATRIX*)&mInvFullTransform, 0, (D3DXMATRIX*)&mFullTransform);
 
 				vCameraPosition_saved = vCameraPosition;

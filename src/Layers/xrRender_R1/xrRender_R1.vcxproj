@@ -204,6 +204,8 @@
   <ItemGroup>
     <ClInclude Include="..\xrRender\cl_intersect.h" />
     <ClInclude Include="..\xrRender\ColorMapManager.h" />
+    <ClInclude Include="..\xrRender\dxRenderDeviceRender.h" />
+    <ClInclude Include="..\xrRender\dxRenderFactory.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="FStaticRender.h" />
@@ -261,6 +263,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\xrRender\ColorMapManager.cpp" />
+    <ClCompile Include="..\xrRender\dxRenderDeviceRender.cpp" />
+    <ClCompile Include="..\xrRender\dxRenderFactory.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Create</PrecompiledHeader>

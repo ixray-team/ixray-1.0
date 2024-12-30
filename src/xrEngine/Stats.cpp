@@ -424,15 +424,15 @@ void CStats::OnRender				()
 				RCache.set_xform_world(Fidentity);
 				RCache.set_Shader		(Device.m_SelectionShader);
 				RCache.set_c			("tfactor",1,1,1,1);
-				DU.DrawCross			(item.params.position, 0.5f, 0xFF0000FF, true );
+				DUImpl.DrawCross			(item.params.position, 0.5f, 0xFF0000FF, true );
 				if (g_stats_flags.is(st_sound_min_dist))
-					DU.DrawSphere		(Fidentity, item.params.position, item.params.min_distance, 0x400000FF,	0xFF0000FF, true, true);
+					DUImpl.DrawSphere		(Fidentity, item.params.position, item.params.min_distance, 0x400000FF,	0xFF0000FF, true, true);
 				if (g_stats_flags.is(st_sound_max_dist))
-					DU.DrawSphere		(Fidentity, item.params.position, item.params.max_distance, 0x4000FF00,	0xFF008000, true, true);
+					DUImpl.DrawSphere		(Fidentity, item.params.position, item.params.max_distance, 0x4000FF00,	0xFF008000, true, true);
 				xr_string out_txt		= (g_stats_flags.is(st_sound_info_name))?item.name.c_str():"";
 				if (item.game_object){
 					if (g_stats_flags.is(st_sound_ai_dist))
-						DU.DrawSphere	(Fidentity, item.params.position, item.params.max_ai_distance, 0x80FF0000,0xFF800000,true,true);
+						DUImpl.DrawSphere	(Fidentity, item.params.position, item.params.max_ai_distance, 0x80FF0000,0xFF800000,true,true);
 					if (g_stats_flags.is(st_sound_info_object)){
 						out_txt			+= "  (";
 						out_txt			+= item.game_object->cNameSect().c_str();
@@ -440,7 +440,7 @@ void CStats::OnRender				()
 					}
 				}
 				if (g_stats_flags.is_any(st_sound_info_name|st_sound_info_object))
-					DU.OutText			(item.params.position, out_txt.c_str(),0xFFFFFFFF,0xFF000000);
+					DUImpl.OutText			(item.params.position, out_txt.c_str(),0xFFFFFFFF,0xFF000000);
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 #pragma hdrstop
 
 #include "ResourceManager.h"
-#include "blenders\blender.h"
+#include "..\Layers\xrRender\blenders\Blender.h"
 
 
 void	CResourceManager::OnDeviceDestroy(BOOL )
