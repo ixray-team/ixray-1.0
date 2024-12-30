@@ -263,7 +263,7 @@ void CUIMainIngameWnd::Init()
 	UIStaticDiskIO.SetWndRect				(1000,750,16,16);
 	UIStaticDiskIO.GetUIStaticItem().SetRect(0,0,16,16);
 	UIStaticDiskIO.InitTexture				("ui\\ui_disk_io");
-	UIStaticDiskIO.SetOriginalRect			(0,0,32,32);
+	UIStaticDiskIO.SetOriginalRect			(0 / UI()->get_current_kx(), 0, 32 / UI()->get_current_kx(), 32);
 	UIStaticDiskIO.SetStretchTexture		(TRUE);
 
 
