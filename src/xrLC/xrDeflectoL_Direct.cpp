@@ -37,7 +37,7 @@ void CDeflector::L_Direct_Edge (CDB::COLLIDER* DB, base_lighting* LightsSelected
 		// ok - perform lighting
 		base_color_c	C;
 		Fvector			P;	P.mad(v1,vdir,time);
-		LightPoint		(DB, RCAST_Model, C, P, N, *LightsSelected, (b_nosun?LP_dont_sun:0)|LP_DEFAULT, skip); //.
+		LightPoint		(DB, RCAST_Model, C, P, N, *LightsSelected, (b_nosun?LP_dont_sun:0)|LP_default, skip); //.
 		
 		C.mul		(.5f);
 		lm.surface	[_y*lm.width+_x]._set	(C);

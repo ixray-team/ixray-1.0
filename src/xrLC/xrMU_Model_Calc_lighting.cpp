@@ -301,7 +301,7 @@ void	o_test (int iA, int iB, int count, base_color* A, base_color* B, float& C, 
 
 void xrMU_Reference::calc_lighting	()
 {
-	model->calc_lighting		(color,xform,RCAST_Model,pBuild->L_static,(b_nosun?LP_dont_sun:0)|LP_DEFAULT);
+	model->calc_lighting		(color,xform,RCAST_Model,pBuild->L_static,(b_nosun?LP_dont_sun:0)|LP_default);
 
 	R_ASSERT					(color.size()==model->color.size());
 
