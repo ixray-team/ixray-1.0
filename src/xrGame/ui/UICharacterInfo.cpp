@@ -249,7 +249,9 @@ void CUICharacterInfo::UpdateRelation()
 	}
 	else
 	{
-		bool showRelation = m_icons[eUIName]->IsShown();
+		bool showRelation = true;
+		if (m_icons[eUIName])
+			showRelation = m_icons[eUIName]->IsShown();
 
 		if (m_icons[eUIRelationCaption])
 			m_icons[eUIRelationCaption]->Show(showRelation);
