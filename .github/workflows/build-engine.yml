@@ -1,0 +1,112 @@
+name: 'Build engine'
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - '.github/workflows/**'
+      - 'gamedata/**'
+      - 'sdk/**'
+      - 'src/**'
+      - '*.sln'
+      - '*.props'
+      - '*.targets'
+      - '*.ltx'
+      - '*.bat'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - '.github/workflows/**'
+      - 'gamedata/**'
+      - 'sdk/**'
+      - 'src/**'
+      - '*.sln'
+      - '*.props'
+      - '*.targets'
+      - '*.ltx'
+      - '*.bat'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build-engine:
+    name: 'Build engine'
+
+    strategy:
+      matrix:
+        system:
+          - windows-2022
+        config:
+          - Debug
+          - Mixed
+          - Release
+        platform:
+          - Win32
+
+    runs-on: ${{ matrix.system }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+        with:
+          nuget-version: '>=5'
+
+      - name: Cache packages
+        uses: actions/cache@v4
+        id: cache
+        with:
+          key: Engine-NuGet-${{ hashFiles('**/packages.config') }}
+          restore-keys: |
+            Engine-NuGet-${{ hashFiles('**/packages.config') }}
+            Engine-NuGet-
+          path: |
+            ~/.nuget/packages
+
+      - name: Restore dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          nuget restore IXRay.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build solution
+        run: |
+          msbuild IXRay.sln `
+            -p:Configuration=${{ matrix.config }} `
+            -p:Platform=${{ matrix.platform }} `
+            -maxCpuCount `
+            -nologo
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-binaries-${{ matrix.system }}-${{ matrix.platform }}-${{ matrix.config }}-${{ github.sha }}
+          path: |
+            bin/${{ matrix.platform }}/${{ matrix.config }}/*.exe
+            bin/${{ matrix.platform }}/${{ matrix.config }}/*.dll
+
+      - name: Upload symbols
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-symbols-${{ matrix.system }}-${{ matrix.platform }}-${{ matrix.config }}-${{ github.sha }}
+          path: |
+            bin/${{ matrix.platform }}/${{ matrix.config }}/*.pdb
+            lib/${{ matrix.platform }}/${{ matrix.config }}/*.pdb
+
+      - name: Upload libraries
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-libraries-${{ matrix.system }}-${{ matrix.platform }}-${{ matrix.config }}-${{ github.sha }}
+          path: |
+            lib/${{ matrix.platform }}/${{ matrix.config }}/*.lib
+            lib/${{ matrix.platform }}/${{ matrix.config }}/*.exp
