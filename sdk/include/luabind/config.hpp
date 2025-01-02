@@ -166,7 +166,8 @@ namespace std
 
 #include <luabind/luabind_memory.h>
 
-#define string_class			luabind::internal_string
+using	string_class = luabind::internal_string;
+
 #define vector_class			luabind::internal_vector
 #define list_class				luabind::internal_list
 #define map_class				luabind::internal_map
