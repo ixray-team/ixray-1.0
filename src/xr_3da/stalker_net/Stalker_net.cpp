@@ -83,12 +83,6 @@ void compute_build_id	()
 		build_id		-= days_in_month[i];
 }
 
-typedef void DUMMY_STUFF (const void*,const u32&,void*);
-XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
-
-#define TRIVIAL_ENCRYPTOR_DECODER
-#include "../../xrCore/Crypto/trivial_encryptor.h"
-
 // CStalker_netApp initialization
 
 BOOL CStalker_netApp::InitInstance()
@@ -101,7 +95,6 @@ BOOL CStalker_netApp::InitInstance()
 	CWinApp::InitInstance();
 
 	// Decoding resources and calculating build number
-	g_temporary_stuff = trivial_encryptor::decode;
 	compute_build_id();
 
 	Core._initialize("Stalker_net", NULL, TRUE);

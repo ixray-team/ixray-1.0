@@ -33,11 +33,11 @@ private:
 		BOOL 						bRecurse;
     };
 
-	using HANDLEVec = xr_vector<HANDLE>;
-	using HANDLEIt = HANDLEVec::iterator;
+    using HANDLEVec = xr_vector<HANDLE>;
+    using HANDLEIt = HANDLEVec::iterator;
 
-	using PathVec = xr_vector<Path>;
-	using PathIt = PathVec::iterator;
+    using PathVec = xr_vector<Path>;
+    using PathIt = PathVec::iterator;
 
     PathVec					events;
 public:

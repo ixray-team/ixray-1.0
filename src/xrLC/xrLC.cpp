@@ -143,18 +143,11 @@ void Startup(LPSTR     lpCmdLine)
 	Sleep					(500);
 }
 
-typedef void DUMMY_STUFF (const void*,const u32&,void*);
-XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
-XRCORE_API DUMMY_STUFF	*g_dummy_stuff;
-
 int APIENTRY WinMain(HINSTANCE hInst,
                      HINSTANCE hPrevInstance,
                      LPSTR     lpCmdLine,
                      int       nCmdShow)
 {
-	g_temporary_stuff	= &trivial_encryptor::decode;
-	g_dummy_stuff		= &trivial_encryptor::encode;
-
 	// Initialize debugging
 	Core._initialize	("xrLC");
 	Startup				(lpCmdLine);

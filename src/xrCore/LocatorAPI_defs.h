@@ -31,9 +31,8 @@ public:
 				FS_Path		(LPCSTR _Root, LPCSTR _Add, LPCSTR _DefExt=0, LPCSTR _FilterString=0, u32 flags=0);
 				~FS_Path	();
 	LPCSTR		_update		(string_path& dest, LPCSTR src) const;
-//.	void		_update		(xr_string& dest, LPCSTR src) const;
-	void		_set		(LPSTR add);
-	void		_set_root	(LPSTR root);
+	void		_set		(LPCSTR add);
+	void		_set_root	(LPCSTR root);
 
     void __stdcall rescan_path_cb	();
 };

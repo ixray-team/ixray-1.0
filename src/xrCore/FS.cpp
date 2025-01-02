@@ -10,43 +10,45 @@
 #include <sys\stat.h>
 #pragma warning(default:4995)
 
-typedef void DUMMY_STUFF (const void*,const u32&,void*);
-XRCORE_API DUMMY_STUFF	*g_dummy_stuff = 0;
+//typedef void DUMMY_STUFF (const void*,const u32&,void*);
+//XRCORE_API DUMMY_STUFF	*g_dummy_stuff = 0;
 
 #ifdef M_BORLAND
 #	define O_SEQUENTIAL 0
 #endif // M_BORLAND
 
 #ifdef DEBUG
-	XRCORE_API	u32								g_file_mapped_memory = 0;
-	u32								g_file_mapped_count	= 0;
-	typedef std::map<u32,std::pair<u32,shared_str> >	FILE_MAPPINGS;
+XRCORE_API size_t g_file_mapped_memory = 0;
+size_t g_file_mapped_count = 0;
+
+using FILE_MAPPINGS = xr_hash_map<size_t, std::pair<size_t, shared_str>>;
 	FILE_MAPPINGS					g_file_mappings;
 
-void register_file_mapping			(void *address, const u32 &size, LPCSTR file_name)
-{
-	FILE_MAPPINGS::const_iterator	I = g_file_mappings.find(*(u32*)&address);
+void register_file_mapping(void* address, const size_t& size, LPCSTR file_name) {
+	size_t CastedAddress = *(size_t*)&address;
+
+	FILE_MAPPINGS::const_iterator I = g_file_mappings.find(CastedAddress);
 	VERIFY							(I == g_file_mappings.end());
-	g_file_mappings.insert			(std::make_pair(*(u32*)&address,std::make_pair(size,shared_str(file_name))));
+
+	g_file_mappings.try_emplace(CastedAddress, std::make_pair(size, shared_str(file_name)));
 
 	g_file_mapped_memory			+= size;
 	++g_file_mapped_count;
 }
 
-void unregister_file_mapping		(void *address, const u32 &size)
-{
-	FILE_MAPPINGS::iterator			I = g_file_mappings.find(*(u32*)&address);
+void unregister_file_mapping(void* address, const size_t& size) {
+	FILE_MAPPINGS::iterator I = g_file_mappings.find(*(size_t*)&address);
 	VERIFY							(I != g_file_mappings.end());
-//	VERIFY2							((*I).second.first == size,make_string("file mapping sizes are different: %d -> %d",(*I).second.first,size));
+
 	g_file_mapped_memory			-= (*I).second.first;
 	--g_file_mapped_count;
 
 	g_file_mappings.erase			(I);
-
 }
 
 XRCORE_API void dump_file_mappings	()
 {
+#if 0
 	Msg								("* active file mappings (%d):",g_file_mappings.size());
 
 	FILE_MAPPINGS::const_iterator	I = g_file_mappings.begin();
@@ -58,6 +60,7 @@ XRCORE_API void dump_file_mappings	()
 			(*I).second.first,
 			(*I).second.second.c_str()
 		);
+#endif
 }
 #endif // DEBUG
 //////////////////////////////////////////////////////////////////////
@@ -75,43 +78,87 @@ void VerifyPath(LPCSTR path)
         _mkdir(tmp);
 	}
 }
-void*  FileDownload(LPCSTR fn, u32* pdwSize)
+
+#ifdef _EDITOR
+bool file_handle_internal	(LPCSTR file_name, u32 &size, int &hFile)
 {
-	int		hFile;
-	u32		size;
-	void*	buf;
-
-#ifdef _EDITOR
-	hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL);
-#else
-	hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL,_S_IREAD);
-#endif
-	if (hFile<=0)	{
-		Sleep	(1);
-#ifdef _EDITOR
-		hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL);
-#else
-		hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL,_S_IREAD);
-#endif
+	hFile				= _open(file_name,O_RDONLY|O_BINARY|O_SEQUENTIAL);
+	if (hFile <= 0)	{
+		Sleep			(1);
+		hFile			= _open(file_name,O_RDONLY|O_BINARY|O_SEQUENTIAL);
+		if (hFile <= 0)
+			return		(false);
 	}
-	R_ASSERT2(hFile>0,fn);
-#ifdef _EDITOR
-	size	= filelength(hFile);
-#else
-	size	= _filelength(hFile);
-#endif
+	
+	size				= filelength(hFile);
+	return				(true);
+}
+#else // EDITOR
+static errno_t open_internal(LPCSTR fn, int &handle)
+{
+	return				(
+		_sopen_s(
+			&handle,
+			fn,
+			_O_RDONLY | _O_BINARY,
+			_SH_DENYNO, 
+            _S_IREAD
+		)
+	);
+}
 
-	buf		= Memory.mem_alloc(size);
-	int r_bytes	= _read	(hFile,buf,size);
-	R_ASSERT3(r_bytes==(int)size,"Can't read file data:",fn);
-	_close	(hFile);
-	if (pdwSize) *pdwSize = size;
-	return buf;
+bool file_handle_internal	(LPCSTR file_name, u32 &size, int &file_handle)
+{
+	if (open_internal(file_name, file_handle)) {
+		Sleep			(1);
+		if (open_internal(file_name, file_handle))
+			return		(false);
+	}
+	
+	size				= _filelength(file_handle);
+	return				(true);
+}
+#endif // EDITOR
+
+void *FileDownload		(LPCSTR file_name, const int &file_handle, u32 &file_size)
+{
+	void				*buffer = Memory.mem_alloc(file_size);
+
+	int					r_bytes	= _read(file_handle,buffer,file_size);
+	R_ASSERT3			(
+//		!file_size ||
+//		(r_bytes && (file_size >= (u32)r_bytes)),
+		file_size == (u32)r_bytes,
+		"can't read from file : ",
+		file_name
+	);
+
+//	file_size			= r_bytes;
+
+	R_ASSERT3			(
+		!_close(file_handle),
+		"can't close file : ",
+		file_name
+	);
+
+	return				(buffer);
+}
+
+void *FileDownload		(LPCSTR file_name, u32 *buffer_size)
+{
+	int					file_handle;
+	R_ASSERT3			(
+		file_handle_internal(file_name, *buffer_size, file_handle),
+		"can't open file : ",
+		file_name
+	);
+
+	return				(FileDownload(file_name, file_handle, *buffer_size));
 }
 
 typedef char MARK[9];
 IC void mk_mark(MARK& M, const char* S)
-{	strncpy(M,S,8); }
+{	strncpy_s(M,sizeof(M),S,8); }
 
 void  FileCompress	(const char *fn, const char* sign, void* data, u32 size)
 {
@@ -157,16 +204,8 @@ void CMemoryWriter::w	(const void* ptr, u32 count)
 		// reallocate
 		if (mem_size==0)	mem_size=128;
 		while (mem_size <= (position+count)) mem_size*=2;
-		if (0==data)		data = (BYTE*)	Memory.mem_alloc	(mem_size
-#ifdef DEBUG_MEMORY_NAME
-			,		"CMemoryWriter - storage"
-#endif // DEBUG_MEMORY_NAME
-			);
-		else				data = (BYTE*)	Memory.mem_realloc	(data,mem_size
-#ifdef DEBUG_MEMORY_NAME
-			,	"CMemoryWriter - storage"
-#endif // DEBUG_MEMORY_NAME
-			);
+		if (0==data)		data = (BYTE*)	Memory.mem_alloc	(mem_size);
+		else				data = (BYTE*)	Memory.mem_realloc	(data,mem_size);
 	}
 	CopyMemory	(data+position,ptr,count);
 	position		+=count;
@@ -214,8 +253,8 @@ void	IWriter::w_compressed(void* ptr, u32 count)
 	unsigned	dest_sz	= 0;
 	_compressLZ	(&dest,&dest_sz,ptr,count);
 	
-	if (g_dummy_stuff)
-		g_dummy_stuff	(dest,dest_sz,dest);
+//	if (g_dummy_stuff)
+//		g_dummy_stuff	(dest,dest_sz,dest);
 
 	if (dest && dest_sz)
 		w(dest,dest_sz);
@@ -246,9 +285,15 @@ void	IWriter::w_printf(const char* format, ...)
 {
 	va_list mark;
 	char buf[1024];
-	va_start( mark, format );
-	vsprintf( buf, format, mark );
-	va_end  ( mark);
+
+	va_start( mark , format );
+#ifndef	_EDITOR
+		vsprintf_s( buf , format , mark );
+#else
+		vsprintf( buf , format , mark );
+#endif
+	va_end( mark );
+
 	w		( buf, xr_strlen(buf) );
 }
 
@@ -257,6 +302,7 @@ void	IWriter::w_printf(const char* format, ...)
 IReader*	IReader::open_chunk(u32 ID)
 {
 	BOOL	bCompressed;
+
 	u32	dwSize = find_chunk(ID,&bCompressed);
 	if (dwSize!=0) {
 		if (bCompressed) {
@@ -270,9 +316,28 @@ IReader*	IReader::open_chunk(u32 ID)
 	} else return 0;
 };
 
-void IReader::close() {
-    auto pointer = (IReader*) this;
-    xr_delete(pointer);
+void	IReader::close()
+{
+	auto pointer = (IReader*)this;
+	xr_delete(pointer);
+}
+
+#include "FS_impl.h"
+
+#ifdef TESTING_IREADER
+IReaderTestPolicy::~IReaderTestPolicy()
+{
+	xr_delete(m_test);
+};
+#endif // TESTING_IREADER
+
+#ifdef FIND_CHUNK_BENCHMARK_ENABLE
+find_chunk_counter g_find_chunk_counter;
+#endif // FIND_CHUNK_BENCHMARK_ENABLE
+
+u32 IReader::find_chunk						(u32 ID, BOOL* bCompressed)
+{
+	return inherited::find_chunk(ID, bCompressed);
 }
 
 IReader*	IReader::open_chunk_iterator	(u32& ID, IReader* _prev)
@@ -305,9 +370,9 @@ IReader*	IReader::open_chunk_iterator	(u32& ID, IReader* _prev)
 
 void	IReader::r	(void *p,int cnt)
 {
-	VERIFY				(Pos+cnt<=Size);
+	VERIFY			(Pos+cnt<=Size);
 	CopyMemory		(p,pointer(),cnt);
-	advance				(cnt);
+	advance			(cnt);
 #ifdef DEBUG
 	BOOL	bShow		= FALSE		;
 	if (dynamic_cast<CFileReader*>(this))			bShow = TRUE;
@@ -326,8 +391,10 @@ IC u32	IReader::advance_term_string()
 	while (!eof()) {
         Pos++;
         sz++;
-		if (!eof()&&is_term(src[Pos])) {
-        	while(!eof()&&is_term(src[Pos])) Pos++;
+		if (!eof()&&is_term(src[Pos])) 
+		{
+        	while(!eof() && is_term(src[Pos])) 
+				Pos++;
 			break;
 		}
 	}
@@ -338,7 +405,13 @@ void	IReader::r_string	(char *dest, u32 tgt_sz)
 	char *src 	= (char *) data+Pos;
 	u32 sz 		= advance_term_string();
     R_ASSERT2(sz<(tgt_sz-1),"Dest string less than needed.");
-    strncpy		(dest,src,sz);
+	R_ASSERT	(!IsBadReadPtr((void*)src,sz));
+
+#ifdef _EDITOR
+	CopyMemory	 (dest,src,sz);
+#else
+    strncpy_s	(dest,tgt_sz, src,sz);
+#endif
     dest[sz]	= 0;
 }
 void	IReader::r_string	(xr_string& dest)

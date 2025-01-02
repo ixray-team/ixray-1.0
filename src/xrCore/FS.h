@@ -6,15 +6,16 @@
 #define fsH
 
 #define CFS_CompressMark	(1ul << 31ul)
+#define CFS_HeaderChunkID	(666)
 
 XRCORE_API void VerifyPath	(LPCSTR path);
 
 #ifdef DEBUG
-	XRCORE_API	extern	u32		g_file_mapped_memory;
-	XRCORE_API	extern	u32		g_file_mapped_count;
+XRCORE_API extern size_t g_file_mapped_memory;
+XRCORE_API extern size_t g_file_mapped_count;
 	XRCORE_API			void	dump_file_mappings		();
-				extern	void	register_file_mapping	(void *address, const u32 &size, LPCSTR file_name);
-				extern	void	unregister_file_mapping	(void *address, const u32 &size);
+extern void register_file_mapping(void* address, const size_t& size, LPCSTR file_name);
+extern void unregister_file_mapping(void* address, const size_t& size);
 #endif // DEBUG
 
 //------------------------------------------------------------------------------------
@@ -91,6 +92,7 @@ public:
 	void			w_compressed(void* ptr, u32 count);
 	void			w_chunk		(u32 type, void* data, u32 size);
 	virtual bool	valid		()									{return true;}
+	virtual	void	flush		() = 0;
 };
 
 class XRCORE_API CMemoryWriter : public IWriter
@@ -123,15 +125,38 @@ public:
 	IC void			free		()			{	file_size=0; position=0; mem_size=0; xr_free(data);	}
 #pragma warning(pop)
 	bool			save_to		(LPCSTR fn);
+	virtual	void	flush		()			{ };
 };
 
 //------------------------------------------------------------------------------------
 // Read
 //------------------------------------------------------------------------------------
+
+// Uncomment following line to try other implementations in FS_impl.h
+//#define TESTING_IREADER
+
+#ifdef TESTING_IREADER
+struct IReaderBase_Test;
+
+struct XRCORE_API IReaderTestPolicy
+{
+	IReaderBase_Test*	m_test;
+	IReaderTestPolicy() { m_test = NULL; }
+	~IReaderTestPolicy(); // defined in FS.cpp
+};
+#endif // TESTING_IREADER
+
 template <typename implementation_type>
-class IReaderBase {
+class IReaderBase
+
+#ifdef TESTING_IREADER
+	: public IReaderTestPolicy // inheriting
+#endif //TESTING_IREADER
+
+{
 public:
-	virtual			~IReaderBase()				{}
+	IC				IReaderBase	() : m_last_pos (0) {}
+	virtual			~IReaderBase()			{}
 
 	IC implementation_type&impl	()				{return *(implementation_type*)this;}
 	IC const implementation_type&impl() const	{return *(implementation_type*)this;}
@@ -186,28 +211,11 @@ public:
 	// Set file pointer to start of chunk data (0 for root chunk)
 	IC	void		rewind		()			{	impl().seek(0); }
 
-	IC	u32 		find_chunk	(u32 ID, BOOL* bCompressed = 0)	
-	{
-		u32	dwSize,dwType;
-
-		rewind();
-		while (!eof()) {
-			dwType = r_u32();
-			dwSize = r_u32();
-			if ((dwType&(~CFS_CompressMark)) == ID) {
-				
-				VERIFY	((u32)impl().tell() + dwSize <= (u32)impl().length());
-				if (bCompressed) *bCompressed = dwType&CFS_CompressMark;
-				return dwSize;
-			}
-			else	impl().advance(dwSize);
-		}
-		return 0;
-	}
+	u32 			find_chunk  (u32 ID, BOOL* bCompressed);
 	
 	IC	BOOL		r_chunk		(u32 ID, void *dest)	// чтение XR Chunk'ов (4b-ID,4b-size,??b-data)
 	{
-		u32	dwSize = find_chunk(ID);
+		u32	dwSize = ((implementation_type*)this)->find_chunk(ID);
 		if (dwSize!=0) {
 			r(dest,dwSize);
 			return TRUE;
@@ -216,13 +224,16 @@ public:
 	
 	IC	BOOL		r_chunk_safe(u32 ID, void *dest, u32 dest_size)	// чтение XR Chunk'ов (4b-ID,4b-size,??b-data)
 	{
-		u32	dwSize = find_chunk(ID);
+		u32	dwSize = ((implementation_type*)this)->find_chunk(ID);
 		if (dwSize!=0) {
 			R_ASSERT(dwSize==dest_size);
 			r(dest,dwSize);
 			return TRUE;
 		} else return FALSE;
 	}
+
+private:
+	u32					m_last_pos;
 };
 
 class XRCORE_API IReader : public IReaderBase<IReader> {
@@ -237,6 +248,8 @@ public:
 	{
 		Pos			= 0;
 	}
+
+	virtual			~IReader		() {}
 
 	IC				IReader			(void *_data, int _size, int _iterpos=0)
 	{
@@ -285,6 +298,11 @@ public:
 
 	// iterators
 	IReader*		open_chunk_iterator		(u32& ID, IReader* previous=NULL);	// NULL=first
+
+	u32 			find_chunk	(u32 ID, BOOL* bCompressed = 0);
+
+private:
+	typedef IReaderBase<IReader>	inherited;
 };
 
 class XRCORE_API CVirtualFileRW : public IReader

@@ -47,9 +47,6 @@
 	#endif
 #endif
 
-// #include <exception>
-// using std::exception;
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -57,9 +54,6 @@
 #include <string.h>
 
 #include <typeinfo>
-//#include <typeinfo.h>
-
-//#include <process.h>
 
 #ifndef DEBUG
 	#ifdef _DEBUG
@@ -167,6 +161,7 @@
 #include <set>
 #include <map>
 #include <string>
+#include <unordered_map>
 #pragma warning (pop)
 #pragma warning (disable : 4100 )		// unreferenced formal parameter
 
@@ -195,6 +190,7 @@
 #include "xr_resource.h"
 #include "rt_compressor.h"
 #include "xr_shared.h"
+#include "string_concatenations.h"
 
 // stl ext
 struct XRCORE_API xr_rtoken{
@@ -236,6 +232,9 @@ using RTokenVec = xr_vector<xr_rtoken>;
 using RTokenVecIt = RTokenVec::iterator;
 
 #include "FS.h"
+#define INCLUDE_FROM_ENGINE
+#include "FS_impl.h"
+
 #include "log.h"
 #include "xr_trims.h"
 #include "xr_ini.h"

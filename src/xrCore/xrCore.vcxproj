@@ -211,6 +211,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Crypto\trivial_encryptor.cpp" />
     <ClCompile Include="doug_lea_allocator.cpp" />
     <ClCompile Include="FTimer.cpp" />
     <ClCompile Include="memory_alloc_pure.cpp" />
@@ -223,6 +224,7 @@
       <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">false</ShowIncludes>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="string_concatenations.cpp" />
     <ClCompile Include="XmlParser\tinyxml.cpp" />
     <ClCompile Include="XmlParser\tinyxmlerror.cpp" />
     <ClCompile Include="XmlParser\tinyxmlparser.cpp" />
@@ -398,14 +400,17 @@
     <ClCompile Include="xrSyncronize.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Crypto\trivial_encryptor.h" />
     <ClInclude Include="doug_lea_allocator.h" />
+    <ClInclude Include="FS_impl.h" />
     <ClInclude Include="FTimer.h" />
     <ClInclude Include="memory_alloc_pure.h" />
     <ClInclude Include="memory_alloc_xr.h" />
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="trivial_encryptor.h" />
+    <ClInclude Include="string_concatenations.h" />
+    <ClInclude Include="string_concatenations_inline.h" />
     <ClInclude Include="XmlParser\tinyxml.h" />
     <ClInclude Include="XmlParser\xrXMLParser.h" />
     <ClInclude Include="xrCore.h" />

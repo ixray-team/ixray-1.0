@@ -14,11 +14,6 @@
 
 //. #define MOD_COMPRESS
 
-typedef void DUMMY_STUFF (const void*,const u32&,void*);
-XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
-XRCORE_API DUMMY_STUFF	*g_dummy_stuff;
-
-
 #define PROTECTED_BUILD
 
 #ifdef PROTECTED_BUILD
@@ -613,9 +608,6 @@ void ProcessLTX(LPCSTR tgt_name, LPCSTR params, BOOL bFast)
 
 int __cdecl main	(int argc, char* argv[])
 {
-	g_temporary_stuff	= &trivial_encryptor::decode;
-	g_dummy_stuff		= &trivial_encryptor::encode;
-
 	Core._initialize("xrCompress",0,FALSE);
 	printf			("\n\n");
 

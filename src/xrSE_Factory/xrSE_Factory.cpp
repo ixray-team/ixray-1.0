@@ -41,18 +41,10 @@ extern "C" {
 	}
 };
 
-typedef void DUMMY_STUFF (const void*,const u32&,void*);
-XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
-
-#define TRIVIAL_ENCRYPTOR_DECODER
-#include "../xrCore/Crypto/trivial_encryptor.h"
-
 BOOL APIENTRY DllMain		(HANDLE module_handle, DWORD call_reason, LPVOID reserved)
 {
 	switch (call_reason) {
 		case DLL_PROCESS_ATTACH: {
-			g_temporary_stuff			= &trivial_encryptor::decode;
-
  			Core._initialize			("xrSE_Factory",NULL,TRUE,"fsfactory.ltx");
 			string_path					SYSTEM_LTX;
 			FS.update_path				(SYSTEM_LTX,"$game_config$","system.ltx");

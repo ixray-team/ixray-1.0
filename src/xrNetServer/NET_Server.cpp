@@ -102,38 +102,36 @@ xr_string IBannedClient::BannedTimeTo() const
 
 void gen_auth_code()
 {
-		xr_vector<xr_string>	ignore, test	;
+		xr_vector<shared_str>	ignore, test	;
 
 		LPCSTR pth				= FS.get_path("$app_data_root$")->m_Path;
-		ignore.push_back		(xr_string(pth));
-		ignore.push_back		(xr_string("gamedata\\config\\localization.ltx"));
-		ignore.push_back		(xr_string("gamedata\\config\\fonts.ltx"));
-		ignore.push_back		(xr_string("gamedata\\config\\misc\\items.ltx"));
-		ignore.push_back		(xr_string("gamedata\\config\\text"));
-		ignore.push_back		(xr_string("gamedata\\config\\gameplay"));
-		ignore.push_back		(xr_string("gamedata\\config\\ui"));
+		ignore.push_back		(pth);
+		ignore.push_back		("gamedata\\config\\localization.ltx");
+		ignore.push_back		("gamedata\\config\\fonts.ltx");
+		ignore.push_back		("gamedata\\config\\misc\\items.ltx");
+		ignore.push_back		("gamedata\\config\\text");
+		ignore.push_back		("gamedata\\config\\gameplay");
+		ignore.push_back		("gamedata\\config\\ui");
 
-		test.push_back			(xr_string("gamedata\\config"));
-//.		test.push_back			(xr_string("gamedata\\scripts"));
-		test.push_back			(xr_string("gamedata\\shaders"));
-		test.push_back			(xr_string("gamedata\\textures\\act"));
-		test.push_back			(xr_string("gamedata\\textures\\wpn"));
+		test.push_back			("gamedata\\config");
+//.		test.push_back			("gamedata\\scripts"));
+		test.push_back			("gamedata\\shaders");
+		test.push_back			("gamedata\\textures\\act");
+		test.push_back			("gamedata\\textures\\wpn");
 
-		test.push_back			(xr_string("xrd3d9-null.dll"));
-		test.push_back			(xr_string("ode.dll"));
-		test.push_back			(xr_string("xrcdb.dll"));
-		test.push_back			(xr_string("xrcore.dll"));
-		test.push_back			(xr_string("xrcpu_pipe.dll"));
-		test.push_back			(xr_string("xrgame.dll"));
-		test.push_back			(xr_string("xrgamespy.dll"));
-		//test.push_back			(xr_string("xrlua.dll"));
-		test.push_back			(xr_string("xrnetserver.dll"));
-		test.push_back			(xr_string("xrparticles.dll"));
-		test.push_back			(xr_string("xrrender_r1.dll"));
-		test.push_back			(xr_string("xrrender_r2.dll"));
-		test.push_back			(xr_string("xrsound.dll"));
-		test.push_back			(xr_string("xrxmlparser.dll"));
-//		test.push_back			(xr_string("xr_3da.exe"));
+		test.push_back			("xrd3d9-null.dll");
+		test.push_back			("ode.dll");
+		test.push_back			("xrcdb.dll");
+		test.push_back			("xrcore.dll");
+		test.push_back			("xrcpu_pipe.dll");
+		test.push_back			("xrgame.dll");
+		test.push_back			("xrgamespy.dll");
+		test.push_back			("xrnetserver.dll");
+		test.push_back			("xrparticles.dll");
+		test.push_back			("xrrender_r1.dll");
+		test.push_back			("xrrender_r2.dll");
+		test.push_back			("xrsound.dll");
+		test.push_back			("xrxmlparser.dll");
 
 		FS.auth_generate		(ignore,test);
 }

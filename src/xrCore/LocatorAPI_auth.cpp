@@ -2,17 +2,16 @@
 #pragma hdrstop
 
 struct	auth_options	{
-	xr_vector<xr_string>				ignore;
-	xr_vector<xr_string>				important;
+	xr_vector<shared_str>				ignore;
+	xr_vector<shared_str>				important;
 };
-
 
 void	auth_entry		(void* p)
 {
 	FS.auth_runtime		(p);
 }
 
-void	CLocatorAPI::auth_generate		(xr_vector<xr_string>&	ignore, xr_vector<xr_string>&	important)
+void	CLocatorAPI::auth_generate		(xr_vector<shared_str>&	ignore, xr_vector<shared_str>&	important)
 {
 	auth_options*	_o	= xr_new<auth_options>	();
 	_o->ignore			= ignore	;
@@ -44,7 +43,7 @@ void	CLocatorAPI::auth_runtime		(void*	params)
 	if (!b_extern_auth)
 #endif // DEBUG
 	{
-		for (files_it it = files.begin(); it!=files.end(); ++it) {
+		for (files_it it = m_files.begin(); it!=m_files.end(); ++it) {
 			const file&	f	=	*it;
 
 			// test for skip
@@ -69,8 +68,8 @@ void	CLocatorAPI::auth_runtime		(void*	params)
 					u32 crc			= crc32		(r->pointer(),r->length());
 					
 #ifdef DEBUG
-					if(strstr(Core.Params,"qwerty"))
-						Msg("auth %s = %d",f.name,crc);
+					if(strstr(Core.Params,"auth_debug"))
+						Msg("auth %s = 0x%08x",f.name,crc);
 #endif // DEBUG
 
 					FS.r_close		(r);

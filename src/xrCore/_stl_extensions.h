@@ -102,6 +102,9 @@ using xr_map = std::map<K, V, P, allocator>;
 template <typename K, class V, class P = std::less<K>, typename allocator = xalloc<std::pair<const K, V>>>
 using xr_multimap = std::multimap<K, V, P, allocator>;
 
+template <typename K, class V, class _Traits = std::equal_to<K>, typename allocator = xalloc<std::pair<const K, V> > >
+using xr_hash_map = std::unordered_map<K, V, std::hash<K>, _Traits, allocator>;
+
 struct pred_str
 {
 	IC bool operator()(const char* x, const char* y) const				{	return xr_strcmp(x,y)<0;	}

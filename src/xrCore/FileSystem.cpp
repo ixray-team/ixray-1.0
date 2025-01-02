@@ -7,6 +7,7 @@
 
 #include "cderr.h"
 #include "commdlg.h"
+#include "vfw.h"
 
 EFS_Utils*	xr_EFS	= NULL;
 //----------------------------------------------------
@@ -66,36 +67,62 @@ xr_string	EFS_Utils::ChangeFileExt(const xr_string& src, LPCSTR ext)
 }
 
 //----------------------------------------------------
-LPCSTR MakeFilter(string1024& dest, LPCSTR info, LPCSTR ext)
+void MakeFilter(string1024& dest, LPCSTR info, LPCSTR ext)
 {
-	ZeroMemory(dest,sizeof(dest));
-    if (ext){
+    std::string res;
+
+    if (ext)
+    {
+    	res += info;
+		res	+= "(";
+		res	+= ext;
+		res	+= ")|";
+		res	+= ext;
+		res	+= "|";
         int icnt=_GetItemCount(ext,';');
-		LPSTR dst=dest;
         if (icnt>1)
 		{
-            strconcat		(sizeof(dest),dst,info," (",ext,")");
-            dst				+= (xr_strlen(dst)+1);
-            strcpy			(dst,ext);
-            dst				+= (xr_strlen(ext)+1);
-        }
-        for (int i=0; i<icnt; i++)
+        for(int idx=0; idx<icnt; ++idx)
 		{
             string64		buf;
-            _GetItem		(ext,i,buf,';');
-            strconcat		(sizeof(dest), dst,info," (",buf,")");
-            dst				+= (xr_strlen(dst)+1);
-            strcpy			(dst, buf);
-            dst				+= (xr_strlen(buf)+1);
+          _GetItem		(ext, idx, buf, ';');
+    
+          res += info;
+          res += "(";
+          res += buf;
+          res += ")|";
+          res += buf;
+          res += "|";
         }
     }
-	return dest;
+    	res += "|";
+	}else
+    {
+    	res = "All files(*.*)|*.*||";
+        }
+    xr_strcpy(dest, res.c_str());
+    
+    for(u32 i=0; i<res.size(); ++i)           
+    {
+    	if(res[i]=='|')
+        	dest[i]='\0';
+    }
+  
+
 }
 
 //------------------------------------------------------------------------------
 // start_flt_ext = -1-all 0..n-indices
 //------------------------------------------------------------------------------
-bool EFS_Utils::GetOpenName( LPCSTR initial,  string_path& buffer, int sz_buf, bool bMulti, LPCSTR offset, int start_flt_ext )
+  
+// Vista uses this hook for old-style save dialog
+UINT_PTR CALLBACK OFNHookProcOldStyle(HWND , UINT , WPARAM , LPARAM )
+{
+	// let default hook work on this message
+	return 0;
+}
+
+bool EFS_Utils::GetOpenNameInternal( LPCSTR initial,  LPSTR buffer, int sz_buf, bool bMulti, LPCSTR offset, int start_flt_ext )
 {
 	VERIFY(buffer&&(sz_buf>0));
 	FS_Path& P			= *FS.get_path(initial);
@@ -104,11 +131,19 @@ bool EFS_Utils::GetOpenName( LPCSTR initial,  string_path& buffer, int sz_buf, b
 
 	OPENFILENAME ofn;
 	Memory.mem_fill		( &ofn, 0, sizeof(ofn) );
-    if (xr_strlen(buffer)){ 
+
+    if (xr_strlen(buffer))
+    {
         string_path		dr;
         if (!(buffer[0]=='\\' && buffer[1]=='\\')){ // if !network
             _splitpath		(buffer,dr,0,0,0);
-            if (0==dr[0])	P._update(buffer,buffer); 
+
+            if (0==dr[0])
+            {
+                string_path		bb;
+            	P._update		(bb, buffer);
+                xr_strcpy		(buffer, sz_buf, bb);
+             }
         }
     }
     ofn.lStructSize		= sizeof(OPENFILENAME);
@@ -120,40 +155,51 @@ bool EFS_Utils::GetOpenName( LPCSTR initial,  string_path& buffer, int sz_buf, b
 	ofn.nFilterIndex 	= start_flt_ext+2;
     ofn.lpstrTitle      = "Open a File";
     string512 path; 
-	strcpy				(path,(offset&&offset[0])?offset:P.m_Path);
+	xr_strcpy				(path,(offset&&offset[0])?offset:P.m_Path);
 	ofn.lpstrInitialDir = path;
-	ofn.Flags =
-    	OFN_PATHMUSTEXIST|
+	ofn.Flags =         OFN_PATHMUSTEXIST	|
     	OFN_FILEMUSTEXIST|
 		OFN_HIDEREADONLY|
 		OFN_FILEMUSTEXIST|
-		OFN_NOCHANGEDIR|(bMulti?OFN_ALLOWMULTISELECT|OFN_EXPLORER:0);
+                        OFN_NOCHANGEDIR		|
+                        (bMulti?OFN_ALLOWMULTISELECT|OFN_EXPLORER:0);
+                        
     ofn.FlagsEx			= OFN_EX_NOPLACESBAR;
     
 	bool bRes = !!GetOpenFileName( &ofn );
-    if (!bRes){
+    if (!bRes)
+    {
 	    u32 err = CommDlgExtendedError();
-	    switch(err){
-        case FNERR_BUFFERTOOSMALL: 	Log("Too many file selected."); break;
+	    switch(err)
+        {
+        	case FNERR_BUFFERTOOSMALL:
+            	Log("Too many files selected.");
+            break;
         }
 	}
-    if (bRes&&bMulti){
+    if (bRes && bMulti)
+    {
+    	Log				("buff=",buffer);
 		int cnt		= _GetItemCount(buffer,0x0);
-        if (cnt>1){
-            string64  	buf;
-            string64  	dir;
-            string4096 	fns;
-            strcpy		(dir, buffer);
-            strcpy		(fns,dir);
-            strcat		(fns,"\\");
-            strcat		(fns,_GetItem(buffer,1,buf,0x0));
-            for (int i=2; i<cnt; i++){
-                strcat	(fns,",");
-                strcat	(fns,dir);
-                strcat	(fns,"\\");
-                strcat	(fns,_GetItem(buffer,i,buf,0x0));
+        if (cnt>1)
+        {
+            char 		dir	  [255*255];
+            char 		buf	  [255*255];
+            char 		fns	  [255*255];
+
+            xr_strcpy		(dir, buffer);
+            xr_strcpy		(fns, dir);
+            xr_strcat		(fns, "\\");
+            xr_strcat		(fns, _GetItem	(buffer,1,buf,0x0));
+
+            for (int i=2; i<cnt; i++)
+            {
+                xr_strcat	(fns,",");
+                xr_strcat	(fns,dir);
+                xr_strcat	(fns,"\\");
+                xr_strcat	(fns,_GetItem(buffer,i,buf,0x0));
             }
-            strcpy		(buffer,fns);
+            xr_strcpy		(buffer, sz_buf, fns);
         }
     }
     _strlwr(buffer);
@@ -162,9 +208,21 @@ bool EFS_Utils::GetOpenName( LPCSTR initial,  string_path& buffer, int sz_buf, b
 
 bool EFS_Utils::GetSaveName( LPCSTR initial, string_path& buffer, LPCSTR offset, int start_flt_ext )
 {
+//	unsigned int	dwVersion = GetVersion();
+//	unsigned int	dwWindowsMajorVersion =  (DWORD)(LOBYTE(LOWORD(dwVersion)));
+
 	FS_Path& P			= *FS.get_path(initial);
 	string1024 flt;
-	MakeFilter(flt,P.m_FilterCaption?P.m_FilterCaption:"",P.m_DefExt);
+
+    LPCSTR def_ext 		= P.m_DefExt;
+    if ( false )//&& dwWindowsMajorVersion == 6 )
+    {
+        if(strstr(P.m_DefExt, "*."))
+            def_ext = strstr(P.m_DefExt, "*.")+2;
+    }
+
+    
+	MakeFilter(flt,P.m_FilterCaption?P.m_FilterCaption:"",def_ext);
 	OPENFILENAME ofn;
 	Memory.mem_fill		( &ofn, 0, sizeof(ofn) );
     if (xr_strlen(buffer)){ 
@@ -175,17 +233,25 @@ bool EFS_Utils::GetSaveName( LPCSTR initial, string_path& buffer, LPCSTR offset,
         }
     }
 	ofn.hwndOwner 		= GetForegroundWindow();
-	ofn.lpstrDefExt 	= P.m_DefExt;
+	ofn.lpstrDefExt 	= def_ext;
 	ofn.lpstrFile 		= buffer;
 	ofn.lpstrFilter 	= flt;
 	ofn.lStructSize 	= sizeof(ofn);
 	ofn.nMaxFile 		= sizeof(buffer);
 	ofn.nFilterIndex 	= start_flt_ext+2;
     ofn.lpstrTitle      = "Save a File";
-    string512 path; strcpy(path,(offset&&offset[0])?offset:P.m_Path);
+    string512 path; xr_strcpy(path,(offset&&offset[0])?offset:P.m_Path);
 	ofn.lpstrInitialDir = path;
 	ofn.Flags 			= OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT|OFN_NOCHANGEDIR;
     ofn.FlagsEx			= OFN_EX_NOPLACESBAR;
+
+/*
+	if ( dwWindowsMajorVersion == 6 )
+	{
+		ofn.Flags |= OFN_ENABLEHOOK;
+		ofn.lpfnHook = OFNHookProcOldStyle;
+	}
+*/
 
 	bool bRes = !!GetSaveFileName( &ofn );
     if (!bRes){
@@ -198,14 +264,14 @@ bool EFS_Utils::GetSaveName( LPCSTR initial, string_path& buffer, LPCSTR offset,
 	return bRes;
 }
 //----------------------------------------------------
-LPCSTR EFS_Utils::AppendFolderToName(LPSTR tex_name, int depth, BOOL full_name)
+LPCSTR EFS_Utils::AppendFolderToName(LPSTR tex_name, u32 const tex_name_size, int depth, BOOL full_name)
 {
 	string256 _fn;
-	strcpy(tex_name,AppendFolderToName(tex_name, _fn, depth, full_name));
+	xr_strcpy(tex_name,tex_name_size,AppendFolderToName(tex_name, _fn, sizeof(_fn), depth, full_name));
 	return tex_name;
 }
 
-LPCSTR EFS_Utils::AppendFolderToName(LPCSTR src_name, LPSTR dest_name, int depth, BOOL full_name)
+LPCSTR EFS_Utils::AppendFolderToName(LPCSTR src_name, LPSTR dest_name, u32 const dest_name_size, int depth, BOOL full_name)
 {
 	shared_str tmp = src_name;
     LPCSTR s 	= src_name;
@@ -216,7 +282,7 @@ LPCSTR EFS_Utils::AppendFolderToName(LPCSTR src_name, LPSTR dest_name, int depth
 	}
 	if (full_name){
 		*d			= 0;
-		if (depth<sv_depth)	strcat(dest_name,*tmp);
+		if (depth<sv_depth)	xr_strcat(dest_name,dest_name_size,*tmp);
 	}else{
 		for (; *s; s++, d++) *d=*s;
 		*d			= 0;
@@ -224,21 +290,21 @@ LPCSTR EFS_Utils::AppendFolderToName(LPCSTR src_name, LPSTR dest_name, int depth
     return dest_name;
 }
 
-LPCSTR EFS_Utils::GenerateName(LPCSTR base_path, LPCSTR base_name, LPCSTR def_ext, LPSTR out_name)
+LPCSTR EFS_Utils::GenerateName(LPCSTR base_path, LPCSTR base_name, LPCSTR def_ext, LPSTR out_name, u32 const out_name_size)
 {
     int cnt = 0;
 	string_path fn;
     if (base_name)	
 		strconcat		(sizeof(fn), fn, base_path,base_name,def_ext);
 	else 			
-		sprintf_s		(fn, sizeof(fn), "%s%02d%s",base_path,cnt++,def_ext);
+		xr_sprintf		(fn, sizeof(fn), "%s%02d%s",base_path,cnt++,def_ext);
 
 	while (FS.exist(fn))
 	    if (base_name)	
-			sprintf_s	(fn, sizeof(fn),"%s%s%02d%s",base_path,base_name,cnt++,def_ext);
+			xr_sprintf	(fn, sizeof(fn),"%s%s%02d%s",base_path,base_name,cnt++,def_ext);
         else 			
-			sprintf_s	(fn, sizeof(fn), "%s%02d%s",base_path,cnt++,def_ext);
-    strcpy(out_name,fn);
+			xr_sprintf	(fn, sizeof(fn), "%s%02d%s",base_path,cnt++,def_ext);
+    xr_strcpy(out_name,out_name_size,fn);
 	return out_name;
 }
 

@@ -269,6 +269,12 @@
     <ClCompile Include="memory_alloc_xr.cpp">
       <Filter>Memory manager</Filter>
     </ClCompile>
+    <ClCompile Include="string_concatenations.cpp">
+      <Filter>shared memory/string library</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\trivial_encryptor.cpp">
+      <Filter>Crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -549,7 +555,16 @@
     <ClInclude Include="memory_alloc_xr.h">
       <Filter>Memory manager</Filter>
     </ClInclude>
-    <ClInclude Include="trivial_encryptor.h">
+    <ClInclude Include="string_concatenations.h">
+      <Filter>shared memory/string library</Filter>
+    </ClInclude>
+    <ClInclude Include="string_concatenations_inline.h">
+      <Filter>shared memory/string library</Filter>
+    </ClInclude>
+    <ClInclude Include="FS_impl.h">
+      <Filter>FS</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto\trivial_encryptor.h">
       <Filter>Crypto</Filter>
     </ClInclude>
   </ItemGroup>
