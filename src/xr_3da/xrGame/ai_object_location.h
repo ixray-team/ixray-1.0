@@ -29,7 +29,7 @@ public:
 	IC			const GameGraph::_GRAPH_ID	game_vertex_id		() const;
 	IC			void						level_vertex		(const LevelGraph::CVertex	*level_vertex);
 	IC			void						level_vertex		(const u32					level_vertex_id);
-	IC			const LevelGraph::CVertex	*level_vertex		() const;
+				const LevelGraph::CVertex	*level_vertex		() const;
 	IC			const u32					level_vertex_id		() const;
 };
 

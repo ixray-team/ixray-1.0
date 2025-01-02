@@ -5,6 +5,10 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Mixed|Win32">
+      <Configuration>Mixed</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -25,6 +29,14 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
@@ -38,6 +50,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
@@ -47,13 +62,18 @@
     <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,7 +118,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)OpenAL32.pdb</ProgramDatabaseFile>
       <LargeAddressAware>true</LargeAddressAware>
-      <ImportLibrary>$(SolutionDir)lib\OpenAL32.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)lib\$(Configuration)\$(Platform)\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -152,7 +172,64 @@
       <ProgramDatabaseFile>$(OutDir)OpenAL32.pdb</ProgramDatabaseFile>
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ImportLibrary>$(SolutionDir)lib\OpenAL32.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)lib\$(Configuration)\$(Platform)\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/Router.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ROUTER_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level1</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>version.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)OpenAL32.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>$(OutDir)OpenAL32.pdb</ProgramDatabaseFile>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ImportLibrary>$(SolutionDir)lib\$(Configuration)\$(Platform)\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -165,8 +242,12 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">MaxSpeed</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </BrowseInformation>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
       </BrowseInformation>
     </ClCompile>
     <ClCompile Include="alc.cpp">
@@ -176,8 +257,12 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">MaxSpeed</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </BrowseInformation>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
       </BrowseInformation>
     </ClCompile>
     <ClCompile Include="alList.cpp">
@@ -187,8 +272,12 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">MaxSpeed</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </BrowseInformation>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
       </BrowseInformation>
     </ClCompile>
     <ClCompile Include="OpenAL32.cpp">
@@ -198,8 +287,12 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">MaxSpeed</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ROUTER_EXPORTS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </BrowseInformation>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
       </BrowseInformation>
     </ClCompile>
   </ItemGroup>
