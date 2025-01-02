@@ -34,7 +34,7 @@
 	}
 #endif
 
-extern IC u16	script_server_object_version();
+extern u16	script_server_object_version();
 
 ////////////////////////////////////////////////////////////////////////////
 // CPureServerObject
