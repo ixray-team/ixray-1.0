@@ -73,6 +73,9 @@
     <Filter Include="XmlParser">
       <UniqueIdentifier>{1ad2b447-f393-45f4-8e01-70abbf0345da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Crypto">
+      <UniqueIdentifier>{a12f5b68-e7a3-497b-b3d8-1e3bbaf2c59d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -545,6 +548,9 @@
     </ClInclude>
     <ClInclude Include="memory_alloc_xr.h">
       <Filter>Memory manager</Filter>
+    </ClInclude>
+    <ClInclude Include="trivial_encryptor.h">
+      <Filter>Crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

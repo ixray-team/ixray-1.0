@@ -509,7 +509,6 @@
     <ClInclude Include="CopyProtection.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="trivial_encryptor.h" />
     <ClInclude Include="x_ray.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="psystem.h" />

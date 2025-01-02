@@ -405,6 +405,7 @@
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="trivial_encryptor.h" />
     <ClInclude Include="XmlParser\tinyxml.h" />
     <ClInclude Include="XmlParser\xrXMLParser.h" />
     <ClInclude Include="xrCore.h" />
