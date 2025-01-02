@@ -75,38 +75,86 @@ void VerifyPath(LPCSTR path)
         _mkdir(tmp);
 	}
 }
-void*  FileDownload(LPCSTR fn, u32* pdwSize)
+#ifdef _EDITOR
+bool file_handle_internal	(LPCSTR file_name, u32 &size, int &hFile)
 {
-	int		hFile;
-	u32		size;
-	void*	buf;
-
-#ifdef _EDITOR
-	hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL);
-#else
-	hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL,_S_IREAD);
-#endif
-	if (hFile<=0)	{
-		Sleep	(1);
-#ifdef _EDITOR
-		hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL);
-#else
-		hFile	= _open(fn,O_RDONLY|O_BINARY|O_SEQUENTIAL,_S_IREAD);
-#endif
+	hFile				= _open(file_name,O_RDONLY|O_BINARY|O_SEQUENTIAL);
+	if (hFile <= 0)	{
+		Sleep			(1);
+		hFile			= _open(file_name,O_RDONLY|O_BINARY|O_SEQUENTIAL);
+		if (hFile <= 0)
+			return		(false);
 	}
-	R_ASSERT2(hFile>0,fn);
-#ifdef _EDITOR
-	size	= filelength(hFile);
-#else
-	size	= _filelength(hFile);
-#endif
+	
+	size				= filelength(hFile);
+	return				(true);
+}
+#else // EDITOR
+static errno_t open_internal(LPCSTR fn, int &handle)
+{
+	return				(
+		_sopen_s(
+			&handle,
+			fn,
+			_O_RDONLY | _O_BINARY,
+			_SH_DENYNO, 
+            _S_IREAD
+		)
+	);
+}
 
-	buf		= Memory.mem_alloc(size);
-	int r_bytes	= _read	(hFile,buf,size);
-	R_ASSERT3(r_bytes==(int)size,"Can't read file data:",fn);
-	_close	(hFile);
-	if (pdwSize) *pdwSize = size;
-	return buf;
+bool file_handle_internal	(LPCSTR file_name, u32 &size, int &file_handle)
+{
+	if (open_internal(file_name, file_handle)) {
+		Sleep			(1);
+		if (open_internal(file_name, file_handle))
+			return		(false);
+	}
+	
+	size				= _filelength(file_handle);
+	return				(true);
+}
+#endif // EDITOR
+
+void *FileDownload		(LPCSTR file_name, const int &file_handle, u32 &file_size)
+{
+	void				*buffer = Memory.mem_alloc	(
+		file_size
+#ifdef DEBUG_MEMORY_NAME
+		,"FILE in memory"
+#endif // DEBUG_MEMORY_NAME
+	);
+
+	int					r_bytes	= _read(file_handle,buffer,file_size);
+	R_ASSERT3			(
+//		!file_size ||
+//		(r_bytes && (file_size >= (u32)r_bytes)),
+		file_size == (u32)r_bytes,
+		"can't read from file : ",
+		file_name
+	);
+
+//	file_size			= r_bytes;
+
+	R_ASSERT3			(
+		!_close(file_handle),
+		"can't close file : ",
+		file_name
+	);
+
+	return				(buffer);
+}
+
+void *FileDownload		(LPCSTR file_name, u32 *buffer_size)
+{
+	int					file_handle;
+	R_ASSERT3			(
+		file_handle_internal(file_name, *buffer_size, file_handle),
+		"can't open file : ",
+		file_name
+	);
+
+	return				(FileDownload(file_name, file_handle, *buffer_size));
 }
 
 typedef char MARK[9];

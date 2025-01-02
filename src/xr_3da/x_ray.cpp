@@ -1037,19 +1037,6 @@ void CApplication::Level_Scan()
 	R_ASSERT				(folder&&folder->size());
 	for (u32 i=0; i<folder->size(); i++)	Level_Append((*folder)[i]);
 	FS.file_list_close		(folder);
-#ifdef DEBUG
-	folder									= FS.file_list_open		("$game_levels$","$debug$\\",FS_ListFolders|FS_RootOnly);
-	if (folder){
-		string_path	tmp_path;
-		for (u32 i=0; i<folder->size(); i++)
-		{
-			strconcat			(sizeof(tmp_path),tmp_path,"$debug$\\",(*folder)[i]);
-			Level_Append		(tmp_path);
-		}
-
-		FS.file_list_close	(folder);
-	}
-#endif
 }
 
 void CApplication::Level_Set(u32 L)

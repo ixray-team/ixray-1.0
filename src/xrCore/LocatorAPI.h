@@ -114,6 +114,12 @@ private:
 	template <typename T>
 	IC		T					*r_open_impl		(LPCSTR path, LPCSTR _fname);
 			void				ProcessExternalArch	();
+
+private:
+			void				setup_fs_path		(LPCSTR fs_name, string_path &fs_path);
+			void				setup_fs_path		(LPCSTR fs_name);
+			IReader				*setup_fs_ltx		(LPCSTR fs_name);
+
 public:
 								CLocatorAPI		();
 								~CLocatorAPI	();
