@@ -194,7 +194,7 @@ void CGameFont::Initialize2(const char* name, const char* shader, const char* st
 	u32 TargetY2 = 0;
 
 	FT_Size_RequestRec req;
-	req.type = FT_SIZE_REQUEST_TYPE_NOMINAL;
+	req.type = FT_SIZE_REQUEST_TYPE_CELL;
 	req.width = 0;
 	req.height = (uint32_t)fHeight * 64;
 	req.horiResolution = 0;
